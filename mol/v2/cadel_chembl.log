@@ -1,0 +1,21 @@
+{
+ "pool": "ChEMBL CAXII+CAII, primary sulfonamides",
+ "n_paired": 1633,
+ "n_sulfonamide": 1273,
+ "fracs": [
+  0.4,
+  0.2,
+  0.2
+ ],
+ "reps": 50,
+ "model": "Morgan r=2 2048 bits + CatBoostClassifier(500, depth 6, lr 0.1)",
+ "prevalence": {
+  "gap": 0.22545168892380205,
+  "rectangle": 0.08091123330714847
+ }
+}
+  gap P rep0 AUROC(future) 0.682 enrichment 2.38 p 1.8e-04
+  gap S rep0 AUROC(future) 0.580 enrichment 2.28 p 2.5e-03
+  rectangle P rep0 AUROC(future) 0.770 enrichment 2.27 p 1.3e-01
+  rectangle S rep0 AUROC(future) 0.449 enrichment 5.29 p 3.9e-03
+total 352.5s
