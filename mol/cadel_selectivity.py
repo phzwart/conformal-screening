@@ -27,7 +27,16 @@ the same selective label, which says whether the differential score is needed at
 
 CAIX cannot be paired this way: its DEL library is disjoint from the other two.
 
-Usage: python3 -I cadel_selectivity.py DATADIR OUTDIR REPS
+A fourth argument restricts both the DEL library and the screened pool to molecules
+carrying a primary sulfonamide, the zinc-binding group of essentially every carbonic
+anhydrase inhibitor.  Only 2.0% of the DEL library carries one, against 78% of the paired
+ChEMBL compounds, and the two screens enrich sulfonamides very differently (median counts
+464 on CAII against 48 on CAXII), so on the whole library the differential largely encodes
+the presence of that group rather than any per-molecule isoform preference.  Restricting to
+sulfonamides holds the zinc-binding chemotype fixed and asks the question the tail of the
+molecule actually decides.
+
+Usage: python3 -I cadel_selectivity.py DATADIR OUTDIR REPS [all|sulfonamide]
 """
 import sys, os, json, time, numpy as np, pandas as pd
 
@@ -40,7 +49,22 @@ from catboost import CatBoostRegressor
 from sklearn.metrics import roc_auc_score
 
 DATA, OUT, REPS = sys.argv[1], sys.argv[2], int(sys.argv[3])
+SUBSET = sys.argv[4] if len(sys.argv) > 4 else "all"
+if SUBSET not in ("all", "sulfonamide"):
+    raise SystemExit("subset must be 'all' or 'sulfonamide'")
 os.makedirs(OUT, exist_ok=True)
+SUF = "" if SUBSET == "all" else "_sulf"
+PRIMARY_SULFONAMIDE = "[SX4](=[OX1])(=[OX1])[NX3;H2]"
+
+
+def has_primary_sulfonamide(smiles):
+    from rdkit import Chem
+    pat = Chem.MolFromSmarts(PRIMARY_SULFONAMIDE)
+    out = np.zeros(len(smiles), dtype=bool)
+    for i, smi in enumerate(smiles):
+        m = Chem.MolFromSmiles(smi)
+        out[i] = m is not None and m.HasSubstructMatch(pat)
+    return out
 TARGET, ANTI = "CAXII", "CAII"
 LABELS = [(8, 0.5), (8, 1.0), (7, 0.5), (7, 1.0)]   # (potency pKi, margin over CAII)
 PRIMARY = (8, 0.5)
@@ -70,6 +94,10 @@ def paired_chembl():
 def main():
     t_all = time.time()
     dl, ch = paired_del(), paired_chembl()
+    n_dl_all, n_ch_all = len(dl), len(ch)
+    if SUBSET == "sulfonamide":
+        dl = dl[has_primary_sulfonamide(dl.smiles.to_numpy())].reset_index(drop=True)
+        ch = ch[has_primary_sulfonamide(ch.smiles.to_numpy())].reset_index(drop=True)
     y_del = np.log1p(dl.del_enrich_t.to_numpy(float)) - np.log1p(dl.del_enrich_a.to_numpy(float))
     X = fingerprints(dl.smiles.to_numpy())
     rng0 = np.random.default_rng(0)
@@ -93,7 +121,9 @@ def main():
     pki_t, pki_a = ch.pKi_median_t.to_numpy(float), ch.pKi_median_a.to_numpy(float)
     gap = pki_t - pki_a
     from scipy.stats import spearmanr
-    info = {"pair": f"{TARGET} over {ANTI}", "n_del": len(dl), "n_del_train": len(tr),
+    info = {"pair": f"{TARGET} over {ANTI}", "subset": SUBSET,
+            "n_del_before_subset": n_dl_all, "n_chembl_before_subset": n_ch_all,
+            "n_del": len(dl), "n_del_train": len(tr),
             "n_del_val": len(val), "n_chembl_paired": len(ch),
             "target": "y = log1p(del_enrich[CAXII]) - log1p(del_enrich[CAII])",
             "del_val_spearman": float(spearmanr(yhat_val, y_del[val]).statistic),
@@ -148,13 +178,13 @@ def main():
                 else:
                     o.update(analyse(uc_, yc_, ua_, ya_, uf_, yf_))
                     if design == "P" and r == 0 and (pot, g) == PRIMARY:
-                        np.savez_compressed(f"{OUT}/scores_sel_P_{TARGET}.npz", u_cal=uc_,
+                        np.savez_compressed(f"{OUT}/scores_sel_P_{TARGET}{SUF}.npz", u_cal=uc_,
                                             y_cal=yc_, u_audit=ua_, y_audit=ya_)
                 res["runs"].append(o)
                 if r == 0:
                     print(f"  p{pot} g{g} {name} rep0 auroc {o.get('auroc_audit')} "
                           f"viol {o.get('default', {}).get('viol')} skipped {o.get('skipped', False)}", flush=True)
-    json.dump(res, open(f"{OUT}/cadel_selectivity_runs.json", "w"))
+    json.dump(res, open(f"{OUT}/cadel_selectivity_runs{SUF}.json", "w"))
     print(f"total {time.time() - t_all:.1f}s", flush=True)
 
 
