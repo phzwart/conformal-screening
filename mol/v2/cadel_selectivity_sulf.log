@@ -1,0 +1,70 @@
+{
+ "pair": "CAXII over CAII",
+ "subset": "sulfonamide",
+ "n_del_before_subset": 122500,
+ "n_chembl_before_subset": 1633,
+ "n_del": 2450,
+ "n_del_train": 2205,
+ "n_del_val": 245,
+ "n_chembl_paired": 1273,
+ "target": "y = log1p(del_enrich[CAXII]) - log1p(del_enrich[CAII])",
+ "del_val_spearman": 0.8022746833562059,
+ "del_val_rmse": 0.5540045381243969,
+ "del_val_sd": 0.904074854866706,
+ "chembl_spearman_gap": 0.03999255073587442,
+ "chembl_spearman_potency": 0.0424195109731478,
+ "gap_quantiles": [
+  -1.2953934400499256,
+  -0.23408320603336819,
+  0.20712549279564918,
+  0.8936825184701123,
+  1.8017707467573911
+ ],
+ "mu": -2.2230270029478896,
+ "sd": 0.8412037394681481,
+ "prevalence_p8_g0.5": 0.22545168892380205,
+ "auroc_p8_g0.5": 0.5192662430825989,
+ "auroc_potency_score_p8_g0.5": 0.5603483613798758,
+ "prevalence_p8_g1.0": 0.13982717989002358,
+ "auroc_p8_g1.0": 0.4962469857883126,
+ "auroc_potency_score_p8_g1.0": 0.5890308347442409,
+ "prevalence_p7_g0.5": 0.37077769049489395,
+ "auroc_p7_g0.5": 0.5342686049218138,
+ "auroc_potency_score_p7_g0.5": 0.5138624389005269,
+ "prevalence_p7_g1.0": 0.20345640219952868,
+ "auroc_p7_g1.0": 0.4997353651199805,
+ "auroc_potency_score_p7_g1.0": 0.5462749308903154
+}
+  p8 g0.5 P rep0 auroc 0.49547184170471836 viol [False, False] skipped False
+  p8 g0.5 D rep0 auroc 0.5509721298144452 viol [False, False] skipped False
+  p8 g0.5 S rep0 auroc 0.5647217365967366 viol [False, False] skipped False
+  p8 g0.5 N50 rep0 auroc 0.5445177552079472 viol [False, False] skipped False
+  p8 g0.5 N100 rep0 auroc 0.5220159151193634 viol [False, False] skipped False
+  p8 g0.5 N200 rep0 auroc 0.5232483565816899 viol [False, False] skipped False
+  p8 g0.5 N400 rep0 auroc 0.5169713831478537 viol [False, True] skipped False
+  p8 g0.5 N800 rep0 auroc 0.5928261726448562 viol [False, False] skipped False
+  p8 g1.0 P rep0 auroc 0.4498599439775911 viol [False, False] skipped False
+  p8 g1.0 D rep0 auroc 0.49255732563688837 viol [False, True] skipped False
+  p8 g1.0 S rep0 auroc 0.4881437125748503 viol [False, False] skipped False
+  p8 g1.0 N50 rep0 auroc 0.45814406229720955 viol [False, False] skipped False
+  p8 g1.0 N100 rep0 auroc 0.4497111790689772 viol [False, False] skipped False
+  p8 g1.0 N200 rep0 auroc 0.5056931931931932 viol [False, False] skipped False
+  p8 g1.0 N400 rep0 auroc 0.49868407200757975 viol [False, False] skipped False
+  p8 g1.0 N800 rep0 auroc 0.5002165908598657 viol [False, False] skipped False
+  p7 g0.5 P rep0 auroc 0.5758928571428572 viol [False, False] skipped False
+  p7 g0.5 D rep0 auroc 0.5355847404627891 viol [False, False] skipped False
+  p7 g0.5 S rep0 auroc 0.5587743572005073 viol [False, False] skipped False
+  p7 g0.5 N50 rep0 auroc 0.5196627521830774 viol [True, False] skipped False
+  p7 g0.5 N100 rep0 auroc 0.4853381912205442 viol [False, False] skipped False
+  p7 g0.5 N200 rep0 auroc 0.5149434344571396 viol [False, False] skipped False
+  p7 g0.5 N400 rep0 auroc 0.5245936310351079 viol [False, False] skipped False
+  p7 g0.5 N800 rep0 auroc 0.5591638337209995 viol [False, False] skipped False
+  p7 g1.0 P rep0 auroc 0.5058250535749075 viol [False, False] skipped False
+  p7 g1.0 D rep0 auroc 0.48799032575013224 viol [False, False] skipped False
+  p7 g1.0 S rep0 auroc 0.5368411109011902 viol [False, False] skipped False
+  p7 g1.0 N50 rep0 auroc 0.5234831175425235 viol [False, False] skipped False
+  p7 g1.0 N100 rep0 auroc 0.499875415282392 viol [False, False] skipped False
+  p7 g1.0 N200 rep0 auroc 0.538082788671024 viol [False, False] skipped False
+  p7 g1.0 N400 rep0 auroc 0.48823481846850486 viol [False, False] skipped False
+  p7 g1.0 N800 rep0 auroc 0.4852974611595301 viol [False, False] skipped False
+total 225.4s
