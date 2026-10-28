@@ -44,6 +44,7 @@ Raw data are in `../data/` with `SHA256SUMS`: the Tox21 MoleculeNet file, the cu
 | AqSolDB analysis (Fig. 7, Table 6, ESI) | `python3 -I analyze_aqsol.py aqsol_runs.npz v2` | ~3 min |
 | Real-data audit check (Table 4, ESI) | `python3 -I audit_check.py v2 aqsol_runs.npz v2/audit_check.json 20` | ~15 min |
 | Scenario maps (Fig. 7, ESI Fig. S3) | `CALISOL_SAVE_SCORES=1 python3 -I calisol.py ../data/calisol/calisol23.csv v2/calisol_scores 8 1` then `python3 -I scenario_map.py v2/scenario_map.json ../figures` | ~1 min |
+| Label-free check that the screened pool is covered by the training data (CA-DEL) | `python3 -I support_check.py ../data/cadel v2/support_check.json 20000` | ~3 min |
 | Interval width against the trivial baseline, and enrichment of the advanced set (Sections 3.4, 3.6) | `python3 -I beyond_chance.py v2/beyond_chance.json` | < 1 min |
 | Per-plate intervals and audit-size bounds (Sections 3.4, 3.6) | `python3 -I plate_bounds.py v2/calisol/calisol_runs.json v2/scenario_map.json v2/plate_bounds.json` | < 1 min |
 | Figures 6, 7, ESI S2, S3 | `python3 -I make_figures_mol.py v2 ../figures` | < 1 min |
