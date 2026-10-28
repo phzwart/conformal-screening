@@ -47,6 +47,7 @@ Raw data are in `../data/` with `SHA256SUMS`: the Tox21 MoleculeNet file, the cu
 | Per-plate intervals and audit-size bounds (Sections 3.4, 3.6) | `python3 -I plate_bounds.py v2/calisol/calisol_runs.json v2/scenario_map.json v2/plate_bounds.json` | < 1 min |
 | Figures 6, 7, ESI S2, S3 | `python3 -I make_figures_mol.py v2 ../figures` | < 1 min |
 | CALiSol-23 electrolyte screen (Table 7, Fig. 8, ESI) | `python3 -I calisol.py ../data/calisol/calisol23.csv v2/calisol 8 50` then `python3 -I calisol_summary.py v2/calisol/calisol_runs.json v2/calisol/calisol_summary.json ../figures ../tables` | ~20 min |
+| BELKA subsample (DEL, 3 targets) | `python3 -I belka_fetch.py --source polaris --input /tmp/belka --out ../data/belka --n 1000000` | ~26 min |
 
 `v2/scores/` stores, for every Tox21 run, the training, calibration and test indices, the raw scores and the labels, so every interval can be recomputed without refitting.
 
