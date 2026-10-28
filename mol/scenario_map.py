@@ -52,14 +52,20 @@ def load_aqsol(r=0):
 def load_calisol(design="random", r=0):
     z = np.load(f"{HERE}/v2/calisol_scores/scores_{design}_{r}.npz"); return z["u_cal"], z["y_cal"], z["u_audit"], z["y_audit"]
 
+def load_cadel(isoform="CAXII", c=8):
+    z = np.load(f"{HERE}/v2/cadel/scores_P_{isoform}_c{c}.npz"); return z["u_cal"], z["y_cal"], z["u_audit"], z["y_audit"]
+
 SCEN = {"aqsol": {"loose": {"deferred": ("max", 450), "confirmed in-class": ("min", 60), "missed in-class": ("max", 90)},
                   "tight": {"deferred": ("max", 250), "confirmed in-class": ("min", 60), "missed in-class": ("max", 90)}},
         "calisol": {"loose": {"deferred": ("max", 200), "confirmed in-class": ("min", 60), "missed in-class": ("max", 40)},
-                    "tight": {"deferred": ("max", 100), "confirmed in-class": ("min", 60), "missed in-class": ("max", 40)}}}
+                    "tight": {"deferred": ("max", 100), "confirmed in-class": ("min", 60), "missed in-class": ("max", 40)}},
+        # the DEL-trained scores never defer fewer than 395 per 1000 at any request, so the
+        # electrolyte limits (200 / 60 / 40) are infeasible over the whole grid; relaxed here
+        "cadel": {"loose": {"deferred": ("max", 750), "confirmed in-class": ("min", 60), "missed in-class": ("max", 100)}}}
 
 if __name__ == "__main__":
     OUT, FIG = sys.argv[1], sys.argv[2]; res = {"eps": EPS, "requests": J, "bounded_outcomes": C, "per_bound_level": LEV, "alphas": ALPHAS.tolist()}
-    for name, loader in (("aqsol", load_aqsol), ("calisol", load_calisol)):
+    for name, loader in (("aqsol", load_aqsol), ("calisol", load_calisol), ("cadel", load_cadel)):
         G, info = grid(*loader()); res[name] = {"info": info, "grid": {k: {q: v.tolist() for q, v in G[k].items()} for k in G}, "scenarios": {}}
         for sname, lim in SCEN[name].items():
             ok, best = solve(G, lim); res[name]["scenarios"][sname] = {"limits": {k: list(v) for k, v in lim.items()}, "feasible": int(ok.sum()), "best": best,

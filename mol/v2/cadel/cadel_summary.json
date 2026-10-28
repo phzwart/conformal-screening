@@ -1,0 +1,5306 @@
+{
+ "info": {
+  "alpha": 0.1,
+  "delta": 0.1,
+  "gamma": 0.05,
+  "batch": 1000,
+  "plate": 96,
+  "reps": 50,
+  "cutoffs": [
+   7,
+   8,
+   9
+  ],
+  "designs": [
+   "P",
+   "D",
+   "S",
+   "N50",
+   "N100",
+   "N200",
+   "N400",
+   "N800"
+  ],
+  "model": "Morgan r=2 2048 bits + CatBoostRegressor(500, depth 6, lr 0.1)",
+  "target": "y = log(1 + del_enrich)",
+  "val_frac": 0.1,
+  "model_trained_once_per_isoform_seed": 0,
+  "score_map": "u = sigmoid((y_hat - mu) / sd), mu and sd from DEL training molecules"
+ },
+ "isoforms": {
+  "CAII": {
+   "n_del": 122500,
+   "n_del_train": 110250,
+   "n_del_val": 12250,
+   "n_chembl_all": 3965,
+   "n_chembl": 3844,
+   "n_chembl_inconsistent_excluded": 121,
+   "del_enrich_zero_fraction": 0.259934693877551,
+   "del_val_spearman": 0.5562749919206298,
+   "del_val_rmse": 0.5611794058952293,
+   "del_val_sd": 1.014038892567904,
+   "chembl_spearman_pki": 0.22115750652045,
+   "mu": 0.9931266147447781,
+   "sd": 0.801720036500805,
+   "has_released_del_label": true,
+   "prevalence_c7": 0.6196670135275755,
+   "auroc_c7": 0.6415246990366646,
+   "prevalence_c8": 0.3106139438085328,
+   "auroc_c8": 0.5397048133750514,
+   "prevalence_c9": 0.055150884495317375,
+   "auroc_c9": 0.4726559253179287,
+   "runtime_s": 180.78272676467896
+  },
+  "CAIX": {
+   "n_del": 107616,
+   "n_del_train": 96855,
+   "n_del_val": 10761,
+   "n_chembl_all": 3103,
+   "n_chembl": 3103,
+   "n_chembl_inconsistent_excluded": 0,
+   "del_enrich_zero_fraction": 0.13919863217365447,
+   "del_val_spearman": 0.40952606235158595,
+   "del_val_rmse": 0.2997231631690684,
+   "del_val_sd": 0.321971952670392,
+   "chembl_spearman_pki": 0.2356177998789003,
+   "mu": 0.3057280565209846,
+   "sd": 0.12338201662040542,
+   "has_released_del_label": false,
+   "prevalence_c7": 0.5945858846277796,
+   "auroc_c7": 0.5971620113657417,
+   "prevalence_c8": 0.2088301643570738,
+   "auroc_c8": 0.6094578964572175,
+   "prevalence_c9": 0.018369320012890752,
+   "auroc_c9": 0.6713578924329866,
+   "runtime_s": 153.68879795074463
+  },
+  "CAXII": {
+   "n_del": 122500,
+   "n_del_train": 110250,
+   "n_del_val": 12250,
+   "n_chembl_all": 2176,
+   "n_chembl": 2160,
+   "n_chembl_inconsistent_excluded": 16,
+   "del_enrich_zero_fraction": 0.05929795918367347,
+   "del_val_spearman": 0.7646941391400397,
+   "del_val_rmse": 0.5704396834101139,
+   "del_val_sd": 0.9078757028848367,
+   "chembl_spearman_pki": 0.2660510587795185,
+   "mu": 1.994125353347468,
+   "sd": 0.6876315945521084,
+   "has_released_del_label": false,
+   "prevalence_c7": 0.7263888888888889,
+   "auroc_c7": 0.6950405433531871,
+   "prevalence_c8": 0.38935185185185184,
+   "auroc_c8": 0.5974944085302255,
+   "prevalence_c9": 0.03935185185185185,
+   "auroc_c9": 0.5863472714386959,
+   "runtime_s": 109.93932104110718
+  }
+ },
+ "cells": {
+  "CAII|c7|P": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.6430913942531722,
+   "prevalence_cal": 0.6190459670424978,
+   "prevalence_audit": 0.618438855160451,
+   "n_cal_median": 1153.0,
+   "n_audit_median": 1153.0,
+   "n_future_median": 1538.0,
+   "violations_nonbinder": {
+    "observed": 4,
+    "expected": 3.859912858388754,
+    "p_upper": 0.5457549122570997,
+    "cov_mean": 0.9245774144235976
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 5,
+    "expected": 4.5087590675533455,
+    "p_upper": 0.47411331816503616,
+    "cov_mean": 0.9195501566376458
+   },
+   "infeasible_binder": 0.0,
+   "audit_default": {
+    "correct rejection": 0.94,
+    "false lead": 0.98,
+    "deferred non-binder": 0.88,
+    "confident hit": 0.96,
+    "missed binder": 0.96,
+    "deferred binder": 0.94,
+    "single label": 0.98,
+    "deferred": 0.98
+   },
+   "audit_sweep_pointwise": 0.9449652777777777,
+   "bonferroni_all": 0.94,
+   "default_per1000": {
+    "confident hit": 71.55247181266262,
+    "false lead": 28.620988725065047,
+    "missed binder": 47.701647875108414,
+    "deferred": 734.1717259323503
+   },
+   "plate_intervals": {
+    "confident hit": [
+     2.0,
+     12.5
+    ],
+    "false lead": [
+     0.0,
+     7.0
+    ],
+    "missed binder": [
+     1.0,
+     9.0
+    ],
+    "deferred": [
+     61.0,
+     79.0
+    ]
+   },
+   "capacity": {
+    "chosen": 50,
+    "exceeded": 0.0,
+    "upper_median": 0.494148244473342
+   },
+   "distinct_rules": [
+    144,
+    144
+   ],
+   "pareto": [
+    132,
+    144
+   ]
+  },
+  "CAII|c7|D": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.6424869086689923,
+   "prevalence_cal": 0.021142857142857144,
+   "prevalence_audit": 0.6186056191467222,
+   "n_cal_median": 12250.0,
+   "n_audit_median": 1922.0,
+   "n_future_median": 1922.0,
+   "violations_nonbinder": {
+    "observed": 50,
+    "expected": 5.99622617606272,
+    "p_upper": 7.926569511940631e-47,
+    "cov_mean": 0.3857064528041003
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 50,
+    "expected": 0.1304299448699588,
+    "p_upper": 6.421877399376492e-130,
+    "cov_mean": 0.5978381260722501
+   },
+   "infeasible_binder": 0.0,
+   "audit_default": {
+    "correct rejection": 0.94,
+    "false lead": 0.96,
+    "deferred non-binder": 0.92,
+    "confident hit": 1.0,
+    "missed binder": 0.96,
+    "deferred binder": 0.92,
+    "single label": 0.92,
+    "deferred": 0.92
+   },
+   "audit_sweep_pointwise": 0.9541071428571428,
+   "bonferroni_all": 1.0,
+   "default_per1000": {
+    "confident hit": 368.366285119667,
+    "false lead": 158.16857440166493,
+    "missed binder": 69.71904266389178,
+    "deferred": 254.68262226847034
+   },
+   "plate_intervals": {
+    "confident hit": [
+     26.0,
+     45.0
+    ],
+    "false lead": [
+     8.0,
+     23.0
+    ],
+    "missed binder": [
+     2.0,
+     12.0
+    ],
+    "deferred": [
+     16.0,
+     33.0
+    ]
+   },
+   "capacity": {
+    "chosen": 50,
+    "exceeded": 0.0,
+    "upper_median": 0.4856919875130073
+   },
+   "distinct_rules": [
+    84,
+    84
+   ],
+   "pareto": [
+    56,
+    84
+   ],
+   "del_label_rule": "released label column"
+  },
+  "CAII|c7|S": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.644764247651348,
+   "prevalence_cal": 0.6166249963191386,
+   "prevalence_audit": 0.6134359206655696,
+   "n_cal_median": 1154.0,
+   "n_audit_median": 1155.0,
+   "n_future_median": 1535.0,
+   "violations_nonbinder": {
+    "observed": 3,
+    "expected": 3.836265969815124,
+    "p_upper": 0.7486158422178362,
+    "cov_mean": 0.9273824483293137
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 6,
+    "expected": 4.465764812867944,
+    "p_upper": 0.28671123748154403,
+    "cov_mean": 0.9183248696956925
+   },
+   "infeasible_binder": 0.0,
+   "audit_default": {
+    "correct rejection": 0.48,
+    "false lead": 0.92,
+    "deferred non-binder": 0.86,
+    "confident hit": 0.74,
+    "missed binder": 0.76,
+    "deferred binder": 0.6,
+    "single label": 0.66,
+    "deferred": 0.66
+   },
+   "audit_sweep_pointwise": 0.69875,
+   "bonferroni_all": 0.2,
+   "default_per1000": {
+    "confident hit": 67.99462813327631,
+    "false lead": 26.511771225168847,
+    "missed binder": 48.05160926640001,
+    "deferred": 732.3519923173303
+   },
+   "plate_intervals": {
+    "confident hit": [
+     2.0,
+     12.0
+    ],
+    "false lead": [
+     0.0,
+     6.0
+    ],
+    "missed binder": [
+     1.0,
+     9.0
+    ],
+    "deferred": [
+     61.0,
+     79.0
+    ]
+   },
+   "capacity": {
+    "chosen": 50,
+    "exceeded": 0.04,
+    "upper_median": 0.4937324862416508
+   },
+   "distinct_rules": [
+    144,
+    144
+   ],
+   "pareto": [
+    144,
+    144
+   ]
+  },
+  "CAII|c7|N50": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.6419810463910351,
+   "prevalence_cal": 0.63,
+   "prevalence_audit": 0.6193928881179531,
+   "n_cal_median": 50.0,
+   "n_audit_median": 1153.0,
+   "n_future_median": 2641.0,
+   "violations_nonbinder": {
+    "observed": 7,
+    "expected": 7.61986682352522,
+    "p_upper": 0.6579865057741914,
+    "cov_mean": 0.9504058377685968
+   },
+   "infeasible_nonbinder": 0.9,
+   "violations_binder": {
+    "observed": 2,
+    "expected": 2.0733006532398095,
+    "p_upper": 0.6201482461135899,
+    "cov_mean": 0.9660852824244168
+   },
+   "infeasible_binder": 0.0,
+   "audit_default": {
+    "correct rejection": 0.94,
+    "false lead": 1.0,
+    "deferred non-binder": 0.96,
+    "confident hit": 0.98,
+    "missed binder": 1.0,
+    "deferred binder": 0.98,
+    "single label": 0.9,
+    "deferred": 0.9
+   },
+   "audit_sweep_pointwise": 0.9546066810344828,
+   "bonferroni_all": 1.0,
+   "default_per1000": {
+    "confident hit": 37.2940156114484,
+    "false lead": 14.744145706851691,
+    "missed binder": 13.876843018213357,
+    "deferred": 878.143972246314
+   },
+   "plate_intervals": {
+    "confident hit": [
+     0.0,
+     8.0
+    ],
+    "false lead": [
+     0.0,
+     4.5
+    ],
+    "missed binder": [
+     0.0,
+     4.0
+    ],
+    "deferred": [
+     77.0,
+     90.0
+    ]
+   },
+   "capacity": {
+    "chosen": 10,
+    "exceeded": 0.0,
+    "upper_median": 0.479742521772056
+   },
+   "distinct_rules": [
+    14,
+    25
+   ],
+   "pareto": [
+    12,
+    25
+   ]
+  },
+  "CAII|c7|N100": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.637993017405331,
+   "prevalence_cal": 0.6272,
+   "prevalence_audit": 0.6189765828274068,
+   "n_cal_median": 100.0,
+   "n_audit_median": 1153.0,
+   "n_future_median": 2591.0,
+   "violations_nonbinder": {
+    "observed": 2,
+    "expected": 2.774840919757878,
+    "p_upper": 0.7756140686154062,
+    "cov_mean": 0.9648368290900202
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 3,
+    "expected": 3.3412835535191294,
+    "p_upper": 0.6587738936707733,
+    "cov_mean": 0.9458271762473086
+   },
+   "infeasible_binder": 0.0,
+   "audit_default": {
+    "correct rejection": 0.92,
+    "false lead": 0.98,
+    "deferred non-binder": 0.96,
+    "confident hit": 0.98,
+    "missed binder": 0.98,
+    "deferred binder": 0.96,
+    "single label": 0.96,
+    "deferred": 0.96
+   },
+   "audit_sweep_pointwise": 0.9698391420911529,
+   "bonferroni_all": 1.0,
+   "default_per1000": {
+    "confident hit": 29.92194275802255,
+    "false lead": 10.407632263660018,
+    "missed binder": 32.957502168256724,
+    "deferred": 841.7172593235039
+   },
+   "plate_intervals": {
+    "confident hit": [
+     0.0,
+     7.0
+    ],
+    "false lead": [
+     0.0,
+     4.0
+    ],
+    "missed binder": [
+     0.0,
+     7.0
+    ],
+    "deferred": [
+     73.5,
+     87.5
+    ]
+   },
+   "capacity": {
+    "chosen": 23,
+    "exceeded": 0.0,
+    "upper_median": 0.49401775376302587
+   },
+   "distinct_rules": [
+    55,
+    110
+   ],
+   "pareto": [
+    44,
+    99
+   ]
+  },
+  "CAII|c7|N200": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.6418215030882981,
+   "prevalence_cal": 0.6192,
+   "prevalence_audit": 0.6190112749349523,
+   "n_cal_median": 200.0,
+   "n_audit_median": 1153.0,
+   "n_future_median": 2491.0,
+   "violations_nonbinder": {
+    "observed": 3,
+    "expected": 3.3813459338492313,
+    "p_upper": 0.6666599300666061,
+    "cov_mean": 0.9525521655946819
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 3,
+    "expected": 3.6851103316842315,
+    "p_upper": 0.7233570578588078,
+    "cov_mean": 0.9354496142461894
+   },
+   "infeasible_binder": 0.0,
+   "audit_default": {
+    "correct rejection": 0.96,
+    "false lead": 0.98,
+    "deferred non-binder": 0.94,
+    "confident hit": 1.0,
+    "missed binder": 1.0,
+    "deferred binder": 0.92,
+    "single label": 0.94,
+    "deferred": 0.94
+   },
+   "audit_sweep_pointwise": 0.9643650088809946,
+   "bonferroni_all": 0.98,
+   "default_per1000": {
+    "confident hit": 43.7987857762359,
+    "false lead": 17.346053772766695,
+    "missed binder": 38.161318300086734,
+    "deferred": 802.6886383347788
+   },
+   "plate_intervals": {
+    "confident hit": [
+     1.0,
+     9.0
+    ],
+    "false lead": [
+     0.0,
+     5.0
+    ],
+    "missed binder": [
+     0.0,
+     8.0
+    ],
+    "deferred": [
+     68.5,
+     84.5
+    ]
+   },
+   "capacity": {
+    "chosen": 39,
+    "exceeded": 0.0,
+    "upper_median": 0.49337615415495784
+   },
+   "distinct_rules": [
+    132,
+    144
+   ],
+   "pareto": [
+    99,
+    144
+   ]
+  },
+  "CAII|c7|N400": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.6409578323509233,
+   "prevalence_cal": 0.6174000000000001,
+   "prevalence_audit": 0.6194969644405898,
+   "n_cal_median": 400.0,
+   "n_audit_median": 1153.0,
+   "n_future_median": 2291.0,
+   "violations_nonbinder": {
+    "observed": 6,
+    "expected": 3.5903133091270467,
+    "p_upper": 0.14699016055890962,
+    "cov_mean": 0.9393547393114065
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 5,
+    "expected": 3.8385642166741967,
+    "p_upper": 0.33823693428430746,
+    "cov_mean": 0.9241814425421981
+   },
+   "infeasible_binder": 0.0,
+   "audit_default": {
+    "correct rejection": 0.96,
+    "false lead": 0.94,
+    "deferred non-binder": 0.92,
+    "confident hit": 0.98,
+    "missed binder": 0.94,
+    "deferred binder": 0.98,
+    "single label": 0.96,
+    "deferred": 0.96
+   },
+   "audit_sweep_pointwise": 0.9633506944444444,
+   "bonferroni_all": 1.0,
+   "default_per1000": {
+    "confident hit": 56.37467476149176,
+    "false lead": 20.815264527320036,
+    "missed binder": 45.09973980919341,
+    "deferred": 774.9349522983521
+   },
+   "plate_intervals": {
+    "confident hit": [
+     1.0,
+     11.0
+    ],
+    "false lead": [
+     0.0,
+     5.0
+    ],
+    "missed binder": [
+     1.0,
+     9.0
+    ],
+    "deferred": [
+     66.0,
+     82.0
+    ]
+   },
+   "capacity": {
+    "chosen": 46,
+    "exceeded": 0.0,
+    "upper_median": 0.4919249236141423
+   },
+   "distinct_rules": [
+    144,
+    144
+   ],
+   "pareto": [
+    132,
+    144
+   ]
+  },
+  "CAII|c7|N800": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.6406019253012005,
+   "prevalence_cal": 0.618375,
+   "prevalence_audit": 0.6168430182133564,
+   "n_cal_median": 800.0,
+   "n_audit_median": 1153.0,
+   "n_future_median": 1891.0,
+   "violations_nonbinder": {
+    "observed": 3,
+    "expected": 4.098573743292235,
+    "p_upper": 0.7885447061450117,
+    "cov_mean": 0.9282044896890149
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 2,
+    "expected": 4.258244348477806,
+    "p_upper": 0.9340766745409441,
+    "cov_mean": 0.9208664765313119
+   },
+   "infeasible_binder": 0.0,
+   "audit_default": {
+    "correct rejection": 1.0,
+    "false lead": 0.92,
+    "deferred non-binder": 0.96,
+    "confident hit": 0.92,
+    "missed binder": 0.94,
+    "deferred binder": 0.92,
+    "single label": 0.96,
+    "deferred": 0.96
+   },
+   "audit_sweep_pointwise": 0.9519965277777778,
+   "bonferroni_all": 1.0,
+   "default_per1000": {
+    "confident hit": 71.98612315698179,
+    "false lead": 28.18733738074588,
+    "missed binder": 48.568950563746746,
+    "deferred": 734.6053772766695
+   },
+   "plate_intervals": {
+    "confident hit": [
+     2.0,
+     13.0
+    ],
+    "false lead": [
+     0.0,
+     7.0
+    ],
+    "missed binder": [
+     1.0,
+     10.0
+    ],
+    "deferred": [
+     61.0,
+     79.0
+    ]
+   },
+   "capacity": {
+    "chosen": 50,
+    "exceeded": 0.0,
+    "upper_median": 0.4928609201480698
+   },
+   "distinct_rules": [
+    144,
+    144
+   ],
+   "pareto": [
+    132,
+    144
+   ]
+  },
+  "CAII|c8|P": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.5390539327803001,
+   "prevalence_cal": 0.3152645273200347,
+   "prevalence_audit": 0.30921075455333913,
+   "n_cal_median": 1153.0,
+   "n_audit_median": 1153.0,
+   "n_future_median": 1538.0,
+   "violations_nonbinder": {
+    "observed": 5,
+    "expected": 4.370638407744553,
+    "p_upper": 0.4463974715094448,
+    "cov_mean": 0.9203492892954799
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 6,
+    "expected": 3.8941284093169046,
+    "p_upper": 0.1914376933841549,
+    "cov_mean": 0.9257971819547544
+   },
+   "infeasible_binder": 0.0,
+   "audit_default": {
+    "correct rejection": 0.96,
+    "false lead": 0.92,
+    "deferred non-binder": 0.9,
+    "confident hit": 0.98,
+    "missed binder": 0.96,
+    "deferred binder": 0.98,
+    "single label": 0.96,
+    "deferred": 0.96
+   },
+   "audit_sweep_pointwise": 0.9557638888888889,
+   "bonferroni_all": 1.0,
+   "default_per1000": {
+    "confident hit": 28.620988725065047,
+    "false lead": 55.941023417172595,
+    "missed binder": 21.682567215958368,
+    "deferred": 738.9418907198612
+   },
+   "plate_intervals": {
+    "confident hit": [
+     0.0,
+     7.0
+    ],
+    "false lead": [
+     1.0,
+     10.5
+    ],
+    "missed binder": [
+     0.0,
+     6.0
+    ],
+    "deferred": [
+     62.0,
+     79.0
+    ]
+   },
+   "capacity": {
+    "chosen": 36,
+    "exceeded": 0.0,
+    "upper_median": 0.4967490247074122
+   },
+   "distinct_rules": [
+    144,
+    144
+   ],
+   "pareto": [
+    132,
+    144
+   ]
+  },
+  "CAII|c8|D": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.5366378634135933,
+   "prevalence_cal": 0.021142857142857144,
+   "prevalence_audit": 0.3134339229968783,
+   "n_cal_median": 12250.0,
+   "n_audit_median": 1922.0,
+   "n_future_median": 1922.0,
+   "violations_nonbinder": {
+    "observed": 50,
+    "expected": 3.2047259274396533,
+    "p_upper": 2.0756288106605861e-60,
+    "cov_mean": 0.26955956638023215
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 50,
+    "expected": 0.22768711330125163,
+    "p_upper": 7.711874374120896e-118,
+    "cov_mean": 0.5156594769868605
+   },
+   "infeasible_binder": 0.0,
+   "audit_default": {
+    "correct rejection": 0.98,
+    "false lead": 1.0,
+    "deferred non-binder": 0.96,
+    "confident hit": 0.98,
+    "missed binder": 0.94,
+    "deferred binder": 0.96,
+    "single label": 1.0,
+    "deferred": 1.0
+   },
+   "audit_sweep_pointwise": 0.9741369047619047,
+   "bonferroni_all": 0.98,
+   "default_per1000": {
+    "confident hit": 161.81061394380853,
+    "false lead": 364.9843912591051,
+    "missed binder": 31.21748178980229,
+    "deferred": 255.2029136316337
+   },
+   "plate_intervals": {
+    "confident hit": [
+     9.0,
+     23.0
+    ],
+    "false lead": [
+     26.0,
+     45.0
+    ],
+    "missed binder": [
+     0.0,
+     7.0
+    ],
+    "deferred": [
+     16.0,
+     33.0
+    ]
+   },
+   "capacity": {
+    "chosen": 50,
+    "exceeded": 0.0,
+    "upper_median": 0.4875130072840791
+   },
+   "distinct_rules": [
+    84,
+    84
+   ],
+   "pareto": [
+    35,
+    56
+   ],
+   "del_label_rule": "released label column"
+  },
+  "CAII|c8|S": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.5431529097600228,
+   "prevalence_cal": 0.31217995588682795,
+   "prevalence_audit": 0.31062039539985686,
+   "n_cal_median": 1154.0,
+   "n_audit_median": 1155.0,
+   "n_future_median": 1535.0,
+   "violations_nonbinder": {
+    "observed": 7,
+    "expected": 4.275537821105208,
+    "p_upper": 0.13198427270321614,
+    "cov_mean": 0.9172658672998424
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 6,
+    "expected": 3.7287411579018688,
+    "p_upper": 0.16660778790463435,
+    "cov_mean": 0.9291169381032041
+   },
+   "infeasible_binder": 0.0,
+   "audit_default": {
+    "correct rejection": 0.54,
+    "false lead": 0.84,
+    "deferred non-binder": 0.7,
+    "confident hit": 0.76,
+    "missed binder": 0.72,
+    "deferred binder": 0.56,
+    "single label": 0.68,
+    "deferred": 0.68
+   },
+   "audit_sweep_pointwise": 0.6929340277777778,
+   "bonferroni_all": 0.28,
+   "default_per1000": {
+    "confident hit": 30.224727899146504,
+    "false lead": 55.79902031285691,
+    "missed binder": 20.690208715453146,
+    "deferred": 738.2291606023016
+   },
+   "plate_intervals": {
+    "confident hit": [
+     0.0,
+     7.0
+    ],
+    "false lead": [
+     1.0,
+     10.5
+    ],
+    "missed binder": [
+     0.0,
+     5.0
+    ],
+    "deferred": [
+     62.0,
+     79.0
+    ]
+   },
+   "capacity": {
+    "chosen": 32,
+    "exceeded": 0.0625,
+    "upper_median": 0.4969008458006322
+   },
+   "distinct_rules": [
+    144,
+    144
+   ],
+   "pareto": [
+    120,
+    144
+   ]
+  },
+  "CAII|c8|N50": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.5405824764037893,
+   "prevalence_cal": 0.326,
+   "prevalence_audit": 0.31389418907198613,
+   "n_cal_median": 50.0,
+   "n_audit_median": 1153.0,
+   "n_future_median": 2641.0,
+   "violations_nonbinder": {
+    "observed": 6,
+    "expected": 2.044303174962336,
+    "p_upper": 0.015300626144787973,
+    "cov_mean": 0.963482530436405
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 12,
+    "expected": 9.695217266151353,
+    "p_upper": 0.24962975560060446,
+    "cov_mean": 0.9347951573914781
+   },
+   "infeasible_binder": 0.92,
+   "audit_default": {
+    "correct rejection": 0.98,
+    "false lead": 0.96,
+    "deferred non-binder": 0.92,
+    "confident hit": 1.0,
+    "missed binder": 0.96,
+    "deferred binder": 0.98,
+    "single label": 0.98,
+    "deferred": 0.98
+   },
+   "audit_sweep_pointwise": 0.9539716748768473,
+   "bonferroni_all": 1.0,
+   "default_per1000": {
+    "confident hit": 7.372072853425846,
+    "false lead": 15.611448395490026,
+    "missed binder": 13.876843018213357,
+    "deferred": 844.3191673894189
+   },
+   "plate_intervals": {
+    "confident hit": [
+     0.0,
+     3.0
+    ],
+    "false lead": [
+     0.0,
+     5.0
+    ],
+    "missed binder": [
+     0.0,
+     4.0
+    ],
+    "deferred": [
+     73.5,
+     88.0
+    ]
+   },
+   "capacity": {
+    "chosen": 6,
+    "exceeded": 0.0,
+    "upper_median": 0.4636501325255585
+   },
+   "distinct_rules": [
+    8,
+    24
+   ],
+   "pareto": [
+    7,
+    24
+   ]
+  },
+  "CAII|c8|N100": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.5410548312413077,
+   "prevalence_cal": 0.31720000000000004,
+   "prevalence_audit": 0.3143104943625325,
+   "n_cal_median": 100.0,
+   "n_audit_median": 1153.0,
+   "n_future_median": 2591.0,
+   "violations_nonbinder": {
+    "observed": 7,
+    "expected": 3.5603846720208816,
+    "p_upper": 0.06234638196975086,
+    "cov_mean": 0.9402151531524181
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 1,
+    "expected": 2.358845710172983,
+    "p_upper": 0.9115816057290388,
+    "cov_mean": 0.9654187673366557
+   },
+   "infeasible_binder": 0.0,
+   "audit_default": {
+    "correct rejection": 0.94,
+    "false lead": 0.92,
+    "deferred non-binder": 0.84,
+    "confident hit": 0.96,
+    "missed binder": 0.92,
+    "deferred binder": 0.9,
+    "single label": 0.96,
+    "deferred": 0.96
+   },
+   "audit_sweep_pointwise": 0.9357047675451584,
+   "bonferroni_all": 0.98,
+   "default_per1000": {
+    "confident hit": 16.91240242844753,
+    "false lead": 37.72766695576756,
+    "missed binder": 9.540329575021683,
+    "deferred": 849.0893321769297
+   },
+   "plate_intervals": {
+    "confident hit": [
+     0.0,
+     5.0
+    ],
+    "false lead": [
+     0.0,
+     8.0
+    ],
+    "missed binder": [
+     0.0,
+     3.0
+    ],
+    "deferred": [
+     74.0,
+     88.0
+    ]
+   },
+   "capacity": {
+    "chosen": 11,
+    "exceeded": 0.0,
+    "upper_median": 0.49324585102277113
+   },
+   "distinct_rules": [
+    55,
+    88
+   ],
+   "pareto": [
+    44,
+    88
+   ]
+  },
+  "CAII|c8|N200": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.5394162255222417,
+   "prevalence_cal": 0.3078,
+   "prevalence_audit": 0.3143451864700781,
+   "n_cal_median": 200.0,
+   "n_audit_median": 1153.0,
+   "n_future_median": 2491.0,
+   "violations_nonbinder": {
+    "observed": 5,
+    "expected": 3.669337719742087,
+    "p_upper": 0.3042171709050197,
+    "cov_mean": 0.9306124476237057
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 7,
+    "expected": 3.100044711789338,
+    "p_upper": 0.0333446155715746,
+    "cov_mean": 0.9466617561596803
+   },
+   "infeasible_binder": 0.0,
+   "audit_default": {
+    "correct rejection": 0.96,
+    "false lead": 0.98,
+    "deferred non-binder": 0.9,
+    "confident hit": 0.96,
+    "missed binder": 0.96,
+    "deferred binder": 0.94,
+    "single label": 0.98,
+    "deferred": 0.98
+   },
+   "audit_sweep_pointwise": 0.9447396796056685,
+   "bonferroni_all": 0.98,
+   "default_per1000": {
+    "confident hit": 21.682567215958368,
+    "false lead": 44.232437120555076,
+    "missed binder": 14.744145706851691,
+    "deferred": 804.8568950563747
+   },
+   "plate_intervals": {
+    "confident hit": [
+     0.0,
+     6.0
+    ],
+    "false lead": [
+     1.0,
+     9.0
+    ],
+    "missed binder": [
+     0.0,
+     4.0
+    ],
+    "deferred": [
+     69.0,
+     84.5
+    ]
+   },
+   "capacity": {
+    "chosen": 19,
+    "exceeded": 0.0,
+    "upper_median": 0.4961862705740666
+   },
+   "distinct_rules": [
+    108,
+    132
+   ],
+   "pareto": [
+    96,
+    132
+   ]
+  },
+  "CAII|c8|N400": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.5381089178384357,
+   "prevalence_cal": 0.31475000000000003,
+   "prevalence_audit": 0.31235039028620987,
+   "n_cal_median": 400.0,
+   "n_audit_median": 1153.0,
+   "n_future_median": 2291.0,
+   "violations_nonbinder": {
+    "observed": 5,
+    "expected": 4.257278729214921,
+    "p_upper": 0.4234691046824969,
+    "cov_mean": 0.9236268688210338
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 4,
+    "expected": 3.652935143211885,
+    "p_upper": 0.5014055443455016,
+    "cov_mean": 0.9366689146350593
+   },
+   "infeasible_binder": 0.0,
+   "audit_default": {
+    "correct rejection": 0.98,
+    "false lead": 0.98,
+    "deferred non-binder": 0.92,
+    "confident hit": 1.0,
+    "missed binder": 0.96,
+    "deferred binder": 0.94,
+    "single label": 0.94,
+    "deferred": 0.94
+   },
+   "audit_sweep_pointwise": 0.9510416666666667,
+   "bonferroni_all": 0.98,
+   "default_per1000": {
+    "confident hit": 25.585429314830876,
+    "false lead": 50.30355594102342,
+    "missed binder": 19.9479618386817,
+    "deferred": 762.7927146574154
+   },
+   "plate_intervals": {
+    "confident hit": [
+     0.0,
+     6.0
+    ],
+    "false lead": [
+     1.0,
+     10.0
+    ],
+    "missed binder": [
+     0.0,
+     5.0
+    ],
+    "deferred": [
+     64.5,
+     81.5
+    ]
+   },
+   "capacity": {
+    "chosen": 26,
+    "exceeded": 0.0,
+    "upper_median": 0.49672632038411174
+   },
+   "distinct_rules": [
+    144,
+    144
+   ],
+   "pareto": [
+    108,
+    144
+   ]
+  },
+  "CAII|c8|N800": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.5369220910464438,
+   "prevalence_cal": 0.31275,
+   "prevalence_audit": 0.3101300954032957,
+   "n_cal_median": 800.0,
+   "n_audit_median": 1153.0,
+   "n_future_median": 1891.0,
+   "violations_nonbinder": {
+    "observed": 4,
+    "expected": 4.210510143377528,
+    "p_upper": 0.6164740949335716,
+    "cov_mean": 0.9221008385462817
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 7,
+    "expected": 4.1685115555876475,
+    "p_upper": 0.11963773603285975,
+    "cov_mean": 0.9271388596102849
+   },
+   "infeasible_binder": 0.0,
+   "audit_default": {
+    "correct rejection": 0.94,
+    "false lead": 0.92,
+    "deferred non-binder": 0.9,
+    "confident hit": 0.98,
+    "missed binder": 0.94,
+    "deferred binder": 0.96,
+    "single label": 0.96,
+    "deferred": 0.96
+   },
+   "audit_sweep_pointwise": 0.94671875,
+   "bonferroni_all": 1.0,
+   "default_per1000": {
+    "confident hit": 26.452732003469208,
+    "false lead": 54.20641803989592,
+    "missed binder": 21.682567215958368,
+    "deferred": 749.7831743278405
+   },
+   "plate_intervals": {
+    "confident hit": [
+     0.0,
+     6.0
+    ],
+    "false lead": [
+     1.0,
+     10.0
+    ],
+    "missed binder": [
+     0.0,
+     6.0
+    ],
+    "deferred": [
+     63.0,
+     80.0
+    ]
+   },
+   "capacity": {
+    "chosen": 38,
+    "exceeded": 0.0,
+    "upper_median": 0.49709148598625064
+   },
+   "distinct_rules": [
+    144,
+    144
+   ],
+   "pareto": [
+    132,
+    144
+   ]
+  },
+  "CAII|c9|P": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.48196948387027594,
+   "prevalence_cal": 0.05340849956634866,
+   "prevalence_audit": 0.055160450997398094,
+   "n_cal_median": 1153.0,
+   "n_audit_median": 1153.0,
+   "n_future_median": 1538.0,
+   "violations_nonbinder": {
+    "observed": 2,
+    "expected": 4.284508416836396,
+    "p_upper": 0.9355380978018395,
+    "cov_mean": 0.9181233199992664
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 5,
+    "expected": 3.6790748385871592,
+    "p_upper": 0.30598523069558653,
+    "cov_mean": 0.9531834782622475
+   },
+   "infeasible_binder": 0.0,
+   "audit_default": {
+    "correct rejection": 0.96,
+    "false lead": 0.96,
+    "deferred non-binder": 0.96,
+    "confident hit": 0.96,
+    "missed binder": 0.96,
+    "deferred binder": 0.96,
+    "single label": 0.96,
+    "deferred": 0.96
+   },
+   "audit_sweep_pointwise": 0.97,
+   "bonferroni_all": 0.98,
+   "default_per1000": {
+    "confident hit": 2.6019080659150045,
+    "false lead": 77.1899392888118,
+    "missed binder": 1.7346053772766696,
+    "deferred": 810.928013876843
+   },
+   "plate_intervals": {
+    "confident hit": [
+     0.0,
+     2.0
+    ],
+    "false lead": [
+     3.0,
+     13.0
+    ],
+    "missed binder": [
+     0.0,
+     2.0
+    ],
+    "deferred": [
+     70.0,
+     85.0
+    ]
+   },
+   "capacity": {
+    "chosen": 4,
+    "exceeded": 0.0,
+    "upper_median": 0.4957737321196359
+   },
+   "distinct_rules": [
+    108,
+    132
+   ],
+   "pareto": [
+    48,
+    132
+   ]
+  },
+  "CAII|c9|D": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.47142672893876736,
+   "prevalence_cal": 0.021142857142857144,
+   "prevalence_audit": 0.053985431841831424,
+   "n_cal_median": 12250.0,
+   "n_audit_median": 1922.0,
+   "n_future_median": 1922.0,
+   "violations_nonbinder": {
+    "observed": 50,
+    "expected": 2.028331308924124,
+    "p_upper": 2.408976939907306e-70,
+    "cov_mean": 0.2255927416325685
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 50,
+    "expected": 1.7890983253380202,
+    "p_upper": 1.731759296534648e-73,
+    "cov_mean": 0.40409115796198974
+   },
+   "infeasible_binder": 0.0,
+   "audit_default": {
+    "correct rejection": 0.9,
+    "false lead": 0.94,
+    "deferred non-binder": 0.94,
+    "confident hit": 0.92,
+    "missed binder": 0.94,
+    "deferred binder": 0.9,
+    "single label": 0.9,
+    "deferred": 0.9
+   },
+   "audit_sweep_pointwise": 0.935,
+   "bonferroni_all": 0.98,
+   "default_per1000": {
+    "confident hit": 21.852237252861602,
+    "false lead": 503.6420395421436,
+    "missed binder": 4.682622268470343,
+    "deferred": 255.4630593132154
+   },
+   "plate_intervals": {
+    "confident hit": [
+     0.0,
+     5.0
+    ],
+    "false lead": [
+     39.0,
+     58.0
+    ],
+    "missed binder": [
+     0.0,
+     2.0
+    ],
+    "deferred": [
+     16.0,
+     33.0
+    ]
+   },
+   "capacity": {
+    "chosen": 50,
+    "exceeded": 0.0,
+    "upper_median": 0.4667013527575442
+   },
+   "distinct_rules": [
+    84,
+    84
+   ],
+   "pareto": [
+    7,
+    21
+   ],
+   "del_label_rule": "released label column"
+  },
+  "CAII|c9|S": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.47725717472694174,
+   "prevalence_cal": 0.056909510729079946,
+   "prevalence_audit": 0.05608440616983585,
+   "n_cal_median": 1154.0,
+   "n_audit_median": 1155.0,
+   "n_future_median": 1535.0,
+   "violations_nonbinder": {
+    "observed": 3,
+    "expected": 4.20901700298492,
+    "p_upper": 0.8036444233684621,
+    "cov_mean": 0.9172488758583129
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 1,
+    "expected": 3.6120020920191926,
+    "p_upper": 0.9769561666071898,
+    "cov_mean": 0.9635061590120505
+   },
+   "infeasible_binder": 0.0,
+   "audit_default": {
+    "correct rejection": 0.6,
+    "false lead": 0.82,
+    "deferred non-binder": 0.84,
+    "confident hit": 0.94,
+    "missed binder": 0.98,
+    "deferred binder": 0.6,
+    "single label": 0.74,
+    "deferred": 0.74
+   },
+   "audit_sweep_pointwise": 0.7285026560424966,
+   "bonferroni_all": 0.38,
+   "default_per1000": {
+    "confident hit": 3.4587122764098774,
+    "false lead": 77.12305025996534,
+    "missed binder": 1.733102253032929,
+    "deferred": 817.715987160982
+   },
+   "plate_intervals": {
+    "confident hit": [
+     0.0,
+     2.0
+    ],
+    "false lead": [
+     3.0,
+     13.0
+    ],
+    "missed binder": [
+     0.0,
+     2.0
+    ],
+    "deferred": [
+     70.0,
+     86.0
+    ]
+   },
+   "capacity": {
+    "chosen": 2,
+    "exceeded": 0.0,
+    "upper_median": 0.487725692262578
+   },
+   "distinct_rules": [
+    96,
+    132
+   ],
+   "pareto": [
+    24,
+    108
+   ]
+  },
+  "CAII|c9|N50": {
+   "runs": 4,
+   "skipped": 46,
+   "auroc_median": 0.46898619058348806,
+   "prevalence_cal": 0.10500000000000001,
+   "prevalence_audit": 0.052254986990459676,
+   "n_cal_median": 50.0,
+   "n_audit_median": 1153.0,
+   "n_future_median": 2641.0,
+   "violations_nonbinder": {
+    "observed": 0,
+    "expected": 0.2225198620170435,
+    "p_upper": 1.0,
+    "cov_mean": 0.9550972885574773
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 2,
+    "expected": 2.207743523965381,
+    "p_upper": 0.7617090059617666,
+    "cov_mean": 0.8878177230997867
+   },
+   "infeasible_binder": 1.0,
+   "audit_default": {
+    "correct rejection": 1.0,
+    "false lead": 0.75,
+    "deferred non-binder": 0.75,
+    "confident hit": 1.0,
+    "missed binder": 1.0,
+    "deferred binder": 1.0,
+    "single label": 0.75,
+    "deferred": 0.75
+   },
+   "audit_sweep_pointwise": 0.907051282051282,
+   "bonferroni_all": 1.0,
+   "default_per1000": {
+    "confident hit": 0.8673026886383348,
+    "false lead": 43.36513443191674,
+    "missed binder": 4.770164787510842,
+    "deferred": 707.7189939288812
+   },
+   "plate_intervals": {
+    "confident hit": [
+     0.0,
+     1.0
+    ],
+    "false lead": [
+     0.5,
+     8.5
+    ],
+    "missed binder": [
+     0.0,
+     2.5
+    ],
+    "deferred": [
+     58.5,
+     77.0
+    ]
+   },
+   "capacity": {
+    "chosen": 0,
+    "exceeded": null,
+    "upper_median": null
+   },
+   "distinct_rules": [
+    9,
+    10
+   ],
+   "pareto": [
+    9,
+    10
+   ]
+  },
+  "CAII|c9|N100": {
+   "runs": 34,
+   "skipped": 16,
+   "auroc_median": 0.4820650814685525,
+   "prevalence_cal": 0.07058823529411766,
+   "prevalence_audit": 0.05410438242946787,
+   "n_cal_median": 100.0,
+   "n_audit_median": 1153.0,
+   "n_future_median": 2591.0,
+   "violations_nonbinder": {
+    "observed": 2,
+    "expected": 2.9293631081245475,
+    "p_upper": 0.8039404218500299,
+    "cov_mean": 0.9389407323557178
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 17,
+    "expected": 16.0534227592944,
+    "p_upper": 0.43733200747707945,
+    "cov_mean": 0.8567788771526675
+   },
+   "infeasible_binder": 1.0,
+   "audit_default": {
+    "correct rejection": 0.9705882352941176,
+    "false lead": 0.9705882352941176,
+    "deferred non-binder": 0.9411764705882353,
+    "confident hit": 1.0,
+    "missed binder": 1.0,
+    "deferred binder": 0.9705882352941176,
+    "single label": 0.9705882352941176,
+    "deferred": 0.9705882352941176
+   },
+   "audit_sweep_pointwise": 0.975796568627451,
+   "bonferroni_all": 1.0,
+   "default_per1000": {
+    "confident hit": 1.7346053772766696,
+    "false lead": 56.37467476149176,
+    "missed binder": 5.203816131830009,
+    "deferred": 723.3304423243712
+   },
+   "plate_intervals": {
+    "confident hit": [
+     0.0,
+     2.0
+    ],
+    "false lead": [
+     1.0,
+     11.0
+    ],
+    "missed binder": [
+     0.0,
+     3.0
+    ],
+    "deferred": [
+     60.5,
+     78.0
+    ]
+   },
+   "capacity": {
+    "chosen": 2,
+    "exceeded": 0.0,
+    "upper_median": 0.479351601698186
+   },
+   "distinct_rules": [
+    12,
+    12
+   ],
+   "pareto": [
+    12,
+    12
+   ]
+  },
+  "CAII|c9|N200": {
+   "runs": 48,
+   "skipped": 2,
+   "auroc_median": 0.47184802784657576,
+   "prevalence_cal": 0.05781250000000001,
+   "prevalence_audit": 0.05373662908355017,
+   "n_cal_median": 200.0,
+   "n_audit_median": 1153.0,
+   "n_future_median": 2491.0,
+   "violations_nonbinder": {
+    "observed": 6,
+    "expected": 3.5568835454187226,
+    "p_upper": 0.14216035820946527,
+    "cov_mean": 0.927014324085801
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 14,
+    "expected": 15.175168823134396,
+    "p_upper": 0.6976384157487213,
+    "cov_mean": 0.9216029704191765
+   },
+   "infeasible_binder": 1.0,
+   "audit_default": {
+    "correct rejection": 0.9166666666666666,
+    "false lead": 0.9166666666666666,
+    "deferred non-binder": 0.9375,
+    "confident hit": 1.0,
+    "missed binder": 1.0,
+    "deferred binder": 1.0,
+    "single label": 0.9583333333333334,
+    "deferred": 0.9583333333333334
+   },
+   "audit_sweep_pointwise": 0.9569444444444445,
+   "bonferroni_all": 1.0,
+   "default_per1000": {
+    "confident hit": 2.6019080659150045,
+    "false lead": 65.04770164787512,
+    "missed binder": 3.9028620988725065,
+    "deferred": 770.5984388551605
+   },
+   "plate_intervals": {
+    "confident hit": [
+     0.0,
+     2.0
+    ],
+    "false lead": [
+     2.0,
+     12.0
+    ],
+    "missed binder": [
+     0.0,
+     2.0
+    ],
+    "deferred": [
+     65.0,
+     82.0
+    ]
+   },
+   "capacity": {
+    "chosen": 4,
+    "exceeded": 0.0,
+    "upper_median": 0.49658771577679645
+   },
+   "distinct_rules": [
+    12,
+    36
+   ],
+   "pareto": [
+    12,
+    36
+   ]
+  },
+  "CAII|c9|N400": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.4632426179769293,
+   "prevalence_cal": 0.05505000000000001,
+   "prevalence_audit": 0.053373807458803116,
+   "n_cal_median": 400.0,
+   "n_audit_median": 1153.0,
+   "n_future_median": 2291.0,
+   "violations_nonbinder": {
+    "observed": 3,
+    "expected": 4.072525598899953,
+    "p_upper": 0.7847420207077012,
+    "cov_mean": 0.9234830398291346
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 4,
+    "expected": 6.443587811870392,
+    "p_upper": 0.9043666907210648,
+    "cov_mean": 0.9580187027866609
+   },
+   "infeasible_binder": 0.64,
+   "audit_default": {
+    "correct rejection": 0.92,
+    "false lead": 0.96,
+    "deferred non-binder": 0.98,
+    "confident hit": 1.0,
+    "missed binder": 1.0,
+    "deferred binder": 0.98,
+    "single label": 0.98,
+    "deferred": 0.98
+   },
+   "audit_sweep_pointwise": 0.9626978584729982,
+   "bonferroni_all": 1.0,
+   "default_per1000": {
+    "confident hit": 2.6019080659150045,
+    "false lead": 70.25151777970513,
+    "missed binder": 1.3009540329575022,
+    "deferred": 827.4067649609714
+   },
+   "plate_intervals": {
+    "confident hit": [
+     0.0,
+     2.0
+    ],
+    "false lead": [
+     2.0,
+     12.5
+    ],
+    "missed binder": [
+     0.0,
+     1.5
+    ],
+    "deferred": [
+     71.5,
+     87.0
+    ]
+   },
+   "capacity": {
+    "chosen": 3,
+    "exceeded": 0.0,
+    "upper_median": 0.49672632038411174
+   },
+   "distinct_rules": [
+    12,
+    60
+   ],
+   "pareto": [
+    12,
+    60
+   ]
+  },
+  "CAII|c9|N800": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.46940797520142985,
+   "prevalence_cal": 0.05317500000000001,
+   "prevalence_audit": 0.05493495229835213,
+   "n_cal_median": 800.0,
+   "n_audit_median": 1153.0,
+   "n_future_median": 1891.0,
+   "violations_nonbinder": {
+    "observed": 5,
+    "expected": 4.39363664350315,
+    "p_upper": 0.4510310396353701,
+    "cov_mean": 0.9179213446401175
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 3,
+    "expected": 3.3829856734711967,
+    "p_upper": 0.6684704032570422,
+    "cov_mean": 0.9640313348548439
+   },
+   "infeasible_binder": 0.0,
+   "audit_default": {
+    "correct rejection": 1.0,
+    "false lead": 0.96,
+    "deferred non-binder": 0.98,
+    "confident hit": 0.98,
+    "missed binder": 0.98,
+    "deferred binder": 0.94,
+    "single label": 0.94,
+    "deferred": 0.94
+   },
+   "audit_sweep_pointwise": 0.9633699633699634,
+   "bonferroni_all": 1.0,
+   "default_per1000": {
+    "confident hit": 3.4692107545533393,
+    "false lead": 75.8889852558543,
+    "missed binder": 1.7346053772766696,
+    "deferred": 824.8048568950563
+   },
+   "plate_intervals": {
+    "confident hit": [
+     0.0,
+     2.0
+    ],
+    "false lead": [
+     3.0,
+     13.0
+    ],
+    "missed binder": [
+     0.0,
+     2.0
+    ],
+    "deferred": [
+     71.0,
+     86.0
+    ]
+   },
+   "capacity": {
+    "chosen": 4,
+    "exceeded": 0.0,
+    "upper_median": 0.49550502379693284
+   },
+   "distinct_rules": [
+    60,
+    120
+   ],
+   "pareto": [
+    36,
+    96
+   ]
+  },
+  "CAIX|c7|P": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.5954591576934636,
+   "prevalence_cal": 0.5968172043010752,
+   "prevalence_audit": 0.5983888292158969,
+   "n_cal_median": 930.0,
+   "n_audit_median": 931.0,
+   "n_future_median": 1242.0,
+   "violations_nonbinder": {
+    "observed": 4,
+    "expected": 4.5303740639229675,
+    "p_upper": 0.675098238309928,
+    "cov_mean": 0.9272713066655044
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 7,
+    "expected": 4.691836107336629,
+    "p_upper": 0.1851688544633841,
+    "cov_mean": 0.9156228938391496
+   },
+   "infeasible_binder": 0.0,
+   "audit_default": {
+    "correct rejection": 0.94,
+    "false lead": 0.94,
+    "deferred non-binder": 0.94,
+    "confident hit": 0.92,
+    "missed binder": 1.0,
+    "deferred binder": 0.88,
+    "single label": 0.96,
+    "deferred": 0.96
+   },
+   "audit_sweep_pointwise": 0.9458333333333333,
+   "bonferroni_all": 0.96,
+   "default_per1000": {
+    "confident hit": 57.465091299677766,
+    "false lead": 27.926960257787325,
+    "missed binder": 49.94629430719657,
+    "deferred": 807.733619763695
+   },
+   "plate_intervals": {
+    "confident hit": [
+     1.0,
+     11.0
+    ],
+    "false lead": [
+     0.0,
+     7.0
+    ],
+    "missed binder": [
+     1.0,
+     10.0
+    ],
+    "deferred": [
+     69.0,
+     85.0
+    ]
+   },
+   "capacity": {
+    "chosen": 50,
+    "exceeded": 0.0,
+    "upper_median": 0.4895330112721417
+   },
+   "distinct_rules": [
+    144,
+    144
+   ],
+   "pareto": [
+    132,
+    144
+   ]
+  },
+  "CAIX|c7|D": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.5963898333862718,
+   "prevalence_cal": 0.5945544094415017,
+   "prevalence_audit": 0.5949580915538363,
+   "n_cal_median": 10761.0,
+   "n_audit_median": 1551.0,
+   "n_future_median": 1552.0,
+   "violations_nonbinder": {
+    "observed": 50,
+    "expected": 2.9609988107458585,
+    "p_upper": 3.640598934256988e-62,
+    "cov_mean": 0.43279021513177635
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 0,
+    "expected": 2.9986461718533386,
+    "p_upper": 0.9999999999999997,
+    "cov_mean": 0.9942575815080998
+   },
+   "infeasible_binder": 0.0,
+   "audit_default": {
+    "correct rejection": 1.0,
+    "false lead": 1.0,
+    "deferred non-binder": 0.96,
+    "confident hit": 0.96,
+    "missed binder": 1.0,
+    "deferred binder": 0.98,
+    "single label": 0.96,
+    "deferred": 0.96
+   },
+   "audit_sweep_pointwise": 0.9706944444444444,
+   "bonferroni_all": 1.0,
+   "default_per1000": {
+    "confident hit": 447.1308833010961,
+    "false lead": 230.17408123791103,
+    "missed binder": 3.223726627981947,
+    "deferred": 317.85944551901997
+   },
+   "plate_intervals": {
+    "confident hit": [
+     33.0,
+     53.0
+    ],
+    "false lead": [
+     14.0,
+     31.0
+    ],
+    "missed binder": [
+     0.0,
+     2.0
+    ],
+    "deferred": [
+     22.0,
+     40.0
+    ]
+   },
+   "capacity": {
+    "chosen": 50,
+    "exceeded": 0.0,
+    "upper_median": 0.45972938144329895
+   },
+   "distinct_rules": [
+    144,
+    144
+   ],
+   "pareto": [
+    132,
+    144
+   ],
+   "del_label_rule": "top 0.5946 of del_enrich (tie-broken ranks)"
+  },
+  "CAIX|c7|S": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.5970248488753329,
+   "prevalence_cal": 0.5901380858231225,
+   "prevalence_audit": 0.5933296822131614,
+   "n_cal_median": 931.0,
+   "n_audit_median": 932.0,
+   "n_future_median": 1240.0,
+   "violations_nonbinder": {
+    "observed": 8,
+    "expected": 4.664942470501147,
+    "p_upper": 0.090279548650301,
+    "cov_mean": 0.919879065153458
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 5,
+    "expected": 4.695277029290826,
+    "p_upper": 0.5109254166430495,
+    "cov_mean": 0.9233764580151751
+   },
+   "infeasible_binder": 0.0,
+   "audit_default": {
+    "correct rejection": 0.82,
+    "false lead": 0.9,
+    "deferred non-binder": 0.7,
+    "confident hit": 0.92,
+    "missed binder": 0.9,
+    "deferred binder": 0.68,
+    "single label": 0.86,
+    "deferred": 0.86
+   },
+   "audit_sweep_pointwise": 0.743125,
+   "bonferroni_all": 0.38,
+   "default_per1000": {
+    "confident hit": 63.5354548875181,
+    "false lead": 31.583188799869777,
+    "missed binder": 43.94892197125257,
+    "deferred": 808.5598492829616
+   },
+   "plate_intervals": {
+    "confident hit": [
+     2.0,
+     12.0
+    ],
+    "false lead": [
+     0.0,
+     7.0
+    ],
+    "missed binder": [
+     1.0,
+     9.0
+    ],
+    "deferred": [
+     69.0,
+     85.0
+    ]
+   },
+   "capacity": {
+    "chosen": 50,
+    "exceeded": 0.04,
+    "upper_median": 0.4888623720289925
+   },
+   "distinct_rules": [
+    144,
+    144
+   ],
+   "pareto": [
+    132,
+    144
+   ]
+  },
+  "CAIX|c7|N50": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.5990041213318951,
+   "prevalence_cal": 0.5968000000000001,
+   "prevalence_audit": 0.5968172043010752,
+   "n_cal_median": 50.0,
+   "n_audit_median": 930.0,
+   "n_future_median": 2123.0,
+   "violations_nonbinder": {
+    "observed": 7,
+    "expected": 6.449086606383587,
+    "p_upper": 0.47066979570883155,
+    "cov_mean": 0.9437109790243907
+   },
+   "infeasible_nonbinder": 0.82,
+   "violations_binder": {
+    "observed": 3,
+    "expected": 2.3986483576618443,
+    "p_upper": 0.4327065615625986,
+    "cov_mean": 0.969434133170373
+   },
+   "infeasible_binder": 0.0,
+   "audit_default": {
+    "correct rejection": 0.98,
+    "false lead": 0.96,
+    "deferred non-binder": 0.94,
+    "confident hit": 0.92,
+    "missed binder": 0.96,
+    "deferred binder": 0.94,
+    "single label": 0.92,
+    "deferred": 0.92
+   },
+   "audit_sweep_pointwise": 0.9464654282765738,
+   "bonferroni_all": 0.96,
+   "default_per1000": {
+    "confident hit": 31.182795698924732,
+    "false lead": 17.204301075268816,
+    "missed binder": 12.903225806451612,
+    "deferred": 910.2150537634409
+   },
+   "plate_intervals": {
+    "confident hit": [
+     0.0,
+     7.0
+    ],
+    "false lead": [
+     0.0,
+     5.0
+    ],
+    "missed binder": [
+     0.0,
+     4.0
+    ],
+    "deferred": [
+     81.0,
+     93.0
+    ]
+   },
+   "capacity": {
+    "chosen": 11,
+    "exceeded": 0.0,
+    "upper_median": 0.473386716910033
+   },
+   "distinct_rules": [
+    14,
+    24
+   ],
+   "pareto": [
+    14,
+    24
+   ]
+  },
+  "CAIX|c7|N100": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.5953361696743782,
+   "prevalence_cal": 0.5976,
+   "prevalence_audit": 0.5960645161290322,
+   "n_cal_median": 100.0,
+   "n_audit_median": 930.0,
+   "n_future_median": 2073.0,
+   "violations_nonbinder": {
+    "observed": 4,
+    "expected": 3.0544708495684585,
+    "p_upper": 0.36528864931753074,
+    "cov_mean": 0.9511217490801939
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 2,
+    "expected": 3.3307018258036143,
+    "p_upper": 0.8551816961243981,
+    "cov_mean": 0.9496023572368273
+   },
+   "infeasible_binder": 0.0,
+   "audit_default": {
+    "correct rejection": 0.98,
+    "false lead": 0.98,
+    "deferred non-binder": 0.92,
+    "confident hit": 0.96,
+    "missed binder": 0.98,
+    "deferred binder": 0.92,
+    "single label": 0.96,
+    "deferred": 0.96
+   },
+   "audit_sweep_pointwise": 0.9518015521064301,
+   "bonferroni_all": 0.98,
+   "default_per1000": {
+    "confident hit": 25.268817204301072,
+    "false lead": 17.204301075268816,
+    "missed binder": 32.25806451612903,
+    "deferred": 894.6236559139785
+   },
+   "plate_intervals": {
+    "confident hit": [
+     0.0,
+     6.0
+    ],
+    "false lead": [
+     0.0,
+     5.0
+    ],
+    "missed binder": [
+     0.0,
+     7.0
+    ],
+    "deferred": [
+     79.0,
+     92.0
+    ]
+   },
+   "capacity": {
+    "chosen": 18,
+    "exceeded": 0.0,
+    "upper_median": 0.4925229136517125
+   },
+   "distinct_rules": [
+    66,
+    110
+   ],
+   "pareto": [
+    50,
+    110
+   ]
+  },
+  "CAIX|c7|N200": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.6000489008097161,
+   "prevalence_cal": 0.5977,
+   "prevalence_audit": 0.5975483870967743,
+   "n_cal_median": 200.0,
+   "n_audit_median": 930.0,
+   "n_future_median": 1973.0,
+   "violations_nonbinder": {
+    "observed": 4,
+    "expected": 3.6440881579968267,
+    "p_upper": 0.4995395656987146,
+    "cov_mean": 0.9416827533054034
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 5,
+    "expected": 4.125418616924055,
+    "p_upper": 0.39662038452078274,
+    "cov_mean": 0.9325236634319743
+   },
+   "infeasible_binder": 0.0,
+   "audit_default": {
+    "correct rejection": 0.96,
+    "false lead": 0.94,
+    "deferred non-binder": 0.98,
+    "confident hit": 0.88,
+    "missed binder": 0.98,
+    "deferred binder": 0.98,
+    "single label": 0.9,
+    "deferred": 0.9
+   },
+   "audit_sweep_pointwise": 0.9515751153402537,
+   "bonferroni_all": 0.94,
+   "default_per1000": {
+    "confident hit": 38.17204301075269,
+    "false lead": 21.50537634408602,
+    "missed binder": 41.935483870967744,
+    "deferred": 849.4623655913979
+   },
+   "plate_intervals": {
+    "confident hit": [
+     0.5,
+     8.0
+    ],
+    "false lead": [
+     0.0,
+     6.0
+    ],
+    "missed binder": [
+     1.0,
+     9.0
+    ],
+    "deferred": [
+     74.0,
+     88.0
+    ]
+   },
+   "capacity": {
+    "chosen": 31,
+    "exceeded": 0.0,
+    "upper_median": 0.4901165737455651
+   },
+   "distinct_rules": [
+    132,
+    144
+   ],
+   "pareto": [
+    108,
+    144
+   ]
+  },
+  "CAIX|c7|N400": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.5951440355498945,
+   "prevalence_cal": 0.6066,
+   "prevalence_audit": 0.5952258064516129,
+   "n_cal_median": 400.0,
+   "n_audit_median": 930.0,
+   "n_future_median": 1773.0,
+   "violations_nonbinder": {
+    "observed": 7,
+    "expected": 3.9901730095631165,
+    "p_upper": 0.10066914409108282,
+    "cov_mean": 0.9305939011710209
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 7,
+    "expected": 4.298768469748586,
+    "p_upper": 0.1346427456921225,
+    "cov_mean": 0.9264941934047822
+   },
+   "infeasible_binder": 0.0,
+   "audit_default": {
+    "correct rejection": 0.96,
+    "false lead": 0.96,
+    "deferred non-binder": 0.96,
+    "confident hit": 0.82,
+    "missed binder": 0.98,
+    "deferred binder": 0.94,
+    "single label": 0.96,
+    "deferred": 0.96
+   },
+   "audit_sweep_pointwise": 0.9476215277777778,
+   "bonferroni_all": 0.98,
+   "default_per1000": {
+    "confident hit": 49.462365591397855,
+    "false lead": 26.881720430107528,
+    "missed binder": 42.47311827956989,
+    "deferred": 832.258064516129
+   },
+   "plate_intervals": {
+    "confident hit": [
+     1.0,
+     10.0
+    ],
+    "false lead": [
+     0.0,
+     6.0
+    ],
+    "missed binder": [
+     1.0,
+     9.0
+    ],
+    "deferred": [
+     72.0,
+     87.0
+    ]
+   },
+   "capacity": {
+    "chosen": 44,
+    "exceeded": 0.0,
+    "upper_median": 0.4895657078398195
+   },
+   "distinct_rules": [
+    144,
+    144
+   ],
+   "pareto": [
+    120,
+    144
+   ]
+  },
+  "CAIX|c7|N800": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.5936986107131064,
+   "prevalence_cal": 0.59925,
+   "prevalence_audit": 0.5922580645161291,
+   "n_cal_median": 800.0,
+   "n_audit_median": 930.0,
+   "n_future_median": 1373.0,
+   "violations_nonbinder": {
+    "observed": 4,
+    "expected": 4.530675750653025,
+    "p_upper": 0.675196291618515,
+    "cov_mean": 0.9232116161647135
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 4,
+    "expected": 4.71009878855693,
+    "p_upper": 0.7053166713113654,
+    "cov_mean": 0.920269596164006
+   },
+   "infeasible_binder": 0.0,
+   "audit_default": {
+    "correct rejection": 0.92,
+    "false lead": 0.98,
+    "deferred non-binder": 0.96,
+    "confident hit": 0.98,
+    "missed binder": 1.0,
+    "deferred binder": 0.96,
+    "single label": 0.98,
+    "deferred": 0.98
+   },
+   "audit_sweep_pointwise": 0.95484375,
+   "bonferroni_all": 0.96,
+   "default_per1000": {
+    "confident hit": 55.376344086021504,
+    "false lead": 31.182795698924732,
+    "missed binder": 47.31182795698925,
+    "deferred": 811.2903225806451
+   },
+   "plate_intervals": {
+    "confident hit": [
+     1.0,
+     10.5
+    ],
+    "false lead": [
+     0.0,
+     7.0
+    ],
+    "missed binder": [
+     1.0,
+     9.0
+    ],
+    "deferred": [
+     70.0,
+     85.0
+    ]
+   },
+   "capacity": {
+    "chosen": 48,
+    "exceeded": 0.0,
+    "upper_median": 0.48943918426802624
+   },
+   "distinct_rules": [
+    144,
+    144
+   ],
+   "pareto": [
+    132,
+    144
+   ]
+  },
+  "CAIX|c8|P": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.6139903750516174,
+   "prevalence_cal": 0.20827956989247312,
+   "prevalence_audit": 0.20786251342642323,
+   "n_cal_median": 930.0,
+   "n_audit_median": 931.0,
+   "n_future_median": 1242.0,
+   "violations_nonbinder": {
+    "observed": 7,
+    "expected": 4.738874105876205,
+    "p_upper": 0.19172086494734497,
+    "cov_mean": 0.9181036676662603
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 4,
+    "expected": 4.250406819614451,
+    "p_upper": 0.6242990526206467,
+    "cov_mean": 0.937773967000561
+   },
+   "infeasible_binder": 0.0,
+   "audit_default": {
+    "correct rejection": 0.86,
+    "false lead": 0.9,
+    "deferred non-binder": 0.92,
+    "confident hit": 0.98,
+    "missed binder": 0.94,
+    "deferred binder": 0.94,
+    "single label": 0.9,
+    "deferred": 0.9
+   },
+   "audit_sweep_pointwise": 0.9516493055555556,
+   "bonferroni_all": 0.96,
+   "default_per1000": {
+    "confident hit": 22.019334049409238,
+    "false lead": 64.44683136412459,
+    "missed binder": 12.889366272824919,
+    "deferred": 799.6777658431794
+   },
+   "plate_intervals": {
+    "confident hit": [
+     0.0,
+     6.0
+    ],
+    "false lead": [
+     2.0,
+     12.0
+    ],
+    "missed binder": [
+     0.0,
+     4.0
+    ],
+    "deferred": [
+     68.0,
+     84.5
+    ]
+   },
+   "capacity": {
+    "chosen": 50,
+    "exceeded": 0.0,
+    "upper_median": 0.4923510466988728
+   },
+   "distinct_rules": [
+    144,
+    144
+   ],
+   "pareto": [
+    108,
+    144
+   ]
+  },
+  "CAIX|c8|D": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.6059738841045863,
+   "prevalence_cal": 0.2088095901867856,
+   "prevalence_audit": 0.20880722114764666,
+   "n_cal_median": 10761.0,
+   "n_audit_median": 1551.0,
+   "n_future_median": 1552.0,
+   "violations_nonbinder": {
+    "observed": 50,
+    "expected": 3.234504415881304,
+    "p_upper": 3.2487609440300056e-60,
+    "cov_mean": 0.4315251742832455
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 0,
+    "expected": 2.407535201872345,
+    "p_upper": 0.9999999999999998,
+    "cov_mean": 0.9920946773011832
+   },
+   "infeasible_binder": 0.0,
+   "audit_default": {
+    "correct rejection": 0.96,
+    "false lead": 0.96,
+    "deferred non-binder": 0.94,
+    "confident hit": 0.96,
+    "missed binder": 1.0,
+    "deferred binder": 0.94,
+    "single label": 0.98,
+    "deferred": 0.98
+   },
+   "audit_sweep_pointwise": 0.9594618055555556,
+   "bonferroni_all": 0.98,
+   "default_per1000": {
+    "confident hit": 162.15344938749195,
+    "false lead": 450.0322372662798,
+    "missed binder": 1.6118633139909737,
+    "deferred": 381.04448742746615
+   },
+   "plate_intervals": {
+    "confident hit": [
+     9.0,
+     23.0
+    ],
+    "false lead": [
+     33.0,
+     53.0
+    ],
+    "missed binder": [
+     0.0,
+     1.5
+    ],
+    "deferred": [
+     27.0,
+     46.0
+    ]
+   },
+   "capacity": {
+    "chosen": 50,
+    "exceeded": 0.0,
+    "upper_median": 0.47487113402061853
+   },
+   "distinct_rules": [
+    144,
+    144
+   ],
+   "pareto": [
+    72,
+    144
+   ],
+   "del_label_rule": "top 0.2088 of del_enrich (tie-broken ranks)"
+  },
+  "CAIX|c8|S": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.6059593434406911,
+   "prevalence_cal": 0.20596107884627443,
+   "prevalence_audit": 0.2079926722769448,
+   "n_cal_median": 932.0,
+   "n_audit_median": 932.0,
+   "n_future_median": 1239.0,
+   "violations_nonbinder": {
+    "observed": 4,
+    "expected": 4.669974315873552,
+    "p_upper": 0.6987134636744542,
+    "cov_mean": 0.9189970051557271
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 5,
+    "expected": 4.409101712981382,
+    "p_upper": 0.45421342761387695,
+    "cov_mean": 0.929749686013118
+   },
+   "infeasible_binder": 0.0,
+   "audit_default": {
+    "correct rejection": 0.68,
+    "false lead": 0.88,
+    "deferred non-binder": 0.9,
+    "confident hit": 0.92,
+    "missed binder": 0.82,
+    "deferred binder": 0.78,
+    "single label": 0.9,
+    "deferred": 0.9
+   },
+   "audit_sweep_pointwise": 0.7388715277777778,
+   "bonferroni_all": 0.24,
+   "default_per1000": {
+    "confident hit": 21.36774087505008,
+    "false lead": 65.52094522019334,
+    "missed binder": 13.963480128893663,
+    "deferred": 774.9731471535982
+   },
+   "plate_intervals": {
+    "confident hit": [
+     0.0,
+     6.0
+    ],
+    "false lead": [
+     2.0,
+     12.0
+    ],
+    "missed binder": [
+     0.0,
+     4.0
+    ],
+    "deferred": [
+     65.5,
+     82.5
+    ]
+   },
+   "capacity": {
+    "chosen": 49,
+    "exceeded": 0.061224489795918366,
+    "upper_median": 0.4889908256880734
+   },
+   "distinct_rules": [
+    144,
+    144
+   ],
+   "pareto": [
+    108,
+    144
+   ]
+  },
+  "CAIX|c8|N50": {
+   "runs": 48,
+   "skipped": 2,
+   "auroc_median": 0.6110343609721565,
+   "prevalence_cal": 0.21208333333333332,
+   "prevalence_audit": 0.2083557347670251,
+   "n_cal_median": 50.0,
+   "n_audit_median": 930.0,
+   "n_future_median": 2123.0,
+   "violations_nonbinder": {
+    "observed": 1,
+    "expected": 3.5600131574501233,
+    "p_upper": 0.9756353778791219,
+    "cov_mean": 0.9547603363829137
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 9,
+    "expected": 16.266818436043078,
+    "p_upper": 0.9941735358669612,
+    "cov_mean": 0.9265940403579904
+   },
+   "infeasible_binder": 1.0,
+   "audit_default": {
+    "correct rejection": 0.9583333333333334,
+    "false lead": 1.0,
+    "deferred non-binder": 0.9583333333333334,
+    "confident hit": 0.9583333333333334,
+    "missed binder": 0.9791666666666666,
+    "deferred binder": 0.9791666666666666,
+    "single label": 0.9791666666666666,
+    "deferred": 0.9791666666666666
+   },
+   "audit_sweep_pointwise": 0.9514925373134329,
+   "bonferroni_all": 0.9583333333333334,
+   "default_per1000": {
+    "confident hit": 10.75268817204301,
+    "false lead": 35.483870967741936,
+    "missed binder": 8.064516129032258,
+    "deferred": 850.0
+   },
+   "plate_intervals": {
+    "confident hit": [
+     0.0,
+     4.0
+    ],
+    "false lead": [
+     0.0,
+     8.0
+    ],
+    "missed binder": [
+     0.0,
+     3.0
+    ],
+    "deferred": [
+     74.0,
+     88.0
+    ]
+   },
+   "capacity": {
+    "chosen": 8,
+    "exceeded": 0.0,
+    "upper_median": 0.48327837965143666
+   },
+   "distinct_rules": [
+    8,
+    21
+   ],
+   "pareto": [
+    7,
+    21
+   ]
+  },
+  "CAIX|c8|N100": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.6125491512149349,
+   "prevalence_cal": 0.2016,
+   "prevalence_audit": 0.20976344086021506,
+   "n_cal_median": 100.0,
+   "n_audit_median": 930.0,
+   "n_future_median": 2073.0,
+   "violations_nonbinder": {
+    "observed": 3,
+    "expected": 3.7519182062998926,
+    "p_upper": 0.7352426376664686,
+    "cov_mean": 0.9463051635238857
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 6,
+    "expected": 6.948616357446739,
+    "p_upper": 0.7165834034420142,
+    "cov_mean": 0.9542561542806205
+   },
+   "infeasible_binder": 0.7,
+   "audit_default": {
+    "correct rejection": 0.98,
+    "false lead": 0.96,
+    "deferred non-binder": 0.96,
+    "confident hit": 0.98,
+    "missed binder": 0.96,
+    "deferred binder": 0.98,
+    "single label": 0.94,
+    "deferred": 0.94
+   },
+   "audit_sweep_pointwise": 0.9574348044132397,
+   "bonferroni_all": 1.0,
+   "default_per1000": {
+    "confident hit": 13.978494623655914,
+    "false lead": 38.70967741935483,
+    "missed binder": 4.838709677419354,
+    "deferred": 890.3225806451613
+   },
+   "plate_intervals": {
+    "confident hit": [
+     0.0,
+     4.0
+    ],
+    "false lead": [
+     0.5,
+     8.0
+    ],
+    "missed binder": [
+     0.0,
+     2.5
+    ],
+    "deferred": [
+     79.0,
+     91.0
+    ]
+   },
+   "capacity": {
+    "chosen": 23,
+    "exceeded": 0.0,
+    "upper_median": 0.4886637723106609
+   },
+   "distinct_rules": [
+    12,
+    55
+   ],
+   "pareto": [
+    12,
+    55
+   ]
+  },
+  "CAIX|c8|N200": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.6123657635660037,
+   "prevalence_cal": 0.201,
+   "prevalence_audit": 0.21075268817204304,
+   "n_cal_median": 200.0,
+   "n_audit_median": 930.0,
+   "n_future_median": 1973.0,
+   "violations_nonbinder": {
+    "observed": 4,
+    "expected": 3.9352100695309913,
+    "p_upper": 0.5615574165442011,
+    "cov_mean": 0.9304801464150954
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 2,
+    "expected": 2.572237298319866,
+    "p_upper": 0.7372412846594062,
+    "cov_mean": 0.9695572447477783
+   },
+   "infeasible_binder": 0.0,
+   "audit_default": {
+    "correct rejection": 0.92,
+    "false lead": 0.96,
+    "deferred non-binder": 0.96,
+    "confident hit": 0.96,
+    "missed binder": 0.96,
+    "deferred binder": 0.94,
+    "single label": 0.94,
+    "deferred": 0.94
+   },
+   "audit_sweep_pointwise": 0.9571560196560197,
+   "bonferroni_all": 0.98,
+   "default_per1000": {
+    "confident hit": 17.204301075268816,
+    "false lead": 54.83870967741935,
+    "missed binder": 4.838709677419354,
+    "deferred": 872.5806451612904
+   },
+   "plate_intervals": {
+    "confident hit": [
+     0.0,
+     5.0
+    ],
+    "false lead": [
+     1.0,
+     10.0
+    ],
+    "missed binder": [
+     0.0,
+     2.5
+    ],
+    "deferred": [
+     76.5,
+     90.0
+    ]
+   },
+   "capacity": {
+    "chosen": 41,
+    "exceeded": 0.0,
+    "upper_median": 0.4901165737455651
+   },
+   "distinct_rules": [
+    48,
+    120
+   ],
+   "pareto": [
+    48,
+    120
+   ]
+  },
+  "CAIX|c8|N400": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.6092384091159833,
+   "prevalence_cal": 0.20855,
+   "prevalence_audit": 0.2090752688172043,
+   "n_cal_median": 400.0,
+   "n_audit_median": 930.0,
+   "n_future_median": 1773.0,
+   "violations_nonbinder": {
+    "observed": 4,
+    "expected": 4.316370184998644,
+    "p_upper": 0.6365356878109554,
+    "cov_mean": 0.9255421484889093
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 4,
+    "expected": 3.270322984174555,
+    "p_upper": 0.41516704516566844,
+    "cov_mean": 0.9452205780583021
+   },
+   "infeasible_binder": 0.0,
+   "audit_default": {
+    "correct rejection": 0.96,
+    "false lead": 0.96,
+    "deferred non-binder": 0.92,
+    "confident hit": 0.94,
+    "missed binder": 0.96,
+    "deferred binder": 0.94,
+    "single label": 0.96,
+    "deferred": 0.96
+   },
+   "audit_sweep_pointwise": 0.9540346746575342,
+   "bonferroni_all": 0.98,
+   "default_per1000": {
+    "confident hit": 18.81720430107527,
+    "false lead": 56.45161290322581,
+    "missed binder": 9.67741935483871,
+    "deferred": 832.258064516129
+   },
+   "plate_intervals": {
+    "confident hit": [
+     0.0,
+     5.0
+    ],
+    "false lead": [
+     1.0,
+     11.0
+    ],
+    "missed binder": [
+     0.0,
+     4.0
+    ],
+    "deferred": [
+     72.0,
+     87.0
+    ]
+   },
+   "capacity": {
+    "chosen": 48,
+    "exceeded": 0.0,
+    "upper_median": 0.4884376762549351
+   },
+   "distinct_rules": [
+    132,
+    144
+   ],
+   "pareto": [
+    96,
+    144
+   ]
+  },
+  "CAIX|c8|N800": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.604679356887168,
+   "prevalence_cal": 0.20907499999999998,
+   "prevalence_audit": 0.20982795698924728,
+   "n_cal_median": 800.0,
+   "n_audit_median": 930.0,
+   "n_future_median": 1373.0,
+   "violations_nonbinder": {
+    "observed": 7,
+    "expected": 4.69574122812961,
+    "p_upper": 0.18571221383588332,
+    "cov_mean": 0.9167240692448746
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 5,
+    "expected": 4.327926571681843,
+    "p_upper": 0.4378318755668019,
+    "cov_mean": 0.934268380512666
+   },
+   "infeasible_binder": 0.0,
+   "audit_default": {
+    "correct rejection": 0.92,
+    "false lead": 0.96,
+    "deferred non-binder": 0.86,
+    "confident hit": 1.0,
+    "missed binder": 0.94,
+    "deferred binder": 0.96,
+    "single label": 0.96,
+    "deferred": 0.96
+   },
+   "audit_sweep_pointwise": 0.9589236111111111,
+   "bonferroni_all": 0.98,
+   "default_per1000": {
+    "confident hit": 20.43010752688172,
+    "false lead": 63.44086021505376,
+    "missed binder": 13.978494623655914,
+    "deferred": 794.0860215053764
+   },
+   "plate_intervals": {
+    "confident hit": [
+     0.0,
+     5.0
+    ],
+    "false lead": [
+     2.0,
+     12.0
+    ],
+    "missed binder": [
+     0.0,
+     4.0
+    ],
+    "deferred": [
+     67.5,
+     84.0
+    ]
+   },
+   "capacity": {
+    "chosen": 50,
+    "exceeded": 0.0,
+    "upper_median": 0.489075018208303
+   },
+   "distinct_rules": [
+    144,
+    144
+   ],
+   "pareto": [
+    96,
+    144
+   ]
+  },
+  "CAIX|c9|P": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.6779591351931642,
+   "prevalence_cal": 0.01860215053763441,
+   "prevalence_audit": 0.017959183673469388,
+   "n_cal_median": 930.0,
+   "n_audit_median": 931.0,
+   "n_future_median": 1242.0,
+   "violations_nonbinder": {
+    "observed": 6,
+    "expected": 4.772592670715286,
+    "p_upper": 0.34200377518006725,
+    "cov_mean": 0.9173087666800357
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 8,
+    "expected": 10.874305145501372,
+    "p_upper": 0.8824971587817121,
+    "cov_mean": 0.9555490475296977
+   },
+   "infeasible_binder": 0.98,
+   "audit_default": {
+    "correct rejection": 0.98,
+    "false lead": 0.94,
+    "deferred non-binder": 0.9,
+    "confident hit": 1.0,
+    "missed binder": 1.0,
+    "deferred binder": 0.92,
+    "single label": 0.94,
+    "deferred": 0.94
+   },
+   "audit_sweep_pointwise": 0.9634533898305084,
+   "bonferroni_all": 0.98,
+   "default_per1000": {
+    "confident hit": 2.1482277121374866,
+    "false lead": 79.484425349087,
+    "missed binder": 0.0,
+    "deferred": 865.1987110633727
+   },
+   "plate_intervals": {
+    "confident hit": [
+     0.0,
+     2.0
+    ],
+    "false lead": [
+     3.0,
+     14.0
+    ],
+    "missed binder": [
+     0.0,
+     1.0
+    ],
+    "deferred": [
+     76.0,
+     89.5
+    ]
+   },
+   "capacity": {
+    "chosen": 32,
+    "exceeded": 0.0,
+    "upper_median": 0.48993558776167473
+   },
+   "distinct_rules": [
+    12,
+    48
+   ],
+   "pareto": [
+    12,
+    36
+   ]
+  },
+  "CAIX|c9|D": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.6705865810891286,
+   "prevalence_cal": 0.018399776972400333,
+   "prevalence_audit": 0.017949709864603484,
+   "n_cal_median": 10761.0,
+   "n_audit_median": 1551.0,
+   "n_future_median": 1552.0,
+   "violations_nonbinder": {
+    "observed": 50,
+    "expected": 3.141722868686986,
+    "p_upper": 7.721739551983911e-61,
+    "cov_mean": 0.4049486762198955
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 0,
+    "expected": 1.423612633660668,
+    "p_upper": 1.0000000000000004,
+    "cov_mean": 1.0
+   },
+   "infeasible_binder": 0.0,
+   "audit_default": {
+    "correct rejection": 1.0,
+    "false lead": 0.96,
+    "deferred non-binder": 0.98,
+    "confident hit": 0.98,
+    "missed binder": 1.0,
+    "deferred binder": 1.0,
+    "single label": 0.98,
+    "deferred": 0.98
+   },
+   "audit_sweep_pointwise": 0.9783333333333334,
+   "bonferroni_all": 1.0,
+   "default_per1000": {
+    "confident hit": 16.763378465506126,
+    "false lead": 583.4945196647325,
+    "missed binder": 0.0,
+    "deferred": 400.06447453255964
+   },
+   "plate_intervals": {
+    "confident hit": [
+     0.0,
+     5.0
+    ],
+    "false lead": [
+     46.0,
+     66.0
+    ],
+    "missed binder": [
+     0.0,
+     1.0
+    ],
+    "deferred": [
+     29.0,
+     48.0
+    ]
+   },
+   "capacity": {
+    "chosen": 50,
+    "exceeded": 0.0,
+    "upper_median": 0.46198453608247425
+   },
+   "distinct_rules": [
+    72,
+    72
+   ],
+   "pareto": [
+    12,
+    48
+   ],
+   "del_label_rule": "top 0.0184 of del_enrich (tie-broken ranks)"
+  },
+  "CAIX|c9|S": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.6696261006952711,
+   "prevalence_cal": 0.018243738250643547,
+   "prevalence_audit": 0.017700534488795806,
+   "n_cal_median": 932.0,
+   "n_audit_median": 933.0,
+   "n_future_median": 1238.0,
+   "violations_nonbinder": {
+    "observed": 8,
+    "expected": 4.757277215703348,
+    "p_upper": 0.09856337613621272,
+    "cov_mean": 0.913331735083684
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 9,
+    "expected": 10.859175451376494,
+    "p_upper": 0.7902565529814718,
+    "cov_mean": 0.9486595878321884
+   },
+   "infeasible_binder": 0.98,
+   "audit_default": {
+    "correct rejection": 0.82,
+    "false lead": 0.8,
+    "deferred non-binder": 0.8,
+    "confident hit": 0.82,
+    "missed binder": 0.98,
+    "deferred binder": 0.96,
+    "single label": 0.82,
+    "deferred": 0.82
+   },
+   "audit_sweep_pointwise": 0.8036366959064327,
+   "bonferroni_all": 0.6,
+   "default_per1000": {
+    "confident hit": 2.144772734590987,
+    "false lead": 82.70676691729324,
+    "missed binder": 0.0,
+    "deferred": 856.3771126081003
+   },
+   "plate_intervals": {
+    "confident hit": [
+     0.0,
+     2.0
+    ],
+    "false lead": [
+     3.0,
+     14.0
+    ],
+    "missed binder": [
+     0.0,
+     1.0
+    ],
+    "deferred": [
+     75.0,
+     89.0
+    ]
+   },
+   "capacity": {
+    "chosen": 26,
+    "exceeded": 0.038461538461538464,
+    "upper_median": 0.48943609765740836
+   },
+   "distinct_rules": [
+    12,
+    48
+   ],
+   "pareto": [
+    12,
+    36
+   ]
+  },
+  "CAIX|c9|N50": {
+   "runs": 0,
+   "skipped": 50
+  },
+  "CAIX|c9|N100": {
+   "runs": 2,
+   "skipped": 48,
+   "auroc_median": 0.6222330837559025,
+   "prevalence_cal": 0.055,
+   "prevalence_audit": 0.013978494623655914,
+   "n_cal_median": 100.0,
+   "n_audit_median": 930.0,
+   "n_future_median": 2073.0,
+   "violations_nonbinder": {
+    "observed": 0,
+    "expected": 0.17858760824205633,
+    "p_upper": 1.0,
+    "cov_mean": 0.9416699964799117
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 2,
+    "expected": 0.9642414860681113,
+    "p_upper": 0.2324303405572755,
+    "cov_mean": 0.6071428571428572
+   },
+   "infeasible_binder": 1.0,
+   "audit_default": {
+    "correct rejection": 1.0,
+    "false lead": 1.0,
+    "deferred non-binder": 1.0,
+    "confident hit": 1.0,
+    "missed binder": 1.0,
+    "deferred binder": 1.0,
+    "single label": 1.0,
+    "deferred": 1.0
+   },
+   "audit_sweep_pointwise": 0.9895833333333334,
+   "bonferroni_all": 1.0,
+   "default_per1000": {
+    "confident hit": 1.075268817204301,
+    "false lead": 57.526881720430104,
+    "missed binder": 5.376344086021505,
+    "deferred": 390.86021505376345
+   },
+   "plate_intervals": {
+    "confident hit": [
+     0.0,
+     1.0
+    ],
+    "false lead": [
+     1.5,
+     10.5
+    ],
+    "missed binder": [
+     0.0,
+     2.5
+    ],
+    "deferred": [
+     28.0,
+     47.5
+    ]
+   },
+   "capacity": {
+    "chosen": 2,
+    "exceeded": 0.0,
+    "upper_median": 0.44693680656054025
+   },
+   "distinct_rules": [
+    12,
+    12
+   ],
+   "pareto": [
+    12,
+    12
+   ]
+  },
+  "CAIX|c9|N200": {
+   "runs": 19,
+   "skipped": 31,
+   "auroc_median": 0.6561479869423286,
+   "prevalence_cal": 0.030000000000000002,
+   "prevalence_audit": 0.016638370118845502,
+   "n_cal_median": 200.0,
+   "n_audit_median": 930.0,
+   "n_future_median": 1973.0,
+   "violations_nonbinder": {
+    "observed": 1,
+    "expected": 1.6930397305384524,
+    "p_upper": 0.8303296437823109,
+    "cov_mean": 0.9279467143109377
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 9,
+    "expected": 9.163658078651025,
+    "p_upper": 0.620071409181644,
+    "cov_mean": 0.885672452671801
+   },
+   "infeasible_binder": 1.0,
+   "audit_default": {
+    "correct rejection": 1.0,
+    "false lead": 0.8947368421052632,
+    "deferred non-binder": 1.0,
+    "confident hit": 1.0,
+    "missed binder": 1.0,
+    "deferred binder": 0.9473684210526315,
+    "single label": 1.0,
+    "deferred": 1.0
+   },
+   "audit_sweep_pointwise": 0.9786184210526315,
+   "bonferroni_all": 1.0,
+   "default_per1000": {
+    "confident hit": 1.075268817204301,
+    "false lead": 74.19354838709677,
+    "missed binder": 1.075268817204301,
+    "deferred": 498.9247311827957
+   },
+   "plate_intervals": {
+    "confident hit": [
+     0.0,
+     1.0
+    ],
+    "false lead": [
+     2.0,
+     13.0
+    ],
+    "missed binder": [
+     0.0,
+     1.0
+    ],
+    "deferred": [
+     38.0,
+     58.0
+    ]
+   },
+   "capacity": {
+    "chosen": 11,
+    "exceeded": 0.0,
+    "upper_median": 0.4870755195134313
+   },
+   "distinct_rules": [
+    12,
+    12
+   ],
+   "pareto": [
+    12,
+    12
+   ]
+  },
+  "CAIX|c9|N400": {
+   "runs": 47,
+   "skipped": 3,
+   "auroc_median": 0.6761384335154826,
+   "prevalence_cal": 0.02047872340425532,
+   "prevalence_audit": 0.01859986273164036,
+   "n_cal_median": 400.0,
+   "n_audit_median": 930.0,
+   "n_future_median": 1773.0,
+   "violations_nonbinder": {
+    "observed": 6,
+    "expected": 4.285467418348368,
+    "p_upper": 0.2549158659827235,
+    "cov_mean": 0.9241474450768428
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 19,
+    "expected": 19.332424638320017,
+    "p_upper": 0.595835783468952,
+    "cov_mean": 0.8943472769191344
+   },
+   "infeasible_binder": 1.0,
+   "audit_default": {
+    "correct rejection": 1.0,
+    "false lead": 0.9148936170212766,
+    "deferred non-binder": 0.9361702127659575,
+    "confident hit": 1.0,
+    "missed binder": 1.0,
+    "deferred binder": 0.8936170212765957,
+    "single label": 0.9574468085106383,
+    "deferred": 0.9574468085106383
+   },
+   "audit_sweep_pointwise": 0.9744897959183674,
+   "bonferroni_all": 1.0,
+   "default_per1000": {
+    "confident hit": 3.225806451612903,
+    "false lead": 75.26881720430107,
+    "missed binder": 1.075268817204301,
+    "deferred": 790.3225806451613
+   },
+   "plate_intervals": {
+    "confident hit": [
+     0.0,
+     2.0
+    ],
+    "false lead": [
+     2.0,
+     13.0
+    ],
+    "missed binder": [
+     0.0,
+     1.0
+    ],
+    "deferred": [
+     67.0,
+     84.0
+    ]
+   },
+   "capacity": {
+    "chosen": 22,
+    "exceeded": 0.0,
+    "upper_median": 0.4861816130851664
+   },
+   "distinct_rules": [
+    12,
+    24
+   ],
+   "pareto": [
+    12,
+    24
+   ]
+  },
+  "CAIX|c9|N800": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.6757435723151399,
+   "prevalence_cal": 0.018425000000000004,
+   "prevalence_audit": 0.018301075268817205,
+   "n_cal_median": 800.0,
+   "n_audit_median": 930.0,
+   "n_future_median": 1373.0,
+   "violations_nonbinder": {
+    "observed": 5,
+    "expected": 4.765013346092567,
+    "p_upper": 0.5244147363734138,
+    "cov_mean": 0.9168449699532764
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 12,
+    "expected": 12.746186061896397,
+    "p_upper": 0.651103856447545,
+    "cov_mean": 0.9285143568505796
+   },
+   "infeasible_binder": 0.98,
+   "audit_default": {
+    "correct rejection": 0.96,
+    "false lead": 0.94,
+    "deferred non-binder": 0.94,
+    "confident hit": 1.0,
+    "missed binder": 1.0,
+    "deferred binder": 0.98,
+    "single label": 0.98,
+    "deferred": 0.98
+   },
+   "audit_sweep_pointwise": 0.9705255681818182,
+   "bonferroni_all": 1.0,
+   "default_per1000": {
+    "confident hit": 3.225806451612903,
+    "false lead": 79.03225806451613,
+    "missed binder": 1.075268817204301,
+    "deferred": 835.483870967742
+   },
+   "plate_intervals": {
+    "confident hit": [
+     0.0,
+     2.0
+    ],
+    "false lead": [
+     3.0,
+     14.0
+    ],
+    "missed binder": [
+     0.0,
+     1.0
+    ],
+    "deferred": [
+     72.0,
+     87.0
+    ]
+   },
+   "capacity": {
+    "chosen": 25,
+    "exceeded": 0.0,
+    "upper_median": 0.48943918426802624
+   },
+   "distinct_rules": [
+    12,
+    48
+   ],
+   "pareto": [
+    12,
+    36
+   ]
+  },
+  "CAXII|c7|P": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.6946431637108429,
+   "prevalence_cal": 0.7262654320987655,
+   "prevalence_audit": 0.7276543209876541,
+   "n_cal_median": 648.0,
+   "n_audit_median": 648.0,
+   "n_future_median": 864.0,
+   "violations_nonbinder": {
+    "observed": 12,
+    "expected": 5.084524212114909,
+    "p_upper": 0.0036593304251583583,
+    "cov_mean": 0.9246574519959612
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 5,
+    "expected": 5.492984929795081,
+    "p_upper": 0.6551131057727358,
+    "cov_mean": 0.9234161078885826
+   },
+   "infeasible_binder": 0.0,
+   "audit_default": {
+    "correct rejection": 0.96,
+    "false lead": 0.98,
+    "deferred non-binder": 0.98,
+    "confident hit": 0.98,
+    "missed binder": 0.96,
+    "deferred binder": 0.96,
+    "single label": 0.98,
+    "deferred": 0.98
+   },
+   "audit_sweep_pointwise": 0.9646180555555556,
+   "bonferroni_all": 1.0,
+   "default_per1000": {
+    "confident hit": 167.43827160493828,
+    "false lead": 20.061728395061728,
+    "missed binder": 55.55555555555556,
+    "deferred": 720.679012345679
+   },
+   "plate_intervals": {
+    "confident hit": [
+     9.0,
+     24.0
+    ],
+    "false lead": [
+     0.0,
+     6.0
+    ],
+    "missed binder": [
+     1.0,
+     11.0
+    ],
+    "deferred": [
+     60.0,
+     78.0
+    ]
+   },
+   "capacity": {
+    "chosen": 50,
+    "exceeded": 0.0,
+    "upper_median": 0.4861111111111111
+   },
+   "distinct_rules": [
+    144,
+    144
+   ],
+   "pareto": [
+    96,
+    144
+   ]
+  },
+  "CAXII|c7|D": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.6939569907630019,
+   "prevalence_cal": 0.7263673469387752,
+   "prevalence_audit": 0.7257777777777779,
+   "n_cal_median": 12250.0,
+   "n_audit_median": 1080.0,
+   "n_future_median": 1080.0,
+   "violations_nonbinder": {
+    "observed": 50,
+    "expected": 4.582801258143855,
+    "p_upper": 9.535851913338678e-53,
+    "cov_mean": 0.4217046162027563
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 0,
+    "expected": 4.437621874607293,
+    "p_upper": 1.0,
+    "cov_mean": 0.9737152260521245
+   },
+   "infeasible_binder": 0.0,
+   "audit_default": {
+    "correct rejection": 0.9,
+    "false lead": 0.94,
+    "deferred non-binder": 1.0,
+    "confident hit": 0.92,
+    "missed binder": 1.0,
+    "deferred binder": 0.94,
+    "single label": 0.96,
+    "deferred": 0.96
+   },
+   "audit_sweep_pointwise": 0.96484375,
+   "bonferroni_all": 1.0,
+   "default_per1000": {
+    "confident hit": 585.1851851851852,
+    "false lead": 158.7962962962963,
+    "missed binder": 18.51851851851852,
+    "deferred": 223.61111111111111
+   },
+   "plate_intervals": {
+    "confident hit": [
+     46.0,
+     66.0
+    ],
+    "false lead": [
+     8.0,
+     23.0
+    ],
+    "missed binder": [
+     0.0,
+     5.0
+    ],
+    "deferred": [
+     13.0,
+     30.0
+    ]
+   },
+   "capacity": {
+    "chosen": 50,
+    "exceeded": 0.0,
+    "upper_median": 0.462037037037037
+   },
+   "distinct_rules": [
+    144,
+    144
+   ],
+   "pareto": [
+    128,
+    144
+   ],
+   "del_label_rule": "top 0.7264 of del_enrich (tie-broken ranks)"
+  },
+  "CAXII|c7|S": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.6935192146517046,
+   "prevalence_cal": 0.7251414698388859,
+   "prevalence_audit": 0.7254816384430604,
+   "n_cal_median": 648.0,
+   "n_audit_median": 649.0,
+   "n_future_median": 863.0,
+   "violations_nonbinder": {
+    "observed": 7,
+    "expected": 5.087520894518297,
+    "p_upper": 0.2428897264416338,
+    "cov_mean": 0.9326272946307185
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 8,
+    "expected": 5.355457315882616,
+    "p_upper": 0.1615460501275941,
+    "cov_mean": 0.9166004097621684
+   },
+   "infeasible_binder": 0.0,
+   "audit_default": {
+    "correct rejection": 0.92,
+    "false lead": 0.9,
+    "deferred non-binder": 0.52,
+    "confident hit": 0.72,
+    "missed binder": 0.58,
+    "deferred binder": 0.72,
+    "single label": 0.72,
+    "deferred": 0.72
+   },
+   "audit_sweep_pointwise": 0.7173263888888889,
+   "bonferroni_all": 0.3,
+   "default_per1000": {
+    "confident hit": 162.88323187603763,
+    "false lead": 18.475849121010413,
+    "missed binder": 58.641975308641975,
+    "deferred": 724.2173821696197
+   },
+   "plate_intervals": {
+    "confident hit": [
+     8.5,
+     24.0
+    ],
+    "false lead": [
+     0.0,
+     5.0
+    ],
+    "missed binder": [
+     1.0,
+     11.0
+    ],
+    "deferred": [
+     60.0,
+     78.0
+    ]
+   },
+   "capacity": {
+    "chosen": 50,
+    "exceeded": 0.02,
+    "upper_median": 0.486094998711008
+   },
+   "distinct_rules": [
+    144,
+    144
+   ],
+   "pareto": [
+    108,
+    144
+   ]
+  },
+  "CAXII|c7|N50": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.6939428576282148,
+   "prevalence_cal": 0.73,
+   "prevalence_audit": 0.7262037037037037,
+   "n_cal_median": 50.0,
+   "n_audit_median": 648.0,
+   "n_future_median": 1462.0,
+   "violations_nonbinder": {
+    "observed": 17,
+    "expected": 12.819499559488222,
+    "p_upper": 0.1149059123587674,
+    "cov_mean": 0.9239009584632112
+   },
+   "infeasible_nonbinder": 1.0,
+   "violations_binder": {
+    "observed": 2,
+    "expected": 2.4009793174692677,
+    "p_upper": 0.7022720359522199,
+    "cov_mean": 0.9630136326472836
+   },
+   "infeasible_binder": 0.0,
+   "audit_default": {
+    "correct rejection": 1.0,
+    "false lead": 1.0,
+    "deferred non-binder": 0.94,
+    "confident hit": 0.92,
+    "missed binder": 0.94,
+    "deferred binder": 0.96,
+    "single label": 0.92,
+    "deferred": 0.92
+   },
+   "audit_sweep_pointwise": 0.9642101551480959,
+   "bonferroni_all": 1.0,
+   "default_per1000": {
+    "confident hit": 144.29012345679013,
+    "false lead": 16.203703703703702,
+    "missed binder": 22.376543209876544,
+    "deferred": 786.2654320987654
+   },
+   "plate_intervals": {
+    "confident hit": [
+     7.0,
+     21.5
+    ],
+    "false lead": [
+     0.0,
+     5.0
+    ],
+    "missed binder": [
+     0.0,
+     6.0
+    ],
+    "deferred": [
+     66.5,
+     83.5
+    ]
+   },
+   "capacity": {
+    "chosen": 24,
+    "exceeded": 0.0,
+    "upper_median": 0.4681942544459644
+   },
+   "distinct_rules": [
+    8,
+    21
+   ],
+   "pareto": [
+    6,
+    21
+   ]
+  },
+  "CAXII|c7|N100": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.6934182567666416,
+   "prevalence_cal": 0.7309999999999998,
+   "prevalence_audit": 0.7247222222222223,
+   "n_cal_median": 100.0,
+   "n_audit_median": 648.0,
+   "n_future_median": 1412.0,
+   "violations_nonbinder": {
+    "observed": 2,
+    "expected": 3.743180209802535,
+    "p_upper": 0.8985470826674149,
+    "cov_mean": 0.9682604070383072
+   },
+   "infeasible_nonbinder": 0.16,
+   "violations_binder": {
+    "observed": 6,
+    "expected": 3.5487708013439665,
+    "p_upper": 0.14114115258239537,
+    "cov_mean": 0.9382361992844772
+   },
+   "infeasible_binder": 0.0,
+   "audit_default": {
+    "correct rejection": 0.98,
+    "false lead": 1.0,
+    "deferred non-binder": 0.96,
+    "confident hit": 0.94,
+    "missed binder": 0.94,
+    "deferred binder": 0.94,
+    "single label": 0.96,
+    "deferred": 0.96
+   },
+   "audit_sweep_pointwise": 0.9629847770931497,
+   "bonferroni_all": 0.98,
+   "default_per1000": {
+    "confident hit": 52.46913580246914,
+    "false lead": 5.401234567901234,
+    "missed binder": 43.20987654320987,
+    "deferred": 867.283950617284
+   },
+   "plate_intervals": {
+    "confident hit": [
+     1.0,
+     10.5
+    ],
+    "false lead": [
+     0.0,
+     3.0
+    ],
+    "missed binder": [
+     1.0,
+     9.0
+    ],
+    "deferred": [
+     75.5,
+     90.0
+    ]
+   },
+   "capacity": {
+    "chosen": 36,
+    "exceeded": 0.0,
+    "upper_median": 0.48371104815864024
+   },
+   "distinct_rules": [
+    24,
+    88
+   ],
+   "pareto": [
+    22,
+    80
+   ]
+  },
+  "CAXII|c7|N200": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.6923650896020095,
+   "prevalence_cal": 0.7264999999999999,
+   "prevalence_audit": 0.7258024691358024,
+   "n_cal_median": 200.0,
+   "n_audit_median": 648.0,
+   "n_future_median": 1312.0,
+   "violations_nonbinder": {
+    "observed": 2,
+    "expected": 3.3530757648264915,
+    "p_upper": 0.8582586869046431,
+    "cov_mean": 0.9574958717532611
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 6,
+    "expected": 4.264393516896835,
+    "p_upper": 0.251611769992666,
+    "cov_mean": 0.9266265421998908
+   },
+   "infeasible_binder": 0.0,
+   "audit_default": {
+    "correct rejection": 0.94,
+    "false lead": 1.0,
+    "deferred non-binder": 0.9,
+    "confident hit": 0.92,
+    "missed binder": 0.98,
+    "deferred binder": 0.94,
+    "single label": 0.96,
+    "deferred": 0.96
+   },
+   "audit_sweep_pointwise": 0.953296925566343,
+   "bonferroni_all": 0.98,
+   "default_per1000": {
+    "confident hit": 106.48148148148148,
+    "false lead": 9.25925925925926,
+    "missed binder": 51.69753086419753,
+    "deferred": 800.1543209876543
+   },
+   "plate_intervals": {
+    "confident hit": [
+     4.5,
+     17.0
+    ],
+    "false lead": [
+     0.0,
+     4.0
+    ],
+    "missed binder": [
+     1.0,
+     10.0
+    ],
+    "deferred": [
+     68.5,
+     84.5
+    ]
+   },
+   "capacity": {
+    "chosen": 47,
+    "exceeded": 0.0,
+    "upper_median": 0.4923780487804878
+   },
+   "distinct_rules": [
+    96,
+    132
+   ],
+   "pareto": [
+    48,
+    132
+   ]
+  },
+  "CAXII|c7|N400": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.6905773506554177,
+   "prevalence_cal": 0.7264,
+   "prevalence_audit": 0.7246913580246912,
+   "n_cal_median": 400.0,
+   "n_audit_median": 648.0,
+   "n_future_median": 1112.0,
+   "violations_nonbinder": {
+    "observed": 9,
+    "expected": 4.5055649245492715,
+    "p_upper": 0.03280199494113168,
+    "cov_mean": 0.9346563663600896
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 10,
+    "expected": 5.162085475212532,
+    "p_upper": 0.02974347479135127,
+    "cov_mean": 0.9157064211163513
+   },
+   "infeasible_binder": 0.0,
+   "audit_default": {
+    "correct rejection": 0.96,
+    "false lead": 0.96,
+    "deferred non-binder": 0.94,
+    "confident hit": 0.96,
+    "missed binder": 0.96,
+    "deferred binder": 0.98,
+    "single label": 0.98,
+    "deferred": 0.98
+   },
+   "audit_sweep_pointwise": 0.9533854166666667,
+   "bonferroni_all": 0.96,
+   "default_per1000": {
+    "confident hit": 154.320987654321,
+    "false lead": 15.432098765432098,
+    "missed binder": 59.41358024691358,
+    "deferred": 736.8827160493827
+   },
+   "plate_intervals": {
+    "confident hit": [
+     8.0,
+     23.0
+    ],
+    "false lead": [
+     0.0,
+     5.0
+    ],
+    "missed binder": [
+     1.5,
+     11.0
+    ],
+    "deferred": [
+     61.5,
+     79.5
+    ]
+   },
+   "capacity": {
+    "chosen": 50,
+    "exceeded": 0.0,
+    "upper_median": 0.487410071942446
+   },
+   "distinct_rules": [
+    144,
+    144
+   ],
+   "pareto": [
+    108,
+    144
+   ]
+  },
+  "CAXII|c7|N800": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.6845443082936378,
+   "prevalence_cal": 0.72525,
+   "prevalence_audit": 0.7270987654320987,
+   "n_cal_median": 800.0,
+   "n_audit_median": 648.0,
+   "n_future_median": 712.0,
+   "violations_nonbinder": {
+    "observed": 6,
+    "expected": 5.4511391228480806,
+    "p_upper": 0.4672095868509134,
+    "cov_mean": 0.9307611713362176
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 12,
+    "expected": 5.6222585557298865,
+    "p_upper": 0.008213165791238698,
+    "cov_mean": 0.915666701983713
+   },
+   "infeasible_binder": 0.0,
+   "audit_default": {
+    "correct rejection": 0.96,
+    "false lead": 0.96,
+    "deferred non-binder": 0.94,
+    "confident hit": 0.96,
+    "missed binder": 0.96,
+    "deferred binder": 0.94,
+    "single label": 0.9,
+    "deferred": 0.9
+   },
+   "audit_sweep_pointwise": 0.9418923611111111,
+   "bonferroni_all": 0.98,
+   "default_per1000": {
+    "confident hit": 166.66666666666666,
+    "false lead": 18.51851851851852,
+    "missed binder": 61.72839506172839,
+    "deferred": 719.1358024691358
+   },
+   "plate_intervals": {
+    "confident hit": [
+     9.0,
+     24.0
+    ],
+    "false lead": [
+     0.0,
+     5.0
+    ],
+    "missed binder": [
+     2.0,
+     12.0
+    ],
+    "deferred": [
+     59.0,
+     78.0
+    ]
+   },
+   "capacity": {
+    "chosen": 50,
+    "exceeded": 0.0,
+    "upper_median": 0.4901685393258427
+   },
+   "distinct_rules": [
+    144,
+    144
+   ],
+   "pareto": [
+    108,
+    144
+   ]
+  },
+  "CAXII|c8|P": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.597558167946518,
+   "prevalence_cal": 0.39123456790123456,
+   "prevalence_audit": 0.39000000000000007,
+   "n_cal_median": 648.0,
+   "n_audit_median": 648.0,
+   "n_future_median": 864.0,
+   "violations_nonbinder": {
+    "observed": 5,
+    "expected": 5.177847676866662,
+    "p_upper": 0.6011773979035566,
+    "cov_mean": 0.9227639836341415
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 7,
+    "expected": 5.327473558523411,
+    "p_upper": 0.2807992416908647,
+    "cov_mean": 0.9301654317375966
+   },
+   "infeasible_binder": 0.0,
+   "audit_default": {
+    "correct rejection": 0.98,
+    "false lead": 0.94,
+    "deferred non-binder": 0.9,
+    "confident hit": 0.98,
+    "missed binder": 1.0,
+    "deferred binder": 0.94,
+    "single label": 0.96,
+    "deferred": 0.96
+   },
+   "audit_sweep_pointwise": 0.9587673611111112,
+   "bonferroni_all": 1.0,
+   "default_per1000": {
+    "confident hit": 50.925925925925924,
+    "false lead": 49.382716049382715,
+    "missed binder": 26.234567901234566,
+    "deferred": 845.679012345679
+   },
+   "plate_intervals": {
+    "confident hit": [
+     1.0,
+     10.0
+    ],
+    "false lead": [
+     1.0,
+     10.0
+    ],
+    "missed binder": [
+     0.0,
+     7.0
+    ],
+    "deferred": [
+     73.0,
+     88.0
+    ]
+   },
+   "capacity": {
+    "chosen": 49,
+    "exceeded": 0.0,
+    "upper_median": 0.49074074074074076
+   },
+   "distinct_rules": [
+    144,
+    144
+   ],
+   "pareto": [
+    120,
+    144
+   ]
+  },
+  "CAXII|c8|D": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.5980740279996857,
+   "prevalence_cal": 0.3893877551020409,
+   "prevalence_audit": 0.3892592592592593,
+   "n_cal_median": 12250.0,
+   "n_audit_median": 1080.0,
+   "n_future_median": 1080.0,
+   "violations_nonbinder": {
+    "observed": 50,
+    "expected": 4.998752791912361,
+    "p_upper": 9.080919064083063e-51,
+    "cov_mean": 0.4460837897072546
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 38,
+    "expected": 4.060498906794093,
+    "p_upper": 1.5130190257592005e-31,
+    "cov_mean": 0.8926610878945818
+   },
+   "infeasible_binder": 0.0,
+   "audit_default": {
+    "correct rejection": 0.98,
+    "false lead": 0.96,
+    "deferred non-binder": 0.98,
+    "confident hit": 0.92,
+    "missed binder": 1.0,
+    "deferred binder": 0.94,
+    "single label": 0.94,
+    "deferred": 0.94
+   },
+   "audit_sweep_pointwise": 0.9576041666666667,
+   "bonferroni_all": 0.92,
+   "default_per1000": {
+    "confident hit": 289.35185185185185,
+    "false lead": 336.574074074074,
+    "missed binder": 41.666666666666664,
+    "deferred": 278.7037037037037
+   },
+   "plate_intervals": {
+    "confident hit": [
+     19.0,
+     37.0
+    ],
+    "false lead": [
+     23.0,
+     42.0
+    ],
+    "missed binder": [
+     1.0,
+     9.0
+    ],
+    "deferred": [
+     18.0,
+     36.0
+    ]
+   },
+   "capacity": {
+    "chosen": 50,
+    "exceeded": 0.0,
+    "upper_median": 0.47916666666666663
+   },
+   "distinct_rules": [
+    144,
+    144
+   ],
+   "pareto": [
+    128,
+    144
+   ],
+   "del_label_rule": "top 0.3894 of del_enrich (tie-broken ranks)"
+  },
+  "CAXII|c8|S": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.5906084805598347,
+   "prevalence_cal": 0.39772786151738665,
+   "prevalence_audit": 0.39046186678997175,
+   "n_cal_median": 649.0,
+   "n_audit_median": 649.0,
+   "n_future_median": 862.0,
+   "violations_nonbinder": {
+    "observed": 7,
+    "expected": 5.116966526725714,
+    "p_upper": 0.24752799588803898,
+    "cov_mean": 0.9217197336631952
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 5,
+    "expected": 5.308865573167825,
+    "p_upper": 0.6241746529591095,
+    "cov_mean": 0.9258871454077141
+   },
+   "infeasible_binder": 0.0,
+   "audit_default": {
+    "correct rejection": 0.94,
+    "false lead": 0.84,
+    "deferred non-binder": 0.72,
+    "confident hit": 0.86,
+    "missed binder": 0.64,
+    "deferred binder": 0.84,
+    "single label": 0.76,
+    "deferred": 0.76
+   },
+   "audit_sweep_pointwise": 0.7801388888888889,
+   "bonferroni_all": 0.42,
+   "default_per1000": {
+    "confident hit": 52.709844898264095,
+    "false lead": 49.193190089519504,
+    "missed binder": 27.75637733264852,
+    "deferred": 840.5223171889838
+   },
+   "plate_intervals": {
+    "confident hit": [
+     1.0,
+     10.0
+    ],
+    "false lead": [
+     1.0,
+     10.0
+    ],
+    "missed binder": [
+     0.0,
+     7.0
+    ],
+    "deferred": [
+     73.0,
+     88.0
+    ]
+   },
+   "capacity": {
+    "chosen": 47,
+    "exceeded": 0.0,
+    "upper_median": 0.4883720930232558
+   },
+   "distinct_rules": [
+    144,
+    144
+   ],
+   "pareto": [
+    120,
+    144
+   ]
+  },
+  "CAXII|c8|N50": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.600922885675883,
+   "prevalence_cal": 0.37520000000000003,
+   "prevalence_audit": 0.3891975308641975,
+   "n_cal_median": 50.0,
+   "n_audit_median": 648.0,
+   "n_future_median": 1462.0,
+   "violations_nonbinder": {
+    "observed": 0,
+    "expected": 2.223588749411686,
+    "p_upper": 0.9999999999999998,
+    "cov_mean": 0.9740846957429785
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 9,
+    "expected": 7.561984961206449,
+    "p_upper": 0.3399844535705168,
+    "cov_mean": 0.9397603406676751
+   },
+   "infeasible_binder": 0.86,
+   "audit_default": {
+    "correct rejection": 0.98,
+    "false lead": 0.94,
+    "deferred non-binder": 0.96,
+    "confident hit": 0.98,
+    "missed binder": 0.98,
+    "deferred binder": 0.96,
+    "single label": 0.96,
+    "deferred": 0.96
+   },
+   "audit_sweep_pointwise": 0.9518186753528773,
+   "bonferroni_all": 0.98,
+   "default_per1000": {
+    "confident hit": 18.51851851851852,
+    "false lead": 13.117283950617285,
+    "missed binder": 16.203703703703702,
+    "deferred": 926.6975308641976
+   },
+   "plate_intervals": {
+    "confident hit": [
+     0.0,
+     5.0
+    ],
+    "false lead": [
+     0.0,
+     4.0
+    ],
+    "missed binder": [
+     0.0,
+     5.0
+    ],
+    "deferred": [
+     83.0,
+     94.0
+    ]
+   },
+   "capacity": {
+    "chosen": 9,
+    "exceeded": 0.0,
+    "upper_median": 0.4911080711354309
+   },
+   "distinct_rules": [
+    8,
+    24
+   ],
+   "pareto": [
+    5,
+    24
+   ]
+  },
+  "CAXII|c8|N100": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.598754684296909,
+   "prevalence_cal": 0.3786,
+   "prevalence_audit": 0.38867283950617276,
+   "n_cal_median": 100.0,
+   "n_audit_median": 648.0,
+   "n_future_median": 1412.0,
+   "violations_nonbinder": {
+    "observed": 5,
+    "expected": 3.668040664929499,
+    "p_upper": 0.30375064365199395,
+    "cov_mean": 0.9468981313845671
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 4,
+    "expected": 2.9622078476739784,
+    "p_upper": 0.3438054305342345,
+    "cov_mean": 0.9545854434077836
+   },
+   "infeasible_binder": 0.0,
+   "audit_default": {
+    "correct rejection": 0.96,
+    "false lead": 1.0,
+    "deferred non-binder": 0.96,
+    "confident hit": 0.94,
+    "missed binder": 0.98,
+    "deferred binder": 0.98,
+    "single label": 0.94,
+    "deferred": 0.94
+   },
+   "audit_sweep_pointwise": 0.9574760765550239,
+   "bonferroni_all": 0.98,
+   "default_per1000": {
+    "confident hit": 30.09259259259259,
+    "false lead": 27.77777777777778,
+    "missed binder": 14.660493827160494,
+    "deferred": 905.0925925925926
+   },
+   "plate_intervals": {
+    "confident hit": [
+     0.0,
+     7.0
+    ],
+    "false lead": [
+     0.0,
+     7.0
+    ],
+    "missed binder": [
+     0.0,
+     4.5
+    ],
+    "deferred": [
+     80.0,
+     92.0
+    ]
+   },
+   "capacity": {
+    "chosen": 16,
+    "exceeded": 0.0,
+    "upper_median": 0.4907932011331445
+   },
+   "distinct_rules": [
+    55,
+    110
+   ],
+   "pareto": [
+    33,
+    110
+   ]
+  },
+  "CAXII|c8|N200": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.5924622535162494,
+   "prevalence_cal": 0.38549999999999995,
+   "prevalence_audit": 0.39145061728395064,
+   "n_cal_median": 200.0,
+   "n_audit_median": 648.0,
+   "n_future_median": 1312.0,
+   "violations_nonbinder": {
+    "observed": 3,
+    "expected": 4.240766569223175,
+    "p_upper": 0.8082247449531091,
+    "cov_mean": 0.9363587834471403
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 2,
+    "expected": 3.932542315489787,
+    "p_upper": 0.9128588095995218,
+    "cov_mean": 0.9440640339036084
+   },
+   "infeasible_binder": 0.0,
+   "audit_default": {
+    "correct rejection": 0.98,
+    "false lead": 0.94,
+    "deferred non-binder": 1.0,
+    "confident hit": 0.96,
+    "missed binder": 0.98,
+    "deferred binder": 0.98,
+    "single label": 0.94,
+    "deferred": 0.94
+   },
+   "audit_sweep_pointwise": 0.9691364840989399,
+   "bonferroni_all": 0.98,
+   "default_per1000": {
+    "confident hit": 40.123456790123456,
+    "false lead": 38.58024691358025,
+    "missed binder": 20.061728395061728,
+    "deferred": 868.8271604938271
+   },
+   "plate_intervals": {
+    "confident hit": [
+     0.0,
+     9.0
+    ],
+    "false lead": [
+     0.0,
+     8.5
+    ],
+    "missed binder": [
+     0.0,
+     6.0
+    ],
+    "deferred": [
+     76.0,
+     90.0
+    ]
+   },
+   "capacity": {
+    "chosen": 33,
+    "exceeded": 0.0,
+    "upper_median": 0.4893292682926829
+   },
+   "distinct_rules": [
+    132,
+    144
+   ],
+   "pareto": [
+    96,
+    144
+   ]
+  },
+  "CAXII|c8|N400": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.5986413035296116,
+   "prevalence_cal": 0.3896,
+   "prevalence_audit": 0.389783950617284,
+   "n_cal_median": 400.0,
+   "n_audit_median": 648.0,
+   "n_future_median": 1112.0,
+   "violations_nonbinder": {
+    "observed": 3,
+    "expected": 4.712770077173588,
+    "p_upper": 0.8622608043138081,
+    "cov_mean": 0.9265630093530749
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 6,
+    "expected": 4.612508227536245,
+    "p_upper": 0.31282687242217644,
+    "cov_mean": 0.9366393178766973
+   },
+   "infeasible_binder": 0.0,
+   "audit_default": {
+    "correct rejection": 0.96,
+    "false lead": 0.98,
+    "deferred non-binder": 0.96,
+    "confident hit": 1.0,
+    "missed binder": 0.94,
+    "deferred binder": 0.98,
+    "single label": 0.96,
+    "deferred": 0.96
+   },
+   "audit_sweep_pointwise": 0.9584027777777778,
+   "bonferroni_all": 0.98,
+   "default_per1000": {
+    "confident hit": 47.839506172839506,
+    "false lead": 44.75308641975309,
+    "missed binder": 22.376543209876544,
+    "deferred": 853.395061728395
+   },
+   "plate_intervals": {
+    "confident hit": [
+     1.0,
+     10.0
+    ],
+    "false lead": [
+     1.0,
+     9.0
+    ],
+    "missed binder": [
+     0.0,
+     6.0
+    ],
+    "deferred": [
+     74.0,
+     89.0
+    ]
+   },
+   "capacity": {
+    "chosen": 43,
+    "exceeded": 0.0,
+    "upper_median": 0.49010791366906475
+   },
+   "distinct_rules": [
+    144,
+    144
+   ],
+   "pareto": [
+    121,
+    144
+   ]
+  },
+  "CAXII|c8|N800": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.5947392431883145,
+   "prevalence_cal": 0.3879000000000001,
+   "prevalence_audit": 0.38935185185185184,
+   "n_cal_median": 800.0,
+   "n_audit_median": 648.0,
+   "n_future_median": 712.0,
+   "violations_nonbinder": {
+    "observed": 5,
+    "expected": 5.800107931480842,
+    "p_upper": 0.703303870056547,
+    "cov_mean": 0.9212588508309122
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 7,
+    "expected": 5.468694850148761,
+    "p_upper": 0.3038054448757484,
+    "cov_mean": 0.9231081273147889
+   },
+   "infeasible_binder": 0.0,
+   "audit_default": {
+    "correct rejection": 0.94,
+    "false lead": 0.98,
+    "deferred non-binder": 1.0,
+    "confident hit": 0.98,
+    "missed binder": 0.94,
+    "deferred binder": 1.0,
+    "single label": 0.96,
+    "deferred": 0.96
+   },
+   "audit_sweep_pointwise": 0.9699479166666667,
+   "bonferroni_all": 1.0,
+   "default_per1000": {
+    "confident hit": 54.78395061728395,
+    "false lead": 48.611111111111114,
+    "missed binder": 30.09259259259259,
+    "deferred": 837.9629629629629
+   },
+   "plate_intervals": {
+    "confident hit": [
+     1.0,
+     11.0
+    ],
+    "false lead": [
+     1.0,
+     10.0
+    ],
+    "missed binder": [
+     0.0,
+     7.0
+    ],
+    "deferred": [
+     72.0,
+     88.0
+    ]
+   },
+   "capacity": {
+    "chosen": 50,
+    "exceeded": 0.0,
+    "upper_median": 0.48735955056179775
+   },
+   "distinct_rules": [
+    144,
+    144
+   ],
+   "pareto": [
+    120,
+    144
+   ]
+  },
+  "CAXII|c9|P": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.5790563937670048,
+   "prevalence_cal": 0.03916666666666666,
+   "prevalence_audit": 0.0370679012345679,
+   "n_cal_median": 648.0,
+   "n_audit_median": 648.0,
+   "n_future_median": 864.0,
+   "violations_nonbinder": {
+    "observed": 7,
+    "expected": 5.727059082943114,
+    "p_upper": 0.34698719738544953,
+    "cov_mean": 0.9191226699571211
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 6,
+    "expected": 6.309689541614686,
+    "p_upper": 0.6177729018407225,
+    "cov_mean": 0.9581118453118123
+   },
+   "infeasible_binder": 0.78,
+   "audit_default": {
+    "correct rejection": 0.98,
+    "false lead": 0.94,
+    "deferred non-binder": 0.96,
+    "confident hit": 1.0,
+    "missed binder": 0.98,
+    "deferred binder": 0.92,
+    "single label": 0.92,
+    "deferred": 0.92
+   },
+   "audit_sweep_pointwise": 0.9459857723577236,
+   "bonferroni_all": 0.96,
+   "default_per1000": {
+    "confident hit": 4.62962962962963,
+    "false lead": 74.07407407407408,
+    "missed binder": 0.0,
+    "deferred": 850.3086419753087
+   },
+   "plate_intervals": {
+    "confident hit": [
+     0.0,
+     3.0
+    ],
+    "false lead": [
+     2.0,
+     13.0
+    ],
+    "missed binder": [
+     0.0,
+     1.0
+    ],
+    "deferred": [
+     74.0,
+     89.0
+    ]
+   },
+   "capacity": {
+    "chosen": 16,
+    "exceeded": 0.0,
+    "upper_median": 0.4837962962962963
+   },
+   "distinct_rules": [
+    24,
+    84
+   ],
+   "pareto": [
+    12,
+    60
+   ]
+  },
+  "CAXII|c9|D": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.586529980446743,
+   "prevalence_cal": 0.0393469387755102,
+   "prevalence_audit": 0.03933333333333334,
+   "n_cal_median": 12250.0,
+   "n_audit_median": 1080.0,
+   "n_future_median": 1080.0,
+   "violations_nonbinder": {
+    "observed": 50,
+    "expected": 4.883865882687826,
+    "p_upper": 2.896165629428885e-51,
+    "cov_mean": 0.4782462775849647
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 50,
+    "expected": 2.834535739316544,
+    "p_upper": 2.0507251112800877e-64,
+    "cov_mean": 0.7405427554614233
+   },
+   "infeasible_binder": 0.0,
+   "audit_default": {
+    "correct rejection": 0.94,
+    "false lead": 0.94,
+    "deferred non-binder": 1.0,
+    "confident hit": 0.96,
+    "missed binder": 1.0,
+    "deferred binder": 1.0,
+    "single label": 1.0,
+    "deferred": 1.0
+   },
+   "audit_sweep_pointwise": 0.9689236111111111,
+   "bonferroni_all": 0.96,
+   "default_per1000": {
+    "confident hit": 28.703703703703702,
+    "false lead": 502.77777777777777,
+    "missed binder": 10.185185185185185,
+    "deferred": 28.703703703703702
+   },
+   "plate_intervals": {
+    "confident hit": [
+     0.0,
+     7.0
+    ],
+    "false lead": [
+     38.0,
+     58.0
+    ],
+    "missed binder": [
+     0.0,
+     4.0
+    ],
+    "deferred": [
+     0.0,
+     7.0
+    ]
+   },
+   "capacity": {
+    "chosen": 50,
+    "exceeded": 0.0,
+    "upper_median": 0.3416666666666667
+   },
+   "distinct_rules": [
+    144,
+    144
+   ],
+   "pareto": [
+    37,
+    99
+   ],
+   "del_label_rule": "top 0.0394 of del_enrich (tie-broken ranks)"
+  },
+  "CAXII|c9|S": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.5732235724409089,
+   "prevalence_cal": 0.03761660694834155,
+   "prevalence_audit": 0.03895822338587231,
+   "n_cal_median": 648.0,
+   "n_audit_median": 649.0,
+   "n_future_median": 863.0,
+   "violations_nonbinder": {
+    "observed": 3,
+    "expected": 5.56602719096994,
+    "p_upper": 0.9275885957480197,
+    "cov_mean": 0.9221626166678074
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 4,
+    "expected": 6.590445303889085,
+    "p_upper": 0.9125415019123543,
+    "cov_mean": 0.9599830286467896
+   },
+   "infeasible_binder": 0.72,
+   "audit_default": {
+    "correct rejection": 0.72,
+    "false lead": 0.76,
+    "deferred non-binder": 0.74,
+    "confident hit": 0.96,
+    "missed binder": 0.96,
+    "deferred binder": 0.88,
+    "single label": 0.74,
+    "deferred": 0.74
+   },
+   "audit_sweep_pointwise": 0.8143256013745704,
+   "bonferroni_all": 0.64,
+   "default_per1000": {
+    "confident hit": 3.836787858194586,
+    "false lead": 75.53155006858711,
+    "missed binder": 0.0,
+    "deferred": 851.6533378707958
+   },
+   "plate_intervals": {
+    "confident hit": [
+     0.0,
+     2.5
+    ],
+    "false lead": [
+     2.0,
+     13.0
+    ],
+    "missed binder": [
+     0.0,
+     1.0
+    ],
+    "deferred": [
+     74.0,
+     89.0
+    ]
+   },
+   "capacity": {
+    "chosen": 12,
+    "exceeded": 0.0,
+    "upper_median": 0.48985554587688734
+   },
+   "distinct_rules": [
+    24,
+    72
+   ],
+   "pareto": [
+    12,
+    60
+   ]
+  },
+  "CAXII|c9|N50": {
+   "runs": 5,
+   "skipped": 45,
+   "auroc_median": 0.5422608695652174,
+   "prevalence_cal": 0.10800000000000001,
+   "prevalence_audit": 0.03580246913580246,
+   "n_cal_median": 50.0,
+   "n_audit_median": 648.0,
+   "n_future_median": 1462.0,
+   "violations_nonbinder": {
+    "observed": 0,
+    "expected": 0.29292422966244347,
+    "p_upper": 1.0,
+    "cov_mean": 0.9536029717421532
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 3,
+    "expected": 2.734858395045439,
+    "p_upper": 0.5878592473785289,
+    "cov_mean": 0.7892639206712433
+   },
+   "infeasible_binder": 1.0,
+   "audit_default": {
+    "correct rejection": 1.0,
+    "false lead": 1.0,
+    "deferred non-binder": 1.0,
+    "confident hit": 1.0,
+    "missed binder": 0.8,
+    "deferred binder": 1.0,
+    "single label": 1.0,
+    "deferred": 1.0
+   },
+   "audit_sweep_pointwise": 0.9635416666666666,
+   "bonferroni_all": 1.0,
+   "default_per1000": {
+    "confident hit": 0.0,
+    "false lead": 38.58024691358025,
+    "missed binder": 4.62962962962963,
+    "deferred": 739.1975308641976
+   },
+   "plate_intervals": {
+    "confident hit": [
+     0.0,
+     1.0
+    ],
+    "false lead": [
+     0.0,
+     8.0
+    ],
+    "missed binder": [
+     0.0,
+     3.0
+    ],
+    "deferred": [
+     62.0,
+     80.0
+    ]
+   },
+   "capacity": {
+    "chosen": 1,
+    "exceeded": 0.0,
+    "upper_median": 0.4179206566347469
+   },
+   "distinct_rules": [
+    9,
+    10
+   ],
+   "pareto": [
+    9,
+    10
+   ]
+  },
+  "CAXII|c9|N100": {
+   "runs": 20,
+   "skipped": 30,
+   "auroc_median": 0.5919193663962088,
+   "prevalence_cal": 0.05900000000000001,
+   "prevalence_audit": 0.038657407407407404,
+   "n_cal_median": 100.0,
+   "n_audit_median": 648.0,
+   "n_future_median": 1412.0,
+   "violations_nonbinder": {
+    "observed": 1,
+    "expected": 1.8817447506422187,
+    "p_upper": 0.8614622456213397,
+    "cov_mean": 0.9373208398897503
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 10,
+    "expected": 10.294898008453805,
+    "p_upper": 0.6407217808552345,
+    "cov_mean": 0.8811113843332141
+   },
+   "infeasible_binder": 1.0,
+   "audit_default": {
+    "correct rejection": 1.0,
+    "false lead": 1.0,
+    "deferred non-binder": 1.0,
+    "confident hit": 0.95,
+    "missed binder": 1.0,
+    "deferred binder": 1.0,
+    "single label": 1.0,
+    "deferred": 1.0
+   },
+   "audit_sweep_pointwise": 0.9875,
+   "bonferroni_all": 1.0,
+   "default_per1000": {
+    "confident hit": 3.0864197530864197,
+    "false lead": 58.641975308641975,
+    "missed binder": 3.8580246913580245,
+    "deferred": 828.7037037037037
+   },
+   "plate_intervals": {
+    "confident hit": [
+     0.0,
+     2.0
+    ],
+    "false lead": [
+     1.0,
+     11.0
+    ],
+    "missed binder": [
+     0.0,
+     2.5
+    ],
+    "deferred": [
+     71.0,
+     87.0
+    ]
+   },
+   "capacity": {
+    "chosen": 2,
+    "exceeded": 0.0,
+    "upper_median": 0.4858356940509915
+   },
+   "distinct_rules": [
+    12,
+    12
+   ],
+   "pareto": [
+    11,
+    12
+   ]
+  },
+  "CAXII|c9|N200": {
+   "runs": 47,
+   "skipped": 3,
+   "auroc_median": 0.5877565217391304,
+   "prevalence_cal": 0.04138297872340425,
+   "prevalence_audit": 0.038054898870501716,
+   "n_cal_median": 200.0,
+   "n_audit_median": 648.0,
+   "n_future_median": 1312.0,
+   "violations_nonbinder": {
+    "observed": 1,
+    "expected": 4.183513861271735,
+    "p_upper": 0.9875702425304815,
+    "cov_mean": 0.9325520821626101
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 23,
+    "expected": 19.705095899188745,
+    "p_upper": 0.20023175815914587,
+    "cov_mean": 0.8916080681593931
+   },
+   "infeasible_binder": 1.0,
+   "audit_default": {
+    "correct rejection": 0.9574468085106383,
+    "false lead": 0.9574468085106383,
+    "deferred non-binder": 0.9574468085106383,
+    "confident hit": 1.0,
+    "missed binder": 0.9787234042553191,
+    "deferred binder": 0.9787234042553191,
+    "single label": 0.9574468085106383,
+    "deferred": 0.9574468085106383
+   },
+   "audit_sweep_pointwise": 0.9721554487179487,
+   "bonferroni_all": 1.0,
+   "default_per1000": {
+    "confident hit": 3.0864197530864197,
+    "false lead": 64.81481481481481,
+    "missed binder": 3.0864197530864197,
+    "deferred": 820.9876543209876
+   },
+   "plate_intervals": {
+    "confident hit": [
+     0.0,
+     2.0
+    ],
+    "false lead": [
+     2.0,
+     12.0
+    ],
+    "missed binder": [
+     0.0,
+     2.0
+    ],
+    "deferred": [
+     70.0,
+     86.0
+    ]
+   },
+   "capacity": {
+    "chosen": 10,
+    "exceeded": 0.0,
+    "upper_median": 0.4893292682926829
+   },
+   "distinct_rules": [
+    12,
+    24
+   ],
+   "pareto": [
+    11,
+    24
+   ]
+  },
+  "CAXII|c9|N400": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.5735609348042034,
+   "prevalence_cal": 0.03965,
+   "prevalence_audit": 0.04,
+   "n_cal_median": 400.0,
+   "n_audit_median": 648.0,
+   "n_future_median": 1112.0,
+   "violations_nonbinder": {
+    "observed": 7,
+    "expected": 5.212160561545545,
+    "p_upper": 0.2624824995257152,
+    "cov_mean": 0.9181983306094594
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 13,
+    "expected": 11.102072421096539,
+    "p_upper": 0.30630634652918143,
+    "cov_mean": 0.9342244134253518
+   },
+   "infeasible_binder": 0.98,
+   "audit_default": {
+    "correct rejection": 0.98,
+    "false lead": 0.9,
+    "deferred non-binder": 0.94,
+    "confident hit": 1.0,
+    "missed binder": 1.0,
+    "deferred binder": 1.0,
+    "single label": 0.96,
+    "deferred": 0.96
+   },
+   "audit_sweep_pointwise": 0.9520089285714286,
+   "bonferroni_all": 0.98,
+   "default_per1000": {
+    "confident hit": 3.0864197530864197,
+    "false lead": 77.9320987654321,
+    "missed binder": 1.5432098765432098,
+    "deferred": 847.2222222222222
+   },
+   "plate_intervals": {
+    "confident hit": [
+     0.0,
+     2.0
+    ],
+    "false lead": [
+     3.0,
+     14.0
+    ],
+    "missed binder": [
+     0.0,
+     2.0
+    ],
+    "deferred": [
+     73.0,
+     88.0
+    ]
+   },
+   "capacity": {
+    "chosen": 10,
+    "exceeded": 0.0,
+    "upper_median": 0.4829136690647482
+   },
+   "distinct_rules": [
+    12,
+    48
+   ],
+   "pareto": [
+    12,
+    48
+   ]
+  },
+  "CAXII|c9|N800": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.5995045875195688,
+   "prevalence_cal": 0.0388,
+   "prevalence_audit": 0.04003086419753087,
+   "n_cal_median": 800.0,
+   "n_audit_median": 648.0,
+   "n_future_median": 712.0,
+   "violations_nonbinder": {
+    "observed": 5,
+    "expected": 5.623940550464517,
+    "p_upper": 0.6761768391984437,
+    "cov_mean": 0.9163596547760787
+   },
+   "infeasible_nonbinder": 0.0,
+   "violations_binder": {
+    "observed": 4,
+    "expected": 4.427870224205681,
+    "p_upper": 0.6585248547937685,
+    "cov_mean": 0.9728633848424775
+   },
+   "infeasible_binder": 0.18,
+   "audit_default": {
+    "correct rejection": 0.94,
+    "false lead": 1.0,
+    "deferred non-binder": 1.0,
+    "confident hit": 0.98,
+    "missed binder": 1.0,
+    "deferred binder": 0.96,
+    "single label": 1.0,
+    "deferred": 1.0
+   },
+   "audit_sweep_pointwise": 0.965578007518797,
+   "bonferroni_all": 1.0,
+   "default_per1000": {
+    "confident hit": 4.62962962962963,
+    "false lead": 80.24691358024691,
+    "missed binder": 0.0,
+    "deferred": 850.3086419753087
+   },
+   "plate_intervals": {
+    "confident hit": [
+     0.0,
+     3.0
+    ],
+    "false lead": [
+     3.0,
+     14.0
+    ],
+    "missed binder": [
+     0.0,
+     1.0
+    ],
+    "deferred": [
+     74.0,
+     89.0
+    ]
+   },
+   "capacity": {
+    "chosen": 18,
+    "exceeded": 0.0,
+    "upper_median": 0.48946629213483145
+   },
+   "distinct_rules": [
+    36,
+    96
+   ],
+   "pareto": [
+    12,
+    84
+   ]
+  }
+ },
+ "primary_cutoff": 8,
+ "primary_cutoff_reason": "c=8 (Ki <= 10 nM): mean in-class rate in the P calibration sets 0.305, inside [0.05, 0.50]",
+ "prevalence_cal_P_by_cutoff": {
+  "7": 0.6473762011474462,
+  "8": 0.3049262217045808,
+  "9": 0.03705910559021658
+ }
+}

@@ -1,0 +1,79 @@
+CAII {"n_del": 122500, "n_del_train": 110250, "n_del_val": 12250, "n_chembl_all": 3965, "n_chembl": 3844, "n_chembl_inconsistent_excluded": 121, "del_enrich_zero_fraction": 0.259934693877551, "del_val_spearman": 0.5562749919206298, "del_val_rmse": 0.5611794058952293, "del_val_sd": 1.014038892567904, "chembl_spearman_pki": 0.22115750652045, "mu": 0.9931266147447781, "sd": 0.801720036500805, "has_released_del_label": true, "prevalence_c7": 0.6196670135275755, "auroc_c7": 0.6415246990366646, "prevalence_c8": 0.3106139438085328, "auroc_c8": 0.5397048133750514, "prevalence_c9": 0.055150884495317375, "auroc_c9": 0.4726559253179287}
+  CAII c7 P rep0 0.6s auroc 0.6692245247561459 viol [False, False] skipped False
+  CAII c7 D rep0 6.0s auroc 0.6325772063848678 viol [True, True] skipped False
+  CAII c7 S rep0 0.7s auroc 0.6626074834418456 viol [False, False] skipped False
+  CAII c7 N50 rep0 0.1s auroc 0.6332764602533284 viol [False, False] skipped False
+  CAII c7 N100 rep0 0.3s auroc 0.6381800102643059 viol [False, False] skipped False
+  CAII c7 N200 rep0 0.4s auroc 0.636870281754719 viol [False, False] skipped False
+  CAII c7 N400 rep0 0.5s auroc 0.6558250993007911 viol [False, False] skipped False
+  CAII c7 N800 rep0 0.6s auroc 0.6335390626014045 viol [False, False] skipped False
+  CAII c8 P rep0 0.4s auroc 0.5388777625522645 viol [False, False] skipped False
+  CAII c8 D rep0 0.0s auroc 0.5274929840374867 viol [True, True] skipped False
+  CAII c8 S rep0 0.7s auroc 0.5527983766832687 viol [False, True] skipped False
+  CAII c8 N50 rep0 0.0s auroc 0.5432839052601435 viol [False, False] skipped False
+  CAII c8 N100 rep0 0.0s auroc 0.5479704797047971 viol [False, False] skipped False
+  CAII c8 N200 rep0 0.0s auroc 0.5169222558263654 viol [False, False] skipped False
+  CAII c8 N400 rep0 0.2s auroc 0.5448843282561733 viol [False, False] skipped False
+  CAII c8 N800 rep0 0.3s auroc 0.49309256106051935 viol [False, False] skipped False
+  CAII c9 P rep0 0.5s auroc 0.5054256231335561 viol [False, False] skipped False
+  CAII c9 D rep0 0.0s auroc 0.46622757623147254 viol [True, True] skipped False
+  CAII c9 S rep0 0.6s auroc 0.4494436738187292 viol [False, False] skipped False
+  CAII c9 N50 rep0 0.0s auroc 0.4468315517361839 viol [False, True] skipped False
+  CAII c9 N100 rep0 0.0s auroc 0.5032418524871355 viol None skipped True
+  CAII c9 N200 rep0 0.1s auroc 0.4539341262580055 viol [True, False] skipped False
+  CAII c9 N400 rep0 0.2s auroc 0.4807273658599052 viol [False, False] skipped False
+  CAII c9 N800 rep0 0.4s auroc 0.4350316315638749 viol [False, False] skipped False
+CAII done 180.8s
+CAIX {"n_del": 107616, "n_del_train": 96855, "n_del_val": 10761, "n_chembl_all": 3103, "n_chembl": 3103, "n_chembl_inconsistent_excluded": 0, "del_enrich_zero_fraction": 0.13919863217365447, "del_val_spearman": 0.40952606235158595, "del_val_rmse": 0.2997231631690684, "del_val_sd": 0.321971952670392, "chembl_spearman_pki": 0.2356177998789003, "mu": 0.3057280565209846, "sd": 0.12338201662040542, "has_released_del_label": false, "prevalence_c7": 0.5945858846277796, "auroc_c7": 0.5971620113657417, "prevalence_c8": 0.2088301643570738, "auroc_c8": 0.6094578964572175, "prevalence_c9": 0.018369320012890752, "auroc_c9": 0.6713578924329866}
+  CAIX c7 P rep0 0.5s auroc 0.5890018659508867 viol [False, False] skipped False
+  CAIX c7 D rep0 3.3s auroc 0.6079847646622891 viol [True, False] skipped False
+  CAIX c7 S rep0 0.5s auroc 0.6210558123503889 viol [False, False] skipped False
+  CAIX c7 N50 rep0 0.1s auroc 0.5995700765590736 viol [True, False] skipped False
+  CAIX c7 N100 rep0 0.3s auroc 0.6019626546421551 viol [False, False] skipped False
+  CAIX c7 N200 rep0 0.4s auroc 0.6056270953977446 viol [True, False] skipped False
+  CAIX c7 N400 rep0 0.4s auroc 0.5953908577644506 viol [False, True] skipped False
+  CAIX c7 N800 rep0 0.5s auroc 0.5865936026506945 viol [False, False] skipped False
+  CAIX c8 P rep0 0.4s auroc 0.5952519783423573 viol [True, False] skipped False
+  CAIX c8 D rep0 3.8s auroc 0.6106364247038228 viol [True, False] skipped False
+  CAIX c8 S rep0 0.4s auroc 0.5975034199726401 viol [False, False] skipped False
+  CAIX c8 N50 rep0 0.0s auroc 0.6305401662049861 viol [False, False] skipped False
+  CAIX c8 N100 rep0 0.0s auroc 0.6220109279021613 viol [False, False] skipped False
+  CAIX c8 N200 rep0 0.1s auroc 0.5908213147517961 viol [False, False] skipped False
+  CAIX c8 N400 rep0 0.2s auroc 0.6019568131483857 viol [False, False] skipped False
+  CAIX c8 N800 rep0 0.3s auroc 0.5867390378884632 viol [False, False] skipped False
+  CAIX c9 P rep0 0.4s auroc 0.5874746845303007 viol [False, True] skipped False
+  CAIX c9 D rep0 5.0s auroc 0.6303412025918709 viol [True, False] skipped False
+  CAIX c9 S rep0 0.5s auroc 0.6553238199780461 viol [False, False] skipped False
+  CAIX c9 N50 rep0 0.0s auroc 0.5882876644574142 viol None skipped True
+  CAIX c9 N100 rep0 0.0s auroc 0.5785429545323242 viol None skipped True
+  CAIX c9 N200 rep0 0.0s auroc 0.7047514275237048 viol None skipped True
+  CAIX c9 N400 rep0 0.2s auroc 0.6900711786705273 viol [False, False] skipped False
+  CAIX c9 N800 rep0 0.4s auroc 0.6141958424507659 viol [False, True] skipped False
+CAIX done 153.7s
+CAXII {"n_del": 122500, "n_del_train": 110250, "n_del_val": 12250, "n_chembl_all": 2176, "n_chembl": 2160, "n_chembl_inconsistent_excluded": 16, "del_enrich_zero_fraction": 0.05929795918367347, "del_val_spearman": 0.7646941391400397, "del_val_rmse": 0.5704396834101139, "del_val_sd": 0.9078757028848367, "chembl_spearman_pki": 0.2660510587795185, "mu": 1.994125353347468, "sd": 0.6876315945521084, "has_released_del_label": false, "prevalence_c7": 0.7263888888888889, "auroc_c7": 0.6950405433531871, "prevalence_c8": 0.38935185185185184, "auroc_c8": 0.5974944085302255, "prevalence_c9": 0.03935185185185185, "auroc_c9": 0.5863472714386959}
+  CAXII c7 P rep0 0.4s auroc 0.7094254510921179 viol [False, False] skipped False
+  CAXII c7 D rep0 4.2s auroc 0.7035559271081387 viol [True, False] skipped False
+  CAXII c7 S rep0 0.4s auroc 0.6879514622973926 viol [False, False] skipped False
+  CAXII c7 N50 rep0 0.0s auroc 0.6984202074022433 viol [True, False] skipped False
+  CAXII c7 N100 rep0 0.1s auroc 0.6791429249762584 viol [False, False] skipped False
+  CAXII c7 N200 rep0 0.2s auroc 0.6983661499790532 viol [False, False] skipped False
+  CAXII c7 N400 rep0 0.2s auroc 0.7098171889838557 viol [False, False] skipped False
+  CAXII c7 N800 rep0 0.1s auroc 0.7282141770611499 viol [False, False] skipped False
+  CAXII c8 P rep0 0.2s auroc 0.5914565812190172 viol [True, False] skipped False
+  CAXII c8 D rep0 3.6s auroc 0.5936131570257426 viol [True, True] skipped False
+  CAXII c8 S rep0 0.0s auroc 0.6354601470880542 viol [False, False] skipped False
+  CAXII c8 N50 rep0 0.0s auroc 0.6009914999949822 viol [False, False] skipped False
+  CAXII c8 N100 rep0 0.0s auroc 0.568342151675485 viol [False, False] skipped False
+  CAXII c8 N200 rep0 0.0s auroc 0.5939828196881488 viol [False, False] skipped False
+  CAXII c8 N400 rep0 0.1s auroc 0.5756370719039117 viol [False, False] skipped False
+  CAXII c8 N800 rep0 0.0s auroc 0.5962091091603352 viol [False, True] skipped False
+  CAXII c9 P rep0 0.3s auroc 0.565843949044586 viol [False, False] skipped False
+  CAXII c9 D rep0 5.6s auroc 0.5907881457014404 viol [True, True] skipped False
+  CAXII c9 S rep0 0.0s auroc 0.539657617504052 viol [False, False] skipped False
+  CAXII c9 N50 rep0 0.0s auroc 0.5197054639779098 viol [False, True] skipped False
+  CAXII c9 N100 rep0 0.0s auroc 0.654368932038835 viol [False, True] skipped False
+  CAXII c9 N200 rep0 0.0s auroc 0.5940088695506651 viol [False, True] skipped False
+  CAXII c9 N400 rep0 0.0s auroc 0.5656690576304724 viol [False, True] skipped False
+  CAXII c9 N800 rep0 0.4s auroc 0.6072004608294931 viol [False, False] skipped False
+CAXII done 109.9s
+total 445.1s

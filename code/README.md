@@ -48,6 +48,7 @@ Raw data are in `../data/` with `SHA256SUMS`: the Tox21 MoleculeNet file, the cu
 | Figures 6, 7, ESI S2, S3 | `python3 -I make_figures_mol.py v2 ../figures` | < 1 min |
 | CALiSol-23 electrolyte screen (Table 7, Fig. 8, ESI) | `python3 -I calisol.py ../data/calisol/calisol23.csv v2/calisol 8 50` then `python3 -I calisol_summary.py v2/calisol/calisol_runs.json v2/calisol/calisol_summary.json ../figures ../tables` | ~20 min |
 | CA-DEL (DEL enrichment + ChEMBL Ki, CAII/CAIX/CAXII) | `python3 -I cadel_fetch.py /tmp/cadel/csv ../data/cadel` | ~2 min |
+| CA-DEL screen: DEL-trained model, ChEMBL Ki calibration and audit (ESI Fig. S4) | `python3 -I cadel.py ../data/cadel v2/cadel 50` then `python3 -I cadel_summary.py v2/cadel/cadel_runs.json v2/cadel/cadel_summary.json ../figures ../tables` | ~8 min |
 
 `v2/scores/` stores, for every Tox21 run, the training, calibration and test indices, the raw scores and the labels, so every interval can be recomputed without refitting.
 

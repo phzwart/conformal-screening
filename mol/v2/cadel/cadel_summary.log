@@ -1,0 +1,82 @@
+{
+ "primary_cutoff": 8,
+ "reason": "c=8 (Ki <= 10 nM): mean in-class rate in the P calibration sets 0.305, inside [0.05, 0.50]",
+ "prevalence": {
+  "7": 0.6473762011474462,
+  "8": 0.3049262217045808,
+  "9": 0.03705910559021658
+ }
+}
+CAII|c7|P auroc 0.643 viol nb/b 4/3.9 5/4.5 audit 88-98% sweep 94.5%
+CAII|c7|D auroc 0.642 viol nb/b 50/6.0 50/0.1 audit 92-100% sweep 95.4%
+CAII|c7|S auroc 0.645 viol nb/b 3/3.8 6/4.5 audit 48-92% sweep 69.9%
+CAII|c7|N50 auroc 0.642 viol nb/b 7/7.6 2/2.1 audit 90-100% sweep 95.5%
+CAII|c7|N100 auroc 0.638 viol nb/b 2/2.8 3/3.3 audit 92-98% sweep 97.0%
+CAII|c7|N200 auroc 0.642 viol nb/b 3/3.4 3/3.7 audit 92-100% sweep 96.4%
+CAII|c7|N400 auroc 0.641 viol nb/b 6/3.6 5/3.8 audit 92-98% sweep 96.3%
+CAII|c7|N800 auroc 0.641 viol nb/b 3/4.1 2/4.3 audit 92-100% sweep 95.2%
+CAII|c8|P auroc 0.539 viol nb/b 5/4.4 6/3.9 audit 90-98% sweep 95.6%
+CAII|c8|D auroc 0.537 viol nb/b 50/3.2 50/0.2 audit 94-100% sweep 97.4%
+CAII|c8|S auroc 0.543 viol nb/b 7/4.3 6/3.7 audit 54-84% sweep 69.3%
+CAII|c8|N50 auroc 0.541 viol nb/b 6/2.0 12/9.7 audit 92-100% sweep 95.4%
+CAII|c8|N100 auroc 0.541 viol nb/b 7/3.6 1/2.4 audit 84-96% sweep 93.6%
+CAII|c8|N200 auroc 0.539 viol nb/b 5/3.7 7/3.1 audit 90-98% sweep 94.5%
+CAII|c8|N400 auroc 0.538 viol nb/b 5/4.3 4/3.7 audit 92-100% sweep 95.1%
+CAII|c8|N800 auroc 0.537 viol nb/b 4/4.2 7/4.2 audit 90-98% sweep 94.7%
+CAII|c9|P auroc 0.482 viol nb/b 2/4.3 5/3.7 audit 96-96% sweep 97.0%
+CAII|c9|D auroc 0.471 viol nb/b 50/2.0 50/1.8 audit 90-94% sweep 93.5%
+CAII|c9|S auroc 0.477 viol nb/b 3/4.2 1/3.6 audit 60-98% sweep 72.9%
+CAII|c9|N50 auroc 0.469 viol nb/b 0/0.2 2/2.2 audit 75-100% sweep 90.7%
+CAII|c9|N100 auroc 0.482 viol nb/b 2/2.9 17/16.1 audit 94-100% sweep 97.6%
+CAII|c9|N200 auroc 0.472 viol nb/b 6/3.6 14/15.2 audit 92-100% sweep 95.7%
+CAII|c9|N400 auroc 0.463 viol nb/b 3/4.1 4/6.4 audit 92-100% sweep 96.3%
+CAII|c9|N800 auroc 0.469 viol nb/b 5/4.4 3/3.4 audit 94-100% sweep 96.3%
+CAIX|c7|P auroc 0.595 viol nb/b 4/4.5 7/4.7 audit 88-100% sweep 94.6%
+CAIX|c7|D auroc 0.596 viol nb/b 50/3.0 0/3.0 audit 96-100% sweep 97.1%
+CAIX|c7|S auroc 0.597 viol nb/b 8/4.7 5/4.7 audit 68-92% sweep 74.3%
+CAIX|c7|N50 auroc 0.599 viol nb/b 7/6.4 3/2.4 audit 92-98% sweep 94.6%
+CAIX|c7|N100 auroc 0.595 viol nb/b 4/3.1 2/3.3 audit 92-98% sweep 95.2%
+CAIX|c7|N200 auroc 0.6 viol nb/b 4/3.6 5/4.1 audit 88-98% sweep 95.2%
+CAIX|c7|N400 auroc 0.595 viol nb/b 7/4.0 7/4.3 audit 82-98% sweep 94.8%
+CAIX|c7|N800 auroc 0.594 viol nb/b 4/4.5 4/4.7 audit 92-100% sweep 95.5%
+CAIX|c8|P auroc 0.614 viol nb/b 7/4.7 4/4.3 audit 86-98% sweep 95.2%
+CAIX|c8|D auroc 0.606 viol nb/b 50/3.2 0/2.4 audit 94-100% sweep 95.9%
+CAIX|c8|S auroc 0.606 viol nb/b 4/4.7 5/4.4 audit 68-92% sweep 73.9%
+CAIX|c8|N50 auroc 0.611 viol nb/b 1/3.6 9/16.3 audit 96-100% sweep 95.1%
+CAIX|c8|N100 auroc 0.613 viol nb/b 3/3.8 6/6.9 audit 94-98% sweep 95.7%
+CAIX|c8|N200 auroc 0.612 viol nb/b 4/3.9 2/2.6 audit 92-96% sweep 95.7%
+CAIX|c8|N400 auroc 0.609 viol nb/b 4/4.3 4/3.3 audit 92-96% sweep 95.4%
+CAIX|c8|N800 auroc 0.605 viol nb/b 7/4.7 5/4.3 audit 86-100% sweep 95.9%
+CAIX|c9|P auroc 0.678 viol nb/b 6/4.8 8/10.9 audit 90-100% sweep 96.3%
+CAIX|c9|D auroc 0.671 viol nb/b 50/3.1 0/1.4 audit 96-100% sweep 97.8%
+CAIX|c9|S auroc 0.67 viol nb/b 8/4.8 9/10.9 audit 80-98% sweep 80.4%
+CAIX|c9|N50 all 50 repeats skipped
+CAIX|c9|N100 auroc 0.622 viol nb/b 0/0.2 2/1.0 audit 100-100% sweep 99.0%
+CAIX|c9|N200 auroc 0.656 viol nb/b 1/1.7 9/9.2 audit 89-100% sweep 97.9%
+CAIX|c9|N400 auroc 0.676 viol nb/b 6/4.3 19/19.3 audit 89-100% sweep 97.4%
+CAIX|c9|N800 auroc 0.676 viol nb/b 5/4.8 12/12.7 audit 94-100% sweep 97.1%
+CAXII|c7|P auroc 0.695 viol nb/b 12/5.1 5/5.5 audit 96-98% sweep 96.5%
+CAXII|c7|D auroc 0.694 viol nb/b 50/4.6 0/4.4 audit 90-100% sweep 96.5%
+CAXII|c7|S auroc 0.694 viol nb/b 7/5.1 8/5.4 audit 52-92% sweep 71.7%
+CAXII|c7|N50 auroc 0.694 viol nb/b 17/12.8 2/2.4 audit 92-100% sweep 96.4%
+CAXII|c7|N100 auroc 0.693 viol nb/b 2/3.7 6/3.5 audit 94-100% sweep 96.3%
+CAXII|c7|N200 auroc 0.692 viol nb/b 2/3.4 6/4.3 audit 90-100% sweep 95.3%
+CAXII|c7|N400 auroc 0.691 viol nb/b 9/4.5 10/5.2 audit 94-98% sweep 95.3%
+CAXII|c7|N800 auroc 0.685 viol nb/b 6/5.5 12/5.6 audit 90-96% sweep 94.2%
+CAXII|c8|P auroc 0.598 viol nb/b 5/5.2 7/5.3 audit 90-100% sweep 95.9%
+CAXII|c8|D auroc 0.598 viol nb/b 50/5.0 38/4.1 audit 92-100% sweep 95.8%
+CAXII|c8|S auroc 0.591 viol nb/b 7/5.1 5/5.3 audit 64-94% sweep 78.0%
+CAXII|c8|N50 auroc 0.601 viol nb/b 0/2.2 9/7.6 audit 94-98% sweep 95.2%
+CAXII|c8|N100 auroc 0.599 viol nb/b 5/3.7 4/3.0 audit 94-100% sweep 95.7%
+CAXII|c8|N200 auroc 0.592 viol nb/b 3/4.2 2/3.9 audit 94-100% sweep 96.9%
+CAXII|c8|N400 auroc 0.599 viol nb/b 3/4.7 6/4.6 audit 94-100% sweep 95.8%
+CAXII|c8|N800 auroc 0.595 viol nb/b 5/5.8 7/5.5 audit 94-100% sweep 97.0%
+CAXII|c9|P auroc 0.579 viol nb/b 7/5.7 6/6.3 audit 92-100% sweep 94.6%
+CAXII|c9|D auroc 0.587 viol nb/b 50/4.9 50/2.8 audit 94-100% sweep 96.9%
+CAXII|c9|S auroc 0.573 viol nb/b 3/5.6 4/6.6 audit 72-96% sweep 81.4%
+CAXII|c9|N50 auroc 0.542 viol nb/b 0/0.3 3/2.7 audit 80-100% sweep 96.4%
+CAXII|c9|N100 auroc 0.592 viol nb/b 1/1.9 10/10.3 audit 95-100% sweep 98.8%
+CAXII|c9|N200 auroc 0.588 viol nb/b 1/4.2 23/19.7 audit 96-100% sweep 97.2%
+CAXII|c9|N400 auroc 0.574 viol nb/b 7/5.2 13/11.1 audit 90-100% sweep 95.2%
+CAXII|c9|N800 auroc 0.6 viol nb/b 5/5.6 4/4.4 audit 94-100% sweep 96.6%
+ok
