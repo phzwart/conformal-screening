@@ -3,9 +3,9 @@
 Two questions are kept apart.
 
 1. Width. Validity alone is attained by the trivial interval [0, m] for a count in a batch
-   of m, so an interval earns its place by its width. We report the reduction
-   1 - (U - L) / m, pointwise at 95% and for the bounds that hold jointly over the J = 144
-   requests of the sweep and the four bounded outcomes.
+   of m, so an interval earns its place by its width. We report how many times narrower it
+   is than that baseline, m / (U - L), pointwise at 95% and for the bounds that hold jointly
+   over the J = 144 requests of the sweep and the four bounded outcomes.
 
 2. Enrichment. Whether the advanced compounds (those given the single label in-class, with
    no assay spent) are enriched over the batch as a whole is a property of the rule, tested
@@ -42,9 +42,9 @@ def analyse(uc, yc, ua, ya, a0, a1):
         lo, hi = TH(k, na, M, EPS); blo, bhi = TH(k, na, M, 2 * LEV)
         res["outcomes"][lab] = {"point_per1000": round(1000 * k / na, 1),
                                 "interval": [int(lo), int(hi)], "width": int(hi - lo),
-                                "reduction": round(1 - (hi - lo) / M, 4),
+                                "factor": round(M / (hi - lo), 1),
                                 "joint": [int(blo), int(bhi)], "joint_width": int(bhi - blo),
-                                "joint_reduction": round(1 - (bhi - blo) / M, 4)}
+                                "joint_factor": round(M / (bhi - blo), 1)}
     adv_in, adv_out = c["1_s1"], c["0_s1"]
     rest_in, rest_out = int((ya == 1).sum()) - adv_in, int((ya == 0).sum()) - adv_out
     odds, p = fisher_exact([[adv_in, adv_out], [rest_in, rest_out]], alternative="greater")
@@ -68,7 +68,7 @@ if __name__ == "__main__":
     json.dump(out, open(sys.argv[1], "w"), indent=1)
     for k, v in out["cases"].items():
         e = v["enrichment"]
-        print(f"{k}: reductions " + ", ".join(f"{lab} {100*o['reduction']:.0f}%/{100*o['joint_reduction']:.0f}%"
+        print(f"{k}: narrower than trivial by " + ", ".join(f"{lab} {o['factor']}x/{o['joint_factor']}x"
               for lab, o in v["outcomes"].items()))
         print(f"   enrichment {e['precision']:.2f} vs {v['prevalence']:.2f} = {e['fold_over_prevalence']}x, "
               f"p={e['p_one_sided']:.1e}, significant={e['significant']}")

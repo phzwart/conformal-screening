@@ -19,13 +19,13 @@
       47
      ],
      "width": 38,
-     "reduction": 0.962,
+     "factor": 26.3,
      "joint": [
       2,
       75
      ],
      "joint_width": 73,
-     "joint_reduction": 0.927
+     "joint_factor": 13.7
     },
     "false leads": {
      "point_per1000": 114.6,
@@ -34,13 +34,13 @@
       157
      ],
      "width": 78,
-     "reduction": 0.922,
+     "factor": 12.8,
      "joint": [
       53,
       199
      ],
      "joint_width": 146,
-     "joint_reduction": 0.854
+     "joint_factor": 6.8
     },
     "confirmed in-class": {
      "point_per1000": 132.8,
@@ -49,13 +49,13 @@
       177
      ],
      "width": 82,
-     "reduction": 0.918,
+     "factor": 12.2,
      "joint": [
       66,
       221
      ],
      "joint_width": 155,
-     "joint_reduction": 0.845
+     "joint_factor": 6.5
     },
     "measurements": {
      "point_per1000": 286.5,
@@ -64,13 +64,13 @@
       343
      ],
      "width": 109,
-     "reduction": 0.891,
+     "factor": 9.2,
      "joint": [
       191,
       395
      ],
      "joint_width": 204,
-     "joint_reduction": 0.796
+     "joint_factor": 4.9
     }
    },
    "enrichment": {
@@ -99,13 +99,13 @@
       16
      ],
      "width": 16,
-     "reduction": 0.984,
+     "factor": 62.5,
      "joint": [
       0,
       36
      ],
      "joint_width": 36,
-     "joint_reduction": 0.964
+     "joint_factor": 27.8
     },
     "false leads": {
      "point_per1000": 53.5,
@@ -114,13 +114,13 @@
       86
      ],
      "width": 57,
-     "reduction": 0.943,
+     "factor": 17.5,
      "joint": [
       15,
       120
      ],
      "joint_width": 105,
-     "joint_reduction": 0.895
+     "joint_factor": 9.5
     },
     "confirmed in-class": {
      "point_per1000": 131.0,
@@ -129,13 +129,13 @@
       176
      ],
      "width": 83,
-     "reduction": 0.917,
+     "factor": 12.0,
      "joint": [
       65,
       220
      ],
      "joint_width": 155,
-     "joint_reduction": 0.845
+     "joint_factor": 6.5
     },
     "measurements": {
      "point_per1000": 64.2,
@@ -144,13 +144,13 @@
       99
      ],
      "width": 61,
-     "reduction": 0.939,
+     "factor": 16.4,
      "joint": [
       20,
       135
      ],
      "joint_width": 115,
-     "joint_reduction": 0.885
+     "joint_factor": 8.7
     }
    },
    "enrichment": {
