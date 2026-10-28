@@ -1,0 +1,170 @@
+{
+ "m": 1000,
+ "eps": 0.05,
+ "requests": 144,
+ "bounded_outcomes": 4,
+ "per_bound_level": 8.680555555555556e-05,
+ "trivial_width": 1000,
+ "cases": {
+  "aqsol": {
+   "alpha0": 0.15,
+   "alpha1": 0.125,
+   "n_audit": 384,
+   "prevalence": 0.224,
+   "outcomes": {
+    "missed in-class": {
+     "point_per1000": 23.4,
+     "interval": [
+      9,
+      47
+     ],
+     "width": 38,
+     "factor": 26.3,
+     "joint": [
+      2,
+      75
+     ],
+     "joint_width": 73,
+     "joint_factor": 13.7
+    },
+    "false leads": {
+     "point_per1000": 114.6,
+     "interval": [
+      79,
+      157
+     ],
+     "width": 78,
+     "factor": 12.8,
+     "joint": [
+      53,
+      199
+     ],
+     "joint_width": 146,
+     "joint_factor": 6.8
+    },
+    "confirmed in-class": {
+     "point_per1000": 132.8,
+     "interval": [
+      95,
+      177
+     ],
+     "width": 82,
+     "factor": 12.2,
+     "joint": [
+      66,
+      221
+     ],
+     "joint_width": 155,
+     "joint_factor": 6.5
+    },
+    "measurements": {
+     "point_per1000": 286.5,
+     "interval": [
+      234,
+      343
+     ],
+     "width": 109,
+     "factor": 9.2,
+     "joint": [
+      191,
+      395
+     ],
+     "joint_width": 204,
+     "joint_factor": 4.9
+    }
+   },
+   "enrichment": {
+    "advanced_in_class": 51,
+    "advanced_total": 95,
+    "rest_in_class": 35,
+    "rest_total": 289,
+    "precision": 0.5368,
+    "fold_over_prevalence": 2.4,
+    "odds_ratio": 8.4,
+    "p_one_sided": 1.7741305317052118e-15,
+    "bonferroni_level": 0.00034722222222222224,
+    "significant": true
+   }
+  },
+  "calisol": {
+   "alpha0": 0.125,
+   "alpha1": 0.225,
+   "n_audit": 374,
+   "prevalence": 0.1497,
+   "outcomes": {
+    "missed in-class": {
+     "point_per1000": 2.7,
+     "interval": [
+      0,
+      16
+     ],
+     "width": 16,
+     "factor": 62.5,
+     "joint": [
+      0,
+      36
+     ],
+     "joint_width": 36,
+     "joint_factor": 27.8
+    },
+    "false leads": {
+     "point_per1000": 53.5,
+     "interval": [
+      29,
+      86
+     ],
+     "width": 57,
+     "factor": 17.5,
+     "joint": [
+      15,
+      120
+     ],
+     "joint_width": 105,
+     "joint_factor": 9.5
+    },
+    "confirmed in-class": {
+     "point_per1000": 131.0,
+     "interval": [
+      93,
+      176
+     ],
+     "width": 83,
+     "factor": 12.0,
+     "joint": [
+      65,
+      220
+     ],
+     "joint_width": 155,
+     "joint_factor": 6.5
+    },
+    "measurements": {
+     "point_per1000": 64.2,
+     "interval": [
+      38,
+      99
+     ],
+     "width": 61,
+     "factor": 16.4,
+     "joint": [
+      20,
+      135
+     ],
+     "joint_width": 115,
+     "joint_factor": 8.7
+    }
+   },
+   "enrichment": {
+    "advanced_in_class": 49,
+    "advanced_total": 69,
+    "rest_in_class": 7,
+    "rest_total": 305,
+    "precision": 0.7101,
+    "fold_over_prevalence": 4.74,
+    "odds_ratio": 104.3,
+    "p_one_sided": 2.3972128941968947e-37,
+    "bonferroni_level": 0.00034722222222222224,
+    "significant": true
+   }
+  }
+ }
+}
