@@ -36,7 +36,7 @@ the presence of that group rather than any per-molecule isoform preference.  Res
 sulfonamides holds the zinc-binding chemotype fixed and asks the question the tail of the
 molecule actually decides.
 
-Usage: python3 -I cadel_selectivity.py DATADIR OUTDIR REPS [all|sulfonamide|nonsulfonamide]
+Usage: python3 -I cadel_selectivity.py DATADIR OUTDIR REPS [all|sulfonamide|nonsulfonamide|trainsulf]
 """
 import sys, os, json, time, numpy as np, pandas as pd
 
@@ -50,10 +50,10 @@ from sklearn.metrics import roc_auc_score
 
 DATA, OUT, REPS = sys.argv[1], sys.argv[2], int(sys.argv[3])
 SUBSET = sys.argv[4] if len(sys.argv) > 4 else "all"
-if SUBSET not in ("all", "sulfonamide", "nonsulfonamide"):
-    raise SystemExit("subset must be 'all', 'sulfonamide' or 'nonsulfonamide'")
+if SUBSET not in ("all", "sulfonamide", "nonsulfonamide", "trainsulf"):
+    raise SystemExit("subset must be 'all', 'sulfonamide', 'nonsulfonamide' or 'trainsulf'")
 os.makedirs(OUT, exist_ok=True)
-SUF = {"all": "", "sulfonamide": "_sulf", "nonsulfonamide": "_nonsulf"}[SUBSET]
+SUF = {"all": "", "sulfonamide": "_sulf", "nonsulfonamide": "_nonsulf", "trainsulf": "_trainsulf"}[SUBSET]
 PRIMARY_SULFONAMIDE = "[SX4](=[OX1])(=[OX1])[NX3;H2]"
 
 
@@ -95,7 +95,12 @@ def main():
     t_all = time.time()
     dl, ch = paired_del(), paired_chembl()
     n_dl_all, n_ch_all = len(dl), len(ch)
-    if SUBSET != "all":
+    if SUBSET == "trainsulf":
+        # the DEL sulfonamides are the molecules closest to the screened pool (median support
+        # 0.39 against 0.26 for the rest), so training on them alone is the limiting case of
+        # weighting the library towards the screen; the screened pool is left whole
+        dl = dl[has_primary_sulfonamide(dl.smiles.to_numpy())].reset_index(drop=True)
+    elif SUBSET != "all":
         keep = (lambda v: v) if SUBSET == "sulfonamide" else (lambda v: ~v)
         dl = dl[keep(has_primary_sulfonamide(dl.smiles.to_numpy()))].reset_index(drop=True)
         ch = ch[keep(has_primary_sulfonamide(ch.smiles.to_numpy()))].reset_index(drop=True)
