@@ -36,7 +36,7 @@ the presence of that group rather than any per-molecule isoform preference.  Res
 sulfonamides holds the zinc-binding chemotype fixed and asks the question the tail of the
 molecule actually decides.
 
-Usage: python3 -I cadel_selectivity.py DATADIR OUTDIR REPS [all|sulfonamide]
+Usage: python3 -I cadel_selectivity.py DATADIR OUTDIR REPS [all|sulfonamide|nonsulfonamide]
 """
 import sys, os, json, time, numpy as np, pandas as pd
 
@@ -50,10 +50,10 @@ from sklearn.metrics import roc_auc_score
 
 DATA, OUT, REPS = sys.argv[1], sys.argv[2], int(sys.argv[3])
 SUBSET = sys.argv[4] if len(sys.argv) > 4 else "all"
-if SUBSET not in ("all", "sulfonamide"):
-    raise SystemExit("subset must be 'all' or 'sulfonamide'")
+if SUBSET not in ("all", "sulfonamide", "nonsulfonamide"):
+    raise SystemExit("subset must be 'all', 'sulfonamide' or 'nonsulfonamide'")
 os.makedirs(OUT, exist_ok=True)
-SUF = "" if SUBSET == "all" else "_sulf"
+SUF = {"all": "", "sulfonamide": "_sulf", "nonsulfonamide": "_nonsulf"}[SUBSET]
 PRIMARY_SULFONAMIDE = "[SX4](=[OX1])(=[OX1])[NX3;H2]"
 
 
@@ -95,9 +95,10 @@ def main():
     t_all = time.time()
     dl, ch = paired_del(), paired_chembl()
     n_dl_all, n_ch_all = len(dl), len(ch)
-    if SUBSET == "sulfonamide":
-        dl = dl[has_primary_sulfonamide(dl.smiles.to_numpy())].reset_index(drop=True)
-        ch = ch[has_primary_sulfonamide(ch.smiles.to_numpy())].reset_index(drop=True)
+    if SUBSET != "all":
+        keep = (lambda v: v) if SUBSET == "sulfonamide" else (lambda v: ~v)
+        dl = dl[keep(has_primary_sulfonamide(dl.smiles.to_numpy()))].reset_index(drop=True)
+        ch = ch[keep(has_primary_sulfonamide(ch.smiles.to_numpy()))].reset_index(drop=True)
     y_del = np.log1p(dl.del_enrich_t.to_numpy(float)) - np.log1p(dl.del_enrich_a.to_numpy(float))
     X = fingerprints(dl.smiles.to_numpy())
     rng0 = np.random.default_rng(0)
