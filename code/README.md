@@ -32,7 +32,7 @@ Python 3.13 with the versions in `requirements.txt` (`pip install -r requirement
 
 ## Molecular experiments (`mol/`)
 
-Raw data are in `../data/` with `SHA256SUMS`: the Tox21 MoleculeNet file, the curated AqSolDB set and CALiSol-23 (`data/calisol/`, DOI 10.11583/DTU.c.6929599).
+Raw data are in `../data/` with `SHA256SUMS`: the Tox21 MoleculeNet file, the curated AqSolDB set, CALiSol-23 (`data/calisol/`, DOI 10.11583/DTU.c.6929599) and CA-DEL (`data/cadel/`, DOI 10.5281/zenodo.17656024).
 
 | Step | Command | Runtime |
 |---|---|---|
@@ -47,6 +47,7 @@ Raw data are in `../data/` with `SHA256SUMS`: the Tox21 MoleculeNet file, the cu
 | Per-plate intervals and audit-size bounds (Sections 3.4, 3.6) | `python3 -I plate_bounds.py v2/calisol/calisol_runs.json v2/scenario_map.json v2/plate_bounds.json` | < 1 min |
 | Figures 6, 7, ESI S2, S3 | `python3 -I make_figures_mol.py v2 ../figures` | < 1 min |
 | CALiSol-23 electrolyte screen (Table 7, Fig. 8, ESI) | `python3 -I calisol.py ../data/calisol/calisol23.csv v2/calisol 8 50` then `python3 -I calisol_summary.py v2/calisol/calisol_runs.json v2/calisol/calisol_summary.json ../figures ../tables` | ~20 min |
+| CA-DEL (DEL enrichment + ChEMBL Ki, CAII/CAIX/CAXII) | `python3 -I cadel_fetch.py /tmp/cadel/csv ../data/cadel` | ~2 min |
 
 `v2/scores/` stores, for every Tox21 run, the training, calibration and test indices, the raw scores and the labels, so every interval can be recomputed without refitting.
 
