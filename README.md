@@ -23,7 +23,7 @@ A conformal classifier's two class-wise coverage requests serve as coordinates f
 pip install -r code/requirements.txt          # Python 3.13
 cd code && python3 -I validate_intervals.py 10000 validation.json   # Fig. 2
 cd ../mol && python3 -I scenario_map.py v2/scenario_map.json ../figures   # Fig. 7 scenarios
-latexmk -pdf main.tex esi.tex                  # from the repository root
+latexmk -pdf esi.tex && latexmk -pdf main.tex  # ESI first: main.tex reads its labels
 ```
 
 ## Data
