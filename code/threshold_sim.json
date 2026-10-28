@@ -1,0 +1,296 @@
+{
+ "draws": 1000000,
+ "m": 100,
+ "alpha": 0.1,
+ "delta": 0.1,
+ "rows": [
+  {
+   "n": 50,
+   "rule": "standard",
+   "u": 5,
+   "level": 0.098,
+   "observed": 0.396997,
+   "theory_batch": 0.396439547745067,
+   "theory_batchfree": 0.43119840682906185
+  },
+  {
+   "n": 50,
+   "rule": "batch correction",
+   "u": 2,
+   "level": 0.0392,
+   "observed": 0.047349,
+   "theory_batch": 0.04716320801447032,
+   "theory_batchfree": 0.03378585969243189
+  },
+  {
+   "n": 50,
+   "rule": "DKW (one-sided)",
+   "u": 1,
+   "level": 0.0196,
+   "observed": 0.009589,
+   "theory_batch": 0.009514783619755269,
+   "theory_batchfree": 0.005153775207320118
+  },
+  {
+   "n": 50,
+   "rule": "batch-free correction",
+   "u": 2,
+   "level": 0.0392,
+   "observed": 0.047349,
+   "theory_batch": 0.04716320801447032,
+   "theory_batchfree": 0.03378585969243189
+  },
+  {
+   "n": 75,
+   "rule": "standard",
+   "u": 7,
+   "level": 0.0921,
+   "observed": 0.346563,
+   "theory_batch": 0.34637358397345486,
+   "theory_batchfree": 0.367271309584714
+  },
+  {
+   "n": 75,
+   "rule": "batch correction",
+   "u": 4,
+   "level": 0.0526,
+   "observed": 0.076589,
+   "theory_batch": 0.07683497395232002,
+   "theory_batchfree": 0.050399638570546336
+  },
+  {
+   "n": 75,
+   "rule": "DKW (one-sided)",
+   "u": 1,
+   "level": 0.0132,
+   "observed": 0.001594,
+   "theory_batch": 0.0016527189458344278,
+   "theory_batchfree": 0.0003699884850351275
+  },
+  {
+   "n": 75,
+   "rule": "batch-free correction",
+   "u": 4,
+   "level": 0.0526,
+   "observed": 0.076589,
+   "theory_batch": 0.07683497395232002,
+   "theory_batchfree": 0.050399638570546336
+  },
+  {
+   "n": 100,
+   "rule": "standard",
+   "u": 10,
+   "level": 0.099,
+   "observed": 0.408059,
+   "theory_batch": 0.40714889648020774,
+   "theory_batchfree": 0.451290165442004
+  },
+  {
+   "n": 100,
+   "rule": "batch correction",
+   "u": 6,
+   "level": 0.0594,
+   "observed": 0.095694,
+   "theory_batch": 0.09563596000892019,
+   "theory_batchfree": 0.05757688648703389
+  },
+  {
+   "n": 100,
+   "rule": "DKW (one-sided)",
+   "u": 1,
+   "level": 0.0099,
+   "observed": 0.000371,
+   "theory_batch": 0.0003652228718137572,
+   "theory_batchfree": 2.6561398887587523e-05
+  },
+  {
+   "n": 100,
+   "rule": "batch-free correction",
+   "u": 6,
+   "level": 0.0594,
+   "observed": 0.095694,
+   "theory_batch": 0.09563596000892019,
+   "theory_batchfree": 0.05757688648703389
+  },
+  {
+   "n": 150,
+   "rule": "standard",
+   "u": 15,
+   "level": 0.0993,
+   "observed": 0.410707,
+   "theory_batch": 0.41071501637493474,
+   "theory_batchfree": 0.46021413872368416
+  },
+  {
+   "n": 150,
+   "rule": "batch correction",
+   "u": 9,
+   "level": 0.0596,
+   "observed": 0.080489,
+   "theory_batch": 0.08006684735040612,
+   "theory_batchfree": 0.030737620475849086
+  },
+  {
+   "n": 150,
+   "rule": "DKW (one-sided)",
+   "u": 1,
+   "level": 0.0066,
+   "observed": 3.7e-05,
+   "theory_batch": 2.964022135237135e-05,
+   "theory_batchfree": 1.3689147905858873e-07
+  },
+  {
+   "n": 150,
+   "rule": "batch-free correction",
+   "u": 10,
+   "level": 0.0662,
+   "observed": 0.118026,
+   "theory_batch": 0.11779273744328989,
+   "theory_batchfree": 0.06004622276301076
+  },
+  {
+   "n": 200,
+   "rule": "standard",
+   "u": 20,
+   "level": 0.0995,
+   "observed": 0.412732,
+   "theory_batch": 0.41243844346076264,
+   "theory_batchfree": 0.46553847082589694
+  },
+  {
+   "n": 200,
+   "rule": "batch correction",
+   "u": 13,
+   "level": 0.0647,
+   "observed": 0.098707,
+   "theory_batch": 0.09795722265310947,
+   "theory_batchfree": 0.03204652879690649
+  },
+  {
+   "n": 200,
+   "rule": "DKW (one-sided)",
+   "u": 4,
+   "level": 0.0199,
+   "observed": 0.000541,
+   "theory_batch": 0.0005168178821400105,
+   "theory_batchfree": 1.4607875176815576e-06
+  },
+  {
+   "n": 200,
+   "rule": "batch-free correction",
+   "u": 15,
+   "level": 0.0746,
+   "observed": 0.168385,
+   "theory_batch": 0.16800414934646898,
+   "theory_batchfree": 0.09294617949910373
+  },
+  {
+   "n": 250,
+   "rule": "standard",
+   "u": 25,
+   "level": 0.0996,
+   "observed": 0.413367,
+   "theory_batch": 0.41343575088836504,
+   "theory_batchfree": 0.4691735550494954
+  },
+  {
+   "n": 250,
+   "rule": "batch correction",
+   "u": 16,
+   "level": 0.0637,
+   "observed": 0.085848,
+   "theory_batch": 0.08580689649523734,
+   "theory_batchfree": 0.01750754851331097
+  },
+  {
+   "n": 250,
+   "rule": "DKW (one-sided)",
+   "u": 8,
+   "level": 0.0319,
+   "observed": 0.003101,
+   "theory_batch": 0.0031742776588619967,
+   "theory_batchfree": 1.1225818550570202e-05
+  },
+  {
+   "n": 250,
+   "rule": "batch-free correction",
+   "u": 19,
+   "level": 0.0757,
+   "observed": 0.169867,
+   "theory_batch": 0.1701573693925955,
+   "theory_batchfree": 0.08075456846738596
+  },
+  {
+   "n": 300,
+   "rule": "standard",
+   "u": 30,
+   "level": 0.0997,
+   "observed": 0.413573,
+   "theory_batch": 0.41407901698025806,
+   "theory_batchfree": 0.471857569813114
+  },
+  {
+   "n": 300,
+   "rule": "batch correction",
+   "u": 20,
+   "level": 0.0664,
+   "observed": 0.096926,
+   "theory_batch": 0.09710173689874355,
+   "theory_batchfree": 0.01711813272292823
+  },
+  {
+   "n": 300,
+   "rule": "DKW (one-sided)",
+   "u": 11,
+   "level": 0.0365,
+   "observed": 0.005134,
+   "theory_batch": 0.005174989082232354,
+   "theory_batchfree": 1.0683761418743729e-05
+  },
+  {
+   "n": 300,
+   "rule": "batch-free correction",
+   "u": 23,
+   "level": 0.0764,
+   "observed": 0.171355,
+   "theory_batch": 0.17147053445690247,
+   "theory_batchfree": 0.06993983842908277
+  },
+  {
+   "n": 500,
+   "rule": "standard",
+   "u": 50,
+   "level": 0.0998,
+   "observed": 0.41517,
+   "theory_batch": 0.41529458778558376,
+   "theory_batchfree": 0.4781981372726135
+  },
+  {
+   "n": 500,
+   "rule": "batch correction",
+   "u": 34,
+   "level": 0.0679,
+   "observed": 0.095443,
+   "theory_batch": 0.0954698722207526,
+   "theory_batchfree": 0.0049468216769324525
+  },
+  {
+   "n": 500,
+   "rule": "DKW (one-sided)",
+   "u": 26,
+   "level": 0.0519,
+   "observed": 0.024386,
+   "theory_batch": 0.024522527787234925,
+   "theory_batchfree": 3.540113222886215e-05
+  },
+  {
+   "n": 500,
+   "rule": "batch-free correction",
+   "u": 41,
+   "level": 0.0818,
+   "observed": 0.211694,
+   "theory_batch": 0.21190012215790965,
+   "theory_batchfree": 0.07508928965904318
+  }
+ ]
+}

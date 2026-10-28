@@ -1,0 +1,114 @@
+[
+ {
+  "n_cal": 1000,
+  "n_test": 100,
+  "m": 1000,
+  "libraries": 20,
+  "shuffles": 1000,
+  "kpis": [
+   "single-label",
+   "single-label error",
+   "both labels",
+   "empty set",
+   "miscoverage"
+  ],
+  "exact_mean": [
+   0.9655,
+   0.9753,
+   0.9762,
+   0.9893,
+   0.9691
+  ],
+  "exact_min_over_libraries": [
+   0.947,
+   0.96,
+   0.947,
+   0.96,
+   0.955
+  ],
+  "bayes1_mean": [
+   0.9496,
+   0.9536,
+   0.9677,
+   0.982,
+   0.9531
+  ],
+  "bayes1_min_over_libraries": [
+   0.935,
+   0.937,
+   0.936,
+   0.943,
+   0.936
+  ],
+  "plugin_mean": [
+   0.444,
+   0.4245,
+   0.6527,
+   0.7912,
+   0.4431
+  ],
+  "plugin_min_over_libraries": [
+   0.369,
+   0.233,
+   0.437,
+   0.416,
+   0.425
+  ]
+ },
+ {
+  "n_cal": 1000,
+  "n_test": 300,
+  "m": 1000,
+  "libraries": 20,
+  "shuffles": 1000,
+  "kpis": [
+   "single-label",
+   "single-label error",
+   "both labels",
+   "empty set",
+   "miscoverage"
+  ],
+  "exact_mean": [
+   0.9662,
+   0.967,
+   0.9802,
+   0.986,
+   0.961
+  ],
+  "exact_min_over_libraries": [
+   0.947,
+   0.951,
+   0.947,
+   0.957,
+   0.951
+  ],
+  "bayes1_mean": [
+   0.9554,
+   0.954,
+   0.9748,
+   0.9806,
+   0.9516
+  ],
+  "bayes1_min_over_libraries": [
+   0.943,
+   0.939,
+   0.943,
+   0.944,
+   0.939
+  ],
+  "plugin_mean": [
+   0.6598,
+   0.6574,
+   0.81,
+   0.8498,
+   0.6599
+  ],
+  "plugin_min_over_libraries": [
+   0.625,
+   0.468,
+   0.653,
+   0.625,
+   0.622
+  ]
+ }
+]

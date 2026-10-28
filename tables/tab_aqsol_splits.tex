@@ -1,0 +1,23 @@
+\begin{table*}[ht]
+\centering
+\caption{AqSolDB, per split. Rules: distinct rules from the sweep; Pareto: rules not dominated on estimated missed solubles, false leads and deferrals; cheapest: rules that are cheapest for some cost ratio on the grid of Fig.~\ref{main-fig:solubility}; regions: percentage of that grid where acting on single labels is cheapest for the cheapest rule, at the estimated within-set fractions (point) and for all fractions in simultaneous 95\% test-set intervals (robust). Pareto, cheapest and regions use the audit-set rates of each rule. Capacity (calibration only): at most 500 deferrals per 1000; the rule with fewest estimated errors whose calibration-only upper limit for deferrals is within capacity, Bonferroni over the 144 requests; entries are upper limit / realized audit-set deferrals / realized audit-set errors, per 1000.}
+\label{tab:aqsolsplits}
+\small
+\begin{tabular}{rrrrrrc}
+\toprule
+Split & rules & Pareto & cheapest & \multicolumn{2}{c}{region (\%)} & capacity rule \\
+ & & & & point & robust & (calibration only) \\
+\midrule
+0 & 144 & 104 & 25 & 24.7 & 2.1 & 491 / 174 / 143 \\
+1 & 132 & 96 & 48 & 57.1 & 1.9 & 488 / 174 / 123 \\
+2 & 144 & 74 & 27 & 53.1 & 2.5 & 489 / 146 / 104 \\
+3 & 132 & 92 & 26 & 32.9 & 2.5 & 500 / 233 / 84 \\
+4 & 132 & 84 & 23 & 48.6 & 4.9 & 490 / 128 / 161 \\
+5 & 132 & 107 & 36 & 39.0 & 5.2 & 492 / 189 / 90 \\
+6 & 144 & 120 & 26 & 33.8 & 6.1 & 490 / 125 / 151 \\
+7 & 132 & 96 & 28 & 64.7 & 3.8 & 493 / 177 / 156 \\
+8 & 132 & 109 & 34 & 46.6 & 0.6 & 495 / 101 / 151 \\
+9 & 132 & 108 & 39 & 21.9 & 0.9 & 498 / 153 / 108 \\
+\bottomrule
+\end{tabular}
+\end{table*}

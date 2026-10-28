@@ -1,0 +1,10 @@
+0 AUROC all 0.911 lipophilic 0.821 n_cal_lip 375 n_test_lip 384 soluble frac lip 0.224
+1 AUROC all 0.917 lipophilic 0.85 n_cal_lip 359 n_test_lip 391 soluble frac lip 0.271
+2 AUROC all 0.932 lipophilic 0.884 n_cal_lip 371 n_test_lip 364 soluble frac lip 0.206
+3 AUROC all 0.916 lipophilic 0.849 n_cal_lip 369 n_test_lip 369 soluble frac lip 0.214
+4 AUROC all 0.917 lipophilic 0.874 n_cal_lip 370 n_test_lip 384 soluble frac lip 0.234
+5 AUROC all 0.919 lipophilic 0.862 n_cal_lip 372 n_test_lip 376 soluble frac lip 0.21
+6 AUROC all 0.923 lipophilic 0.843 n_cal_lip 368 n_test_lip 392 soluble frac lip 0.24
+7 AUROC all 0.926 lipophilic 0.843 n_cal_lip 378 n_test_lip 385 soluble frac lip 0.255
+8 AUROC all 0.915 lipophilic 0.856 n_cal_lip 366 n_test_lip 378 soluble frac lip 0.249
+9 AUROC all 0.919 lipophilic 0.85 n_cal_lip 365 n_test_lip 353 soluble frac lip 0.204

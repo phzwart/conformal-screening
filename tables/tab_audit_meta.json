@@ -1,0 +1,24 @@
+{
+ "random_checks": 12000,
+ "scaffold_checks": 4800,
+ "aqsol": {
+  "pointwise_coverage": 0.9608729719764012,
+  "cell_checks": 216960,
+  "bonferroni_all_rules_all_outcomes": 0.985,
+  "halvings": 200,
+  "capacity_rule": {
+   "found": 200,
+   "exceeded_fraction": 0.0,
+   "future_deferred_per1000_median": 304.44548561349353,
+   "upper_per1000_median": 483.7795183539864
+  }
+ },
+ "random_per_task_range": [
+  0.958125,
+  0.970625
+ ],
+ "scaffold_per_task_range": [
+  0.9496875,
+  0.9753125
+ ]
+}

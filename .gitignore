@@ -1,0 +1,16 @@
+# LaTeX build files
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.out
+*.toc
+*.synctex.gz
+main.log
+esi.log
+# Python
+__pycache__/
+*.pyc
+catboost_info/
+.ipynb_checkpoints/

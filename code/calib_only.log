@@ -1,0 +1,14 @@
+n_cal=300 reps=2897 two-label regime fraction=0.669
+  inactive {0} (correct rejection)   cls 0.959  mixed 0.998  width cal-only  184.2  split  158.7 (cov 0.964)
+  inactive {1} (false lead)          cls 0.961  mixed 0.990  width cal-only   65.7  split   69.4 (cov 0.972)
+  inactive deferred                  cls 0.999  mixed 1.000  width cal-only  169.4  split  106.2 (cov 0.973)
+  active {1} (confident hit)         cls 0.967  mixed 0.997  width cal-only  154.6  split  138.8 (cov 0.965)
+  active {0} (missed active)         cls 0.975  mixed 0.997  width cal-only   39.4  split   42.1 (cov 0.988)
+  active deferred                    cls 0.998  mixed 1.000  width cal-only   98.7  split   68.8 (cov 0.982)
+n_cal=1000 reps=3000 two-label regime fraction=0.543
+  inactive {0} (correct rejection)   cls 0.957  mixed 0.997  width cal-only  125.8  split   99.7 (cov 0.960)
+  inactive {1} (false lead)          cls 0.969  mixed 0.993  width cal-only   44.3  split   43.7 (cov 0.972)
+  inactive deferred                  cls 1.000  mixed 1.000  width cal-only  115.3  split   59.8 (cov 0.969)
+  active {1} (confident hit)         cls 0.956  mixed 0.996  width cal-only  103.8  split   85.2 (cov 0.946)
+  active {0} (missed active)         cls 0.970  mixed 0.997  width cal-only   26.8  split   24.8 (cov 0.977)
+  active deferred                    cls 1.000  mixed 1.000  width cal-only   67.0  split   36.9 (cov 0.976)

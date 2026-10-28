@@ -1,0 +1,561 @@
+{
+ "rep0": {
+  "n_cal": [
+   285,
+   90
+  ],
+  "n_test": [
+   298,
+   86
+  ],
+  "distinct_rules": 144,
+  "pareto": 104
+ },
+ "setting_A_fewest_missed": {
+  "requests": [
+   [
+    0.3,
+    0.075
+   ]
+  ],
+  "n_requests": 1,
+  "two_label": true,
+  "missed": {
+   "estimate_cal": 8,
+   "test_per1000": 10,
+   "calonly_interval": [
+    0,
+    35
+   ],
+   "testset_interval": [
+    2,
+    29
+   ],
+   "testset_interval_bonferroni": [
+    0,
+    49
+   ]
+  },
+  "false_lead": {
+   "estimate_cal": 197,
+   "test_per1000": 232,
+   "calonly_interval": [
+    125,
+    281
+   ],
+   "testset_interval": [
+    183,
+    285
+   ],
+   "testset_interval_bonferroni": [
+    148,
+    330
+   ]
+  },
+  "confirmed": {
+   "estimate_cal": 197,
+   "test_per1000": 177,
+   "calonly_interval": [
+    122,
+    281
+   ],
+   "testset_interval": [
+    134,
+    226
+   ],
+   "testset_interval_bonferroni": [
+    103,
+    269
+   ]
+  },
+  "rejected": {
+   "estimate_cal": 283,
+   "test_per1000": 245,
+   "calonly_interval": [
+    196,
+    381
+   ],
+   "testset_interval": [
+    195,
+    299
+   ],
+   "testset_interval_bonferroni": [
+    159,
+    345
+   ]
+  },
+  "deferred_insoluble": {
+   "estimate_cal": 281,
+   "test_per1000": 299,
+   "calonly_interval": [
+    129,
+    437
+   ],
+   "testset_interval": [
+    246,
+    367
+   ],
+   "testset_interval_bonferroni": [
+    206,
+    404
+   ]
+  },
+  "deferred_soluble": {
+   "estimate_cal": 35,
+   "test_per1000": 36,
+   "calonly_interval": [
+    0,
+    99
+   ],
+   "testset_interval": [
+    17,
+    75
+   ],
+   "testset_interval_bonferroni": [
+    7,
+    92
+   ]
+  }
+ },
+ "setting_B_fewest_deferred": {
+  "requests": [
+   [
+    0.275,
+    0.25
+   ]
+  ],
+  "n_requests": 1,
+  "two_label": true,
+  "missed": {
+   "estimate_cal": 45,
+   "test_per1000": 52,
+   "calonly_interval": [
+    13,
+    99
+   ],
+   "testset_interval": [
+    29,
+    84
+   ],
+   "testset_interval_bonferroni": [
+    15,
+    114
+   ]
+  },
+  "false_lead": {
+   "estimate_cal": 178,
+   "test_per1000": 221,
+   "calonly_interval": [
+    110,
+    260
+   ],
+   "testset_interval": [
+    174,
+    274
+   ],
+   "testset_interval_bonferroni": [
+    139,
+    319
+   ]
+  },
+  "confirmed": {
+   "estimate_cal": 195,
+   "test_per1000": 172,
+   "calonly_interval": [
+    119,
+    278
+   ],
+   "testset_interval": [
+    129,
+    220
+   ],
+   "testset_interval_bonferroni": [
+    99,
+    263
+   ]
+  },
+  "rejected": {
+   "estimate_cal": 576,
+   "test_per1000": 555,
+   "calonly_interval": [
+    467,
+    681
+   ],
+   "testset_interval": [
+    495,
+    614
+   ],
+   "testset_interval_bonferroni": [
+    446,
+    660
+   ]
+  },
+  "deferred_insoluble": {
+   "estimate_cal": 6,
+   "test_per1000": 0,
+   "calonly_interval": [
+    0,
+    139
+   ],
+   "testset_interval": [
+    0,
+    22
+   ],
+   "testset_interval_bonferroni": [
+    0,
+    26
+   ]
+  },
+  "deferred_soluble": {
+   "estimate_cal": 0,
+   "test_per1000": 0,
+   "calonly_interval": [
+    0,
+    79
+   ],
+   "testset_interval": [
+    0,
+    22
+   ],
+   "testset_interval_bonferroni": [
+    0,
+    26
+   ]
+  }
+ },
+ "per_split_summary": {
+  "distinct_rules": {
+   "median": 132.0,
+   "min": 132.0,
+   "max": 144.0
+  },
+  "pareto": {
+   "median": 100.0,
+   "min": 74.0,
+   "max": 120.0
+  },
+  "supported": {
+   "median": 27.5,
+   "min": 23.0,
+   "max": 48.0
+  },
+  "region_point": {
+   "median": 0.4282926829268293,
+   "min": 0.21853658536585366,
+   "max": 0.6473170731707317
+  },
+  "region_robust": {
+   "median": 0.025365853658536587,
+   "min": 0.006341463414634147,
+   "max": 0.06097560975609756
+  },
+  "setting_A": {
+   "deferred_test_per1000": {
+    "median": 375.0,
+    "min": 203.0,
+    "max": 522.0
+   },
+   "missed_test_per1000": {
+    "median": 4.0,
+    "min": 0.0,
+    "max": 20.0
+   },
+   "false_lead_test_per1000": {
+    "median": 205.0,
+    "min": 169.0,
+    "max": 232.0
+   }
+  },
+  "setting_B": {
+   "deferred_test_per1000": {
+    "median": 0.0,
+    "min": 0.0,
+    "max": 42.0
+   },
+   "missed_test_per1000": {
+    "median": 42.0,
+    "min": 26.0,
+    "max": 61.0
+   },
+   "false_lead_test_per1000": {
+    "median": 186.5,
+    "min": 162.0,
+    "max": 221.0
+   }
+  }
+ },
+ "calonly_validation": {
+  "cells_checked": 8136,
+  "coverage": 1.0
+ },
+ "capacity": [
+  {
+   "rep": 0,
+   "rules": 144,
+   "bonferroni": {
+    "admissible": 45,
+    "chosen_requests": [
+     [
+      0.125,
+      0.275
+     ]
+    ],
+    "upper_deferred_per1000": 491,
+    "test_deferred_per1000": 174,
+    "test_errors_per1000": 143
+   }
+  },
+  {
+   "rep": 1,
+   "rules": 132,
+   "bonferroni": {
+    "admissible": 30,
+    "chosen_requests": [
+     [
+      0.125,
+      0.3
+     ]
+    ],
+    "upper_deferred_per1000": 488,
+    "test_deferred_per1000": 174,
+    "test_errors_per1000": 123
+   }
+  },
+  {
+   "rep": 2,
+   "rules": 144,
+   "bonferroni": {
+    "admissible": 23,
+    "chosen_requests": [
+     [
+      0.15,
+      0.3
+     ]
+    ],
+    "upper_deferred_per1000": 489,
+    "test_deferred_per1000": 146,
+    "test_errors_per1000": 104
+   }
+  },
+  {
+   "rep": 3,
+   "rules": 132,
+   "bonferroni": {
+    "admissible": 63,
+    "chosen_requests": [
+     [
+      0.025,
+      0.3
+     ]
+    ],
+    "upper_deferred_per1000": 500,
+    "test_deferred_per1000": 233,
+    "test_errors_per1000": 84
+   }
+  },
+  {
+   "rep": 4,
+   "rules": 132,
+   "bonferroni": {
+    "admissible": 16,
+    "chosen_requests": [
+     [
+      0.2,
+      0.3
+     ]
+    ],
+    "upper_deferred_per1000": 490,
+    "test_deferred_per1000": 128,
+    "test_errors_per1000": 161
+   }
+  },
+  {
+   "rep": 5,
+   "rules": 132,
+   "bonferroni": {
+    "admissible": 55,
+    "chosen_requests": [
+     [
+      0.075,
+      0.3
+     ]
+    ],
+    "upper_deferred_per1000": 492,
+    "test_deferred_per1000": 189,
+    "test_errors_per1000": 90
+   }
+  },
+  {
+   "rep": 6,
+   "rules": 144,
+   "bonferroni": {
+    "admissible": 34,
+    "chosen_requests": [
+     [
+      0.15,
+      0.275
+     ]
+    ],
+    "upper_deferred_per1000": 490,
+    "test_deferred_per1000": 125,
+    "test_errors_per1000": 151
+   }
+  },
+  {
+   "rep": 7,
+   "rules": 132,
+   "bonferroni": {
+    "admissible": 23,
+    "chosen_requests": [
+     [
+      0.2,
+      0.275
+     ]
+    ],
+    "upper_deferred_per1000": 493,
+    "test_deferred_per1000": 177,
+    "test_errors_per1000": 156
+   }
+  },
+  {
+   "rep": 8,
+   "rules": 132,
+   "bonferroni": {
+    "admissible": 37,
+    "chosen_requests": [
+     [
+      0.15,
+      0.25
+     ]
+    ],
+    "upper_deferred_per1000": 495,
+    "test_deferred_per1000": 101,
+    "test_errors_per1000": 151
+   }
+  },
+  {
+   "rep": 9,
+   "rules": 132,
+   "bonferroni": {
+    "admissible": 46,
+    "chosen_requests": [
+     [
+      0.125,
+      0.3
+     ]
+    ],
+    "upper_deferred_per1000": 498,
+    "test_deferred_per1000": 153,
+    "test_errors_per1000": 108
+   }
+  }
+ ],
+ "chow": {
+  "5_0.3": {
+   "chow_platt": 0.24701031169254142,
+   "chow_isotonic": 0.2521828320980263,
+   "erm_two_thresholds": 0.2518929298714411,
+   "best_set_rule": 0.25847037250245214,
+   "best_candidate_incl_trivial": 0.25847037250245214,
+   "best_set_rule_coverage_0.9": 0.25430157454848795,
+   "defer_all": 0.29999999999999993,
+   "paired_diff_vs_chow_platt": {
+    "mean": 0.011460060809910775,
+    "se": 0.003495521000973133
+   },
+   "paired_diff_vs_chow_isotonic": {
+    "mean": 0.006287540404425909,
+    "se": 0.004021151954300676
+   },
+   "paired_diff_vs_erm_two_thresholds": {
+    "mean": 0.006577442631011091,
+    "se": 0.0042651533700680914
+   },
+   "trivial_chosen": 0
+  },
+  "10_0.5": {
+   "chow_platt": 0.4135764463063404,
+   "chow_isotonic": 0.41872566813582435,
+   "erm_two_thresholds": 0.41953572176518483,
+   "best_set_rule": 0.43189380750527545,
+   "best_candidate_incl_trivial": 0.43189380750527545,
+   "best_set_rule_coverage_0.9": 0.4228145236178074,
+   "defer_all": 0.5,
+   "paired_diff_vs_chow_platt": {
+    "mean": 0.018317361198935112,
+    "se": 0.009579530652343307
+   },
+   "paired_diff_vs_chow_isotonic": {
+    "mean": 0.013168139369451054,
+    "se": 0.008728802939613511
+   },
+   "paired_diff_vs_erm_two_thresholds": {
+    "mean": 0.012358085740090573,
+    "se": 0.008804262316537389
+   },
+   "trivial_chosen": 0
+  },
+  "20_0.8": {
+   "chow_platt": 0.6220126265158324,
+   "chow_isotonic": 0.6601342067713675,
+   "erm_two_thresholds": 0.6605490533145789,
+   "best_set_rule": 0.6625973362956757,
+   "best_candidate_incl_trivial": 0.6625973362956757,
+   "best_set_rule_coverage_0.9": 0.6734656030295937,
+   "defer_all": 0.8,
+   "paired_diff_vs_chow_platt": {
+    "mean": 0.04058470977984332,
+    "se": 0.019368511474469843
+   },
+   "paired_diff_vs_chow_isotonic": {
+    "mean": 0.0024631295243084383,
+    "se": 0.02316373183723705
+   },
+   "paired_diff_vs_erm_two_thresholds": {
+    "mean": 0.0020482829810968828,
+    "se": 0.023391915765924393
+   },
+   "trivial_chosen": 0
+  },
+  "50_0.5": {
+   "chow_platt": 0.4939067813471567,
+   "chow_isotonic": 0.6739115977028566,
+   "erm_two_thresholds": 0.6748705521875673,
+   "best_set_rule": 0.6731451170825006,
+   "best_candidate_incl_trivial": 0.6651880024438002,
+   "best_set_rule_coverage_0.9": 0.6731451170825006,
+   "defer_all": 0.5,
+   "paired_diff_vs_chow_platt": {
+    "mean": 0.17128122109664348,
+    "se": 0.07956590539693234
+   },
+   "paired_diff_vs_chow_isotonic": {
+    "mean": -0.008723595259056272,
+    "se": 0.03842517388511618
+   },
+   "paired_diff_vs_erm_two_thresholds": {
+    "mean": -0.009682549743767088,
+    "se": 0.038020055194027576
+   },
+   "trivial_chosen": 4
+  }
+ },
+ "restriction": {
+  "restricted": {
+   "mean_cov0": 0.9287167580384826,
+   "mean_cov1": 0.9431896762542126,
+   "frac_cov0_below_0.9": 0.0,
+   "frac_cov1_below_0.9": 0.1,
+   "mean_deferred_per1000": 462.2894451264651,
+   "mean_n_cal": 369.3
+  },
+  "unrestricted": {
+   "mean_cov0": 0.969264176948262,
+   "mean_cov1": 0.7203427311964614,
+   "frac_cov0_below_0.9": 0.0,
+   "frac_cov1_below_0.9": 1.0,
+   "mean_deferred_per1000": 208.6020775006013,
+   "mean_n_cal": 1388.0
+  }
+ }
+}

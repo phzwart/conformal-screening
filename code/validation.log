@@ -1,0 +1,18 @@
+100 10000
+  single-label         exact 0.970 (w  128.0)  bayes1 0.951 (w  121.0)  plugin 0.436  m*CP 0.963 (w  123.5)  CP-longrun 0.970
+  single-label error   exact 0.972 (w  102.0)  bayes1 0.952 (w   96.1)  plugin 0.437  m*CP 0.967 (w   98.7)  CP-longrun 0.973
+  both labels          exact 0.981 (w  102.0)  bayes1 0.973 (w   97.0)  plugin 0.689  m*CP 0.978 (w   98.4)  CP-longrun 0.981
+  empty set            exact 0.989 (w   64.0)  bayes1 0.978 (w   61.0)  plugin 0.747  m*CP 0.986 (w   62.1)  CP-longrun 0.989
+  miscoverage          exact 0.969 (w  121.4)  bayes1 0.954 (w  114.2)  plugin 0.448  m*CP 0.963 (w  117.2)  CP-longrun 0.969
+300 10000
+  single-label         exact 0.967 (w   78.2)  bayes1 0.956 (w   75.5)  plugin 0.661  m*CP 0.941 (w   70.1)  CP-longrun 0.965
+  single-label error   exact 0.966 (w   61.2)  bayes1 0.953 (w   58.8)  plugin 0.662  m*CP 0.944 (w   55.3)  CP-longrun 0.966
+  both labels          exact 0.980 (w   58.2)  bayes1 0.974 (w   56.6)  plugin 0.812  m*CP 0.965 (w   52.6)  CP-longrun 0.980
+  empty set            exact 0.987 (w   32.9)  bayes1 0.982 (w   31.9)  plugin 0.849  m*CP 0.976 (w   30.5)  CP-longrun 0.985
+  miscoverage          exact 0.964 (w   74.2)  bayes1 0.955 (w   71.3)  plugin 0.663  m*CP 0.940 (w   66.7)  CP-longrun 0.962
+1000 10000
+  single-label         exact 0.957 (w   51.7)  bayes1 0.953 (w   50.9)  plugin 0.845  m*CP 0.870 (w   37.9)  CP-longrun 0.957
+  single-label error   exact 0.961 (w   40.4)  bayes1 0.956 (w   39.6)  plugin 0.849  m*CP 0.882 (w   29.9)  CP-longrun 0.958
+  both labels          exact 0.974 (w   36.8)  bayes1 0.973 (w   36.4)  plugin 0.915  m*CP 0.927 (w   27.0)  CP-longrun 0.976
+  empty set            exact 0.983 (w   19.9)  bayes1 0.980 (w   19.5)  plugin 0.930  m*CP 0.943 (w   14.9)  CP-longrun 0.981
+  miscoverage          exact 0.957 (w   49.3)  bayes1 0.953 (w   48.4)  plugin 0.845  m*CP 0.866 (w   36.2)  CP-longrun 0.954

@@ -1,0 +1,215 @@
+{
+ "info": {
+  "rows_total": 13825,
+  "rows_with_k": 13302,
+  "rows_after_exclusion": 13279,
+  "formulations_all": 5143,
+  "systems": 139,
+  "papers": 26,
+  "rt_formulations": 1495,
+  "rt_good": 275,
+  "kstar": 8.0,
+  "rt_newsalt": 606,
+  "rt_newsalt_good": 154,
+  "rt_carbonate_only": 1055,
+  "rt_carbonate_only_good": 100
+ },
+ "designs": {
+  "random": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.9792804091717136,
+   "prevalence_audit": 0.18636363636363637,
+   "n_cal_good_median": 68.5,
+   "n_audit_median": 374.0,
+   "violations_poor": {
+    "observed": 2,
+    "expected": 4.653429682091662,
+    "p_upper": 0.9537693533538306
+   },
+   "infeasible_poor": 0.0,
+   "violations_good": {
+    "observed": 4,
+    "expected": 3.129182033963426,
+    "p_upper": 0.3825838727754493
+   },
+   "infeasible_good": 0.0,
+   "audit_default": {
+    "correct rejection": 0.9550000000000002,
+    "false lead": 0.9690000000000001,
+    "deferred inactive": 0.9880000000000001,
+    "confident hit": 0.9569999999999999,
+    "missed active": 0.9940000000000001,
+    "deferred active": 0.9940000000000001,
+    "single label": 0.9730000000000001,
+    "deferred": 0.9730000000000001
+   },
+   "audit_sweep_pointwise": 0.9720304868742369,
+   "bonferroni_all": 0.9840000000000001,
+   "capacity": {
+    "chosen": 1000,
+    "exceeded": 0.0,
+    "upper_median": 0.31016042780748665,
+    "realized_median": 0.15508021390374332
+   },
+   "distinct_rules": [
+    108,
+    132
+   ],
+   "pareto": [
+    21,
+    84
+   ],
+   "calonly": 0.9966666666666667,
+   "cov_good_mean": 0.9580450029328124,
+   "cov_poor_mean": 0.9324101877370193
+  },
+  "system": {
+   "runs": 49,
+   "skipped": 1,
+   "auroc_median": 0.9136797588470726,
+   "prevalence_audit": 0.19451254608287583,
+   "n_cal_good_median": 60.0,
+   "n_audit_median": 358.0,
+   "violations_poor": {
+    "observed": 20,
+    "expected": 4.515928459885429,
+    "p_upper": 3.4782477791986217e-09
+   },
+   "infeasible_poor": 0.0,
+   "violations_good": {
+    "observed": 22,
+    "expected": 5.015606934405787,
+    "p_upper": 8.599408917484362e-11
+   },
+   "infeasible_good": 0.16326530612244897,
+   "audit_default": {
+    "correct rejection": 0.9663265306122449,
+    "false lead": 0.9663265306122449,
+    "deferred inactive": 0.9816326530612247,
+    "confident hit": 0.9724489795918368,
+    "missed active": 0.9887755102040817,
+    "deferred active": 0.9785714285714286,
+    "single label": 0.9663265306122448,
+    "deferred": 0.9663265306122448
+   },
+   "audit_sweep_pointwise": 0.9759770199063232,
+   "bonferroni_all": 0.9918367346938775,
+   "capacity": {
+    "chosen": 980,
+    "exceeded": 0.0,
+    "upper_median": 0.41405395208451234,
+    "realized_median": 0.22438140848529503
+   },
+   "distinct_rules": [
+    12,
+    144
+   ],
+   "pareto": [
+    3,
+    134
+   ],
+   "calonly": 0.5306122448979592,
+   "cov_good_mean": 0.840770067955242,
+   "cov_poor_mean": 0.8708134140191537
+  },
+  "salt": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.9155628663372026,
+   "prevalence_audit": 0.2541254125412542,
+   "n_cal_good_median": 41.0,
+   "n_audit_median": 606.0,
+   "violations_poor": {
+    "observed": 0,
+    "expected": 4.4953496287111285,
+    "p_upper": 1.0000000000000004
+   },
+   "infeasible_poor": 0.0,
+   "violations_good": {
+    "observed": 50,
+    "expected": 1.8861666315972054,
+    "p_upper": 8.294922507895278e-75
+   },
+   "infeasible_good": 0.0,
+   "audit_default": {
+    "correct rejection": 0.9590000000000001,
+    "false lead": 1.0,
+    "deferred inactive": 0.9980000000000001,
+    "confident hit": 0.9690000000000001,
+    "missed active": 0.959,
+    "deferred active": 0.9840000000000001,
+    "single label": 0.9830000000000001,
+    "deferred": 0.9830000000000001
+   },
+   "audit_sweep_pointwise": 0.972602103960396,
+   "bonferroni_all": 0.9890000000000002,
+   "capacity": {
+    "chosen": 1000,
+    "exceeded": 0.0,
+    "upper_median": 0.46204620462046203,
+    "realized_median": 0.3201320132013201
+   },
+   "distinct_rules": [
+    72,
+    120
+   ],
+   "pareto": [
+    10,
+    62
+   ],
+   "calonly": 0.33,
+   "cov_good_mean": 0.29103896103896104,
+   "cov_poor_mean": 0.9933628318584071
+  },
+  "salt_pilot": {
+   "runs": 50,
+   "skipped": 0,
+   "auroc_median": 0.9209674816669755,
+   "prevalence_audit": 0.25186813186813184,
+   "n_cal_good_median": 62.5,
+   "n_audit_median": 364.0,
+   "violations_poor": {
+    "observed": 8,
+    "expected": 3.973192793698786,
+    "p_upper": 0.04217159724026187
+   },
+   "infeasible_poor": 0.0,
+   "violations_good": {
+    "observed": 5,
+    "expected": 3.285424877890676,
+    "p_upper": 0.22987271487332567
+   },
+   "infeasible_good": 0.0,
+   "audit_default": {
+    "correct rejection": 0.9640000000000001,
+    "false lead": 0.9780000000000001,
+    "deferred inactive": 0.9670000000000002,
+    "confident hit": 0.9620000000000002,
+    "missed active": 0.992,
+    "deferred active": 0.9660000000000002,
+    "single label": 0.96,
+    "deferred": 0.96
+   },
+   "audit_sweep_pointwise": 0.9723882020757021,
+   "bonferroni_all": 0.985,
+   "capacity": {
+    "chosen": 1000,
+    "exceeded": 0.0,
+    "upper_median": 0.4725274725274725,
+    "realized_median": 0.29120879120879123
+   },
+   "distinct_rules": [
+    120,
+    132
+   ],
+   "pareto": [
+    60,
+    124
+   ],
+   "calonly": 0.9933333333333333,
+   "cov_good_mean": 0.950163064073051,
+   "cov_poor_mean": 0.9313907181651321
+  }
+ }
+}

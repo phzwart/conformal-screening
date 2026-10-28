@@ -1,0 +1,392 @@
+%% Digital Discovery manuscript (revision after mock review).
+%% Layout approximates the RSC two-column article template; paste the body into
+%% the official RSC template before submission.
+\documentclass[twocolumn,10pt]{article}
+\usepackage[a4paper,margin=1.7cm,columnsep=0.6cm]{geometry}
+\usepackage{mathptmx}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage[super,sort&compress,comma]{natbib}
+\usepackage[font=small,labelfont=bf]{caption}
+\usepackage{xcolor}
+\usepackage{xr-hyper}
+\usepackage[hidelinks]{hyperref}
+\externaldocument[esi-]{esi}
+\makeatletter\newcommand{\inputrows}[1]{\@@input #1 }\makeatother
+\newcommand{\todo}[1]{\textcolor{red}{[#1]}}
+\newcommand{\placeholder}[2]{\fbox{\parbox[c][#1][c]{0.95\linewidth}{\centering\small\textcolor{red}{#2}}}}
+\setlength{\parskip}{0pt}
+\raggedbottom
+
+\title{\Large\bfseries Predicting the consequences of conformal screening decisions:\\ finite-sample audit intervals for batch outcomes}
+\author{Petrus H. Zwart\thanks{Center for Advanced Mathematics in Energy Research Applications, Berkeley Synchrotron Infrared Structural Biology Program, and Molecular Biophysics and Integrated Bioimaging Division, Lawrence Berkeley National Laboratory, 1 Cyclotron Road, Berkeley, CA 94720, USA. E-mail: PHZwart@lbl.gov. Electronic supplementary information (ESI) available: derivations, algorithms, simulation protocols and additional tables.}}
+\date{}
+
+\begin{document}
+\twocolumn[
+\maketitle
+\begin{abstract}
+Conformal prediction is advocated as a distribution-free form of uncertainty quantification: it returns prediction sets that contain the true label with a guaranteed probability, the coverage. In screening campaigns in chemistry and materials, including automated campaigns run in parallel batches, decisions are made on their consequences: how many candidates receive a single label, how many of those calls are right, and how many must be assayed. We show how to obtain these consequences, with guarantees, for every coverage setting. The two class-wise coverage requests serve as coordinates that index the available decision rules, and a labelled audit set, a random sample of the library to be screened, reveals the consequences of each. From the audit we predict, before a batch is screened, how many hits, false leads, misses and measurements it will contain, with finite-sample intervals that hold with a specified probability under exchangeability alone, even after a setting is chosen. A team or an automated planner can then choose under chance constraints on each batch's assays, budget or yield. Sweeping the coverage requests for aqueous solubility traced about 140 distinct trade-offs, and cutting the measurement budget from 450 to 250 per 1000 compounds cost 73 false leads. For a new lithium salt, an audit of the screened electrolyte formulations bounded the consequences at the nominal level where calibration on other salts did not transfer, and showed the gain from a pilot sample. On solubility, electrolytes and Tox21 these predictions held: 95--100\% of realized counts fell inside their 95\% intervals.
+\end{abstract}
+\vspace{1em}
+]
+
+%% ------------------------------------------------------------------
+\section{Introduction}
+\label{sec:intro}
+
+Conformal prediction has been advocated as a distribution-free form of uncertainty quantification.\citep{vovk2005algorithmic,AngelopoulosBates2023Gentle} It wraps any trained model, needs only a labelled calibration set, and returns for each new input a prediction set that contains the true label with probability at least $1-\alpha$ whenever calibration and future data are exchangeable. This guarantee, the coverage, requires no assumption about the model or the distribution of the data. That generality has made conformal prediction a standard tool for uncertainty quantification in machine learning and AI, and it is increasingly applied in chemistry and materials science.\citep{Norinder2014,CortesCiriano2019,Laghuvarapu2023CoDrug}
+
+Here we apply conformal prediction to screening campaigns in chemistry and materials, in which a model decides which candidates go forward to a toxicity assay, a solubility or conductivity measurement, or synthesis. Increasingly such campaigns are run by automated and self-driving laboratories,\citep{Abolhasani2023SDL,Tom2024SDL} in which a model and a planner, rather than a person, decide what is made and measured. Because synthesis and characterization run in parallel, these campaigns proceed batch by batch: a model scores a candidate library and a rule decides what goes into the next plate or run, whose capacity is fixed. Unlike turn-by-turn optimization, a batch campaign often aims at covering a chemical or physical design space, mapping it or narrowing in on a set of optima (Section~\ref{sec:discussion}). The decision, whether made by a team or by a planner, is the same, and so is the gap we address. In a binary screen each compound receives one of four prediction sets: $\{\text{out-class}\}$, $\{\text{in-class}\}$, both labels, or neither. A team acts on these sets. It advances or discards compounds that receive a single label and sends the others for an assay.
+
+To choose among these actions, a team needs to know what they will do: how many compounds will receive a single label, how many of those calls will be right, and how many compounds will be sent for testing. These consequences, counted in compounds, are the terms in which screening decisions are made and budgets and capacities are planned. Coverage, the native coordinate of conformal prediction, is a statement about the prediction sets; it informs a decision once it is linked to these consequences. That link has to be measured. A set containing both labels is always correct but sends the compound to an assay, so two classifiers calibrated to the same coverage can sort a batch very differently.
+
+\paragraph{What we do and why.} We give coverage a specific role. The coverage level is a setting the team chooses, separately for the in-class and out-class compounds, and changing it changes which compounds are advanced, discarded or assayed. We therefore treat the coverage request as the control: sweeping it moves the classifier through the space of possible decisions. A labelled \emph{audit set}, a random sample of the library to be screened that was used neither for training nor for calibration, shows the consequences of each setting. From it we predict every screening outcome of a future batch, stated as counts of compounds, with prediction intervals that are valid in finite samples and require only the exchangeability that coverage already assumes.
+
+This prediction is the central capability. Before a batch is screened, the audit states how many confident hits, false leads, missed in-class compounds and measurements the batch will contain, each with an interval that holds with a specified probability. The intervals are realistic in both directions: they hold at the stated level, where the usual shortcuts are too narrow, and they are no wider than the size of the audit requires. A team can therefore plan on them: book the assays, budget the measurements and expect the hits.
+
+Coverage is thus the coordinate for navigating decisions, and the audited consequences are what a team chooses by. Choosing uses an objective, such as the expected cost or yield of the screen. It usually also uses guarantees: a plan the team can rely on, in which, with a stated probability, no batch needs more assays than the laboratory or the robot can run and every batch delivers enough hits to proceed. Such guarantees are bounds on counts that hold with a stated probability. The coverage requests reduce the navigation of these many consequences to two coordinates, in which a team can explore scenarios, each a set of such guarantees, and see which settings satisfy them.
+
+Section~2 sets out the outcome table, the threshold correction, the navigation by coverage and the audit intervals; Section~3 validates the intervals in simulation and on real data and applies them to solubility, toxicity and electrolyte screens; Section~4 gives a workflow and the limitations.
+
+\paragraph{Contributions.} The statistical tools are classical. What is new is how they are combined to answer the questions a screening team asks.
+\begin{enumerate}
+\item \emph{Coverage as the coordinate of decisions.} Every screening quantity is a sum of cells of a $2\times4$ table of prediction set by true label (Table~\ref{tab:outcomes}). With class probabilities, the class-wise coverage requests reach every two-threshold decision rule on the model score, so a sweep of the requests traces the decisions available to the team in two coordinates. Each setting induces a decision geometry of the same form as the cost-optimal reject rule, and the audited consequences show which costs it serves.
+\item \emph{Predicted consequences with specified certainty.} For each setting, finite-sample valid prediction intervals and one-sided bounds for the future counts of confident hits, missed in-class compounds, false leads and deferred compounds follow from the audit set.\citep{Thatcher1964,Meeker2017Intervals} With a Bonferroni correction over the sweep they remain valid for whichever setting is chosen, so a setting can be chosen under chance constraints on assay capacity, budget or yield. We verify them in simulation and on three real datasets: toxicity (Tox21), aqueous solubility (AqSolDB) and electrolyte conductivity (CALiSol-23).
+\item \emph{Matching the audit to the screen.} The intervals describe the future batch when the audit set comes from the library to be screened, and then remain correct even when the calibration does not match the screen. A labelled random pilot sample restores the coverage guarantees, and we give its required size. When scores are class probabilities, the calibration set can stand in for the audit set, at a quantified cost in width.
+\end{enumerate}
+
+\paragraph{Related work.} Conformal prediction is established in cheminformatics, for toxicity, bioactivity, imbalanced data, applicability domain and drift.\citep{Norinder2014,NorinderBoyer2017,Sun2017Mondrian,Svensson2017,Bosc2019,CortesCiriano2019,Morger2021,Geylan2024,CPSign2024,Laghuvarapu2023CoDrug} The closest work, by Svensson \textit{et al.},\citep{Svensson2018Gain} links conformal predictions to the gain of a high-throughput screen. These studies report coverage and efficiency, or a gain, on test data; we add prediction intervals for what a future batch will contain. In statistics, the coverage of a conformal predictor given its calibration set is known exactly,\citep{Vovk2012PAC,Bian2023TrainingConditional,Marques2025Beta} and related to tolerance regions and PAC prediction sets.\citep{Wilks1941,Park2020PAC} Risk-controlling methods\citep{bates2021distribution,Angelopoulos2024CRC,Angelopoulos2021LTT} choose thresholds to bound one chosen risk. Conformal selection\citep{JinCandes2023} selects candidates with false-discovery control, and set-valued classifiers with bounded class-wise error\citep{Sadinle2019} minimize ambiguity. Decision-theoretic work links prediction sets to actions. Conformal decision theory calibrates a decision parameter to a target risk,\citep{Lekeufack2024CDT} and Kiyani \textit{et al.}\ showed that prediction sets are a sufficient statistic for risk-averse decision makers with a known utility, for whom acting on the worst case within the set is optimal.\citep{Kiyani2025RAC} The question for which costs a classifier, or an abstaining classifier, is optimal goes back to the reject option\citep{Chow1970} and to ROC analysis.\citep{ProvostFawcett2001,Pietraszek2005} Our aim is complementary. We assume no utility, report \emph{all} screening outcomes of each coverage setting with valid intervals and bounds, and let a team choose afterwards under its own objective and constraints.
+
+%% ------------------------------------------------------------------
+\section{Methods}
+\label{sec:methods}
+
+\subsection{Setting and assumptions}
+\label{sec:methods:setting}
+
+We call the class with the property the screen looks for \emph{in-class} (label 1) and the other \emph{out-class} (label 0): toxic compounds in Tox21, soluble compounds in AqSolDB, and electrolytes that reach the conductivity target in CALiSol-23. A trained binary classifier is held fixed. It gives each compound a predicted probability of being in-class, $u=\hat p(\text{in-class}\mid x)$. A labelled \emph{calibration set} sets the thresholds. A labelled \emph{audit set} (in machine-learning terms, a held-out test set) is used only to measure what the thresholds do. A \emph{future batch} of $m$ compounds will be screened. We assume that calibration, audit and future compounds are exchangeable given the trained model, \textit{i.e.}\ their joint distribution is unchanged when they are reordered. This holds when all three are random samples of the library to be screened. The unit of sampling is the candidate to be screened: a compound, or for electrolytes a formulation, not an individual measurement. It fails when the batch comes from other chemical series or scaffolds, or is chosen using the model (Section~\ref{sec:results:dependence}). The probabilities need not be calibrated in the usual sense; only their ordering matters.
+
+\subsection{Prediction sets and the outcome table}
+\label{sec:methods:table}
+
+We use class-conditional (Mondrian) split conformal prediction,\citep{vovk2005algorithmic} which controls coverage separately for the in-class and out-class compounds. The label \emph{out-class} is included in a compound's prediction set when $u\le\tau_0$, where $\tau_0$ is set from the out-class calibration compounds. The label \emph{in-class} is included when $u\ge1-\tau_1$, where $\tau_1$ is set from the in-class calibration compounds (Fig.~\ref{fig:sets}; ESI Section~\ref{esi-sec:notation}). Each compound then falls into one cell of a $2\times4$ table of true label by prediction set (Table~\ref{tab:outcomes}). Every screening quantity is a sum of cells:
+\begin{itemize}
+\item missed in-class compounds are in-class compounds labelled $\{\text{out-class}\}$;
+\item false leads are out-class compounds labelled $\{\text{in-class}\}$, \textit{i.e.}\ compounds followed up that turn out out-class;
+\item deferred compounds receive both labels or none;
+\item coverage is the sum of the cells in which the true label is in the set;
+\item the hit rate of the confident calls is a ratio of two cells.
+\end{itemize}
+The cells in each row add up to the number of compounds of that class. Moving a threshold therefore moves compounds between cells of the same row, so the outcomes trade off against each other. With class probabilities, a compound can receive both labels or none, but not both kinds for the same thresholds (ESI Section~\ref{esi-sec:geometry}). We report the two kinds separately, because an empty set signals a compound unlike the calibration data rather than an ambiguous one.\citep{Norinder2014}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig1_prediction_sets.pdf}
+\caption{Class-conditional thresholds divide compounds into prediction sets. Curves show the distribution of the predicted probability of being in-class for out-class (blue) and in-class (orange) compounds, weighted by prevalence. Compounds left of $1-\tau_1$ receive $\{\text{out-class}\}$, those right of $\tau_0$ receive $\{\text{in-class}\}$, and those in between receive both labels. If the thresholds cross, the middle band receives the empty set instead. The coverage request for each class moves one threshold.}
+\label{fig:sets}
+\end{figure}
+
+\begin{table}[t]
+\centering
+\caption{Outcomes of a binary conformal screen. Each compound falls into one cell; every screening quantity is a sum of cells.}
+\label{tab:outcomes}
+\small
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+True label & $\{\text{out-class}\}$ & $\{\text{in-class}\}$ & both & none \\
+\midrule
+out-class & correct rejection & false lead & deferred & deferred \\
+in-class   & missed in-class & confident hit & deferred & deferred \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Coverage requests and thresholds}
+\label{sec:methods:thresholds}
+
+The standard threshold guarantees coverage of at least $1-\alpha$ only on average over calibration sets. With tens of in-class calibration compounds, the coverage of the one model actually deployed can fall well below $1-\alpha$. The coverage observed over a batch of $m_y$ future compounds of class $y$ follows a Beta--Binomial distribution that depends only on the number of calibration compounds of that class and on the chosen order statistic. This result requires only exchangeability.\citep{Marques2025Beta} We choose the least conservative threshold for which batch coverage is at least $1-\alpha_y$ with probability at least $1-\delta_y$, separately for each class. A coverage request therefore has four numbers, $(\alpha_0,\delta_0,\alpha_1,\delta_1)$. The guarantee is stated for a planned number $m_y$ of future compounds of each class, which we set from the batch size and the class proportions of the calibration set. In an automated laboratory the batch is a plate or one run of the platform, so $m$ is set by its capacity. The batch-free version,\citep{Vovk2012PAC} which follows a Beta law, controls coverage only for an infinitely large batch (Section~\ref{sec:results:thresholds}). As baselines we use the standard threshold and a one-sided correction based on the Dvoretzky--Kiefer--Wolfowitz inequality.\citep{Massart1990DKWM}
+
+Tied scores, for example from identical fingerprints, keep the coverage guarantee conservative, but they can break the two-sided count intervals below, because tied compounds cross a threshold together. We therefore break ties at random: every compound receives an independent uniform number, and compounds are ordered by score and then by that number. This needs no knowledge of future scores and makes all the laws exact (ESI Section~\ref{esi-sec:correction}).
+
+\subsection{Navigating decisions with the coverage request}
+\label{sec:methods:choice}
+
+\paragraph{Coverage as a coordinate.} With class probabilities, every rule that acts on single labels and defers the rest is a two-threshold rule on $u$: label out-class below one threshold, in-class above another, defer in between. The two coverage requests set the two thresholds, so a sweep of $(\alpha_0,\alpha_1)$ over a grid, at fixed $\delta$, traces the available two-threshold rules, up to the resolution of the calibration scores and of the grid. We keep one representative for each distinct pair of thresholds. Each setting maps to a vector of consequences, the counts of the outcome table and their bounds; the sweep traces a two-dimensional surface in this many-dimensional space, and its Pareto front over the outcomes that matter is the map on which a team explores its options.
+
+\paragraph{The decision geometry of a setting.} Without stated costs, a setting together with the usual rule (act on single labels, defer the rest) induces a decision geometry: two thresholds on the model score. Given only the prediction sets, this rule is the risk-averse (max--min) optimal use of the sets for any costs in which a deferral is cheaper than either error (ESI Section~\ref{esi-sec:costs}).\citep{Kiyani2025RAC} Its geometry matches Chow's cost-optimal reject rule\citep{Chow1970} when the probability of being in-class increases with $u$, so each setting is expected-cost optimal for some region of cost ratios, possibly empty. Which costs a setting serves depends on the fractions of in-class compounds within each prediction set, which labelled data reveal; for a known utility, sets built for that utility can serve it better.\citep{Kiyani2025RAC} The coverage request therefore locates a decision, and its audited consequences evaluate it.
+
+\paragraph{Objectives and chance constraints.} A team chooses a setting by an objective, such as the expected number of false leads, the expected cost or the expected yield, subject to constraints on what the campaign may consume or must deliver: at most $U$ assays, at most $U'$ missed in-class compounds, at least $L$ confirmed in-class compounds in a batch of $m$. Each constraint must hold with probability at least $1-\varepsilon$, so it is checked against a one-sided bound from the audit set, not against the expected count. This is a chance-constrained program\citep{CharnesCooper1959} with two decision variables, solved by enumerating the grid, in which the constraint probabilities are replaced by distribution-free bounds from the audit. A \emph{scenario} is such a set of constraints. Its feasible settings form a region of the coverage plane, and the objective selects a setting within it. When the objective and every constraint are monotone in the outcomes (fewer measurements, false leads or misses, and more confirmed compounds, are never worse), an optimal setting always lies on the Pareto front of the audited outcomes, taken over the quantities the objective and constraints use: a dominated setting is never better than the setting that dominates it and meets no constraint that setting fails. For every such objective, the table of Pareto settings with their expected counts and bounds is therefore a sufficient summary, and no cost ratio is needed to decide. Only an objective that is not monotone, such as a target workload that should be neither exceeded nor undershot, needs the full map. Changing the scenario, for example tightening the assay budget, moves or shrinks the region and shows what the change costs. An empty region is itself a result: the requirements cannot be guaranteed with the labelled data in hand, and either a constraint must be relaxed or more compounds labelled.
+
+\subsection{Prediction intervals for the consequences}
+\label{sec:methods:intervals}
+
+\paragraph{From the audit set.} Suppose an outcome (one cell, or a sum of cells) occurs $K$ times among $n$ audit compounds. Given the calibration set, the audit compounds and the $m$ future compounds are exchangeable. Given the total count, the number in the audit set is therefore hypergeometric, whatever the data distribution. Inverting this exact hypergeometric test gives conservative limits $[L,U]$ for the future count $K_m$ that hold with probability at least $1-\gamma$; they are quantiles of two Beta--Binomial distributions\citep{Thatcher1964} (ESI Section~\ref{esi-sec:intervals}). We use $\gamma=0.05$ throughout. The construction holds for any outcome, any score and any fixed decision rule; it does not depend on conformal prediction. In the language of quality control the audit set is an acceptance sample, and the limits are the classical tolerance limits for the number of defectives in a future lot.\citep{DodgeRomig1944,Wilks1941}
+
+\paragraph{What the intervals cover.} The intervals cover the realized count in the future batch; no fixed underlying rate is assumed. They are conservative because counts are discrete. Each interval is valid for one outcome and one setting fixed before the audit set is seen. Choosing a setting by looking at its audited outcomes and then quoting its intervals is optimistic. Intervals computed at level $\gamma/J$ for each of the $J$ requests in the grid hold simultaneously, and therefore remain valid for whichever setting is chosen. For a scenario with $C$ bounded outcomes, each one-sided bound is computed at level $\varepsilon/(JC)$, so that every bound of every setting holds together with probability at least $1-\varepsilon$ and the chosen setting satisfies all constraints with at least that probability. Because the bounds hold jointly for all settings and all bounded outcomes, a team may pose any scenario over these outcomes, and change it, after looking at the map, without losing the guarantee. All intervals and bounds are conditional on the calibration set, that is, on the thresholds actually deployed.
+
+\paragraph{From the calibration set alone.} With class probabilities and class-conditional thresholds, the calibration set can partly serve as its own audit. Whether an out-class compound receives the label \emph{in-class} depends only on the threshold set from the in-class calibration compounds, so for this event the out-class calibration compounds are exchangeable with future out-class compounds and the audit construction applies to them. Whether an out-class compound \emph{keeps} the label out-class is a coverage event, whose batch count follows the exact rank law used for the thresholds.\citep{Marques2025Beta} Each cell of a row is one of these two events or what remains after them, so computing both at level $1-\gamma/2$ bounds every cell of the row; a mixed batch adds an interval for the number of in-class compounds (ESI Section~\ref{esi-sec:calonly}). Evaluating a class's own threshold on the compounds that set it, as is done when ordinary rates are computed on the calibration set, is not allowed; it makes the counts too narrow (ESI Section~\ref{esi-sec:reuse}).
+
+\subsection{Experiments}
+\label{sec:methods:data}
+
+\paragraph{Simulations.} Seven designs are described in ESI Section~\ref{esi-sec:sim}:
+\begin{enumerate}
+\item audit-set intervals, with $10^4$ replicates, each drawing its own data distribution;
+\item finite libraries: 20 fixed libraries, each split at random 1000 times, which gives exchangeable data that are not independent;
+\item threshold correction, with absolute Cauchy scores, $n=50$--500, $m=100$ and $10^6$ draws;
+\item expected cost of the swept settings, computed exactly on the population, and selection: 4000 replicates of choosing among 100 settings under an assay capacity, with and without a Bonferroni correction;
+\item scaffold dependence: compounds in clusters that share a shift of the predicted probability, with the future batch drawn from the calibration clusters or from new clusters;
+\item tied scores: a cluster of identical scores at a threshold, with ties kept or broken at random;
+\item calibration-only intervals: 3000 replicates per calibration size, compared with spending the same labelling budget half on calibration and half on an audit set.
+\end{enumerate}
+
+\paragraph{Data.} Molecules were standardized with RDKit\citep{RDKit}, which keeps the largest fragment, neutralizes it and writes canonical SMILES; duplicates were then merged. One model was used throughout: Morgan fingerprints\citep{Rogers2010Morgan} (radius 2, 2048 bits) and CatBoost gradient-boosted trees\citep{Prokhorenkova2018CatBoost} (500 trees, depth 6, learning rate 0.1) with fixed hyperparameters. The experiments concern the coverage settings and their audited consequences for a given model, not the choice of model. For the twelve Tox21 endpoints,\citep{Huang2016Tox21,Mayr2016DeepTox} each endpoint was split 50/25/25 into training, calibration and audit sets: 50 times at random and 20 times by Bemis--Murcko scaffold.\citep{Bemis1996Murcko} Under the scaffold splits we also drew pilot samples of 200, 500 and 1000 compounds at random from the audit scaffolds, used each as the calibration set, and screened the remaining compounds. For AqSolDB,\citep{Sorkun2019AqSolDB} compounds with $\log S\ge-4$ were labelled soluble. Ten stratified 70/15/15 splits were made, the model was trained on all training compounds, and calibration and audit were restricted to $\log P>3.5$. Solubility most often limits lipophilic compounds, so a screen of this subpopulation is a realistic use; it is also a subpopulation on which the model's scores are distributed differently from the training data. For CALiSol-23,\citep{deBlasio2024CALiSol} a compilation of measured conductivities of lithium-salt electrolytes, each formulation (salt, concentration and solvent fractions) was labelled good if its conductivity at 20--30\,$^\circ$C was at least 8\,mS\,cm$^{-1}$. The same model was trained on all temperatures of the training formulations, with temperature, solvent fractions and fraction-weighted solvent descriptors as inputs, and scored each formulation at 25\,$^\circ$C. Four designs, 50 repeats each, drew calibration and audit sets from random formulations, from held-out salt--solvent systems, or, for a new salt, from the other salts or from a pilot sample of the new salt. To check the audit intervals on real data, each audit set was split at random, 20 times, into an audit half and a stand-in future batch. Details, counts and seeds are in ESI Section~\ref{esi-sec:molecular}.
+
+%% ------------------------------------------------------------------
+\section{Results}
+\label{sec:results}
+
+\subsection{Predicted counts hold at the stated certainty}
+\label{sec:results:intervals}
+
+The audit predicts the count of each outcome in a future batch, with an interval meant to hold with probability 95\%. In simulation, the realized count in a batch of 1000 compounds fell inside its interval in 95.7--98.9\% of replicates, for every outcome and every audit-set size (Fig.~\ref{fig:validation}). The intervals were also tight: for wrong single-label calls (false leads plus missed in-class compounds) they spanned about $\pm51$ per 1000 with 100 audit compounds and $\pm20$ with 1000 (ESI Table~\ref{esi-tab:validation}). The same held when fixed libraries were split at random, a design that is exchangeable but not independent. Averaged over libraries, coverage was 96.1--98.9\%, and no library fell below 94.7\% (Monte Carlo standard error 0.7\% per library; ESI Table~\ref{esi-tab:library}). The usual plug-in interval, Binomial quantiles at the audited rate, treats that rate as if it were known; it covered only 44--75\% of batches with 100 audit compounds and 84.5--93\% with 1000, and fell to 23\% for some libraries (ESI Tables~\ref{esi-tab:validation} and \ref{esi-tab:library}). The opposite shortcut, $m$ times the Clopper--Pearson interval for the rate, ignores the sampling variation of the future batch: it held with 100 audit compounds (96.3--98.6\%) but fell to 94.0--97.6\% with 300 and 86.6--94.3\% with 1000. Each shortcut omits one of the two sources of variation, the uncertainty of the audited rate and the variation of the batch, and fails where the omitted one dominates (ESI Section~\ref{esi-sec:sim}); the audit interval accounts for both. Scaled Clopper--Pearson intervals are therefore adequate only when the audit set is much smaller than the batch, and not for small batches such as a single plate. Bayesian posterior predictive intervals with a uniform prior were 1--6\% narrower and close to nominal in these designs, but carry no guarantee; in a two-stage design they fell to 94.8\% (ESI Table~\ref{esi-tab:twostage}). The audit interval held at its nominal level throughout.
+
+On real data the audit intervals behaved the same way (Table~\ref{tab:audit}). Splitting each Tox21 audit set into an audit half and a stand-in future batch, the intervals covered 95.6--99.0\% of the realized counts, for every outcome. Per endpoint, coverage was 95.8--97.1\% under random splits. It was 95.0--97.5\% under scaffold splits, in which the model had been calibrated on other scaffolds: the audit described the consequences correctly because it came from the compounds being screened. On AqSolDB, over all 132--144 settings of the sweep and all outcomes, the pointwise intervals covered 96.1\% of 216,960 realized counts. With the Bonferroni correction over the 144 requests, every interval of every setting covered its count together in 98.5\% of 200 audit--future splits.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/fig3_interval_validation.pdf}
+\caption{Coverage of 95\% prediction intervals for the count of each outcome in a future batch of 1000 compounds, from an audit set of $n=100$, 300 or 1000 compounds (panels); $10^4$ replicates, each drawing its own data distribution. Audit interval: the Beta--Binomial limits of Section~\ref{sec:methods:intervals}. Bayesian: posterior predictive with a uniform prior. $m\times$Clopper--Pearson: the interval for the rate scaled to the batch, which ignores the sampling variation of the batch. The plug-in Binomial interval, which ignores the uncertainty of the audited rate, covered only 44--93\% and is omitted (ESI Table~\ref{esi-tab:validation}). Dashed line: nominal 95\%. Monte Carlo standard error is about 0.2\%.}
+\label{fig:validation}
+\end{figure*}
+
+\begin{table}[t]
+\centering
+\caption{Real-data check of audit intervals (nominal 95\%). Each Tox21 audit set (about 1750 compounds) was split 20 times at random into an audit half and a stand-in future batch of the same size; entries are the percentage of realized future counts inside the interval. Random: 600 splits, 12,000 checks per outcome. Scaffold: 240 splits calibrated on other scaffolds, 4800 checks per outcome.}
+\label{tab:audit}
+\small
+\begin{tabular}{@{}lrr@{}}
+\toprule
+Outcome & random & scaffold \\
+\midrule
+\inputrows{tables/tab_audit_rows.tex}
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Thresholds for small calibration sets}
+\label{sec:results:thresholds}
+
+With the standard threshold, coverage over a batch of 100 compounds fell below the requested 90\% in 35--42\% of calibration draws for $n=50$ to 500 (Table~\ref{tab:correction}); the requested tolerance was $\delta=10\%$. The batch correction brought this to 4.7--9.9\%, matching theory to within Monte Carlo error. The batch-free correction is identical for $n\le100$ but too permissive for larger $n$: shortfalls occurred in 11.8\% of draws at $n=150$ and in 21.2\% at $n=500$ (ESI Table~\ref{esi-tab:grid}). The batch form should therefore be used whenever batch performance matters. The one-sided DKW correction was valid but far more conservative.
+
+\paragraph{The coverage guarantee holds on real data.} With the batch correction, per-class audit coverage fell below 90\% in 55 of 600 random Tox21 splits (Section~\ref{sec:results:tox21}) for out-class compounds and 45 for in-class compounds, against 56.2 and 42.3 expected from the exact law for the thresholds used (ESI Table~\ref{esi-tab:tox21data}). The batch-free correction fell short in 17\% (out-class compounds) and 13\% (in-class compounds) of splits, and the one-sided DKW correction in 0.2\% and 1.0\%.
+
+\begin{table}[t]
+\centering
+\caption{Fraction of calibration draws for which coverage over a batch of $m=100$ compounds fell below 90\% (requested: at most 10\%); absolute Cauchy scores, $10^6$ draws. Theory: exact Beta--Binomial value. Full grid in ESI Table~\ref{esi-tab:grid}.}
+\label{tab:correction}
+\small
+\begin{tabular}{@{}rlrr@{}}
+\toprule
+$n$ & Threshold & Observed & Theory \\
+\midrule
+\inputrows{tables/tab_correction_rows.tex}
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{The coverage setting decides the cost}
+\label{sec:results:cost}
+
+Table~\ref{tab:cost} compares, on the population, the expected cost of three choices: the best two-threshold rule without constraint, the best swept setting with coverage of at least 90\% for both classes, and the default setting with coverage of exactly 90\% for both classes. Thresholds are set at the exact quantiles, without a finite-sample correction, so the table isolates the effect of the coverage setting itself. The constrained optimum cost exactly as much as the unconstrained one in 46 of 60 settings, and at most 47\% more; where it cost more, the unconstrained optimum misclassified more than 10\% of one class. The default setting, chosen without the costs in view, cost more. With a miss ten times as costly as a false lead, it cost up to 3.1 times the optimum for $\rho\ge0.3$. When an assay was nearly free ($\rho=0.1$), it cost up to 7.3 times the optimum, and up to 32 times at $\lambda=50$. The sweep of coverage settings thus contained the optimal rule in most cases, and navigating it with the costs in view finds that rule.
+
+Choosing the setting from audited outcomes needs the correction for selection. Among 100 swept settings, we chose the one with the fewest audited errors whose upper limit on deferrals fitted an assay capacity of 15\% of the batch (ESI Section~\ref{esi-sec:sim}). With the Bonferroni correction over the settings, realized deferrals exceeded capacity in 0.03\% of replicates; without it, in 0.47\%. Both are below the nominal 5\%, because neighbouring settings have strongly correlated counts, but only the corrected choice carries a guarantee. The correction cost 52.5 rather than 43.5 errors per 1000 compounds.
+
+\begin{table}[t]
+\centering
+\caption{Expected cost relative to the best two-threshold rule (\%), for three score distributions. $\lambda$: cost of a miss relative to a false lead; $\rho$: cost of an assay relative to a false lead. Constrained: best setting with population coverage $\ge90\%$ for both classes. Default: population coverage exactly 90\% for both classes. Exact population values, without the finite-sample correction. Full grid in ESI Table~\ref{esi-tab:cost}.}
+\label{tab:cost}
+\small
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+ & \multicolumn{2}{c}{$\rho=0.3$} & \multicolumn{2}{c}{$\rho=0.8$} \\
+Scores, $\lambda$ & constr. & default & constr. & default \\
+\midrule
+well separated, 5   & 0 & 12  & 0  & 58 \\
+well separated, 20  & 0 & 3   & 0  & 9 \\
+overlapping, 5      & 0 & 31  & 6  & 5 \\
+overlapping, 20     & 0 & 100 & 0  & 16 \\
+balanced, 5         & 0 & 91  & 12 & 35 \\
+balanced, 20        & 0 & 453 & 9  & 203 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{What a measurement budget costs: a solubility screen}
+\label{sec:results:solubility}
+
+After standardization and de-duplication, 9254 AqSolDB compounds remained, 2467 of them with $\log P>3.5$. In each of ten splits, the lipophilic calibration and audit sets held about 370 compounds each, 22\% of them soluble ($\log S\ge-4$). Audit AUROC was 0.91--0.93 overall and 0.82--0.88 within the lipophilic subset.
+
+\paragraph{The price of a budget.} Cutting the measurement budget from 450 to 250 per 1000 lipophilic compounds cost 73 additional false leads, with all requirements guaranteed jointly at 95\%, and no setting could be guaranteed below 200 measurements per 1000. At this audit size the guarantee itself cost about 110 measurements per 1000: the chosen setting expects 286 and is bounded at 395. The rest of this section shows how these numbers follow from the map.
+
+\paragraph{The decision space.} Sweeping $(\alpha_0,\alpha_1)$ over 12 values each, with $\delta=0.10$, gave 132--144 distinct settings per split. Fig.~\ref{fig:solubility} (left) shows their audited consequences for one split: one model, one endpoint, and outcomes ranging from 10 missed soluble compounds per 1000 with a third of the batch sent to measurement, to almost no measurements at the price of about 50 missed soluble compounds. Of the settings, 74--120 per split were Pareto-optimal for missed soluble compounds, false leads and measurements (ESI Table~\ref{esi-tab:aqsolsplits}), so the front is the menu, and the team's constraints make the choice. Table~\ref{tab:solubility} gives the audited consequences of the two extremes, with intervals for a batch of 1000. Setting A misses 10 soluble compounds per 1000 (interval 2--29) and sends 335 to measurement; setting B sends none to measurement and misses 52 (29--84). Because A and B were picked by looking at the audit, the Bonferroni intervals in Table~\ref{tab:solubility} are the ones that hold for them. Over the ten splits the corresponding audited values were 0--20 missed and 203--522 deferred for setting A, and 26--61 missed and 0--42 deferred for setting B.
+
+\paragraph{Scenarios.} Two scenarios illustrate the choice (Fig.~\ref{fig:solubility}, centre and right). In both, a batch of 1000 lipophilic compounds must yield at least 60 confirmed soluble compounds and miss at most 90, and the objective is the fewest expected false leads. In the first, at most 450 compounds may be sent to measurement; in the second, at most 250. The limits were set after inspecting the map, which the joint bounds allow. Every constraint was checked against a one-sided audit bound, with the Bonferroni correction over the 144 requests and the four bounded outcomes, so that all constraints hold together with probability at least 95\%. Under the first budget, 26 of the 144 requests were feasible; the chosen setting expects 115 false leads, 286 measurements and 23 missed soluble compounds per 1000, with bounds, holding together with probability at least 95\%, of 395 measurements, 75 misses and at least 66 confirmed. Tightening the budget to 250 left 9 feasible requests and moved the choice to a setting expecting 188 false leads: the tighter budget costs 73 additional false leads per 1000. Choosing instead by the upper bound on false leads, a risk-averse objective, selected the same settings in both scenarios. Both objectives are monotone, and as expected every chosen setting lay on the Pareto front of the four bounded outcomes, which held 105 of the 144 settings (ESI Section~\ref{esi-sec:costs}); the Pareto table is a complete menu for such objectives, and the constraints select from it. Over a range of budgets the price of the budget can be read off directly: the best feasible setting expected 221 false leads at 200 measurements per 1000, 188 at 250--300 and 133 at 350, and beyond 400 the budget no longer constrained the choice (115 false leads). Below 200 the feasible region was empty: no setting met all requirements with the labels in hand, so a team must relax a requirement or label more compounds. The gap between expected and bounded counts (286 against 395 measurements) is the price of the guarantee at this audit size, and labelling buys it down: at the same audited rate, half the audit (192 compounds) would give a bound of 432, twice the audit 372 and four times 358. A capacity rule chosen this way on one half of the audit set and checked on the other half never exceeded capacity in 200 splits (median upper bound 484, realized 304 measurements per 1000). No cost ratio is needed for this choice; the cost ratios for which each setting is expected-cost optimal are mapped in ESI Fig.~\ref{esi-fig:costmap}.
+
+\begin{table*}[t]
+\centering
+\caption{Audited consequences of two settings of the lipophilic solubility screen (split 0), per 1000 compounds: realized count in the audit set (384 compounds), with the 95\% prediction interval for a batch of 1000 and the interval with Bonferroni correction over the 144 requests of the sweep, which remains valid after choosing a setting by its audited outcomes. A: the Pareto setting with fewest audited missed soluble compounds, ties broken by fewer deferrals, $(\alpha_0,\alpha_1)=(0.30,0.075)$; B: the Pareto setting with fewest audited deferrals, ties broken by fewer misses, $(0.275,0.25)$; $\delta=0.10$.}
+\label{tab:solubility}
+\small
+\begin{tabular}{@{}lrccrcc@{}}
+\toprule
+ & \multicolumn{3}{c}{Setting A} & \multicolumn{3}{c}{Setting B} \\
+ & audit & 95\% & Bonferroni & audit & 95\% & Bonferroni \\
+\midrule
+\inputrows{tables/tab_solubility_rows.tex}
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/fig7_solubility.pdf}
+\caption{Navigating a solubility screen for lipophilic compounds (AqSolDB, $\log P>3.5$; split 0) with one model. Left: each point is one setting of the coverage requests, placed by its audited missed soluble compounds and measurements, with false leads in colour; A and B are the settings of Table~\ref{tab:solubility}. Centre and right: two scenarios in the plane of the coverage requests, with the expected number of false leads (grey, the objective) for each request. Lines mark where the 95\% joint bound of each constrained outcome equals its limit; blue cells satisfy all constraints with joint probability at least 95\%, and the star is the feasible setting with the fewest expected false leads. The right panel tightens the assay budget from 450 to 250 per 1000.}
+\label{fig:solubility}
+\end{figure*}
+
+\subsection{One request, twelve sets of consequences: Tox21}
+\label{sec:results:tox21}
+
+After standardization and de-duplication, 7592 Tox21 compounds remained, with 5619--7017 labelled per endpoint and an in-class (toxic) prevalence of 2.9--15.9\%. Here a confident hit is a compound confidently flagged as toxic, which a screen would set aside. Calibration sets contained a median of 44--228 in-class compounds per endpoint (ESI Table~\ref{esi-tab:tox21data}). Audit AUROC was 0.70--0.87 for random splits and 0.67--0.85 for scaffold splits. Before tie-breaking, a median of 3.3--4.3\% of scores were tied, mostly from identical fingerprints.
+
+\paragraph{The same request, very different consequences.} All endpoints were calibrated with the same request, $\alpha=\delta=0.10$ per class, using the batch correction. Yet the median fraction of compounds receiving a single label ranged from 13.6\% (NR-PPAR-$\gamma$) to 62\% (NR-AhR) (Fig.~\ref{fig:tox21}). Table~\ref{tab:tox21cells} gives the audited consequences of the two extremes, for the split with the median single-label fraction. For NR-AhR, a batch of 1000 compounds yields 78 confident hits (audit interval 58--101) against 78 false leads (57--100). For NR-PPAR-$\gamma$, it yields 15 (6--26) against 89 (67--113), with 865 compounds deferred. Half of the toxic calls are correct for NR-AhR, one in seven for NR-PPAR-$\gamma$. The audit reveals these consequences before the screen is run. The fraction of in-class compounds among single-label ``in-class'' calls ranged from 13\% to 58\%, an enrichment of 3.0 to 6.5 times over prevalence. With the standard threshold the single-label fractions were larger, 28\% and 72\%, but that threshold missed its coverage target in 42--47\% of splits.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig6_tox21.pdf}
+\caption{Twelve Tox21 endpoints calibrated to the same request ($\alpha=\delta=0.10$ per class, batch correction) sort a screening batch very differently. Bars: median audited counts per 1000 compounds over 50 random splits, ordered by single-label fraction (medians need not sum to 1000); no empty sets occurred. Black lines: 5--95\% range of the single-label count over splits.}
+\label{fig:tox21}
+\end{figure}
+
+\begin{table}[t]
+\centering
+\caption{Audited consequences per 1000 compounds for the endpoints with the highest and lowest single-label fraction (batch correction), for the random split with the median single-label fraction (25th of 50). Entries: realized count in the audit set, with the 95\% audit interval for a batch of 1000 in brackets. Calibration sets: 1385 out-class compounds and 197 in-class compounds (NR-AhR), 1526 and 37 (NR-PPAR-$\gamma$).}
+\label{tab:tox21cells}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}llrr@{}}
+\toprule
+True label & Outcome & NR-AhR & NR-PPAR-$\gamma$ \\
+\midrule
+\inputrows{tables/tab_tox21cells_rows.tex}
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Auditing a new salt: an electrolyte screen}
+\label{sec:results:calisol}
+
+CALiSol-23 holds 13,825 conductivity measurements of lithium-salt electrolytes from 27 publications.\citep{deBlasio2024CALiSol} After removing 523 rows without a conductivity and 23 rows from one source whose values lie about 100 times below all others for the same formulations (a probable unit error), 1495 formulations had been measured at room temperature, 275 of them (18\%) at or above 8\,mS\,cm$^{-1}$. The threshold is close to the conductivity of standard carbonate electrolytes; 1\,M LiPF$_6$ in EC/EMC (3:7) measures 9.4--9.5\,mS\,cm$^{-1}$ in this dataset, so a good formulation is one within reach of that standard. A threshold of 10\,mS\,cm$^{-1}$ would leave about 18 good formulations in a calibration set of 350, too few for the request to be attainable (Section~\ref{sec:results:dependence}). Measuring conductivity is cheap compared with building and cycling cells, so here a deferral means a measurement.
+
+\paragraph{A new salt.} The sharpest test is a new salt. With a model trained and calibrated on the other salts and the 606 LiPF$_6$ formulations screened, coverage of the good class averaged 29\% and fell below 90\% in all 50 splits (Table~\ref{tab:calisol}; Fig.~\ref{fig:calisol}, right). The audit of the screened formulations showed what this meant for the screen: at the default setting it reported a median of 174 missed good electrolytes per 1000 formulations, about two-thirds of the good ones, and 59 confident hits. Calibrating instead on a random pilot of 40\% of the LiPF$_6$ formulations, about 240 measurements, restored the coverage guarantee (5 shortfalls against 3.3 expected for the good class; 8 against 4.0 for the poor class), and the audit showed the gain: 10 missed good electrolytes and 159 confident hits per 1000, for 308 measurements. Formulations split at random over all salts met the request (2 and 4 shortfalls against 4.7 and 3.1 expected), and the sweep of coverage requests gave 108--132 distinct settings per split, trading measurements (0--230 per 1000) against false leads (0--150) and missed good electrolytes (0--30) (Fig.~\ref{fig:calisol}, left). Holding out whole salt--solvent systems also broke the coverage guarantee (20 and 22 shortfalls against 4.5 and 5.0).
+
+\paragraph{The audit carries the guarantee.} In all four designs, including the two in which the coverage guarantee failed, an audit set from the screened formulations reported the consequences correctly. Audit intervals for the default setting covered 95.5--100\% of realized counts, pointwise intervals over the whole sweep 97.2--97.6\%, and with the Bonferroni correction every setting and outcome was covered together in 98.4--99.2\% of audit--future splits. A capacity rule chosen on one audit half, as a planner would choose it, never exceeded capacity on the other half, in 980--1000 checks per design. Scenario maps for the electrolyte screen behave as for solubility (ESI Fig.~\ref{esi-fig:calisolscen}). Intervals from the calibration set alone covered 99.7\% of counts for random formulations; for a new salt they rely on a calibration that does not match, and a separate audit is the tool to use.
+
+\paragraph{Per plate.} A self-driving platform measures plates rather than batches of 1000. For the pilot-calibrated rule, an audit of 364 formulations gives, for one 96-well plate, 30 expected measurements with a 95\% interval of 20--40; scaled Clopper--Pearson would give 25--35, too narrow at this ratio of audit to batch size (Section~\ref{sec:results:intervals}). The one-sided bound of 38 measurements per plate holds with probability 95\% for a single plate, and a bound of 43 holds for all ten plates of a campaign together (level 0.5\% per plate).
+
+\begin{table*}[t]
+\centering
+\caption{Electrolyte screen (CALiSol-23, conductivity $\ge8$\,mS\,cm$^{-1}$ at room temperature), 50 splits per design. Shortfalls: splits in which audit-set coverage of the class fell below 90\%, observed/expected under the exact law. Audit coverage: percentage of realized counts in the stand-in future batch covered by 95\% audit intervals, for the default setting (range over outcomes), for every setting of the sweep (pointwise), and for all settings and outcomes together with the Bonferroni correction over 144 requests.}
+\label{tab:calisol}
+\small
+\begin{tabular}{@{}lrcccccc@{}}
+\toprule
+ & & \multicolumn{2}{c}{Shortfalls} & \multicolumn{3}{c}{Audit coverage (\%)} \\
+Calibration and audit drawn from & AUROC & poor & good & default & sweep & Bonferroni \\
+\midrule
+\inputrows{tables/tab_calisol_rows.tex}
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/fig8_calisol.pdf}
+\caption{Electrolyte screen (CALiSol-23). Left: each point is one setting of the coverage requests for one random split, placed by its audited missed good electrolytes and measurements per 1000 formulations, with false leads in colour. Right: fraction of 50 splits in which coverage of each class fell below 90\%, observed (bars) and expected under the exact law (black marks), for calibration on random formulations, on other salt--solvent systems, on other salts, and on a pilot sample of the new salt; above each design, the pointwise coverage of the audit intervals over the sweep.}
+\label{fig:calisol}
+\end{figure*}
+
+\subsection{What the audit must sample}
+\label{sec:results:dependence}
+
+The audit describes a future batch drawn from the same library as the audit itself. In simulation, when compounds share scaffold-level shifts of their predicted probability, the intervals held when the audit sampled the scaffolds being screened: coverage was 95.4--97.9\% (Fig.~\ref{fig:scaffold}, left). Auditing other scaffolds does not substitute. When the future batch came from new scaffolds with a scaffold effect of one standard deviation on the logit scale, coverage fell to 71\% for false leads, 83\% for missed in-class compounds and 88\% for deferrals; with 1.5 standard deviations it fell to 62--75\%.
+
+\paragraph{Tox21 scaffolds.} On Tox21 scaffold splits, calibration on other scaffolds broke the coverage guarantee: per-class coverage fell short in 28\% of splits for out-class compounds and 18\% for in-class compounds, two to three times the exact-law expectation (22.8 and 18.2 of 240 splits). An audit set from the screened scaffolds still reported the consequences correctly (Table~\ref{tab:audit}). Calibrating instead on a random pilot sample of the screened scaffolds restored the coverage guarantee: per-class violations then followed the exact law (ESI Table~\ref{esi-tab:pilots}).
+
+\paragraph{Solubility.} We also calibrated on all calibration compounds (about 1390) and then screened lipophilic compounds. Coverage of the soluble class among lipophilic audit compounds averaged 72\% and fell below the requested 90\% in all ten splits. Calibrating on the lipophilic compounds only gave 94\% (below 90\% in one split of ten, as the request allows), at the price of more measurements: 462 rather than 209 per 1000.
+
+\paragraph{How large a pilot must be.} In the Tox21 pilots, violations for the in-class compounds were nonetheless frequent, 29\%, 13\% and 12\% for pilots of 200, 500 and 1000 compounds, against 26\%, 12\% and 9\% expected, because many pilots held too few in-class compounds for the request to be attainable. At $\alpha=\delta=0.10$ at least 22--23 calibration compounds of a class are needed, whatever the batch size; 70\%, 41\% and 11\% of the pilots had fewer (median 13, 29 and 54 in-class compounds). A pilot therefore needs about $22/\pi$ random compounds at prevalence $\pi$, about 770 for NR-PPAR-$\gamma$. At that minimum the request is met only by the most conservative threshold; each further labelled compound then buys single-label calls.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig5_scaffold.pdf}
+\caption{Coverage of 95\% audit intervals when compounds are clustered in 60 scaffolds that share a shift of the predicted probability (3000 replicates per point). Left: calibration, audit and future compounds drawn from the same scaffolds, as with samples from the screening library. Right: future compounds from new scaffolds.}
+\label{fig:scaffold}
+\end{figure}
+
+\subsection{Using the calibration set as its own audit}
+\label{sec:results:calonly}
+
+With class probabilities, intervals from the calibration set alone covered the future count of every cell in 97.7--100\% of simulation replicates, counting only future compounds of the cell's class, for 300 and 1000 calibration compounds; for a mixed batch, all cells were covered together in 99.5\% (Fig.~\ref{fig:calonly}). They covered 98.7\% of realized audit counts on Tox21 random splits, all 8136 checked counts on AqSolDB, and 99.7\% on CALiSol-23 random splits. The price is width. With a fixed budget of 1000 labelled compounds, used entirely for calibration or split equally between calibration and an audit set, calibration-only intervals were 21--28\% wider for false leads and missed in-class compounds, 31--39\% wider for confident hits and correct rejections, and about twice as wide for deferrals (ESI Table~\ref{esi-tab:calonly}). On Tox21, against an audit set as large as the calibration set, they were 1.4--1.8 times as wide for single-label outcomes and 1.9--2.5 times for deferrals. Calibrating on other scaffolds reduced their coverage to 74\%, and calibrating on other salts to 33\%. The calibration set can therefore stand in for the audit set when labels are scarce, but a separate audit set from the screened library gives sharper and more robust consequences.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.88\textwidth]{figures/fig4_calibration_only.pdf}
+\caption{Intervals from the calibration set alone. Left: coverage of 95\% intervals for each cell's count among the future compounds of that class (3000 replicates; dashed line 95\%). Right: mean interval width for a mixed batch of 1000 compounds, when a budget of 1000 labelled compounds is used entirely for calibration or split equally between calibration and an audit set.}
+\label{fig:calonly}
+\end{figure*}
+
+%% ------------------------------------------------------------------
+\section{Discussion}
+\label{sec:discussion}
+
+The audit turns a conformal classifier into a forecast: before a batch is screened, it predicts how many hits, false leads, misses and measurements the batch will contain, with intervals that hold at a stated probability. Coverage serves as the coordinate a screening team steers by. The two class-wise coverage requests move a conformal classifier through the decisions available to a screening team, and for every setting the consequences are counts in one outcome table: compounds advanced, discarded and deferred, and how many of those calls are wrong. Linked to these counts by the audit, coverage becomes a coordinate a team can steer by. An objective, usually with guarantees on what a campaign will consume and deliver that hold with a stated probability, decides where to steer. The coverage plane is where such scenarios are explored, and an audit set from the library to be screened supplies the consequences, with finite-sample valid intervals that remain valid after the team has chosen a setting by looking at them. On Tox21, AqSolDB and CALiSol-23 the intervals held at their nominal level, also when the calibration came from other scaffolds or other salts, because the audit came from the screened compounds.
+
+\paragraph{Using the method in a screen.} The results suggest the following workflow:
+\begin{enumerate}
+\item Label a random sample of the library to be screened and use it as the calibration set. It must contain at least 22--23 compounds of the rarer class for a request at $\alpha=\delta=0.10$ to be attainable, and more for a useful one: keep labelling randomly chosen compounds, about $22/\pi$ or more at prevalence $\pi$. Choosing compounds by their score to find the rare class faster breaks exchangeability unless the selection is accounted for.\citep{BarberBeyond2023}
+\item Label a second random sample as the audit set. Its size sets the width of the intervals: for an outcome with frequency $p$ in a batch of $m$, $n$ audit compounds give a 95\% interval of roughly $\pm2m\sqrt{p(1-p)(1/n+1/m)}$, about $\pm35$ per 1000 for $p=0.1$ and $n=400$ (ESI Section~\ref{esi-sec:intervals}). With class probabilities and few labels, the calibration set can serve instead, at a cost in width.
+\item Sweep the coverage requests and audit each setting: intervals for missed in-class compounds, false leads and deferrals in the planned batch, with a Bonferroni correction over the sweep.
+\item State a scenario, an objective and the limits that must hold with probability at least $1-\varepsilon$ (assay capacity, budget, minimum yield), and choose the best setting among those whose audit bounds satisfy the limits. If the objective and limits are monotone in the outcomes, the table of Pareto settings is all the team needs to see.
+\item Screen, and compare the realized counts with the predicted intervals as a check on exchangeability.
+\end{enumerate}
+
+\paragraph{Campaigns run batch by batch.} Automated and self-driving laboratories synthesize and characterize in parallel, so their campaigns are sequences of batches, each with a fixed capacity, and the framework applies to each batch as it stands. Batch campaigns also tend to pursue different goals from turn-by-turn Bayesian optimization, which proposes one experiment at a time in search of a single optimum. Because a batch is evaluated in parallel, its members are chosen to be diverse,\citep{Gonzalez2016LP,HernandezLobato2017TS,Shields2021EDBO} and the campaign often seeks coverage of a chemical or physical design space: mapping a landscape, as in space-filling designs and closed-loop phase mapping,\citep{Joseph2016SFD,Kusne2020CAMEO} contracting onto promising regions,\citep{Eriksson2019TuRBO} or finding a set of optima such as a Pareto front.\citep{Daulton2020qEHVI} In each of these modes a batch is a selection from a scored library under a fixed capacity, and its consequences are what the audit predicts. The batch size $m$ is the plate or run size, and the scenario constraints are the capacity of the platform, the reagent or instrument budget per run and the minimum yield needed to proceed. Choosing which candidates enter the batch is the screening decision itself and is accounted for in the outcome table. When the model is retrained between batches, the thresholds change, so the calibration, the audit and the map are redone for the new deployment. Two practices follow. First, reserving a small random audit slice in every batch, measured whatever the rule decided, checks continually that the screened library still matches the calibration data; it is the acceptance sample of quality control applied to each lot. Second, the guarantee holds per batch with probability $1-\varepsilon$; a statement over all $K$ batches of a campaign needs level $\varepsilon/K$ for each. Because the audit bounds are stated in counts, they can be checked automatically, and the Pareto table is a compact menu from which a planner, including an AI agent, can choose a setting without a cost ratio being stated; we do not test such a planner here.
+
+\paragraph{Limitations.} All guarantees rest on exchangeability between the calibration, audit and screened compounds. A change of chemical series, scaffold or assay breaks it, as the scaffold results show. So does a batch selected with the model, as in active learning, unless the selection is part of the design, and so does a library proposed by a generative model or extended into new chemistry, as the new-salt screen shows;\citep{Fannjiang2022FeedbackCovariateShift,BarberBeyond2023} methods for shifted data are complementary. Compounds that share scaffolds are correlated, so the effective size of a pilot or audit sample is closer to the number of scaffolds sampled. Each interval covers one outcome of one setting; statements about many outcomes or settings need the Bonferroni correction, which widens intervals; with 144 requests and four bounded outcomes, the joint guarantee cost about 110 measurements per 1000 at an audit of 384 compounds. Larger audits lower this price, and bounds that exploit the monotone structure of the sweep could lower it further. The sweep reaches every two-threshold rule only with class probabilities, and the cost-optimal rule is a two-threshold rule only if the probability of being in-class increases with the score. Cost ratios are rarely known precisely, so we report the range of ratios for which a setting is cheapest. AqSolDB combines measurements from many sources, with a typical spread of 0.5--0.7 log units between sources;\citep{Sorkun2019AqSolDB} labels near the cut-off at $\log S=-4$ are therefore noisy. CALiSol-23 likewise pools 27 sources, and several formulations were measured at many temperatures or concentrations, so neighbouring formulations are correlated. The guarantees refer to the labels as recorded. Finally, we treat binary endpoints only, and one model throughout.
+
+\section{Conclusions}
+
+The coverage level of a conformal classifier is a coordinate for navigating screening decisions, and the audited consequences, counted in compounds and bounded with a stated probability, are what a team chooses by under its own objective and guarantees. Each setting sorts a future batch into one table of prediction set by true label, and every screening quantity is a sum of its cells. A labelled audit set from the library to be screened predicts all of these counts for the next batch, with intervals that hold with a specified probability in finite samples, under exchangeability alone and after a setting is chosen. The same request led to very different consequences across twelve Tox21 endpoints, and one model offered more than a hundred distinct trade-offs for a solubility screen and for an electrolyte screen. When the calibration did not match the screened population, as for a new lithium salt, the audit still bounded the consequences correctly. In automated campaigns, which run in parallel batches, the same construction applies to each batch, and the bounds become capacity constraints a planner can check. With an audit, a team sees those consequences before the campaign starts.
+
+\section*{Author contributions}
+P.H.Z.\ conceived the study, developed the methodology, performed the analysis and wrote the manuscript.
+
+\section*{Conflicts of interest}
+There are no conflicts to declare.
+
+\section*{Data availability}
+Tox21 is available through MoleculeNet, AqSolDB through its dataset reference\citep{Sorkun2019AqSolDB} and CALiSol-23 from the DTU data repository (DOI 10.11583/DTU.c.6929599).\citep{deBlasio2024CALiSol} The scripts that reproduce every table and figure are provided with the ESI, together with the processed data, split indices and stored model scores. They implement the finite-sample threshold corrections, randomized tie-breaking, outcome tables, prediction intervals for future batches from an audit set or from the calibration set alone, coverage-request sweeps with corrections for selection, and the cost-ratio analysis. \todo{Repository URL, version, license and archived DOI.}
+
+\section*{Acknowledgements}
+This work was supported by the U.S. Department of Energy, Office of Science, under Contract No.\ DE-AC02-05CH11231 as part of the Laboratory Directed Research and Development (LDRD) program. Additional support came in part from the U.S. Department of Energy, Office of Science, Scientific Discovery through Advanced Computing (SciDAC) program FORUM-AI. Generative AI was used to assist in the preparation of this manuscript.
+
+\small
+\bibliographystyle{unsrtnat}
+\bibliography{refs}
+
+\end{document}

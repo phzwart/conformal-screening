@@ -1,0 +1,40 @@
+{
+ "salt": {
+  "missed_good_per1000": 174.0924092409241,
+  "confident_hits_per1000": 59.40594059405941,
+  "false_leads_per1000": 0.8250825082508251,
+  "measurements_per1000": 15.676567656765677,
+  "n_cal_median": 297.0,
+  "n_audit_median": 606.0
+ },
+ "salt_pilot": {
+  "missed_good_per1000": 9.615384615384615,
+  "confident_hits_per1000": 159.34065934065933,
+  "false_leads_per1000": 46.7032967032967,
+  "measurements_per1000": 307.6923076923077,
+  "n_cal_median": 242.0,
+  "n_audit_median": 364.0
+ },
+ "plate": {
+  "n_audit": 364,
+  "K": 112,
+  "m": 96,
+  "expected": 29.53846153846154,
+  "audit_interval": [
+   20,
+   40
+  ],
+  "m_times_cp": [
+   25,
+   35
+  ],
+  "upper_one_plate": 38,
+  "upper_all_10_plates": 43
+ },
+ "audit_size": {
+  "192": 432,
+  "384": 395,
+  "768": 372,
+  "1536": 358
+ }
+}

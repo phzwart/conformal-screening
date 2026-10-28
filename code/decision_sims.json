@@ -1,0 +1,673 @@
+{
+ "A_cost": [
+  {
+   "geometry": "well separated",
+   "lambda": 2,
+   "rho": 0.1,
+   "chow": 0.015,
+   "constrained": 0.015,
+   "default_conformal": 0.0202,
+   "excess_constrained_pct": 0.0,
+   "excess_default_pct": 34.6
+  },
+  {
+   "geometry": "well separated",
+   "lambda": 2,
+   "rho": 0.3,
+   "chow": 0.0275,
+   "constrained": 0.0275,
+   "default_conformal": 0.0381,
+   "excess_constrained_pct": 0.0,
+   "excess_default_pct": 38.5
+  },
+  {
+   "geometry": "well separated",
+   "lambda": 2,
+   "rho": 0.5,
+   "chow": 0.0334,
+   "constrained": 0.0334,
+   "default_conformal": 0.0561,
+   "excess_constrained_pct": 0.0,
+   "excess_default_pct": 68.1
+  },
+  {
+   "geometry": "well separated",
+   "lambda": 2,
+   "rho": 0.8,
+   "chow": 0.0349,
+   "constrained": 0.0349,
+   "default_conformal": 0.083,
+   "excess_constrained_pct": 0.0,
+   "excess_default_pct": 138.3
+  },
+  {
+   "geometry": "well separated",
+   "lambda": 5,
+   "rho": 0.1,
+   "chow": 0.0189,
+   "constrained": 0.0189,
+   "default_conformal": 0.0232,
+   "excess_constrained_pct": 0.0,
+   "excess_default_pct": 23.0
+  },
+  {
+   "geometry": "well separated",
+   "lambda": 5,
+   "rho": 0.3,
+   "chow": 0.0368,
+   "constrained": 0.0368,
+   "default_conformal": 0.0412,
+   "excess_constrained_pct": 0.0,
+   "excess_default_pct": 11.8
+  },
+  {
+   "geometry": "well separated",
+   "lambda": 5,
+   "rho": 0.5,
+   "chow": 0.0473,
+   "constrained": 0.0473,
+   "default_conformal": 0.0591,
+   "excess_constrained_pct": 0.0,
+   "excess_default_pct": 25.0
+  },
+  {
+   "geometry": "well separated",
+   "lambda": 5,
+   "rho": 0.8,
+   "chow": 0.0543,
+   "constrained": 0.0543,
+   "default_conformal": 0.0861,
+   "excess_constrained_pct": 0.0,
+   "excess_default_pct": 58.4
+  },
+  {
+   "geometry": "well separated",
+   "lambda": 10,
+   "rho": 0.1,
+   "chow": 0.0222,
+   "constrained": 0.0222,
+   "default_conformal": 0.0282,
+   "excess_constrained_pct": 0.0,
+   "excess_default_pct": 27.1
+  },
+  {
+   "geometry": "well separated",
+   "lambda": 10,
+   "rho": 0.3,
+   "chow": 0.0451,
+   "constrained": 0.0451,
+   "default_conformal": 0.0462,
+   "excess_constrained_pct": 0.0,
+   "excess_default_pct": 2.4
+  },
+  {
+   "geometry": "well separated",
+   "lambda": 10,
+   "rho": 0.5,
+   "chow": 0.0597,
+   "constrained": 0.0597,
+   "default_conformal": 0.0641,
+   "excess_constrained_pct": 0.0,
+   "excess_default_pct": 7.4
+  },
+  {
+   "geometry": "well separated",
+   "lambda": 10,
+   "rho": 0.8,
+   "chow": 0.0723,
+   "constrained": 0.0723,
+   "default_conformal": 0.0911,
+   "excess_constrained_pct": 0.0,
+   "excess_default_pct": 25.9
+  },
+  {
+   "geometry": "well separated",
+   "lambda": 20,
+   "rho": 0.1,
+   "chow": 0.0259,
+   "constrained": 0.0259,
+   "default_conformal": 0.0383,
+   "excess_constrained_pct": 0.0,
+   "excess_default_pct": 47.8
+  },
+  {
+   "geometry": "well separated",
+   "lambda": 20,
+   "rho": 0.3,
+   "chow": 0.0545,
+   "constrained": 0.0545,
+   "default_conformal": 0.0562,
+   "excess_constrained_pct": 0.0,
+   "excess_default_pct": 3.2
+  },
+  {
+   "geometry": "well separated",
+   "lambda": 20,
+   "rho": 0.5,
+   "chow": 0.074,
+   "constrained": 0.074,
+   "default_conformal": 0.0742,
+   "excess_constrained_pct": 0.0,
+   "excess_default_pct": 0.2
+  },
+  {
+   "geometry": "well separated",
+   "lambda": 20,
+   "rho": 0.8,
+   "chow": 0.0931,
+   "constrained": 0.0931,
+   "default_conformal": 0.1011,
+   "excess_constrained_pct": 0.0,
+   "excess_default_pct": 8.6
+  },
+  {
+   "geometry": "well separated",
+   "lambda": 50,
+   "rho": 0.1,
+   "chow": 0.0312,
+   "constrained": 0.0312,
+   "default_conformal": 0.0684,
+   "excess_constrained_pct": 0.0,
+   "excess_default_pct": 119.3
+  },
+  {
+   "geometry": "well separated",
+   "lambda": 50,
+   "rho": 0.3,
+   "chow": 0.0686,
+   "constrained": 0.0686,
+   "default_conformal": 0.0863,
+   "excess_constrained_pct": 0.0,
+   "excess_default_pct": 25.9
+  },
+  {
+   "geometry": "well separated",
+   "lambda": 50,
+   "rho": 0.5,
+   "chow": 0.0957,
+   "constrained": 0.0957,
+   "default_conformal": 0.1043,
+   "excess_constrained_pct": 0.0,
+   "excess_default_pct": 8.9
+  },
+  {
+   "geometry": "well separated",
+   "lambda": 50,
+   "rho": 0.8,
+   "chow": 0.1253,
+   "constrained": 0.1253,
+   "default_conformal": 0.1312,
+   "excess_constrained_pct": 0.0,
+   "excess_default_pct": 4.8
+  },
+  {
+   "geometry": "overlapping",
+   "lambda": 2,
+   "rho": 0.1,
+   "chow": 0.0532,
+   "constrained": 0.0532,
+   "default_conformal": 0.1244,
+   "excess_constrained_pct": 0.0,
+   "excess_default_pct": 133.9
+  },
+  {
+   "geometry": "overlapping",
+   "lambda": 2,
+   "rho": 0.3,
+   "chow": 0.1013,
+   "constrained": 0.1049,
+   "default_conformal": 0.1433,
+   "excess_constrained_pct": 3.6,
+   "excess_default_pct": 41.4
+  },
+  {
+   "geometry": "overlapping",
+   "lambda": 2,
+   "rho": 0.5,
+   "chow": 0.1238,
+   "constrained": 0.1461,
+   "default_conformal": 0.1621,
+   "excess_constrained_pct": 18.0,
+   "excess_default_pct": 31.0
+  },
+  {
+   "geometry": "overlapping",
+   "lambda": 2,
+   "rho": 0.8,
+   "chow": 0.1296,
+   "constrained": 0.191,
+   "default_conformal": 0.1904,
+   "excess_constrained_pct": 47.4,
+   "excess_default_pct": 46.9
+  },
+  {
+   "geometry": "overlapping",
+   "lambda": 5,
+   "rho": 0.1,
+   "chow": 0.0673,
+   "constrained": 0.0673,
+   "default_conformal": 0.1694,
+   "excess_constrained_pct": 0.0,
+   "excess_default_pct": 151.8
+  },
+  {
+   "geometry": "overlapping",
+   "lambda": 5,
+   "rho": 0.3,
+   "chow": 0.1441,
+   "constrained": 0.1441,
+   "default_conformal": 0.1883,
+   "excess_constrained_pct": 0.0,
+   "excess_default_pct": 30.7
+  },
+  {
+   "geometry": "overlapping",
+   "lambda": 5,
+   "rho": 0.5,
+   "chow": 0.1907,
+   "constrained": 0.1908,
+   "default_conformal": 0.2071,
+   "excess_constrained_pct": 0.0,
+   "excess_default_pct": 8.6
+  },
+  {
+   "geometry": "overlapping",
+   "lambda": 5,
+   "rho": 0.8,
+   "chow": 0.2234,
+   "constrained": 0.2357,
+   "default_conformal": 0.2354,
+   "excess_constrained_pct": 5.5,
+   "excess_default_pct": 5.4
+  },
+  {
+   "geometry": "overlapping",
+   "lambda": 10,
+   "rho": 0.1,
+   "chow": 0.0764,
+   "constrained": 0.0764,
+   "default_conformal": 0.2444,
+   "excess_constrained_pct": 0.0,
+   "excess_default_pct": 220.0
+  },
+  {
+   "geometry": "overlapping",
+   "lambda": 10,
+   "rho": 0.3,
+   "chow": 0.1769,
+   "constrained": 0.1769,
+   "default_conformal": 0.2633,
+   "excess_constrained_pct": 0.0,
+   "excess_default_pct": 48.8
+  },
+  {
+   "geometry": "overlapping",
+   "lambda": 10,
+   "rho": 0.5,
+   "chow": 0.2457,
+   "constrained": 0.2457,
+   "default_conformal": 0.2821,
+   "excess_constrained_pct": 0.0,
+   "excess_default_pct": 14.8
+  },
+  {
+   "geometry": "overlapping",
+   "lambda": 10,
+   "rho": 0.8,
+   "chow": 0.3083,
+   "constrained": 0.3083,
+   "default_conformal": 0.3104,
+   "excess_constrained_pct": 0.0,
+   "excess_default_pct": 0.7
+  },
+  {
+   "geometry": "overlapping",
+   "lambda": 20,
+   "rho": 0.1,
+   "chow": 0.0835,
+   "constrained": 0.0835,
+   "default_conformal": 0.3944,
+   "excess_constrained_pct": 0.0,
+   "excess_default_pct": 372.1
+  },
+  {
+   "geometry": "overlapping",
+   "lambda": 20,
+   "rho": 0.3,
+   "chow": 0.207,
+   "constrained": 0.207,
+   "default_conformal": 0.4133,
+   "excess_constrained_pct": 0.0,
+   "excess_default_pct": 99.7
+  },
+  {
+   "geometry": "overlapping",
+   "lambda": 20,
+   "rho": 0.5,
+   "chow": 0.2997,
+   "constrained": 0.2997,
+   "default_conformal": 0.4321,
+   "excess_constrained_pct": 0.0,
+   "excess_default_pct": 44.2
+  },
+  {
+   "geometry": "overlapping",
+   "lambda": 20,
+   "rho": 0.8,
+   "chow": 0.3967,
+   "constrained": 0.3967,
+   "default_conformal": 0.4604,
+   "excess_constrained_pct": 0.0,
+   "excess_default_pct": 16.0
+  },
+  {
+   "geometry": "overlapping",
+   "lambda": 50,
+   "rho": 0.1,
+   "chow": 0.09,
+   "constrained": 0.09,
+   "default_conformal": 0.8444,
+   "excess_constrained_pct": 0.0,
+   "excess_default_pct": 838.3
+  },
+  {
+   "geometry": "overlapping",
+   "lambda": 50,
+   "rho": 0.3,
+   "chow": 0.2388,
+   "constrained": 0.2388,
+   "default_conformal": 0.8633,
+   "excess_constrained_pct": 0.0,
+   "excess_default_pct": 261.5
+  },
+  {
+   "geometry": "overlapping",
+   "lambda": 50,
+   "rho": 0.5,
+   "chow": 0.3616,
+   "constrained": 0.3616,
+   "default_conformal": 0.8821,
+   "excess_constrained_pct": 0.0,
+   "excess_default_pct": 144.0
+  },
+  {
+   "geometry": "overlapping",
+   "lambda": 50,
+   "rho": 0.8,
+   "chow": 0.5059,
+   "constrained": 0.5059,
+   "default_conformal": 0.9104,
+   "excess_constrained_pct": 0.0,
+   "excess_default_pct": 80.0
+  },
+  {
+   "geometry": "balanced, overlapping",
+   "lambda": 2,
+   "rho": 0.1,
+   "chow": 0.0685,
+   "constrained": 0.0685,
+   "default_conformal": 0.1592,
+   "excess_constrained_pct": 0.0,
+   "excess_default_pct": 132.2
+  },
+  {
+   "geometry": "balanced, overlapping",
+   "lambda": 2,
+   "rho": 0.3,
+   "chow": 0.1469,
+   "constrained": 0.1469,
+   "default_conformal": 0.1775,
+   "excess_constrained_pct": 0.0,
+   "excess_default_pct": 20.8
+  },
+  {
+   "geometry": "balanced, overlapping",
+   "lambda": 2,
+   "rho": 0.5,
+   "chow": 0.1863,
+   "constrained": 0.1879,
+   "default_conformal": 0.1958,
+   "excess_constrained_pct": 0.9,
+   "excess_default_pct": 5.1
+  },
+  {
+   "geometry": "balanced, overlapping",
+   "lambda": 2,
+   "rho": 0.8,
+   "chow": 0.1964,
+   "constrained": 0.2234,
+   "default_conformal": 0.2233,
+   "excess_constrained_pct": 13.7,
+   "excess_default_pct": 13.7
+  },
+  {
+   "geometry": "balanced, overlapping",
+   "lambda": 5,
+   "rho": 0.1,
+   "chow": 0.0738,
+   "constrained": 0.0738,
+   "default_conformal": 0.3092,
+   "excess_constrained_pct": 0.0,
+   "excess_default_pct": 319.0
+  },
+  {
+   "geometry": "balanced, overlapping",
+   "lambda": 5,
+   "rho": 0.3,
+   "chow": 0.1715,
+   "constrained": 0.1715,
+   "default_conformal": 0.3275,
+   "excess_constrained_pct": 0.0,
+   "excess_default_pct": 90.9
+  },
+  {
+   "geometry": "balanced, overlapping",
+   "lambda": 5,
+   "rho": 0.5,
+   "chow": 0.2343,
+   "constrained": 0.2359,
+   "default_conformal": 0.3458,
+   "excess_constrained_pct": 0.7,
+   "excess_default_pct": 47.6
+  },
+  {
+   "geometry": "balanced, overlapping",
+   "lambda": 5,
+   "rho": 0.8,
+   "chow": 0.2769,
+   "constrained": 0.3105,
+   "default_conformal": 0.3733,
+   "excess_constrained_pct": 12.2,
+   "excess_default_pct": 34.8
+  },
+  {
+   "geometry": "balanced, overlapping",
+   "lambda": 10,
+   "rho": 0.1,
+   "chow": 0.0763,
+   "constrained": 0.0763,
+   "default_conformal": 0.5592,
+   "excess_constrained_pct": 0.0,
+   "excess_default_pct": 632.5
+  },
+  {
+   "geometry": "balanced, overlapping",
+   "lambda": 10,
+   "rho": 0.3,
+   "chow": 0.1852,
+   "constrained": 0.1852,
+   "default_conformal": 0.5775,
+   "excess_constrained_pct": 0.0,
+   "excess_default_pct": 211.9
+  },
+  {
+   "geometry": "balanced, overlapping",
+   "lambda": 10,
+   "rho": 0.5,
+   "chow": 0.2623,
+   "constrained": 0.2639,
+   "default_conformal": 0.5958,
+   "excess_constrained_pct": 0.6,
+   "excess_default_pct": 127.2
+  },
+  {
+   "geometry": "balanced, overlapping",
+   "lambda": 10,
+   "rho": 0.8,
+   "chow": 0.3294,
+   "constrained": 0.3631,
+   "default_conformal": 0.6233,
+   "excess_constrained_pct": 10.2,
+   "excess_default_pct": 89.2
+  },
+  {
+   "geometry": "balanced, overlapping",
+   "lambda": 20,
+   "rho": 0.1,
+   "chow": 0.078,
+   "constrained": 0.078,
+   "default_conformal": 1.0592,
+   "excess_constrained_pct": 0.0,
+   "excess_default_pct": 1258.7
+  },
+  {
+   "geometry": "balanced, overlapping",
+   "lambda": 20,
+   "rho": 0.3,
+   "chow": 0.1948,
+   "constrained": 0.1948,
+   "default_conformal": 1.0775,
+   "excess_constrained_pct": 0.0,
+   "excess_default_pct": 453.0
+  },
+  {
+   "geometry": "balanced, overlapping",
+   "lambda": 20,
+   "rho": 0.5,
+   "chow": 0.2832,
+   "constrained": 0.2848,
+   "default_conformal": 1.0958,
+   "excess_constrained_pct": 0.6,
+   "excess_default_pct": 287.0
+  },
+  {
+   "geometry": "balanced, overlapping",
+   "lambda": 20,
+   "rho": 0.8,
+   "chow": 0.3705,
+   "constrained": 0.4042,
+   "default_conformal": 1.1233,
+   "excess_constrained_pct": 9.1,
+   "excess_default_pct": 203.2
+  },
+  {
+   "geometry": "balanced, overlapping",
+   "lambda": 50,
+   "rho": 0.1,
+   "chow": 0.0792,
+   "constrained": 0.0792,
+   "default_conformal": 2.5592,
+   "excess_constrained_pct": 0.0,
+   "excess_default_pct": 3133.3
+  },
+  {
+   "geometry": "balanced, overlapping",
+   "lambda": 50,
+   "rho": 0.3,
+   "chow": 0.2027,
+   "constrained": 0.2027,
+   "default_conformal": 2.5775,
+   "excess_constrained_pct": 0.0,
+   "excess_default_pct": 1171.4
+  },
+  {
+   "geometry": "balanced, overlapping",
+   "lambda": 50,
+   "rho": 0.5,
+   "chow": 0.3012,
+   "constrained": 0.3028,
+   "default_conformal": 2.5958,
+   "excess_constrained_pct": 0.5,
+   "excess_default_pct": 761.7
+  },
+  {
+   "geometry": "balanced, overlapping",
+   "lambda": 50,
+   "rho": 0.8,
+   "chow": 0.408,
+   "constrained": 0.4417,
+   "default_conformal": 2.6233,
+   "excess_constrained_pct": 8.3,
+   "excess_default_pct": 543.0
+  }
+ ],
+ "B_selection": {
+  "reps": 4000,
+  "candidate_rules": 100,
+  "capacity_fraction": 0.15,
+  "naive": {
+   "rule_found": 4000,
+   "capacity_exceeded_fraction": 0.0092,
+   "future_errors_per_batch": 41.8
+  },
+  "bonferroni": {
+   "rule_found": 4000,
+   "capacity_exceeded_fraction": 0.0005,
+   "future_errors_per_batch": 50.8
+  }
+ },
+ "C_scaffold": [
+  {
+   "cluster_sd": 0.0,
+   "same clusters": {
+    "false leads": 0.96,
+    "missed actives": 0.979,
+    "deferred": 0.964
+   },
+   "new clusters": {
+    "false leads": 0.956,
+    "missed actives": 0.977,
+    "deferred": 0.964
+   }
+  },
+  {
+   "cluster_sd": 0.5,
+   "same clusters": {
+    "false leads": 0.958,
+    "missed actives": 0.971,
+    "deferred": 0.97
+   },
+   "new clusters": {
+    "false leads": 0.842,
+    "missed actives": 0.929,
+    "deferred": 0.967
+   }
+  },
+  {
+   "cluster_sd": 1.0,
+   "same clusters": {
+    "false leads": 0.96,
+    "missed actives": 0.971,
+    "deferred": 0.959
+   },
+   "new clusters": {
+    "false leads": 0.706,
+    "missed actives": 0.828,
+    "deferred": 0.881
+   }
+  },
+  {
+   "cluster_sd": 1.5,
+   "same clusters": {
+    "false leads": 0.96,
+    "missed actives": 0.968,
+    "deferred": 0.954
+   },
+   "new clusters": {
+    "false leads": 0.618,
+    "missed actives": 0.735,
+    "deferred": 0.754
+   }
+  }
+ ]
+}

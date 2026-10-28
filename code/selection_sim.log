@@ -1,0 +1,29 @@
+{
+ "reps": 4000,
+ "grid_rules": 100,
+ "distinct_rules_median": 100,
+ "distinct_rules_range": [
+  90,
+  100
+ ],
+ "capacity_fraction": 0.15,
+ "gamma": 0.05,
+ "unadjusted": {
+  "no_rule_feasible_fraction": 0.0,
+  "capacity_exceeded_fraction": 0.0047,
+  "error_interval_coverage": 0.9557,
+  "future_errors_per_batch": 43.5
+ },
+ "bonferroni": {
+  "no_rule_feasible_fraction": 0.0,
+  "capacity_exceeded_fraction": 0.0003,
+  "error_interval_coverage": 1.0,
+  "future_errors_per_batch": 52.5
+ },
+ "fixed order": {
+  "no_rule_feasible_fraction": 0.0,
+  "capacity_exceeded_fraction": 0.001,
+  "error_interval_coverage": 0.9487,
+  "future_errors_per_batch": 47.9
+ }
+}

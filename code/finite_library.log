@@ -1,0 +1,12 @@
+n_test 100
+  single-label         exact mean 0.966 min 0.947 | bayes1 mean 0.950 min 0.935 | plugin mean 0.444
+  single-label error   exact mean 0.975 min 0.960 | bayes1 mean 0.954 min 0.937 | plugin mean 0.424
+  both labels          exact mean 0.976 min 0.947 | bayes1 mean 0.968 min 0.936 | plugin mean 0.653
+  empty set            exact mean 0.989 min 0.960 | bayes1 mean 0.982 min 0.943 | plugin mean 0.791
+  miscoverage          exact mean 0.969 min 0.955 | bayes1 mean 0.953 min 0.936 | plugin mean 0.443
+n_test 300
+  single-label         exact mean 0.966 min 0.947 | bayes1 mean 0.955 min 0.943 | plugin mean 0.660
+  single-label error   exact mean 0.967 min 0.951 | bayes1 mean 0.954 min 0.939 | plugin mean 0.657
+  both labels          exact mean 0.980 min 0.947 | bayes1 mean 0.975 min 0.943 | plugin mean 0.810
+  empty set            exact mean 0.986 min 0.957 | bayes1 mean 0.981 min 0.944 | plugin mean 0.850
+  miscoverage          exact mean 0.961 min 0.951 | bayes1 mean 0.952 min 0.939 | plugin mean 0.660

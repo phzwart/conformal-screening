@@ -1,0 +1,17 @@
+\begin{table}[ht]
+\centering
+\caption{Tied scores and calibration-only intervals ($n=1000$ calibration and $m=1000$ future compounds, prevalence 0.2, standard thresholds at $\alpha=0.10$; 2000 replicates per row). A fraction of out-class compounds share one score at the 0.92 quantile of the out-class distribution, as for a cluster of identical fingerprints. Entries: coverage of the nominal 95\% class-conditional intervals, with ties kept (kept) and with randomized tie-breaking (rand.). Row: all cells of the class row covered together.}
+\label{tab:ties}
+\small
+\begin{tabular}{rrrrrrrrr}
+\toprule
+Tied & \multicolumn{2}{c}{correct rejection} & \multicolumn{2}{c}{false lead} & \multicolumn{2}{c}{out-class row} & \multicolumn{2}{c}{in-class row} \\
+out-class (\%) & kept & rand. & kept & rand. & kept & rand. & kept & rand. \\
+\midrule
+0 & 0.980 & 0.974 & 0.980 & 0.981 & 0.966 & 0.963 & 0.975 & 0.972 \\
+4 & 0.857 & 0.983 & 0.969 & 0.982 & 0.838 & 0.971 & 0.976 & 0.977 \\
+6 & 0.811 & 0.981 & 0.967 & 0.981 & 0.787 & 0.966 & 0.977 & 0.971 \\
+10 & 0.710 & 0.977 & 0.951 & 0.982 & 0.668 & 0.966 & 0.970 & 0.971 \\
+\bottomrule
+\end{tabular}
+\end{table}

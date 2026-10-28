@@ -1,0 +1,17 @@
+\begin{table*}[ht]
+\centering
+\caption{Tox21 scaffold splits: calibration on scaffolds other than those screened, or on a random pilot sample of the screened compounds (pilot sizes 200, 500, 1000; the rest of the test set is screened). Pilots with fewer than five in-class were skipped. Infeasible: pilots for which the in-class-class request ($\alpha=\delta=0.10$ for the planned number of in-class) cannot be met, so the most conservative threshold is used. Violations: splits in which test coverage of the class fell below 90\%, observed/expected under the exact law; for feasible pilots only, with their number. Last columns: coverage (\%) of calibration-only intervals, class-conditional and for the mixed screened batch.}
+\label{tab:pilots}
+\small
+\begin{tabular}{lrrrrrrrrr}
+\toprule
+Calibration & pilots & skipped & median & infeasible & \multicolumn{2}{c}{violations} & in-class, feasible & \multicolumn{2}{c}{calibration-only} \\
+ & & & in-class & (\%) & out-class & in-class & pilots only & class & mixed \\
+\midrule
+other scaffolds & -- & -- & -- & -- & 67/22.8 & 44/18.2 & -- & 74.2 & 80.1 \\
+200 & 240 & 23 & 13 & 70 & 20/17.4 & 62/55.9 & 3/3.8 (65) & 99.0 & 99.8 \\
+500 & 240 & 1 & 29 & 41 & 15/20.9 & 31/28.5 & 13/9.7 (141) & 99.0 & 100.0 \\
+1000 & 224 & 0 & 54 & 11 & 23/21.1 & 27/19.6 & 18/16.1 (199) & 99.3 & 100.0 \\
+\bottomrule
+\end{tabular}
+\end{table*}

@@ -1,0 +1,116 @@
+Part A done
+{'reps': 4000, 'candidate_rules': 100, 'capacity_fraction': 0.15, 'naive': {'rule_found': 4000, 'capacity_exceeded_fraction': 0.0092, 'future_errors_per_batch': 41.8}, 'bonferroni': {'rule_found': 4000, 'capacity_exceeded_fraction': 0.0005, 'future_errors_per_batch': 50.8}}
+[
+ {
+  "cluster_sd": 0.0,
+  "same clusters": {
+   "false leads": 0.96,
+   "missed actives": 0.979,
+   "deferred": 0.964
+  },
+  "new clusters": {
+   "false leads": 0.956,
+   "missed actives": 0.977,
+   "deferred": 0.964
+  }
+ },
+ {
+  "cluster_sd": 0.5,
+  "same clusters": {
+   "false leads": 0.958,
+   "missed actives": 0.971,
+   "deferred": 0.97
+  },
+  "new clusters": {
+   "false leads": 0.842,
+   "missed actives": 0.929,
+   "deferred": 0.967
+  }
+ },
+ {
+  "cluster_sd": 1.0,
+  "same clusters": {
+   "false leads": 0.96,
+   "missed actives": 0.971,
+   "deferred": 0.959
+  },
+  "new clusters": {
+   "false leads": 0.706,
+   "missed actives": 0.828,
+   "deferred": 0.881
+  }
+ },
+ {
+  "cluster_sd": 1.5,
+  "same clusters": {
+   "false leads": 0.96,
+   "missed actives": 0.968,
+   "deferred": 0.954
+  },
+  "new clusters": {
+   "false leads": 0.618,
+   "missed actives": 0.735,
+   "deferred": 0.754
+  }
+ }
+]
+well separated         lam=  2 rho=0.1  chow=0.0150  constrained +  0.0%  default +  34.6%
+well separated         lam=  2 rho=0.3  chow=0.0275  constrained +  0.0%  default +  38.5%
+well separated         lam=  2 rho=0.5  chow=0.0334  constrained +  0.0%  default +  68.1%
+well separated         lam=  2 rho=0.8  chow=0.0349  constrained +  0.0%  default + 138.3%
+well separated         lam=  5 rho=0.1  chow=0.0189  constrained +  0.0%  default +  23.0%
+well separated         lam=  5 rho=0.3  chow=0.0368  constrained +  0.0%  default +  11.8%
+well separated         lam=  5 rho=0.5  chow=0.0473  constrained +  0.0%  default +  25.0%
+well separated         lam=  5 rho=0.8  chow=0.0543  constrained +  0.0%  default +  58.4%
+well separated         lam= 10 rho=0.1  chow=0.0222  constrained +  0.0%  default +  27.1%
+well separated         lam= 10 rho=0.3  chow=0.0451  constrained +  0.0%  default +   2.4%
+well separated         lam= 10 rho=0.5  chow=0.0597  constrained +  0.0%  default +   7.4%
+well separated         lam= 10 rho=0.8  chow=0.0723  constrained +  0.0%  default +  25.9%
+well separated         lam= 20 rho=0.1  chow=0.0259  constrained +  0.0%  default +  47.8%
+well separated         lam= 20 rho=0.3  chow=0.0545  constrained +  0.0%  default +   3.2%
+well separated         lam= 20 rho=0.5  chow=0.0740  constrained +  0.0%  default +   0.2%
+well separated         lam= 20 rho=0.8  chow=0.0931  constrained +  0.0%  default +   8.6%
+well separated         lam= 50 rho=0.1  chow=0.0312  constrained +  0.0%  default + 119.3%
+well separated         lam= 50 rho=0.3  chow=0.0686  constrained +  0.0%  default +  25.9%
+well separated         lam= 50 rho=0.5  chow=0.0957  constrained +  0.0%  default +   8.9%
+well separated         lam= 50 rho=0.8  chow=0.1253  constrained +  0.0%  default +   4.8%
+overlapping            lam=  2 rho=0.1  chow=0.0532  constrained +  0.0%  default + 133.9%
+overlapping            lam=  2 rho=0.3  chow=0.1013  constrained +  3.6%  default +  41.4%
+overlapping            lam=  2 rho=0.5  chow=0.1238  constrained + 18.0%  default +  31.0%
+overlapping            lam=  2 rho=0.8  chow=0.1296  constrained + 47.4%  default +  46.9%
+overlapping            lam=  5 rho=0.1  chow=0.0673  constrained +  0.0%  default + 151.8%
+overlapping            lam=  5 rho=0.3  chow=0.1441  constrained +  0.0%  default +  30.7%
+overlapping            lam=  5 rho=0.5  chow=0.1907  constrained +  0.0%  default +   8.6%
+overlapping            lam=  5 rho=0.8  chow=0.2234  constrained +  5.5%  default +   5.4%
+overlapping            lam= 10 rho=0.1  chow=0.0764  constrained +  0.0%  default + 220.0%
+overlapping            lam= 10 rho=0.3  chow=0.1769  constrained +  0.0%  default +  48.8%
+overlapping            lam= 10 rho=0.5  chow=0.2457  constrained +  0.0%  default +  14.8%
+overlapping            lam= 10 rho=0.8  chow=0.3083  constrained +  0.0%  default +   0.7%
+overlapping            lam= 20 rho=0.1  chow=0.0835  constrained +  0.0%  default + 372.1%
+overlapping            lam= 20 rho=0.3  chow=0.2070  constrained +  0.0%  default +  99.7%
+overlapping            lam= 20 rho=0.5  chow=0.2997  constrained +  0.0%  default +  44.2%
+overlapping            lam= 20 rho=0.8  chow=0.3967  constrained +  0.0%  default +  16.0%
+overlapping            lam= 50 rho=0.1  chow=0.0900  constrained +  0.0%  default + 838.3%
+overlapping            lam= 50 rho=0.3  chow=0.2388  constrained +  0.0%  default + 261.5%
+overlapping            lam= 50 rho=0.5  chow=0.3616  constrained +  0.0%  default + 144.0%
+overlapping            lam= 50 rho=0.8  chow=0.5059  constrained +  0.0%  default +  80.0%
+balanced, overlapping  lam=  2 rho=0.1  chow=0.0685  constrained +  0.0%  default + 132.2%
+balanced, overlapping  lam=  2 rho=0.3  chow=0.1469  constrained +  0.0%  default +  20.8%
+balanced, overlapping  lam=  2 rho=0.5  chow=0.1863  constrained +  0.9%  default +   5.1%
+balanced, overlapping  lam=  2 rho=0.8  chow=0.1964  constrained + 13.7%  default +  13.7%
+balanced, overlapping  lam=  5 rho=0.1  chow=0.0738  constrained +  0.0%  default + 319.0%
+balanced, overlapping  lam=  5 rho=0.3  chow=0.1715  constrained +  0.0%  default +  90.9%
+balanced, overlapping  lam=  5 rho=0.5  chow=0.2343  constrained +  0.7%  default +  47.6%
+balanced, overlapping  lam=  5 rho=0.8  chow=0.2769  constrained + 12.2%  default +  34.8%
+balanced, overlapping  lam= 10 rho=0.1  chow=0.0763  constrained +  0.0%  default + 632.5%
+balanced, overlapping  lam= 10 rho=0.3  chow=0.1852  constrained +  0.0%  default + 211.9%
+balanced, overlapping  lam= 10 rho=0.5  chow=0.2623  constrained +  0.6%  default + 127.2%
+balanced, overlapping  lam= 10 rho=0.8  chow=0.3294  constrained + 10.2%  default +  89.2%
+balanced, overlapping  lam= 20 rho=0.1  chow=0.0780  constrained +  0.0%  default +1258.7%
+balanced, overlapping  lam= 20 rho=0.3  chow=0.1948  constrained +  0.0%  default + 453.0%
+balanced, overlapping  lam= 20 rho=0.5  chow=0.2832  constrained +  0.6%  default + 287.0%
+balanced, overlapping  lam= 20 rho=0.8  chow=0.3705  constrained +  9.1%  default + 203.2%
+balanced, overlapping  lam= 50 rho=0.1  chow=0.0792  constrained +  0.0%  default +3133.3%
+balanced, overlapping  lam= 50 rho=0.3  chow=0.2027  constrained +  0.0%  default +1171.4%
+balanced, overlapping  lam= 50 rho=0.5  chow=0.3012  constrained +  0.5%  default + 761.7%
+balanced, overlapping  lam= 50 rho=0.8  chow=0.4080  constrained +  8.3%  default + 543.0%

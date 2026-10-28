@@ -1,0 +1,312 @@
+{
+ "n_runs": 840,
+ "violations_random": {
+  "standard": {
+   "inactive": {
+    "n": 600,
+    "observed": 282,
+    "observed_rate": 0.47,
+    "expected": 286.3967017387998,
+    "expected_rate": 0.47732783623133296,
+    "p_upper": 0.6553283229773644,
+    "p_lower": 0.3752554925959105
+   },
+   "active": {
+    "n": 600,
+    "observed": 249,
+    "observed_rate": 0.415,
+    "expected": 245.586585060842,
+    "expected_rate": 0.40931097510140335,
+    "p_upper": 0.40312714170477804,
+    "p_lower": 0.6287447643302028
+   }
+  },
+  "batchfree": {
+   "inactive": {
+    "n": 600,
+    "observed": 102,
+    "observed_rate": 0.17,
+    "expected": 101.64531949951814,
+    "expected_rate": 0.16940886583253023,
+    "p_upper": 0.5015210506228501,
+    "p_lower": 0.5417749750321059
+   },
+   "active": {
+    "n": 600,
+    "observed": 80,
+    "observed_rate": 0.13333333333333333,
+    "expected": 77.78308828717228,
+    "expected_rate": 0.12963848047862045,
+    "p_upper": 0.41152723817594933,
+    "p_lower": 0.6348139189200046
+   }
+  },
+  "batch": {
+   "inactive": {
+    "n": 600,
+    "observed": 55,
+    "observed_rate": 0.09166666666666666,
+    "expected": 56.15125388388823,
+    "expected_rate": 0.09358542313981372,
+    "p_upper": 0.5844869683304044,
+    "p_lower": 0.4711448964320791
+   },
+   "active": {
+    "n": 600,
+    "observed": 45,
+    "observed_rate": 0.075,
+    "expected": 42.27788913959463,
+    "expected_rate": 0.07046314856599106,
+    "p_upper": 0.3536242216816705,
+    "p_lower": 0.7028523867365309
+   }
+  },
+  "dkw": {
+   "inactive": {
+    "n": 600,
+    "observed": 1,
+    "observed_rate": 0.0016666666666666668,
+    "expected": 1.6242373994829382,
+    "expected_rate": 0.002707062332471564,
+    "p_upper": 0.8033759824284288,
+    "p_lower": 0.5168636933710429
+   },
+   "active": {
+    "n": 600,
+    "observed": 6,
+    "observed_rate": 0.01,
+    "expected": 3.1412387254611036,
+    "expected_rate": 0.005235397875768506,
+    "p_upper": 0.09662099397534159,
+    "p_lower": 0.9606120391483166
+   }
+  }
+ },
+ "violations_scaffold_other": {
+  "inactive": {
+   "n": 240,
+   "observed": 67,
+   "observed_rate": 0.2791666666666667,
+   "expected": 22.755521772204172,
+   "expected_rate": 0.09481467405085071,
+   "p_upper": 3.7420348336076845e-16,
+   "p_lower": 1.0
+  },
+  "active": {
+   "n": 240,
+   "observed": 44,
+   "observed_rate": 0.18333333333333332,
+   "expected": 18.237677260302558,
+   "expected_rate": 0.07599032191792734,
+   "p_upper": 4.043065268923156e-08,
+   "p_lower": 0.9999999859470747
+  }
+ },
+ "calonly_random": {
+  "cells": 3600,
+  "coverage_class_conditional": 0.9872222222222222,
+  "coverage_mixed": 0.9983333333333333
+ },
+ "calonly_scaffold_other": {
+  "cells": 1440,
+  "coverage_class_conditional": 0.7416666666666667,
+  "coverage_mixed": 0.8006944444444445
+ },
+ "pilots": {
+  "200": {
+   "pilots": 240,
+   "too_few_actives_skipped": 23,
+   "median_actives": 13.0,
+   "request_infeasible_fraction": 0.7004608294930876,
+   "violations": {
+    "inactive": {
+     "n": 217,
+     "observed": 20,
+     "observed_rate": 0.09216589861751152,
+     "expected": 17.39353322456449,
+     "expected_rate": 0.08015453098877644,
+     "p_upper": 0.2904078138703374,
+     "p_lower": 0.7857228888185919
+    },
+    "active": {
+     "n": 217,
+     "observed": 62,
+     "observed_rate": 0.2857142857142857,
+     "expected": 55.86149262317005,
+     "expected_rate": 0.25742623328649794,
+     "p_upper": 0.17029829953293385,
+     "p_lower": 0.8684060188574113
+    }
+   },
+   "calonly": {
+    "cells": 1302,
+    "coverage_class_conditional": 0.9900153609831029,
+    "coverage_mixed": 0.9984639016897081
+   },
+   "violations_feasible_only": {
+    "inactive": {
+     "n": 65,
+     "observed": 11,
+     "observed_rate": 0.16923076923076924,
+     "expected": 5.145852705526882,
+     "expected_rate": 0.07916696470041357,
+     "p_upper": 0.012556647120147193,
+     "p_lower": 0.9953847325406951
+    },
+    "active": {
+     "n": 65,
+     "observed": 3,
+     "observed_rate": 0.046153846153846156,
+     "expected": 3.758190820311511,
+     "expected_rate": 0.05781832031248478,
+     "p_upper": 0.734014933385979,
+     "p_lower": 0.47681971824758446
+    }
+   }
+  },
+  "500": {
+   "pilots": 240,
+   "too_few_actives_skipped": 1,
+   "median_actives": 29.0,
+   "request_infeasible_fraction": 0.41004184100418406,
+   "violations": {
+    "inactive": {
+     "n": 239,
+     "observed": 15,
+     "observed_rate": 0.06276150627615062,
+     "expected": 20.91705158821035,
+     "expected_rate": 0.08751904430213535,
+     "p_upper": 0.9349905821606707,
+     "p_lower": 0.10357552079372408
+    },
+    "active": {
+     "n": 239,
+     "observed": 31,
+     "observed_rate": 0.1297071129707113,
+     "expected": 28.538444493737835,
+     "expected_rate": 0.11940771754702023,
+     "p_upper": 0.33548146219112496,
+     "p_lower": 0.7346306385419947
+    }
+   },
+   "calonly": {
+    "cells": 1434,
+    "coverage_class_conditional": 0.9902370990237099,
+    "coverage_mixed": 1.0
+   },
+   "violations_feasible_only": {
+    "inactive": {
+     "n": 141,
+     "observed": 10,
+     "observed_rate": 0.07092198581560284,
+     "expected": 12.426998366173413,
+     "expected_rate": 0.08813474018562703,
+     "p_upper": 0.8053095924355015,
+     "p_lower": 0.29310025207899576
+    },
+    "active": {
+     "n": 141,
+     "observed": 13,
+     "observed_rate": 0.09219858156028368,
+     "expected": 9.726205713602777,
+     "expected_rate": 0.06898018236597714,
+     "p_upper": 0.17492416768351776,
+     "p_lower": 0.8924162710181047
+    }
+   }
+  },
+  "1000": {
+   "pilots": 224,
+   "too_few_actives_skipped": 0,
+   "median_actives": 53.5,
+   "request_infeasible_fraction": 0.1116071428571429,
+   "violations": {
+    "inactive": {
+     "n": 224,
+     "observed": 23,
+     "observed_rate": 0.10267857142857142,
+     "expected": 21.090406616720713,
+     "expected_rate": 0.09415360096750318,
+     "p_upper": 0.3630970923692771,
+     "p_lower": 0.7166667080900816
+    },
+    "active": {
+     "n": 224,
+     "observed": 27,
+     "observed_rate": 0.12053571428571429,
+     "expected": 19.587755069811017,
+     "expected_rate": 0.0874453351330849,
+     "p_upper": 0.053817597396396154,
+     "p_lower": 0.9661058590148297
+    }
+   },
+   "calonly": {
+    "cells": 1344,
+    "coverage_class_conditional": 0.9925595238095238,
+    "coverage_mixed": 1.0
+   },
+   "violations_feasible_only": {
+    "inactive": {
+     "n": 199,
+     "observed": 22,
+     "observed_rate": 0.11055276381909548,
+     "expected": 18.745128237151153,
+     "expected_rate": 0.09419662430729221,
+     "p_upper": 0.24600186837308624,
+     "p_lower": 0.820766629711003
+    },
+    "active": {
+     "n": 199,
+     "observed": 18,
+     "observed_rate": 0.09045226130653267,
+     "expected": 16.109023324247193,
+     "expected_rate": 0.08094986595099092,
+     "p_upper": 0.34640921020801446,
+     "p_lower": 0.7415390192517268
+    }
+   }
+  }
+ },
+ "sizing": {
+  "20": 22,
+  "50": 23,
+  "100": 23,
+  "200": 22,
+  "500": 22,
+  "1000": 22,
+  "5000": 22,
+  "batch_free": 22
+ },
+ "width_ratio_summary": {
+  "correct rejection": {
+   "min": 1.4166666666666667,
+   "max": 1.6993335611756666
+  },
+  "false lead": {
+   "min": 1.4222222222222223,
+   "max": 1.5
+  },
+  "deferred inactive": {
+   "min": 2.2695217917675548,
+   "max": 2.4437521937521938
+  },
+  "confident hit": {
+   "min": 1.6153846153846154,
+   "max": 1.8055555555555556
+  },
+  "missed active": {
+   "min": 1.5,
+   "max": 1.8166666666666667
+  },
+  "deferred active": {
+   "min": 1.9258241758241759,
+   "max": 2.4594594594594597
+  }
+ },
+ "shared_fingerprints_test_in_cal": {
+  "median": 0.03481979230299328,
+  "max": 0.048398576512455514
+ }
+}
+single-label fraction: {'NR-AR': 0.183, 'NR-AR-LBD': 0.16, 'NR-AhR': 0.619, 'NR-Aromatase': 0.206, 'NR-ER': 0.226, 'NR-ER-LBD': 0.216, 'NR-PPAR-gamma': 0.136, 'SR-ARE': 0.37, 'SR-ATAD5': 0.234, 'SR-HSE': 0.202, 'SR-MMP': 0.543, 'SR-p53': 0.288}
+monotonicity: {'NR-AR': (5, 2.38), 'NR-AR-LBD': (5, 1.33), 'NR-AhR': (2, 1.77), 'NR-Aromatase': (0, 0.0), 'NR-ER': (2, 0.86), 'NR-ER-LBD': (2, 2.58), 'NR-PPAR-gamma': (3, 1.04), 'SR-ARE': (1, 0.09), 'SR-ATAD5': (1, 0.78), 'SR-HSE': (1, 1.09), 'SR-MMP': (0, 0.0), 'SR-p53': (0, 0.0)}

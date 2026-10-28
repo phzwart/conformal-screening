@@ -1,0 +1,29 @@
+\begin{table}[ht]
+\centering
+\caption{Expected cost relative to Chow's optimal rule (\%), constrained (coverage $\ge0.90$ for both classes) / default ($\alpha=0.10$ for both classes). $\lambda$: cost of a miss; $\rho$: cost of an assay; both relative to a false lead.}
+\label{tab:cost}
+\small
+\begin{tabular}{llrrrr}
+\toprule
+Scores & $\lambda$ & $\rho=0.1$ & $\rho=0.3$ & $\rho=0.5$ & $\rho=0.8$ \\
+\midrule
+well separated & 2 & 0 / 35 & 0 / 38 & 0 / 68 & 0 / 138 \\
+ & 5 & 0 / 23 & 0 / 12 & 0 / 25 & 0 / 58 \\
+ & 10 & 0 / 27 & 0 / 2 & 0 / 7 & 0 / 26 \\
+ & 20 & 0 / 48 & 0 / 3 & 0 / 0 & 0 / 9 \\
+ & 50 & 0 / 119 & 0 / 26 & 0 / 9 & 0 / 5 \\
+\midrule
+overlapping & 2 & 0 / 134 & 4 / 41 & 18 / 31 & 47 / 47 \\
+ & 5 & 0 / 152 & 0 / 31 & 0 / 9 & 6 / 5 \\
+ & 10 & 0 / 220 & 0 / 49 & 0 / 15 & 0 / 1 \\
+ & 20 & 0 / 372 & 0 / 100 & 0 / 44 & 0 / 16 \\
+ & 50 & 0 / 838 & 0 / 262 & 0 / 144 & 0 / 80 \\
+\midrule
+balanced, overlapping & 2 & 0 / 132 & 0 / 21 & 1 / 5 & 14 / 14 \\
+ & 5 & 0 / 319 & 0 / 91 & 1 / 48 & 12 / 35 \\
+ & 10 & 0 / 632 & 0 / 212 & 1 / 127 & 10 / 89 \\
+ & 20 & 0 / 1259 & 0 / 453 & 1 / 287 & 9 / 203 \\
+ & 50 & 0 / 3133 & 0 / 1171 & 0 / 762 & 8 / 543 \\
+\bottomrule
+\end{tabular}
+\end{table}

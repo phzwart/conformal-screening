@@ -1,0 +1,26 @@
+\begin{table*}[ht]
+\centering
+\caption{Calibration-only intervals (nominal 95\%), future batch of $m=1000$. Class-conditional: coverage of the row intervals given the number of future compounds of the class. Mixed: coverage for a batch of unknown composition (union over the interval for the number of in-class; levels as in Section~\ref{sec:calonly}). Widths are for the mixed batch. Split budget: the same $n$ labelled compounds split equally into calibration and test sets, with test-set intervals. $n=300$: 2897 replicates (103 skipped with fewer than 20 calibration compounds in a class), all mixed-batch cells covered together in 99.7\%; $n=1000$: 3000 replicates (0 skipped with fewer than 20 calibration compounds in a class), all mixed-batch cells covered together in 99.5\%.}
+\label{tab:calonly}
+\small
+\begin{tabular}{rlccrrc}
+\toprule
+$n$ & Cell & \multicolumn{2}{c}{Coverage, calibration only} & \multicolumn{2}{c}{Mean width} & Coverage \\
+ & & class-conditional & mixed & calibration only & split budget & split budget \\
+\midrule
+300 & out-class $\{0\}$ (correct rejection) & 0.978 & 1.000 & 202.9 & 158.7 & 0.964 \\
+ & out-class $\{1\}$ (false lead) & 0.977 & 0.999 & 78.9 & 69.4 & 0.972 \\
+ & out-class deferred & 0.999 & 1.000 & 180.7 & 106.2 & 0.973 \\
+ & in-class $\{1\}$ (confident hit) & 0.981 & 0.999 & 164.8 & 138.8 & 0.965 \\
+ & in-class $\{0\}$ (missed in-class) & 0.989 & 0.999 & 47.8 & 42.1 & 0.988 \\
+ & in-class deferred & 0.998 & 1.000 & 104.8 & 68.8 & 0.982 \\
+\midrule
+1000 & out-class $\{0\}$ (correct rejection) & 0.979 & 1.000 & 138.9 & 99.7 & 0.960 \\
+ & out-class $\{1\}$ (false lead) & 0.984 & 0.999 & 52.9 & 43.7 & 0.972 \\
+ & out-class deferred & 1.000 & 1.000 & 123.7 & 59.8 & 0.969 \\
+ & in-class $\{1\}$ (confident hit) & 0.981 & 0.998 & 111.2 & 85.2 & 0.946 \\
+ & in-class $\{0\}$ (missed in-class) & 0.987 & 0.999 & 31.8 & 24.8 & 0.977 \\
+ & in-class deferred & 1.000 & 1.000 & 71.3 & 36.9 & 0.976 \\
+\bottomrule
+\end{tabular}
+\end{table*}

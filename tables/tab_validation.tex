@@ -1,0 +1,28 @@
+\begin{table*}[ht]
+\centering
+\caption{Coverage of 95\% prediction intervals for the count of each outcome in a future batch of $m=1000$, and mean interval width, from an audit set of $n$ compounds; 10000 replicates per audit size. Audit interval: the Beta--Binomial limits of Section~\ref{sec:intervals}. $m\times$CP: $m$ times the Clopper--Pearson interval for the rate, rounded outward. Plug-in: Binomial$(m,K/n)$ quantiles. Last column: Clopper--Pearson coverage of the long-run rate $p_g(Q)$, the quantity it is designed for.}
+\label{tab:validation}
+\small
+\begin{tabular}{rlcccccccc}
+\toprule
+$n$ & Outcome & \multicolumn{2}{c}{Audit interval} & \multicolumn{2}{c}{Bayesian, uniform prior} & \multicolumn{2}{c}{$m\times$CP} & Plug-in & CP, rate \\
+ & & coverage & width & coverage & width & coverage & width & coverage & coverage \\
+\midrule
+100 & single label & 0.970 & 128.0 & 0.951 & 121.0 & 0.963 & 123.5 & 0.436 & 0.970 \\
+ & single-label error & 0.972 & 102.0 & 0.952 & 96.1 & 0.967 & 98.7 & 0.437 & 0.973 \\
+ & both labels & 0.981 & 102.0 & 0.973 & 97.0 & 0.978 & 98.4 & 0.689 & 0.981 \\
+ & empty set & 0.989 & 64.0 & 0.978 & 61.0 & 0.986 & 62.1 & 0.747 & 0.989 \\
+ & miscoverage & 0.969 & 121.4 & 0.954 & 114.2 & 0.963 & 117.2 & 0.448 & 0.969 \\
+300 & single label & 0.967 & 78.2 & 0.956 & 75.5 & 0.941 & 70.1 & 0.661 & 0.965 \\
+ & single-label error & 0.966 & 61.2 & 0.953 & 58.8 & 0.944 & 55.3 & 0.662 & 0.966 \\
+ & both labels & 0.980 & 58.2 & 0.974 & 56.6 & 0.965 & 52.6 & 0.812 & 0.980 \\
+ & empty set & 0.987 & 32.9 & 0.982 & 31.9 & 0.976 & 30.5 & 0.849 & 0.985 \\
+ & miscoverage & 0.964 & 74.2 & 0.955 & 71.3 & 0.940 & 66.7 & 0.663 & 0.962 \\
+1000 & single label & 0.957 & 51.7 & 0.953 & 50.9 & 0.870 & 37.9 & 0.845 & 0.957 \\
+ & single-label error & 0.961 & 40.4 & 0.956 & 39.6 & 0.882 & 29.9 & 0.849 & 0.958 \\
+ & both labels & 0.974 & 36.8 & 0.973 & 36.4 & 0.927 & 27.0 & 0.915 & 0.976 \\
+ & empty set & 0.983 & 19.9 & 0.980 & 19.5 & 0.943 & 14.9 & 0.930 & 0.981 \\
+ & miscoverage & 0.957 & 49.3 & 0.953 & 48.4 & 0.866 & 36.2 & 0.845 & 0.954 \\
+\bottomrule
+\end{tabular}
+\end{table*}

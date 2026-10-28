@@ -1,0 +1,60 @@
+{
+ "tox21_raw": 8014,
+ "tox21_parsed_unique": 7592,
+ "tox21_label_conflicts_set_missing": 139,
+ "tox21_per_task": {
+  "NR-AR": {
+   "n": 7017,
+   "active": 292
+  },
+  "NR-AR-LBD": {
+   "n": 6545,
+   "active": 231
+  },
+  "NR-AhR": {
+   "n": 6328,
+   "active": 743
+  },
+  "NR-Aromatase": {
+   "n": 5619,
+   "active": 280
+  },
+  "NR-ER": {
+   "n": 5976,
+   "active": 750
+  },
+  "NR-ER-LBD": {
+   "n": 6739,
+   "active": 335
+  },
+  "NR-PPAR-gamma": {
+   "n": 6253,
+   "active": 179
+  },
+  "SR-ARE": {
+   "n": 5647,
+   "active": 898
+  },
+  "SR-ATAD5": {
+   "n": 6850,
+   "active": 257
+  },
+  "SR-HSE": {
+   "n": 6272,
+   "active": 356
+  },
+  "SR-MMP": {
+   "n": 5627,
+   "active": 890
+  },
+  "SR-p53": {
+   "n": 6564,
+   "active": 410
+  }
+ },
+ "aqsoldb_raw": 9982,
+ "aqsoldb_parsed_unique": 9399,
+ "aqsoldb_after_dedup": 9254,
+ "aqsoldb_logP_gt_3.5": 2467,
+ "aqsoldb_insoluble_logS_lt_-4": 2662
+}

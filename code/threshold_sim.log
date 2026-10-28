@@ -1,0 +1,8 @@
+50 [('standard', 5, 0.397), ('batch correction', 2, 0.0473), ('DKW (one-sided)', 1, 0.0096), ('batch-free correction', 2, 0.0473)]
+75 [('standard', 7, 0.3466), ('batch correction', 4, 0.0766), ('DKW (one-sided)', 1, 0.0016), ('batch-free correction', 4, 0.0766)]
+100 [('standard', 10, 0.4081), ('batch correction', 6, 0.0957), ('DKW (one-sided)', 1, 0.0004), ('batch-free correction', 6, 0.0957)]
+150 [('standard', 15, 0.4107), ('batch correction', 9, 0.0805), ('DKW (one-sided)', 1, 0.0), ('batch-free correction', 10, 0.118)]
+200 [('standard', 20, 0.4127), ('batch correction', 13, 0.0987), ('DKW (one-sided)', 4, 0.0005), ('batch-free correction', 15, 0.1684)]
+250 [('standard', 25, 0.4134), ('batch correction', 16, 0.0858), ('DKW (one-sided)', 8, 0.0031), ('batch-free correction', 19, 0.1699)]
+300 [('standard', 30, 0.4136), ('batch correction', 20, 0.0969), ('DKW (one-sided)', 11, 0.0051), ('batch-free correction', 23, 0.1714)]
+500 [('standard', 50, 0.4152), ('batch correction', 34, 0.0954), ('DKW (one-sided)', 26, 0.0244), ('batch-free correction', 41, 0.2117)]
