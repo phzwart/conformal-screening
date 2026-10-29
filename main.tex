@@ -347,6 +347,17 @@ Calibration and audit drawn from & AUROC & poor & good & default & sweep & Bonfe
 \label{fig:calisol}
 \end{figure*}
 
+\subsection{Building the audit for the round it prices: a DNA-encoded library}
+\label{sec:results:del}
+
+The electrolyte screen showed that an audit drawn from the screened population bounds the consequences where a calibration set from elsewhere does not. A campaign poses a harder version of the same question, because the next round is often not drawn from the population already screened: it introduces chemistry that has not been made. What the audit must then contain is a question about its design, and a DNA-encoded library answers it cleanly, because the chemistry is built from a catalogue of building blocks and a round can be declared in those terms.
+
+We use a sample of a published library screened against soluble epoxide hydrolase, in which each molecule is assembled from one block at each of three positions and carries the library's own binding call; the in-class rate is 0.7\%. A round is declared in which 30\% of the batch is built on blocks at the first position that the model has never seen. Three ways of preparing for that round are compared, each supplying its own calibration and audit sets, all three sharing one model per repeat so that nothing differs between them but the sets themselves: calibration and audit drawn only from blocks the model trained on, as a team would do by habit; drawn with the same 30\% share of new chemistry as the batch but from different new blocks, which is the position of a team that has measured some new chemistry and is about to make different new chemistry; and drawn with the same share from the batch's own new blocks, which is a pilot of the chemistry the round will contain.
+
+Reproducing the batch's composition is worth nothing. Over ten repeats, the six consequence lines were covered 38 times out of 60 when calibration and audit held only familiar blocks, and 38 times out of 60 when they carried the same proportion of new chemistry drawn from other blocks: the two are indistinguishable, and both fall far below the nominal 95\%. Sampling the batch's own blocks covered 58 of 60, at the nominal level. The pilot was also the sharpest of the three, its interval on confident hits spanning 70 candidates against 77 and 76, so the valid interval cost nothing in width here.
+
+What distinguishes the three is therefore not how much new chemistry the audit contains but whether it contains \emph{that} chemistry. The distinction matters because the first is cheap and can be arranged before synthesis, while the second requires measuring a sample of the new blocks, which is an experiment. Where a round introduces chemistry the audit does not hold, the guarantee is bought with that experiment or not at all.
+
 \subsection{What the audit must sample}
 \label{sec:results:dependence}
 
