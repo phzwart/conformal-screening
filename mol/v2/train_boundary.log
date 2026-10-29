@@ -1,0 +1,21 @@
+{
+ "library": "BELKA, soluble epoxide hydrolase",
+ "label": "binds_sEH",
+ "n_molecules": 200000,
+ "prevalence": 0.00721,
+ "n_blocks_position1": 294,
+ "train_block_frac": 0.5
+}
+resuming, 2 runs on disk
+  at the calibration boundary  rep1 AUROC 0.683 rate aud/bat 0.0028/0.0114 covered 2/6  [172s]
+  at the training boundary     rep1 AUROC 0.671 rate aud/bat 0.0109/0.0109 covered 6/6  [211s]
+  at the calibration boundary  rep2 AUROC 0.54 rate aud/bat 0.0025/0.0119 covered 2/6  [274s]
+  at the training boundary     rep2 AUROC 0.55 rate aud/bat 0.0125/0.0114 covered 6/6  [313s]
+  at the calibration boundary  rep3 AUROC 0.937 rate aud/bat 0.0073/0.0071 covered 4/6  [383s]
+  at the training boundary     rep3 AUROC 0.943 rate aud/bat 0.0074/0.0070 covered 6/6  [422s]
+  at the calibration boundary  rep4 AUROC 0.656 rate aud/bat 0.0032/0.0112 covered 1/6  [487s]
+  at the training boundary     rep4 AUROC 0.633 rate aud/bat 0.0114/0.0115 covered 6/6  [527s]
+  at the calibration boundary  rep5 AUROC 0.876 rate aud/bat 0.0121/0.0031 covered 1/6  [598s]
+  at the training boundary     rep5 AUROC 0.872 rate aud/bat 0.0034/0.0032 covered 6/6  [636s]
+  at the calibration boundary  rep6 AUROC 0.961 rate aud/bat 0.0070/0.0077 covered 3/6  [704s]
+  at the training boundary     rep6 AUROC 0.971 rate aud/bat 0.0073/0.0080 covered 6/6  [742s]
