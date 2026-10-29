@@ -35,9 +35,18 @@ The in-class rates are below one percent, so counts are reported for a batch of 
 candidates; at m = 1000 a setting confirming a handful of hits cannot be bounded away from
 zero.
 
-Usage: python3 -I belka_screen.py PARQUET OUTDIR REPS
+Each completed run is appended to belka_runs.jsonl before the next one starts, and the
+repeat argument takes a half-open range, so a long campaign can be run in chunks and loses
+at most one run if it is interrupted.  belka_runs.json is assembled from the lines.
+
+Usage: python3 -I belka_screen.py PARQUET OUTDIR REPS      (REPS = n, or first:last)
 """
 import sys, os, json, time, numpy as np, pandas as pd
+
+PARQUET, OUT = sys.argv[1], sys.argv[2]
+R0, R1 = ((0, int(sys.argv[3])) if ":" not in sys.argv[3]
+          else tuple(int(x) for x in sys.argv[3].split(":")))
+sys.argv[3] = str(R1)   # cadel parses this as a plain count when imported
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import cadel  # reads the same three command-line arguments at import
@@ -51,7 +60,6 @@ from rdkit.Chem import rdFingerprintGenerator
 import intervals
 
 RDLogger.DisableLog("rdApp.*")
-PARQUET, OUT, REPS = sys.argv[1], sys.argv[2], int(sys.argv[3])
 os.makedirs(OUT, exist_ok=True)
 GEN = rdFingerprintGenerator.GetMorganGenerator(radius=2, fpSize=2048)
 M, J, EPS, A, D = 100000, 144, 0.05, 0.10, 0.10
@@ -130,12 +138,21 @@ def main():
             "prevalence": {k: float(v.mean()) for k, v in Y.items()},
             "blocks": {c: int(b[c].nunique()) for c in ("bb1_id", "bb2_id", "bb3_id")}}
     print(json.dumps(info, indent=1), flush=True)
-    res = {"info": info, "runs": []}
+    log = f"{OUT}/belka_runs.jsonl"
+    done = set()
+    if os.path.exists(log):
+        for line in open(log):
+            o = json.loads(line)
+            done.add((o["label"], o["design"], o["score"], o["rep"]))
+        print(f"resuming, {len(done)} runs already on disk", flush=True)
+    fh = open(log, "a")
     for lname in LABELS:
         y = Y[lname]
         for design in DESIGNS:
             for score in ("model", "random"):
-                for r in range(REPS):
+                for r in range(R0, R1):
+                    if (lname, design, score, r) in done:
+                        continue
                     rng = np.random.default_rng(80000 + r)
                     ti, ci, ai, fi = (split_random(rng, len(y)) if design == "random"
                                       else split_block(rng, bb, int(design[-1]) - 1))
@@ -143,10 +160,11 @@ def main():
                          "n": {"train": len(ti), "cal": len(ci), "audit": len(ai), "future": len(fi)}}
                     if min(y[ti].sum(), (1 - y[ti]).sum()) < 20 or min(y[ci].sum(), (1 - y[ci]).sum()) < 20 \
                        or len(ai) < 100 or y[ai].sum() < 1:
-                        o["skipped"] = True; res["runs"].append(o); continue
+                        o["skipped"] = True
+                        fh.write(json.dumps(o) + "\n"); fh.flush(); continue
                     if score == "model":
                         clf = CatBoostClassifier(iterations=500, depth=6, learning_rate=0.1,
-                                                 verbose=0, thread_count=8, random_seed=0).fit(X[ti], y[ti])
+                                                 verbose=0, thread_count=2, random_seed=0).fit(X[ti], y[ti])
                         u = clf.predict_proba(X)[:, 1]
                     else:
                         u = rng.random(len(y))
@@ -158,12 +176,14 @@ def main():
                     if r == 0 and score == "model":
                         np.savez_compressed(f"{OUT}/scores_belka_{lname}_{design}.npz",
                                             u_cal=uc, y_cal=yc, u_audit=ua, y_audit=ya)
-                    res["runs"].append(o)
-                    if r == 0:
-                        print(f"  {lname} {design} {score} rep0 n_future {len(fi)} "
-                              f"AUROC {o['auroc_future']} fold {o['fold'] and round(o['fold'], 2)} "
-                              f"p {o['fisher_p']:.1e}", flush=True)
-    json.dump(res, open(f"{OUT}/belka_runs.json", "w"))
+                    fh.write(json.dumps(o) + "\n"); fh.flush()
+                    print(f"  {lname} {design} {score} rep{r} n_future {len(fi)} "
+                          f"AUROC {o['auroc_future'] and round(o['auroc_future'], 3)} "
+                          f"fold {o['fold'] and round(o['fold'], 2)} "
+                          f"p {o['fisher_p']:.1e}  [{time.time() - t_all:.0f}s]", flush=True)
+    fh.close()
+    runs = [json.loads(l) for l in open(log)]
+    json.dump({"info": info, "runs": runs}, open(f"{OUT}/belka_runs.json", "w"))
     print(f"total {time.time() - t_all:.1f}s", flush=True)
 
 
