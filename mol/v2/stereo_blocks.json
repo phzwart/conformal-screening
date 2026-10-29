@@ -1,0 +1,867 @@
+{
+ "label": "binds_sEH",
+ "position": 1,
+ "n_blocks": 306,
+ "n_groups": 34,
+ "n_blocks_in_groups": 69,
+ "group_kinds": {
+  "stereoisomers": 34
+ },
+ "groups": [
+  {
+   "blocks": [
+    272,
+    287
+   ],
+   "kind": "stereoisomers",
+   "rates": [
+    0.0005414185165132648,
+    0.0029997272975184073
+   ],
+   "n": [
+    3694,
+    3667
+   ],
+   "hits": [
+    2,
+    11
+   ],
+   "well_measured": true,
+   "fold_spread": 5.540496318516498,
+   "smiles": [
+    "O=C(O)C[C@@H]1CCCN1C(=O)OCC1c2ccccc2-c2ccccc21",
+    "O=C(O)C[C@H]1CCCN1C(=O)OCC1c2ccccc2-c2ccccc21"
+   ]
+  },
+  {
+   "blocks": [
+    103,
+    129
+   ],
+   "kind": "stereoisomers",
+   "rates": [
+    0.0021609940572663426,
+    0.006892748828232699
+   ],
+   "n": [
+    3702,
+    3627
+   ],
+   "hits": [
+    8,
+    25
+   ],
+   "well_measured": true,
+   "fold_spread": 3.1896195202646815,
+   "smiles": [
+    "O=C(N[C@@H](Cc1ccc(F)c(F)c1)C(=O)O)OCC1c2ccccc2-c2ccccc21",
+    "O=C(N[C@H](Cc1ccc(F)c(F)c1)C(=O)O)OCC1c2ccccc2-c2ccccc21"
+   ]
+  },
+  {
+   "blocks": [
+    263,
+    283
+   ],
+   "kind": "stereoisomers",
+   "rates": [
+    0.0027457440966501922,
+    0.008143322475570033
+   ],
+   "n": [
+    3642,
+    3684
+   ],
+   "hits": [
+    10,
+    30
+   ],
+   "well_measured": true,
+   "fold_spread": 2.965798045602606,
+   "smiles": [
+    "O=C(O)C[C@@H](Cc1cccs1)NC(=O)OCC1c2ccccc2-c2ccccc21",
+    "O=C(O)C[C@H](Cc1cccs1)NC(=O)OCC1c2ccccc2-c2ccccc21"
+   ]
+  },
+  {
+   "blocks": [
+    69,
+    71
+   ],
+   "kind": "stereoisomers",
+   "rates": [
+    0.003000545553737043,
+    0.00747301411569333
+   ],
+   "n": [
+    3666,
+    3613
+   ],
+   "hits": [
+    11,
+    27
+   ],
+   "well_measured": true,
+   "fold_spread": 2.4905517952847043,
+   "smiles": [
+    "N#Cc1ccc(C[C@@H](CC(=O)O)NC(=O)OCC2c3ccccc3-c3ccccc32)cc1",
+    "N#Cc1ccc(C[C@H](CC(=O)O)NC(=O)OCC2c3ccccc3-c3ccccc32)cc1"
+   ]
+  },
+  {
+   "blocks": [
+    260,
+    282
+   ],
+   "kind": "stereoisomers",
+   "rates": [
+    0.0066685190330647405,
+    0.0027654867256637168
+   ],
+   "n": [
+    3599,
+    3616
+   ],
+   "hits": [
+    24,
+    10
+   ],
+   "well_measured": true,
+   "fold_spread": 2.41133648235621,
+   "smiles": [
+    "O=C(O)C[C@@H](Cc1ccc([N+](=O)[O-])cc1)NC(=O)OCC1c2ccccc2-c2ccccc21",
+    "O=C(O)C[C@H](Cc1ccc([N+](=O)[O-])cc1)NC(=O)OCC1c2ccccc2-c2ccccc21"
+   ]
+  },
+  {
+   "blocks": [
+    259,
+    281
+   ],
+   "kind": "stereoisomers",
+   "rates": [
+    0.005465974309920744,
+    0.012145748987854251
+   ],
+   "n": [
+    3659,
+    3705
+   ],
+   "hits": [
+    20,
+    45
+   ],
+   "well_measured": true,
+   "fold_spread": 2.222064777327935,
+   "smiles": [
+    "O=C(O)C[C@@H](Cc1ccc(I)cc1)NC(=O)OCC1c2ccccc2-c2ccccc21",
+    "O=C(O)C[C@H](Cc1ccc(I)cc1)NC(=O)OCC1c2ccccc2-c2ccccc21"
+   ]
+  },
+  {
+   "blocks": [
+    258,
+    280
+   ],
+   "kind": "stereoisomers",
+   "rates": [
+    0.008353543519267044,
+    0.0040453074433656954
+   ],
+   "n": [
+    3711,
+    3708
+   ],
+   "hits": [
+    31,
+    15
+   ],
+   "well_measured": true,
+   "fold_spread": 2.0649959579628137,
+   "smiles": [
+    "O=C(O)C[C@@H](Cc1ccc(F)cc1)NC(=O)OCC1c2ccccc2-c2ccccc21",
+    "O=C(O)C[C@H](Cc1ccc(F)cc1)NC(=O)OCC1c2ccccc2-c2ccccc21"
+   ]
+  },
+  {
+   "blocks": [
+    241,
+    291
+   ],
+   "kind": "stereoisomers",
+   "rates": [
+    0.0010946907498631637,
+    0.0021203286509408957
+   ],
+   "n": [
+    3654,
+    3773
+   ],
+   "hits": [
+    4,
+    8
+   ],
+   "well_measured": true,
+   "fold_spread": 1.9369202226345081,
+   "smiles": [
+    "O=C(O)C1CCCN1C(=O)OCC1c2ccccc2-c2ccccc21",
+    "O=C(O)[C@@H]1CCCN1C(=O)OCC1c2ccccc2-c2ccccc21"
+   ]
+  },
+  {
+   "blocks": [
+    253,
+    275
+   ],
+   "kind": "stereoisomers",
+   "rates": [
+    0.004868812550716798,
+    0.009060955518945634
+   ],
+   "n": [
+    3697,
+    3642
+   ],
+   "hits": [
+    18,
+    33
+   ],
+   "well_measured": true,
+   "fold_spread": 1.861019586307889,
+   "smiles": [
+    "O=C(O)C[C@@H](Cc1ccc(Br)cc1)NC(=O)OCC1c2ccccc2-c2ccccc21",
+    "O=C(O)C[C@H](Cc1ccc(Br)cc1)NC(=O)OCC1c2ccccc2-c2ccccc21"
+   ]
+  },
+  {
+   "blocks": [
+    8,
+    10,
+    11
+   ],
+   "kind": "stereoisomers",
+   "rates": [
+    0.0015932023366967605,
+    0.0013912075681691708,
+    0.002480022044640397
+   ],
+   "n": [
+    3766,
+    3594,
+    3629
+   ],
+   "hits": [
+    6,
+    5,
+    9
+   ],
+   "well_measured": true,
+   "fold_spread": 1.7826398456875174,
+   "smiles": [
+    "C=CCC(NC(=O)OCC1c2ccccc2-c2ccccc21)C(=O)O",
+    "C=CC[C@@H](NC(=O)OCC1c2ccccc2-c2ccccc21)C(=O)O",
+    "C=CC[C@H](NC(=O)OCC1c2ccccc2-c2ccccc21)C(=O)O"
+   ]
+  },
+  {
+   "blocks": [
+    113,
+    134
+   ],
+   "kind": "stereoisomers",
+   "rates": [
+    0.006546644844517185,
+    0.0037027241470510446
+   ],
+   "n": [
+    3666,
+    3781
+   ],
+   "hits": [
+    24,
+    14
+   ],
+   "well_measured": true,
+   "fold_spread": 1.768061725508534,
+   "smiles": [
+    "O=C(N[C@@H](Cc1csc2ccccc12)C(=O)O)OCC1c2ccccc2-c2ccccc21",
+    "O=C(N[C@H](Cc1csc2ccccc12)C(=O)O)OCC1c2ccccc2-c2ccccc21"
+   ]
+  },
+  {
+   "blocks": [
+    116,
+    137
+   ],
+   "kind": "stereoisomers",
+   "rates": [
+    0.0016326530612244899,
+    0.0027196083763937995
+   ],
+   "n": [
+    3675,
+    3677
+   ],
+   "hits": [
+    6,
+    10
+   ],
+   "well_measured": true,
+   "fold_spread": 1.6657601305412022,
+   "smiles": [
+    "O=C(N[C@@H]1CC[C@H](C(=O)O)C1)OCC1c2ccccc2-c2ccccc21",
+    "O=C(N[C@H]1CC[C@@H](C(=O)O)C1)OCC1c2ccccc2-c2ccccc21"
+   ]
+  },
+  {
+   "blocks": [
+    106,
+    130
+   ],
+   "kind": "stereoisomers",
+   "rates": [
+    0.003863134657836645,
+    0.006408544726301735
+   ],
+   "n": [
+    3624,
+    3745
+   ],
+   "hits": [
+    14,
+    24
+   ],
+   "well_measured": true,
+   "fold_spread": 1.6588975777226778,
+   "smiles": [
+    "O=C(N[C@@H](Cc1ccc(I)cc1)C(=O)O)OCC1c2ccccc2-c2ccccc21",
+    "O=C(N[C@H](Cc1ccc(I)cc1)C(=O)O)OCC1c2ccccc2-c2ccccc21"
+   ]
+  },
+  {
+   "blocks": [
+    100,
+    126
+   ],
+   "kind": "stereoisomers",
+   "rates": [
+    0.0013572204125950054,
+    0.0021780560849441874
+   ],
+   "n": [
+    3684,
+    3673
+   ],
+   "hits": [
+    5,
+    8
+   ],
+   "well_measured": true,
+   "fold_spread": 1.6047917233868774,
+   "smiles": [
+    "O=C(N[C@@H](Cc1ccc(C(F)(F)F)cc1)C(=O)O)OCC1c2ccccc2-c2ccccc21",
+    "O=C(N[C@H](Cc1ccc(C(F)(F)F)cc1)C(=O)O)OCC1c2ccccc2-c2ccccc21"
+   ]
+  },
+  {
+   "blocks": [
+    256,
+    278
+   ],
+   "kind": "stereoisomers",
+   "rates": [
+    0.008558438085049478,
+    0.005448106782892944
+   ],
+   "n": [
+    3739,
+    3671
+   ],
+   "hits": [
+    32,
+    20
+   ],
+   "well_measured": true,
+   "fold_spread": 1.5709013105108318,
+   "smiles": [
+    "O=C(O)C[C@@H](Cc1ccc(Cl)cc1)NC(=O)OCC1c2ccccc2-c2ccccc21",
+    "O=C(O)C[C@H](Cc1ccc(Cl)cc1)NC(=O)OCC1c2ccccc2-c2ccccc21"
+   ]
+  },
+  {
+   "blocks": [
+    107,
+    131
+   ],
+   "kind": "stereoisomers",
+   "rates": [
+    0.0032085561497326204,
+    0.005014515703351808
+   ],
+   "n": [
+    3740,
+    3789
+   ],
+   "hits": [
+    12,
+    19
+   ],
+   "well_measured": true,
+   "fold_spread": 1.5628573942113135,
+   "smiles": [
+    "O=C(N[C@@H](Cc1ccc([N+](=O)[O-])cc1)C(=O)O)OCC1c2ccccc2-c2ccccc21",
+    "O=C(N[C@H](Cc1ccc([N+](=O)[O-])cc1)C(=O)O)OCC1c2ccccc2-c2ccccc21"
+   ]
+  },
+  {
+   "blocks": [
+    87,
+    88
+   ],
+   "kind": "stereoisomers",
+   "rates": [
+    0.7093596059113301,
+    0.4629678789487656
+   ],
+   "n": [
+    3654,
+    3767
+   ],
+   "hits": [
+    2592,
+    1744
+   ],
+   "well_measured": true,
+   "fold_spread": 1.532200479052741,
+   "smiles": [
+    "O=C(NCC1CCC(C(=O)O)CC1)OCC1c2ccccc2-c2ccccc21",
+    "O=C(NC[C@H]1CC[C@H](C(=O)O)CC1)OCC1c2ccccc2-c2ccccc21"
+   ]
+  },
+  {
+   "blocks": [
+    245,
+    264
+   ],
+   "kind": "stereoisomers",
+   "rates": [
+    0.004423555432679016,
+    0.002939604489577766
+   ],
+   "n": [
+    3617,
+    3742
+   ],
+   "hits": [
+    16,
+    11
+   ],
+   "well_measured": true,
+   "fold_spread": 1.504813129916807,
+   "smiles": [
+    "O=C(O)CC(NC(=O)OCC1c2ccccc2-c2ccccc21)c1ccc(Br)cc1",
+    "O=C(O)C[C@@H](NC(=O)OCC1c2ccccc2-c2ccccc21)c1ccc(Br)cc1"
+   ]
+  },
+  {
+   "blocks": [
+    290,
+    300
+   ],
+   "kind": "stereoisomers",
+   "rates": [
+    0.0016492578339747114,
+    0.0024543223343332426
+   ],
+   "n": [
+    3638,
+    3667
+   ],
+   "hits": [
+    6,
+    9
+   ],
+   "well_measured": true,
+   "fold_spread": 1.4881374420507227,
+   "smiles": [
+    "O=C(O)[C@@H]1CCCCN1C(=O)OCC1c2ccccc2-c2ccccc21",
+    "O=C(O)[C@H]1CCCCN1C(=O)OCC1c2ccccc2-c2ccccc21"
+   ]
+  },
+  {
+   "blocks": [
+    254,
+    276
+   ],
+   "kind": "stereoisomers",
+   "rates": [
+    0.005137912385073012,
+    0.003793010024383636
+   ],
+   "n": [
+    3698,
+    3691
+   ],
+   "hits": [
+    19,
+    14
+   ],
+   "well_measured": true,
+   "fold_spread": 1.3545739009503206,
+   "smiles": [
+    "O=C(O)C[C@@H](Cc1ccc(C(F)(F)F)cc1)NC(=O)OCC1c2ccccc2-c2ccccc21",
+    "O=C(O)C[C@H](Cc1ccc(C(F)(F)F)cc1)NC(=O)OCC1c2ccccc2-c2ccccc21"
+   ]
+  },
+  {
+   "blocks": [
+    96,
+    122
+   ],
+   "kind": "stereoisomers",
+   "rates": [
+    0.005160239000543183,
+    0.0038240917782026767
+   ],
+   "n": [
+    3682,
+    3661
+   ],
+   "hits": [
+    19,
+    14
+   ],
+   "well_measured": true,
+   "fold_spread": 1.3494024986420425,
+   "smiles": [
+    "O=C(N[C@@H](CCC1CCCCC1)C(=O)O)OCC1c2ccccc2-c2ccccc21",
+    "O=C(N[C@H](CCC1CCCCC1)C(=O)O)OCC1c2ccccc2-c2ccccc21"
+   ]
+  },
+  {
+   "blocks": [
+    3,
+    6
+   ],
+   "kind": "stereoisomers",
+   "rates": [
+    0.001844532279314888,
+    0.0024436600597339125
+   ],
+   "n": [
+    3795,
+    3683
+   ],
+   "hits": [
+    7,
+    9
+   ],
+   "well_measured": true,
+   "fold_spread": 1.3248128466700284,
+   "smiles": [
+    "C#CC[C@@H](NC(=O)OCC1c2ccccc2-c2ccccc21)C(=O)O",
+    "C#CC[C@H](NC(=O)OCC1c2ccccc2-c2ccccc21)C(=O)O"
+   ]
+  },
+  {
+   "blocks": [
+    101,
+    127
+   ],
+   "kind": "stereoisomers",
+   "rates": [
+    0.005966910767561703,
+    0.007215392838054517
+   ],
+   "n": [
+    3687,
+    3742
+   ],
+   "hits": [
+    22,
+    27
+   ],
+   "well_measured": true,
+   "fold_spread": 1.209234245177591,
+   "smiles": [
+    "O=C(N[C@@H](Cc1ccc(Cl)c(Cl)c1)C(=O)O)OCC1c2ccccc2-c2ccccc21",
+    "O=C(N[C@H](Cc1ccc(Cl)c(Cl)c1)C(=O)O)OCC1c2ccccc2-c2ccccc21"
+   ]
+  },
+  {
+   "blocks": [
+    92,
+    119
+   ],
+   "kind": "stereoisomers",
+   "rates": [
+    0.0021645021645021645,
+    0.0024827586206896553
+   ],
+   "n": [
+    3696,
+    3625
+   ],
+   "hits": [
+    8,
+    9
+   ],
+   "well_measured": true,
+   "fold_spread": 1.1470344827586207,
+   "smiles": [
+    "O=C(N[C@@H](C(=O)O)C1CCCCC1)OCC1c2ccccc2-c2ccccc21",
+    "O=C(N[C@H](C(=O)O)C1CCCCC1)OCC1c2ccccc2-c2ccccc21"
+   ]
+  },
+  {
+   "blocks": [
+    91,
+    118
+   ],
+   "kind": "stereoisomers",
+   "rates": [
+    0.002204464039680353,
+    0.0025069637883008357
+   ],
+   "n": [
+    3629,
+    3590
+   ],
+   "hits": [
+    8,
+    9
+   ],
+   "well_measured": true,
+   "fold_spread": 1.1372214484679666,
+   "smiles": [
+    "O=C(N[C@@H](C(=O)O)C1CCCC1)OCC1c2ccccc2-c2ccccc21",
+    "O=C(N[C@H](C(=O)O)C1CCCC1)OCC1c2ccccc2-c2ccccc21"
+   ]
+  },
+  {
+   "blocks": [
+    297,
+    304
+   ],
+   "kind": "stereoisomers",
+   "rates": [
+    0.0019310344827586207,
+    0.002136752136752137
+   ],
+   "n": [
+    3625,
+    3744
+   ],
+   "hits": [
+    7,
+    8
+   ],
+   "well_measured": true,
+   "fold_spread": 1.1065323565323566,
+   "smiles": [
+    "O=C(O)[C@@H]1Cc2ccccc2CN1C(=O)OCC1c2ccccc2-c2ccccc21",
+    "O=C(O)[C@H]1Cc2ccccc2CN1C(=O)OCC1c2ccccc2-c2ccccc21"
+   ]
+  },
+  {
+   "blocks": [
+    70,
+    72
+   ],
+   "kind": "stereoisomers",
+   "rates": [
+    0.006030701754385965,
+    0.005701873472712463
+   ],
+   "n": [
+    3648,
+    3683
+   ],
+   "hits": [
+    22,
+    21
+   ],
+   "well_measured": true,
+   "fold_spread": 1.0576702172096908,
+   "smiles": [
+    "N#Cc1ccc(C[C@@H](NC(=O)OCC2c3ccccc3-c3ccccc32)C(=O)O)cc1",
+    "N#Cc1ccc(C[C@H](NC(=O)OCC2c3ccccc3-c3ccccc32)C(=O)O)cc1"
+   ]
+  },
+  {
+   "blocks": [
+    2,
+    5
+   ],
+   "kind": "stereoisomers",
+   "rates": [
+    0.002670940170940171,
+    0.002794076557697681
+   ],
+   "n": [
+    3744,
+    3579
+   ],
+   "hits": [
+    10,
+    10
+   ],
+   "well_measured": true,
+   "fold_spread": 1.0461022632020118,
+   "smiles": [
+    "C#CC[C@@H](CC(=O)O)NC(=O)OCC1c2ccccc2-c2ccccc21",
+    "C#CC[C@H](CC(=O)O)NC(=O)OCC1c2ccccc2-c2ccccc21"
+   ]
+  },
+  {
+   "blocks": [
+    255,
+    277
+   ],
+   "kind": "stereoisomers",
+   "rates": [
+    0.007399287476020828,
+    0.007192254495159059
+   ],
+   "n": [
+    3649,
+    3615
+   ],
+   "hits": [
+    27,
+    26
+   ],
+   "well_measured": true,
+   "fold_spread": 1.028785547146742,
+   "smiles": [
+    "O=C(O)C[C@@H](Cc1ccc(Cl)c(Cl)c1)NC(=O)OCC1c2ccccc2-c2ccccc21",
+    "O=C(O)C[C@H](Cc1ccc(Cl)c(Cl)c1)NC(=O)OCC1c2ccccc2-c2ccccc21"
+   ]
+  },
+  {
+   "blocks": [
+    295,
+    299
+   ],
+   "kind": "stereoisomers",
+   "rates": [
+    0.001051801209571391,
+    0.0010744023636852001
+   ],
+   "n": [
+    3803,
+    3723
+   ],
+   "hits": [
+    4,
+    4
+   ],
+   "well_measured": true,
+   "fold_spread": 1.021488047273704,
+   "smiles": [
+    "O=C(O)[C@@H]1C[C@@H]2CCCC[C@@H]2N1C(=O)OCC1c2ccccc2-c2ccccc21",
+    "O=C(O)[C@H]1CC2CCCCC2N1C(=O)OCC1c2ccccc2-c2ccccc21"
+   ]
+  },
+  {
+   "blocks": [
+    109,
+    133
+   ],
+   "kind": "stereoisomers",
+   "rates": [
+    0.010095497953615279,
+    0.0
+   ],
+   "n": [
+    3665,
+    5
+   ],
+   "hits": [
+    37,
+    0
+   ],
+   "well_measured": false,
+   "fold_spread": null,
+   "smiles": [
+    "O=C(N[C@@H](Cc1cccnc1)C(=O)O)OCC1c2ccccc2-c2ccccc21",
+    "O=C(N[C@H](Cc1cccnc1)C(=O)O)OCC1c2ccccc2-c2ccccc21"
+   ]
+  },
+  {
+   "blocks": [
+    115,
+    136
+   ],
+   "kind": "stereoisomers",
+   "rates": [
+    0.1,
+    0.00027464982147761604
+   ],
+   "n": [
+    10,
+    3641
+   ],
+   "hits": [
+    1,
+    1
+   ],
+   "well_measured": false,
+   "fold_spread": null,
+   "smiles": [
+    "O=C(N[C@@H]1CCC[C@H]1C(=O)O)OCC1c2ccccc2-c2ccccc21",
+    "O=C(N[C@H]1CCC[C@@H]1C(=O)O)OCC1c2ccccc2-c2ccccc21"
+   ]
+  },
+  {
+   "blocks": [
+    252,
+    274
+   ],
+   "kind": "stereoisomers",
+   "rates": [
+    0.2,
+    0.004122011541632316
+   ],
+   "n": [
+    5,
+    3639
+   ],
+   "hits": [
+    1,
+    15
+   ],
+   "well_measured": false,
+   "fold_spread": null,
+   "smiles": [
+    "O=C(O)C[C@@H](Cc1c(F)c(F)c(F)c(F)c1F)NC(=O)OCC1c2ccccc2-c2ccccc21",
+    "O=C(O)C[C@H](Cc1c(F)c(F)c(F)c(F)c1F)NC(=O)OCC1c2ccccc2-c2ccccc21"
+   ]
+  },
+  {
+   "blocks": [
+    257,
+    279
+   ],
+   "kind": "stereoisomers",
+   "rates": [
+    0.008302088912694162,
+    0.0
+   ],
+   "n": [
+    3734,
+    8
+   ],
+   "hits": [
+    31,
+    0
+   ],
+   "well_measured": false,
+   "fold_spread": null,
+   "smiles": [
+    "O=C(O)C[C@@H](Cc1ccc(Cl)cc1Cl)NC(=O)OCC1c2ccccc2-c2ccccc21",
+    "O=C(O)C[C@H](Cc1ccc(Cl)cc1Cl)NC(=O)OCC1c2ccccc2-c2ccccc21"
+   ]
+  }
+ ]
+}
