@@ -18,9 +18,12 @@ Splits.  A molecule's nearest neighbour in a combinatorial library differs by on
 block, so assigning molecules at random leaves a held-out compound one substitution from a
 training compound and measures interpolation.  The honest unit is the building block.
 
-  block     whole building blocks are assigned to the four roles, at every position at
-            once, so a future molecule shares no block with any training molecule.  This is
-            the headline design.
+  block1,   whole building blocks at one position are assigned to the four roles, so a
+  block2,   future molecule carries a block at that position that no training molecule
+  block3    carries.  Every molecule is usable and the test is a real one: predict for
+            chemistry built on an unseen fragment.  Holding out all three positions at once
+            is stricter but discards the 91% of molecules whose blocks disagree about their
+            role, leaving too few in-class compounds to calibrate.
   random    molecules assigned at random, reported alongside to show how much the easier
             split inflates the result.
 
@@ -55,7 +58,7 @@ M, J, EPS, A, D = 100000, 144, 0.05, 0.10, 0.10
 NSUB = 200000          # molecules drawn from the parquet, to keep fingerprinting tractable
 FRACS = (0.40, 0.20, 0.20)
 LABELS = ("activity", "specificity")
-DESIGNS = ("block", "random")
+DESIGNS = ("block1", "block2", "block3", "random")
 
 
 def fingerprints(smiles):
@@ -73,23 +76,16 @@ def split_random(rng, n):
     return p[:a], p[a:b], p[b:c], p[c:]
 
 
-def split_block(rng, bb):
-    """assign whole building blocks at every position; a molecule joins the role of its
-    rarest-role block, and molecules whose blocks disagree are dropped so the roles stay
-    disjoint in every position"""
-    role = {}
-    for pos in range(bb.shape[1]):
-        u = np.unique(bb[:, pos]); rng.shuffle(u)
-        a = int(FRACS[0] * len(u)); b = a + int(FRACS[1] * len(u)); c = b + int(FRACS[2] * len(u))
-        r = np.empty(len(u), int)
-        r[:a], r[a:b], r[b:c], r[c:] = 0, 1, 2, 3
-        role[pos] = dict(zip(u.tolist(), r.tolist()))
-    assign = np.stack([[role[pos][v] for v in bb[:, pos]] for pos in range(bb.shape[1])], 1)
-    same = (assign == assign[:, :1]).all(1)
-    out = []
-    for k in range(4):
-        out.append(np.where(same & (assign[:, 0] == k))[0])
-    return out
+def split_block(rng, bb, pos):
+    """assign the blocks at one position to the four roles; every molecule takes the role of
+    its own block there, so no block is shared between roles"""
+    u = np.unique(bb[:, pos]); rng.shuffle(u)
+    a = int(FRACS[0] * len(u)); b = a + int(FRACS[1] * len(u)); c = b + int(FRACS[2] * len(u))
+    r = np.empty(len(u), int)
+    r[:a], r[a:b], r[b:c], r[c:] = 0, 1, 2, 3
+    role = dict(zip(u.tolist(), r.tolist()))
+    assign = np.array([role[v] for v in bb[:, pos]])
+    return [np.where(assign == k)[0] for k in range(4)]
 
 
 def enrichment_and_width(uc, yc, ua, ya):
@@ -142,7 +138,7 @@ def main():
                 for r in range(REPS):
                     rng = np.random.default_rng(80000 + r)
                     ti, ci, ai, fi = (split_random(rng, len(y)) if design == "random"
-                                      else split_block(rng, bb))
+                                      else split_block(rng, bb, int(design[-1]) - 1))
                     o = {"label": lname, "design": design, "score": score, "rep": r,
                          "n": {"train": len(ti), "cal": len(ci), "audit": len(ai), "future": len(fi)}}
                     if min(y[ti].sum(), (1 - y[ti]).sum()) < 20 or min(y[ci].sum(), (1 - y[ci]).sum()) < 20 \
