@@ -58,3 +58,6 @@
  }
 }
 resuming, 29 runs already on disk
+  activity block2 model rep9 n_future 38160 AUROC 0.95 fold 7.45 p 3.6e-176  [439s]
+  activity block2 random rep0 n_future 40214 AUROC 0.481 fold 0.98 p 5.6e-01  [759s]
+  activity block2 random rep1 n_future 40912 AUROC 0.496 fold 1.3 p 8.5e-02  [1067s]
