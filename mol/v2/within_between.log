@@ -1,0 +1,15 @@
+AqSolDB lipophilic : AUROC 0.821 | within 0.500 (10 pairs) | between 0.821 (25618 pairs) | 7/328 clusters mixed, 4% of the audit in them
+Tox21 NR-AR           : AUROC 0.774 | within 0.227 (22 pairs) | between 0.774 (133978 pairs) | 10/1525 clusters mixed, 2% of the audit in them
+Tox21 NR-AR-LBD       : AUROC 0.877 | within 0.800 (5 pairs) | between 0.877 (88531 pairs) | 5/1442 clusters mixed, 1% of the audit in them
+Tox21 NR-AhR          : AUROC 0.858 | within 0.667 (15 pairs) | between 0.858 (264465 pairs) | 11/1391 clusters mixed, 2% of the audit in them
+Tox21 NR-Aromatase    : AUROC 0.739 | within 0.333 (18 pairs) | between 0.739 (112182 pairs) | 8/1251 clusters mixed, 2% of the audit in them
+Tox21 NR-ER           : AUROC 0.688 | within 0.614 (57 pairs) | between 0.688 (255452 pairs) | 27/1302 clusters mixed, 5% of the audit in them
+Tox21 NR-ER-LBD       : AUROC 0.770 | within 0.571 (7 pairs) | between 0.770 (131439 pairs) | 6/1491 clusters mixed, 1% of the audit in them
+Tox21 NR-PPAR-gamma   : AUROC 0.697 | within 0.429 (7 pairs) | between 0.697 (71292 pairs) | 3/1358 clusters mixed, 1% of the audit in them
+Tox21 SR-ARE          : AUROC 0.774 | within 0.647 (17 pairs) | between 0.774 (274690 pairs) | 13/1247 clusters mixed, 2% of the audit in them
+Tox21 SR-ATAD5        : AUROC 0.704 | within 0.700 (10 pairs) | between 0.704 (121276 pairs) | 6/1495 clusters mixed, 1% of the audit in them
+Tox21 SR-HSE          : AUROC 0.677 | within 0.636 (11 pairs) | between 0.677 (135781 pairs) | 10/1369 clusters mixed, 1% of the audit in them
+Tox21 SR-MMP          : AUROC 0.895 | within 0.615 (26 pairs) | between 0.895 (282826 pairs) | 18/1224 clusters mixed, 3% of the audit in them
+Tox21 SR-p53          : AUROC 0.766 | within 0.750 (4 pairs) | between 0.766 (152654 pairs) | 3/1456 clusters mixed, 0% of the audit in them
+
+written to v2/within_between.json

@@ -1,0 +1,135 @@
+{
+ "radius": 0.6,
+ "screens": {
+  "AqSolDB lipophilic": {
+   "auroc": 0.8213477446542844,
+   "n_within": 10,
+   "within": 0.5,
+   "n_between": 25618,
+   "between": 0.8214536653915215,
+   "clusters": 328,
+   "mixed_clusters": 7,
+   "frac_audit_in_mixed": 0.044270833333333336
+  },
+  "Tox21 NR-AR": {
+   "auroc": 0.7737201492537313,
+   "n_within": 22,
+   "within": 0.22727272727272727,
+   "n_between": 133978,
+   "between": 0.7737912194539402,
+   "clusters": 1525,
+   "mixed_clusters": 10,
+   "frac_audit_in_mixed": 0.018233618233618232
+  },
+  "Tox21 NR-AR-LBD": {
+   "auroc": 0.8765586879913254,
+   "n_within": 5,
+   "within": 0.8,
+   "n_between": 88531,
+   "between": 0.8765630118263659,
+   "clusters": 1442,
+   "mixed_clusters": 5,
+   "frac_audit_in_mixed": 0.006108735491753207
+  },
+  "Tox21 NR-AhR": {
+   "auroc": 0.8576527525710828,
+   "n_within": 15,
+   "within": 0.6666666666666666,
+   "n_between": 264465,
+   "between": 0.8576598037547501,
+   "clusters": 1391,
+   "mixed_clusters": 11,
+   "frac_audit_in_mixed": 0.01643489254108723
+  },
+  "Tox21 NR-Aromatase": {
+   "auroc": 0.7386631016042782,
+   "n_within": 18,
+   "within": 0.3333333333333333,
+   "n_between": 112182,
+   "between": 0.7387013959458737,
+   "clusters": 1251,
+   "mixed_clusters": 8,
+   "frac_audit_in_mixed": 0.017793594306049824
+  },
+  "Tox21 NR-ER": {
+   "auroc": 0.6876744067723642,
+   "n_within": 57,
+   "within": 0.6140350877192983,
+   "n_between": 255452,
+   "between": 0.6876790943112601,
+   "clusters": 1302,
+   "mixed_clusters": 27,
+   "frac_audit_in_mixed": 0.051539491298527446
+  },
+  "Tox21 NR-ER-LBD": {
+   "auroc": 0.7703049160872145,
+   "n_within": 7,
+   "within": 0.5714285714285714,
+   "n_between": 131439,
+   "between": 0.7703117035278723,
+   "clusters": 1491,
+   "mixed_clusters": 6,
+   "frac_audit_in_mixed": 0.00771513353115727
+  },
+  "Tox21 NR-PPAR-gamma": {
+   "auroc": 0.6971696657737135,
+   "n_within": 7,
+   "within": 0.42857142857142855,
+   "n_between": 71292,
+   "between": 0.6971890254165966,
+   "clusters": 1358,
+   "mixed_clusters": 3,
+   "frac_audit_in_mixed": 0.00639386189258312
+  },
+  "Tox21 SR-ARE": {
+   "auroc": 0.7744451360904528,
+   "n_within": 17,
+   "within": 0.6470588235294118,
+   "n_between": 274690,
+   "between": 0.7744511995340202,
+   "clusters": 1247,
+   "mixed_clusters": 13,
+   "frac_audit_in_mixed": 0.021246458923512748
+  },
+  "Tox21 SR-ATAD5": {
+   "auroc": 0.7039806737793315,
+   "n_within": 10,
+   "within": 0.7,
+   "n_between": 121276,
+   "between": 0.7039810020119397,
+   "clusters": 1495,
+   "mixed_clusters": 6,
+   "frac_audit_in_mixed": 0.009340338587273789
+  },
+  "Tox21 SR-HSE": {
+   "auroc": 0.6766083421703781,
+   "n_within": 11,
+   "within": 0.6363636363636364,
+   "n_between": 135781,
+   "between": 0.6766116025069782,
+   "clusters": 1369,
+   "mixed_clusters": 10,
+   "frac_audit_in_mixed": 0.013392857142857142
+  },
+  "Tox21 SR-MMP": {
+   "auroc": 0.8952950659708966,
+   "n_within": 26,
+   "within": 0.6153846153846154,
+   "n_between": 282826,
+   "between": 0.8953207979464406,
+   "clusters": 1224,
+   "mixed_clusters": 18,
+   "frac_audit_in_mixed": 0.03127221037668799
+  },
+  "Tox21 SR-p53": {
+   "auroc": 0.7663535484547157,
+   "n_within": 4,
+   "within": 0.75,
+   "n_between": 152654,
+   "between": 0.7663539769675213,
+   "clusters": 1456,
+   "mixed_clusters": 3,
+   "frac_audit_in_mixed": 0.0042656916514320535
+  }
+ }
+}
