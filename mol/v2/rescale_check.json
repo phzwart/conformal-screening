@@ -1,0 +1,61 @@
+{
+ "confidence": 0.95,
+ "designs": {
+  "random": {
+   "reps": 9,
+   "published": 97.22222222222223,
+   "rescaled": 100.0,
+   "mean_prevalence_ratio": 1.0023915196327873,
+   "published_counts": [
+    35,
+    36
+   ],
+   "rescaled_counts": [
+    36,
+    36
+   ]
+  },
+  "block3": {
+   "reps": 10,
+   "published": 52.5,
+   "rescaled": 42.5,
+   "mean_prevalence_ratio": 1.0754267699475923,
+   "published_counts": [
+    21,
+    40
+   ],
+   "rescaled_counts": [
+    17,
+    40
+   ]
+  },
+  "block2": {
+   "reps": 10,
+   "published": 42.5,
+   "rescaled": 47.5,
+   "mean_prevalence_ratio": 1.1508969915589482,
+   "published_counts": [
+    17,
+    40
+   ],
+   "rescaled_counts": [
+    19,
+    40
+   ]
+  },
+  "block1": {
+   "reps": 10,
+   "published": 40.0,
+   "rescaled": 37.5,
+   "mean_prevalence_ratio": 2.55195125309566,
+   "published_counts": [
+    16,
+    40
+   ],
+   "rescaled_counts": [
+    15,
+    40
+   ]
+  }
+ }
+}
