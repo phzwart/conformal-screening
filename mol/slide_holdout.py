@@ -16,8 +16,8 @@ import matplotlib.pyplot as plt
 RUNS, STEM = sys.argv[1], sys.argv[2]
 CATS = ("confident hit", "false lead", "missed binder", "deferred binder",
         "correct rejection", "deferred non-binder")
-ORDER = [("random", "random\nassignment"), ("block3", "withhold\nposition 3"),
-         ("block2", "withhold\nposition 2"), ("block1", "withhold\nposition 1")]
+ORDER = [("random", "same\nchemistry"), ("block3", "new blocks\nat position 3"),
+         ("block2", "new blocks\nat position 2"), ("block1", "new blocks\nat position 1")]
 GREEN, ORANGE, RED, INK, INK2, GRAY = "#1baf7a", "#eb8c34", "#d6453a", "#0b0b0b", "#52514e", "#b5b3ad"
 COL = {"random": GREEN, "block3": ORANGE, "block2": ORANGE, "block1": RED}
 
@@ -66,17 +66,24 @@ def main():
         ax.scatter(i + rng.uniform(-0.17, 0.17, len(a)), a, s=46, color=COL[k],
                    edgecolor="white", linewidth=0.8, zorder=3)
         ax.hlines(a.mean(), i - 0.3, i + 0.3, color=INK, lw=2.2, zorder=4)
-        ax.text(i, 1.012, f"{a.min():.2f}–{a.max():.2f}", ha="center", fontsize=11, color=INK2)
+        base = np.mean(data["random"]["auroc"])
+        d = a.mean() - base
+        ax.text(i, 1.085, f"{a.mean():.2f}", ha="center", fontsize=12.5, color=INK)
+        if i:
+            ax.text(i, 1.035, f"{d:+.2f}", ha="center", fontsize=11,
+                    color=RED if d < -0.05 else INK2)
     ax.axhline(0.5, color=GRAY, ls=":", lw=1.4)
     ax.set_xticks(x); ax.set_xticklabels(labels, fontsize=12)
-    ax.set_ylim(0.45, 1.05); ax.set_ylabel("model ranking of the batch (AUROC)")
+    ax.set_ylim(0.45, 1.13); ax.set_ylabel("model ranking of the batch (AUROC)")
     ax.set_title("what the model reports", fontsize=16, color=INK, pad=12)
+    ax.text(0.5, 0.20, "withholding blocks is the usual check against memorisation —\nit passes here",
+            transform=ax.transAxes, ha="center", fontsize=11.5, color=INK2, style="italic")
     nsig = sum(data[k]["sig"] for k, _ in ORDER); nrun = sum(data[k]["n"] for k, _ in ORDER)
     ax.text(0.5, 0.06, f"enrichment over base rate significant in {nsig} of {nrun} runs",
             transform=ax.transAxes, ha="center", fontsize=12.5, color=INK,
             bbox=dict(boxstyle="round,pad=0.45", fc="#f2f1ee", ec=GRAY, lw=0.8))
 
-    fig.suptitle("A batch built on unseen building blocks is priced wrongly, "
+    fig.suptitle("A batch built on new building blocks is priced wrongly, "
                  "and the model does not say so", fontsize=17.5, color=INK, y=0.98)
     fig.text(0.5, 0.015, "one position-1 batch was promised 578–723 confirmed hits, "
              "at AUROC 0.89, and returned 119",

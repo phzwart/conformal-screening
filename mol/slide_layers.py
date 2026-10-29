@@ -20,8 +20,8 @@ from matplotlib.patches import Circle, FancyBboxPatch, RegularPolygon, FancyArro
 RUNS, STEM = sys.argv[1], sys.argv[2]
 CATS = ("confident hit", "false lead", "missed binder", "deferred binder",
         "correct rejection", "deferred non-binder")
-ORDER = [("random", "random\nassignment"), ("block3", "withhold\nposition 3"),
-         ("block2", "withhold\nposition 2"), ("block1", "withhold\nposition 1")]
+ORDER = [("random", "same\nchemistry"), ("block3", "new blocks\nat position 3"),
+         ("block2", "new blocks\nat position 2"), ("block1", "new blocks\nat position 1")]
 GREEN, ORANGE, RED, BLUE, VIOLET = "#1baf7a", "#eb8c34", "#d6453a", "#2a78d6", "#6250d6"
 INK, INK2, GRAY, LIGHT = "#0b0b0b", "#52514e", "#b5b3ad", "#e8e6e1"
 COL = {"random": GREEN, "block3": ORANGE, "block2": ORANGE, "block1": RED}
@@ -132,18 +132,25 @@ def main():
         ax.scatter(i + rng.uniform(-0.17, 0.17, len(a)), a, s=46, color=COL[k],
                    edgecolor="white", linewidth=0.8, zorder=3)
         ax.hlines(a.mean(), i - 0.3, i + 0.3, color=INK, lw=2.2, zorder=4)
-        ax.text(i, 1.015, f"{a.min():.2f}–{a.max():.2f}", ha="center", fontsize=11, color=INK2)
+        base = np.mean(data["random"]["auroc"])
+        d = a.mean() - base
+        ax.text(i, 1.085, f"{a.mean():.2f}", ha="center", fontsize=12.5, color=INK)
+        if i:
+            ax.text(i, 1.035, f"{d:+.2f}", ha="center", fontsize=11,
+                    color=RED if d < -0.05 else INK2)
     ax.axhline(0.5, color=GRAY, ls=":", lw=1.4)
     ax.set_xticks(x); ax.set_xticklabels(labels, fontsize=11.5)
-    ax.set_ylim(0.45, 1.06); ax.set_ylabel("model ranking of the batch (AUROC)")
+    ax.set_ylim(0.45, 1.13); ax.set_ylabel("model ranking of the batch (AUROC)")
+    ax.text(0.5, 0.21, "withholding blocks is the usual check against memorisation —\nit passes here",
+            transform=ax.transAxes, ha="center", fontsize=11.5, color=INK2, style="italic")
     nsig = sum(data[k]["sig"] for k, _ in ORDER); nrun = sum(data[k]["n"] for k, _ in ORDER)
     ax.text(0.5, 0.05, f"enrichment over base rate significant in {nsig} of {nrun} runs",
             transform=ax.transAxes, ha="center", fontsize=12, color=INK,
             bbox=dict(boxstyle="round,pad=0.4", fc="#f2f1ee", ec=GRAY, lw=0.8))
 
-    fig.suptitle("Withhold a building block and the guarantee fails, "
+    fig.suptitle("When a batch introduces new building blocks the guarantee fails, "
                  "while every model diagnostic stays healthy",
-                 fontsize=19, color=INK, y=0.975)
+                 fontsize=17, color=INK, y=0.975)
     fig.text(0.5, 0.018, "one position-1 batch was promised 578–723 confirmed hits, "
              "at AUROC 0.89, and returned 119", ha="center", fontsize=13, color=RED)
     fig.savefig(f"{STEM}.png", dpi=170); fig.savefig(f"{STEM}.pdf")
