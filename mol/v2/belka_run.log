@@ -84,3 +84,4 @@ resuming, 32 runs already on disk
   activity block3 model rep4 n_future 40923 AUROC 0.948 fold 6.74 p 2.7e-223  [1835s]
   activity block3 model rep5 n_future 42424 AUROC 0.863 fold 7.72 p 5.0e-177  [2201s]
   activity block3 model rep6 n_future 38921 AUROC 0.915 fold 8.69 p 3.7e-219  [2549s]
+  activity block3 model rep7 n_future 37820 AUROC 0.972 fold 8.85 p 9.9e-234  [2937s]
