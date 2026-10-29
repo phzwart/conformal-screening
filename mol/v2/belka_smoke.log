@@ -1,0 +1,32 @@
+{
+ "library": "BELKA, soluble epoxide hydrolase",
+ "n_sampled": 200000,
+ "batch_m": 100000,
+ "model": "Morgan r=2 2048 bits + CatBoostClassifier(500, depth 6, lr 0.1)",
+ "prevalence": {
+  "activity": 0.00721,
+  "specificity": 0.0065
+ },
+ "blocks": {
+  "bb1_id": 294,
+  "bb2_id": 716,
+  "bb3_id": 899
+ }
+}
+  activity block1 model rep0 n_future 42145 AUROC 0.8868833591300552 fold 6.64 p 0.0e+00
+  activity block1 random rep0 n_future 42145 AUROC 0.49310187720760407 fold 1.16 p 1.1e-01
+  activity block2 model rep0 n_future 40214 AUROC 0.9175298134878548 fold 7.42 p 3.8e-217
+  activity block2 random rep0 n_future 40214 AUROC 0.48064338282846575 fold 0.98 p 5.6e-01
+  activity block3 model rep0 n_future 40133 AUROC 0.9613070425668439 fold 8.21 p 1.6e-188
+  activity block3 random rep0 n_future 40133 AUROC 0.5046673595782788 fold 0.9 p 7.3e-01
+  activity random model rep0 n_future 40000 AUROC 0.96348322439331 fold 10.57 p 7.4e-227
+  activity random random rep0 n_future 40000 AUROC 0.5051628818394085 fold 1.26 p 1.0e-01
+  specificity block1 model rep0 n_future 42145 AUROC 0.8847759880082801 fold 7.1 p 0.0e+00
+  specificity block1 random rep0 n_future 42145 AUROC 0.4975193647079479 fold 1.18 p 8.8e-02
+  specificity block2 model rep0 n_future 40214 AUROC 0.9316861519645948 fold 7.25 p 2.2e-172
+  specificity block2 random rep0 n_future 40214 AUROC 0.4851536021889867 fold 1.05 p 4.2e-01
+  specificity block3 model rep0 n_future 40133 AUROC 0.9590960271966753 fold 8.95 p 1.2e-189
+  specificity block3 random rep0 n_future 40133 AUROC 0.5010774037284305 fold 0.92 p 6.9e-01
+  specificity random model rep0 n_future 40000 AUROC 0.9524763136343729 fold 8.64 p 3.1e-184
+  specificity random random rep0 n_future 40000 AUROC 0.5094163362876366 fold 1.17 p 2.3e-01
+total 2721.9s

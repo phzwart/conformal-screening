@@ -14,3 +14,5 @@ __pycache__/
 *.pyc
 catboost_info/
 .ipynb_checkpoints/
+# BELKA subsample: carried on the belka-data branch, not on main
+data/belka/

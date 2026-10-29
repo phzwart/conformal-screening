@@ -1,0 +1,15 @@
+{
+ "library": "BELKA, soluble epoxide hydrolase",
+ "n_sampled": 200000,
+ "batch_m": 100000,
+ "model": "Morgan r=2 2048 bits + CatBoostClassifier(500, depth 6, lr 0.1)",
+ "prevalence": {
+  "activity": 0.00721,
+  "specificity": 0.0065
+ },
+ "blocks": {
+  "bb1_id": 294,
+  "bb2_id": 716,
+  "bb3_id": 899
+ }
+}
