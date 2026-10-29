@@ -102,26 +102,29 @@ def main():
         cov[d] = 100.0 * ins / tot if tot else None
 
     res = {"n_molecules": int(len(b)), "reps": REPS, "coverage": cov, "designs": {}}
-    print(f"{'design':9} {'domain AUC':>11} {'bb1 share':>10} {'bb2 share':>10} "
-          f"{'bb3 share':>10} {'coverage':>9}")
+    print(f"{'design':9} {'audit|batch':>11} {'cal|batch':>11} {'bb1':>7} {'bb2':>7} "
+          f"{'bb3':>7} {'coverage':>9}")
     for design in DESIGNS:
-        aucs, shares = [], []
+        aucs, aucs_cal, shares = [], [], []
         for r in range(REPS):
             rng = np.random.default_rng(80000 + r)
             ti, ci, ai, fi = (split_random(rng, len(b)) if design == "random"
                               else split_block(rng, bb, int(design[-1]) - 1))
-            aucs.append(domain_auc(X, ci, fi, np.random.default_rng(1000 + r)))
+            aucs.append(domain_auc(X, ai, fi, np.random.default_rng(1000 + r)))      # audit vs batch
+            aucs_cal.append(domain_auc(X, ci, fi, np.random.default_rng(2000 + r)))  # calibration vs batch
             sh = []
             for j in range(3):
                 seen = set(np.unique(bb[ci, j]).tolist())
                 sh.append(float(np.mean([v in seen for v in bb[fi, j]])))
             shares.append(sh)
         sh = np.array(shares).mean(0)
-        res["designs"][design] = {"domain_auc": float(np.mean(aucs)),
+        res["designs"][design] = {"domain_auc_audit_vs_batch": float(np.mean(aucs)),
+                                  "domain_auc_cal_vs_batch": float(np.mean(aucs_cal)),
+                                  "domain_auc": float(np.mean(aucs)),
                                   "domain_auc_all": aucs,
                                   "block_share": sh.tolist(), "coverage": cov[design]}
-        print(f"{design:9} {np.mean(aucs):>11.3f} {sh[0]:>10.3f} {sh[1]:>10.3f} "
-              f"{sh[2]:>10.3f} {cov[design]:>8.0f}%")
+        print(f"{design:9} {np.mean(aucs):>11.3f} {np.mean(aucs_cal):>11.3f} {sh[0]:>7.2f} "
+              f"{sh[1]:>7.2f} {sh[2]:>7.2f} {cov[design]:>8.0f}%")
     json.dump(res, open(OUT, "w"), indent=1)
     print(f"\nwritten to {OUT}")
 
