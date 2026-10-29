@@ -16,3 +16,4 @@
   activity block1 model rep0 n_future 42145 AUROC 0.887 fold 6.64 p 0.0e+00  [408s]
   activity block1 model rep1 n_future 42816 AUROC 0.97 fold 6.63 p 2.5e-56  [790s]
   activity block1 model rep2 n_future 42679 AUROC 0.897 fold 2.68 p 1.8e-48  [1143s]
+  activity block1 model rep3 n_future 42895 AUROC 0.857 fold 4.73 p 5.1e-137  [1484s]
