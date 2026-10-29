@@ -1,0 +1,35 @@
+{
+ "library": "BELKA, soluble epoxide hydrolase",
+ "n_sampled": 500000,
+ "blocks": {
+  "bb1_id": 302,
+  "bb2_id": 740,
+  "bb3_id": 921
+ },
+ "design_space": 205825080,
+ "pilot": 60000,
+ "batch": 40000,
+ "prevalence": 0.007266,
+ "subset_fractions": {
+  "cube": [
+   0.4933774851262569,
+   0.4933774851262569,
+   0.4933774851262569
+  ],
+  "cover1": [
+   1.0,
+   0.3540540584176778,
+   0.3540540584176778
+  ],
+  "cover3": [
+   0.34437087357044216,
+   0.34437087357044216,
+   1.0
+  ]
+ }
+}
+  cube    rep0 blocks [149, 365, 454] AUROC 0.855 covered 2/6 hits promised [48, 115] got 179 [240s]
+  cover1  rep0 blocks [302, 262, 326] AUROC 0.866 covered 1/6 hits promised [240, 363] got 240 [304s]
+  cover3  rep0 blocks [104, 254, 921] AUROC 0.853 covered 1/6 hits promised [283, 416] got 194 [366s]
+  cube    rep1 blocks [149, 365, 454] AUROC 0.519 covered 1/6 hits promised [92, 174] got 84 [427s]
+  cover1  rep1 blocks [302, 262, 326] AUROC 0.865 covered 5/6 hits promised [192, 304] got 199 [487s]
