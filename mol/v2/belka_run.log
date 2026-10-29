@@ -61,3 +61,23 @@ resuming, 29 runs already on disk
   activity block2 model rep9 n_future 38160 AUROC 0.95 fold 7.45 p 3.6e-176  [439s]
   activity block2 random rep0 n_future 40214 AUROC 0.481 fold 0.98 p 5.6e-01  [759s]
   activity block2 random rep1 n_future 40912 AUROC 0.496 fold 1.3 p 8.5e-02  [1067s]
+{
+ "library": "BELKA, soluble epoxide hydrolase",
+ "n_sampled": 200000,
+ "batch_m": 100000,
+ "model": "Morgan r=2 2048 bits + CatBoostClassifier(500, depth 6, lr 0.1)",
+ "prevalence": {
+  "activity": 0.00721,
+  "specificity": 0.0065
+ },
+ "blocks": {
+  "bb1_id": 294,
+  "bb2_id": 716,
+  "bb3_id": 899
+ }
+}
+resuming, 32 runs already on disk
+  activity block3 model rep0 n_future 40133 AUROC 0.961 fold 8.21 p 1.6e-188  [415s]
+  activity block3 model rep1 n_future 41845 AUROC 0.955 fold 8.41 p 2.8e-174  [769s]
+  activity block3 model rep2 n_future 40501 AUROC 0.944 fold 13.19 p 8.8e-240  [1133s]
+  activity block3 model rep3 n_future 41388 AUROC 0.96 fold 8.5 p 4.2e-197  [1480s]
