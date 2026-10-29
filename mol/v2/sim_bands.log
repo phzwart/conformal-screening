@@ -1,0 +1,33 @@
+{
+ "label": "binds_sEH",
+ "n_molecules": 300000,
+ "hit_rate": 0.0029233333333333333,
+ "blocks": 298,
+ "warheads_dropped": [
+  87,
+  88
+ ],
+ "bands": [
+  {
+   "name": "identical",
+   "lo": 0.999,
+   "hi": 1.01
+  },
+  {
+   "name": "near",
+   "lo": 0.85,
+   "hi": 0.999
+  },
+  {
+   "name": "mid",
+   "lo": 0.72,
+   "hi": 0.85
+  },
+  {
+   "name": "low",
+   "lo": 0.0,
+   "hi": 0.72
+  }
+ ]
+}
+resuming, 4 runs on disk
