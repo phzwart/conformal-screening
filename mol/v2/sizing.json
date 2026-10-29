@@ -1,0 +1,266 @@
+{
+ "confidence": 0.95,
+ "targets": [
+  20,
+  50
+ ],
+ "rates": [
+  0.02,
+  0.05,
+  0.1,
+  0.25,
+  0.5
+ ],
+ "audits": [
+  49,
+  100,
+  384,
+  1000
+ ],
+ "looks": [
+  1,
+  2,
+  3,
+  6
+ ],
+ "required": {
+  "20": [
+   {
+    "rate": 0.02,
+    "expectation": 1000,
+    "n49": 38693,
+    "n100": 8379,
+    "n384": 2396,
+    "n1000": 1867
+   },
+   {
+    "rate": 0.05,
+    "expectation": 400,
+    "n49": 4089,
+    "n100": 1286,
+    "n384": 758,
+    "n1000": 650
+   },
+   {
+    "rate": 0.1,
+    "expectation": 200,
+    "n49": 622,
+    "n100": 447,
+    "n384": 335,
+    "n1000": 307
+   },
+   {
+    "rate": 0.25,
+    "expectation": 80,
+    "n49": 165,
+    "n100": 136,
+    "n384": 119,
+    "n1000": 116
+   },
+   {
+    "rate": 0.5,
+    "expectation": 40,
+    "n49": 66,
+    "n100": 59,
+    "n384": 55,
+    "n1000": 54
+   }
+  ],
+  "50": [
+   {
+    "rate": 0.02,
+    "expectation": 2500,
+    "n49": 96770,
+    "n100": 20719,
+    "n384": 5723,
+    "n1000": 4335
+   },
+   {
+    "rate": 0.05,
+    "expectation": 1000,
+    "n49": 10112,
+    "n100": 3113,
+    "n384": 1764,
+    "n1000": 1472
+   },
+   {
+    "rate": 0.1,
+    "expectation": 500,
+    "n49": 1506,
+    "n100": 1061,
+    "n384": 765,
+    "n1000": 687
+   },
+   {
+    "rate": 0.25,
+    "expectation": 200,
+    "n49": 391,
+    "n100": 316,
+    "n384": 269,
+    "n1000": 258
+   },
+   {
+    "rate": 0.5,
+    "expectation": 100,
+    "n49": 153,
+    "n100": 135,
+    "n384": 125,
+    "n1000": 122
+   }
+  ]
+ },
+ "looks_cost": {
+  "20": [
+   {
+    "rate": 0.02,
+    "looks1": 2396,
+    "looks2": 2759,
+    "looks3": 2983,
+    "looks6": 3389
+   },
+   {
+    "rate": 0.05,
+    "looks1": 758,
+    "looks2": 832,
+    "looks3": 875,
+    "looks6": 950
+   },
+   {
+    "rate": 0.1,
+    "looks1": 335,
+    "looks2": 360,
+    "looks3": 375,
+    "looks6": 399
+   },
+   {
+    "rate": 0.25,
+    "looks1": 119,
+    "looks2": 126,
+    "looks3": 130,
+    "looks6": 137
+   },
+   {
+    "rate": 0.5,
+    "looks1": 55,
+    "looks2": 58,
+    "looks3": 59,
+    "looks6": 62
+   }
+  ],
+  "50": [
+   {
+    "rate": 0.02,
+    "looks1": 5723,
+    "looks2": 6553,
+    "looks3": 7066,
+    "looks6": 7996
+   },
+   {
+    "rate": 0.05,
+    "looks1": 1764,
+    "looks2": 1918,
+    "looks3": 2008,
+    "looks6": 2163
+   },
+   {
+    "rate": 0.1,
+    "looks1": 765,
+    "looks2": 813,
+    "looks3": 840,
+    "looks6": 886
+   },
+   {
+    "rate": 0.25,
+    "looks1": 269,
+    "looks2": 281,
+    "looks3": 288,
+    "looks6": 299
+   },
+   {
+    "rate": 0.5,
+    "looks1": 125,
+    "looks2": 129,
+    "looks3": 131,
+    "looks6": 135
+   }
+  ]
+ },
+ "variance_share": {
+  "50": [
+   {
+    "audit": 25,
+    "epistemic_share": 0.6666666666666667,
+    "aleatoric_share": 0.33333333333333337,
+    "half_width_p10": 7.3484692283495345
+   },
+   {
+    "audit": 50,
+    "epistemic_share": 0.5,
+    "aleatoric_share": 0.5,
+    "half_width_p10": 6.000000000000001
+   },
+   {
+    "audit": 100,
+    "epistemic_share": 0.33333333333333337,
+    "aleatoric_share": 0.6666666666666667,
+    "half_width_p10": 5.196152422706632
+   },
+   {
+    "audit": 200,
+    "epistemic_share": 0.19999999999999998,
+    "aleatoric_share": 0.7999999999999999,
+    "half_width_p10": 4.743416490252569
+   },
+   {
+    "audit": 400,
+    "epistemic_share": 0.11111111111111112,
+    "aleatoric_share": 0.888888888888889,
+    "half_width_p10": 4.500000000000001
+   },
+   {
+    "audit": 2000,
+    "epistemic_share": 0.024390243902439025,
+    "aleatoric_share": 0.975609756097561,
+    "half_width_p10": 4.295346318982906
+   }
+  ],
+  "500": [
+   {
+    "audit": 25,
+    "epistemic_share": 0.9523809523809523,
+    "aleatoric_share": 0.047619047619047616,
+    "half_width_p10": 61.48170459575759
+   },
+   {
+    "audit": 50,
+    "epistemic_share": 0.9090909090909092,
+    "aleatoric_share": 0.09090909090909091,
+    "half_width_p10": 44.49719092257398
+   },
+   {
+    "audit": 100,
+    "epistemic_share": 0.8333333333333334,
+    "aleatoric_share": 0.16666666666666666,
+    "half_width_p10": 32.863353450309965
+   },
+   {
+    "audit": 200,
+    "epistemic_share": 0.7142857142857143,
+    "aleatoric_share": 0.2857142857142857,
+    "half_width_p10": 25.09980079602227
+   },
+   {
+    "audit": 400,
+    "epistemic_share": 0.5555555555555555,
+    "aleatoric_share": 0.4444444444444444,
+    "half_width_p10": 20.12461179749811
+   },
+   {
+    "audit": 2000,
+    "epistemic_share": 0.2,
+    "aleatoric_share": 0.8,
+    "half_width_p10": 15.000000000000002
+   }
+  ]
+ }
+}

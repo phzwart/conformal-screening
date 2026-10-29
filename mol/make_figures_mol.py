@@ -89,3 +89,43 @@ if SM:
     cb = fig.colorbar(im, ax=axes[1], fraction=0.05, pad=0.02); cb.set_label("expected false leads per 1000", fontsize=6.5)
     fig.tight_layout(rect=(0, 0.09, 1, 1)); fig.savefig(f"{FIG}/figS3_calisol_scenarios.pdf"); fig.savefig(f"{FIG}/figS3_calisol_scenarios.png", dpi=300)
 print("ok")
+
+# ---------------- Fig. 9: sizing a round ----------------
+if os.path.exists(f"{RES}/sizing.json"):
+    S = json.load(open(f"{RES}/sizing.json"))
+    rows = S["required"]["20"]
+    rates = [o["rate"] for o in rows]
+    fig, axes = plt.subplots(1, 2, figsize=(7.0, 2.9))
+
+    ax = axes[0]
+    ax.plot(rates, [o["expectation"] for o in rows], ls="--", color=GRAY, lw=1.6,
+            marker="o", ms=3, label="expectation, target/rate")
+    for n, col in zip((49, 100, 384, 1000), (ORANGE, VIOLET, BLUE, AQUA)):
+        ax.plot(rates, [o[f"n{n}"] for o in rows], color=col, lw=1.6, marker="o", ms=3,
+                label=f"audit $n={n}$")
+    ax.set_xscale("log"); ax.set_yscale("log")
+    ax.set_xlabel("in-class rate of the audited level set")
+    ax.set_ylabel("candidates needed for 20 hits")
+    ax.set_xticks(rates); ax.set_xticklabels([f"{100*r:g}%" for r in rates])
+    ax.xaxis.set_minor_locator(plt.NullLocator())
+    ax.legend(frameon=False, fontsize=6.5, loc="upper right")
+    ax.set_title("guaranteed yield needs a larger batch\nthan the expectation suggests",
+                 fontsize=8, color=INK)
+
+    ax = axes[1]
+    for m, col, lab in ((50, ORANGE, "batch 50"), (500, BLUE, "batch 500")):
+        v = S["variance_share"][str(m)]
+        ax.plot([o["audit"] for o in v], [100 * o["epistemic_share"] for o in v],
+                color=col, lw=1.6, marker="o", ms=3, label=lab)
+        ax.axvline(m, color=col, ls=":", lw=1.0)
+    ax.set_xscale("log")
+    ax.set_xlabel("audit size $n$")
+    ax.set_ylabel("share of interval variance\nfrom the audit (%)")
+    ax.set_ylim(0, 100)
+    ax.legend(frameon=False, fontsize=6.5, loc="upper right")
+    ax.set_title("beyond $n\\approx m$ the batch, not the audit,\nlimits the interval",
+                 fontsize=8, color=INK)
+
+    fig.tight_layout()
+    fig.savefig(f"{FIG}/fig9_sizing.pdf"); fig.savefig(f"{FIG}/fig9_sizing.png", dpi=300)
+    print("wrote fig9_sizing")

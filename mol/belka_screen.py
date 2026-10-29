@@ -61,6 +61,9 @@ import intervals
 
 RDLogger.DisableLog("rdApp.*")
 os.makedirs(OUT, exist_ok=True)
+# optional filters, so a partial campaign can be completed without redoing the rest
+ONLY_DESIGNS = set(sys.argv[4].split(",")) if len(sys.argv) > 4 and sys.argv[4] != "-" else None
+ONLY_LABELS = set(sys.argv[5].split(",")) if len(sys.argv) > 5 and sys.argv[5] != "-" else None
 GEN = rdFingerprintGenerator.GetMorganGenerator(radius=2, fpSize=2048)
 M, J, EPS, A, D = 100000, 144, 0.05, 0.10, 0.10
 NSUB = 200000          # molecules drawn from the parquet, to keep fingerprinting tractable
@@ -147,8 +150,12 @@ def main():
         print(f"resuming, {len(done)} runs already on disk", flush=True)
     fh = open(log, "a")
     for lname in LABELS:
+        if ONLY_LABELS and lname not in ONLY_LABELS:
+            continue
         y = Y[lname]
         for design in DESIGNS:
+            if ONLY_DESIGNS and design not in ONLY_DESIGNS:
+                continue
             for score in ("model", "random"):
                 for r in range(R0, R1):
                     if (lname, design, score, r) in done:
