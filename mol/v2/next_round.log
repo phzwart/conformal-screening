@@ -1,0 +1,38 @@
+{
+ "library": "BELKA, soluble epoxide hydrolase",
+ "label": "activity",
+ "n_sampled": 200000,
+ "new_block_frac": 0.15,
+ "batch_novel_frac": 0.3,
+ "prevalence": 0.00721,
+ "declared_round": "30% of the batch is built on position-1 blocks the model never saw"
+}
+resuming, 3 runs already on disk
+  naive   rep1 AUROC 0.963 covered 4/6  hits promised [150, 235] got 150  [230s]
+  mirror  rep1 AUROC 0.963 covered 4/6  hits promised [150, 235] got 150  [282s]
+  pilot   rep1 AUROC 0.952 covered 6/6  hits promised [118, 187] got 155  [332s]
+  naive   rep2 AUROC 0.967 covered 4/6  hits promised [112, 187] got 150  [431s]
+  mirror  rep2 AUROC 0.967 covered 5/6  hits promised [109, 183] got 148  [483s]
+  pilot   rep2 AUROC 0.968 covered 6/6  hits promised [93, 155] got 151  [536s]
+  naive   rep3 AUROC 0.98 covered 4/6  hits promised [92, 162] got 282  [639s]
+  mirror  rep3 AUROC 0.98 covered 3/6  hits promised [93, 163] got 282  [696s]
+  pilot   rep3 AUROC 0.972 covered 6/6  hits promised [148, 224] got 203  [750s]
+  naive   rep4 AUROC 0.964 covered 4/6  hits promised [131, 211] got 131  [857s]
+  mirror  rep4 AUROC 0.964 covered 4/6  hits promised [131, 211] got 132  [911s]
+  pilot   rep4 AUROC 0.964 covered 6/6  hits promised [99, 162] got 131  [967s]
+  naive   rep5 AUROC 0.96 covered 4/6  hits promised [146, 231] got 147  [1074s]
+  mirror  rep5 AUROC 0.96 covered 4/6  hits promised [145, 229] got 147  [1128s]
+  pilot   rep5 AUROC 0.961 covered 6/6  hits promised [108, 172] got 136  [1184s]
+  naive   rep6 AUROC 0.971 covered 4/6  hits promised [145, 229] got 154  [1285s]
+  mirror  rep6 AUROC 0.971 covered 4/6  hits promised [145, 229] got 154  [1335s]
+  pilot   rep6 AUROC 0.97 covered 6/6  hits promised [113, 180] got 150  [1384s]
+  naive   rep7 AUROC 0.952 covered 6/6  hits promised [93, 163] got 96  [1488s]
+  mirror  rep7 AUROC 0.952 covered 5/6  hits promised [93, 162] got 96  [1539s]
+  pilot   rep7 AUROC 0.973 covered 6/6  hits promised [168, 248] got 193  [1589s]
+  naive   rep8 AUROC 0.949 covered 4/6  hits promised [147, 232] got 122  [1690s]
+  mirror  rep8 AUROC 0.949 covered 4/6  hits promised [139, 220] got 122  [1743s]
+  pilot   rep8 AUROC 0.948 covered 5/6  hits promised [124, 194] got 118  [1797s]
+  naive   rep9 AUROC 0.969 covered 1/6  hits promised [62, 121] got 348  [1900s]
+  mirror  rep9 AUROC 0.969 covered 2/6  hits promised [62, 121] got 350  [1954s]
+  pilot   rep9 AUROC 0.962 covered 6/6  hits promised [164, 243] got 220  [2011s]
+total 2010.9s
