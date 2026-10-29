@@ -24,3 +24,5 @@ resuming, 2 runs on disk
   at the calibration boundary  rep8 AUROC 0.895 rate aud/bat 0.0106/0.0028 covered 3/6  [920s]
   at the training boundary     rep8 AUROC 0.903 rate aud/bat 0.0026/0.0026 covered 4/6  [958s]
   at the calibration boundary  rep9 AUROC 0.955 rate aud/bat 0.0075/0.0065 covered 4/6  [1026s]
+  at the training boundary     rep9 AUROC 0.96 rate aud/bat 0.0075/0.0063 covered 6/6  [1063s]
+total 1062.6s
