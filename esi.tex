@@ -125,6 +125,13 @@ with $L=0$ if $k=0$ and $U=m$ if $k=n$. We verified both identities numerically 
 
 \paragraph{Sizing the audit set.} For planning, the exact limits are close to a normal approximation: for an outcome of frequency $p$, $n$ audit compounds and a batch of $m$, the 95\% interval for the future count is about $mp\pm2m\sqrt{p(1-p)(1/n+1/m)}$. The term $1/n$ is the uncertainty of the audited frequency and $1/m$ the variation of a finite batch; the second does not vanish however large the audit. For AqSolDB setting A ($p=0.23$ false leads, $n=384$, $m=1000$) the approximation gives $232\pm51$, against the exact $[183,285]$. Joint bounds over $J$ settings and $C$ outcomes replace the factor 2 by the corresponding normal quantile, about 3.8 for $JC=576$ and $\varepsilon=0.05$.
 
+Inverting the approximation sizes the audit. Letting the audit grow without limit leaves the half-width at $h_\infty=2\sqrt{m\,p(1-p)}$, which is the narrowest interval any audit can buy for a batch of $m$, and writing the target half-width as $r\,h_\infty$ for some $r>1$ gives
+\begin{equation}
+n = \frac{m}{r^2-1}.
+\label{eq:auditsize}
+\end{equation}
+The rate and the batch size cancel, so where a design sits above its floor is fixed by $n/m$ alone: $n=m/3$ gives twice the floor, $n=m$ a factor $\sqrt2$, $n=2.3m$ a factor 1.2, $n=4.8m$ a factor 1.1 and $n\approx10m$ a factor 1.05. Checked against the exact limits at $p$ from 0.02 to 0.50 and $m$ from 96 to 1000, the realized ratio matches $r$ to within a few percent, the discrepancies being those of discreteness at small expected counts. The floor does depend on the rate, and relative to the expected count $mp$ it is $2\sqrt{(1-p)/(pm)}$, which is 44\% at $p=0.02$ and $m=1000$ against 9\% at $p=0.5$ and $m=500$: at the rates of a primary screen the batch term dominates, and a larger audit cannot repair it.
+
 \paragraph{Target of the interval.} The interval covers the realized future count $K_m$; no fixed rate is assumed. If the compound source is regarded as infinitely exchangeable, de Finetti's theorem\citep{Aldous1985} gives a random distribution $Q$ such that, conditional on $Q$, compounds are independent draws from $Q$. Conditional on $Q$ and the calibration set the test indicators are then independent Bernoulli variables with success probability
 \begin{equation}
 p_g(Q)=\Pr_Q\big(g(Y,C(X))=1\big),

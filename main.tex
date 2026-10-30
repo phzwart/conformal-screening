@@ -20,7 +20,7 @@
 \setlength{\parskip}{0pt}
 \raggedbottom
 
-\title{\Large\bfseries Conformal campaigns: engineering predictive uncertainty\\ for chemical and materials screening}
+\title{\Large\bfseries Conformal campaigns: from coverage requests\\ to audited consequences}
 \author{Petrus H. Zwart\thanks{Center for Advanced Mathematics in Energy Research Applications, Berkeley Synchrotron Infrared Structural Biology Program, and Molecular Biophysics and Integrated Bioimaging Division, Lawrence Berkeley National Laboratory, 1 Cyclotron Road, Berkeley, CA 94720, USA. E-mail: PHZwart@lbl.gov. Electronic supplementary information (ESI) available: derivations, algorithms, simulation protocols and additional tables.}}
 \date{}
 
@@ -246,7 +246,9 @@ The answer differs from the one an expectation gives, and the difference is larg
 
 The size of the audit enters the requirement directly, which prices audit measurements against synthesis. At a rate of 2\%, an audit of 49 compounds leaves the required batch at 19\,091 candidates and an audit of 384 at 2056, so 335 further audit measurements remove about 17\,000 syntheses from the requirement; at a rate of 10\% the same 335 measurements remove 201. On this accounting the audit is not an overhead on the campaign but the measurement with the largest effect on what the campaign costs, and its effect is largest exactly where a screen's hit rate is low.
 
-The two gaps are different in kind, and separating them is what makes the number planable. The distance from 1000 to 2056 is the risk the campaign carries however much it measures, because which candidates fall in this particular batch is not something an audit can know. The distance from 19\,091 to 2056 is ignorance about the rate, and 335 measurements buy it away. A team that plans on the expectation is not making an optimistic estimate of the first quantity; it is omitting both.
+Three quantities are stacked in that figure, and separating them is what makes it planable. Were the rate known exactly, the batch delivering 20 hits with probability 0.95 would still hold 1390 candidates rather than 1000, because which candidates fall in this particular batch is not something any amount of measurement can settle. Knowing the rate only from an audit of 384 raises the requirement to 2056, and knowing it from an audit of 49 raises it to 19\,091. The first gap is the risk the campaign carries, the second and third are what ignorance of the rate costs on top of it, and only the latter two are for sale. A team that plans on the expectation omits all three.
+
+How much of that is worth buying can be settled before any compound is measured, because the width of an interval has a closed form in the audit and batch sizes (ESI Section~\ref{esi-sec:intervals}). Accepting a width $r$ times the narrowest any audit could achieve requires $n=m/(r^2-1)$ audit candidates, a ratio that does not depend on the rate or on the batch size: an audit the size of the batch lands a factor $\sqrt2$ above that floor, one of $2.3m$ within 20\% of it and one of $4.8m$ within 10\%. The floor itself does depend on the rate, and at the rates a primary screen works at it is wide --- for a batch of 1000 at a rate of 2\% it is $\pm9$ on an expected 20 --- so a team should read the floor first and enlarge the batch, not the audit, when the floor is what binds.
 
 The exchange has a limit (Fig.~\ref{fig:sizing}, right). An interval's width carries one term in the audit size and one in the batch size (Section~\ref{sec:methods:intervals}): the first is the uncertainty in the rate, which the audit reduces, and the second is which candidates happen to fall in this particular batch, which it cannot. The two contribute equally when audit and batch are of the same size, and beyond that the batch term dominates, so an audit much larger than the batch buys little. For a batch of 50, an audit of 400 already leaves 89\% of the interval's variance attributable to the batch.
 
