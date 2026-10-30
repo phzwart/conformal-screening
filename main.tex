@@ -28,15 +28,26 @@
 \twocolumn[
 \maketitle
 \begin{abstract}
-A screening campaign that needs 20 confirmed hits at a hit rate of 2\% and divides the target by
-the rate will plan a round of 1000 candidates. About twice that is required. Run backwards from a labelled sample of the library, the same target needs 2056 candidates when the rate is estimated from 384 measured compounds. It needs 1390 even if that rate were known exactly, since the draw of the batch is not something measurement can settle. Separating those terms shows
-which part of a campaign's uncertainty is for sale. Enlarging that sample from 49 compounds to 384 roughly halves the requirement; at 49 it sees no hit at all with probability 0.37, and no batch size then reaches the target.
-Read forwards, the same sample predicts every outcome of a round as counts with finite-sample intervals: confident hits, false leads, missed actives and compounds assayed. We call it an audit set, and the condition it must satisfy differs from the one
-conformal coverage requires. From the audit's point of view the calibration set is training data.
-The two conditions fail separately, and they fail asymmetrically. A rule fitted on the wrong population, prevalence or label is a poorer rule whose audit stays sound, whereas an audit drawn from chemistry the committed batch lacks voids the counts however the rule was calibrated. The second condition fails four ways on public data. Withholding building blocks in a DNA-encoded library cost two thirds of the coverage while barely changing the ranking, and where the model chose the batch an audit reserved from the library could not be formed at all in nine of twelve rounds. No statistic a
-screen ordinarily reports orders these failures. Two arrangements hold, a pilot of the population
-to be screened and a random slice of the committed round, the second exact whatever rule made the
-selection.
+A screening round commits plate, reagent and instrument time before any of it is known to be
+worth spending. What a team needs in order to commit is a number rather than a score. How many
+candidates to screen for a target yield, and how many confident calls, false leads, missed
+actives and assays a batch of a given size will return. Such counts can be had with
+finite-sample prediction intervals from a labelled sample of the library to be screened, used
+for neither training nor calibration. We call it an audit set, and it costs candidate slots
+instead of a round. The counts come out larger than a point estimate suggests, and the excess
+separates into a part that measurement removes and a part that it cannot. Twenty hits at a rate
+of 2\% require 2056 candidates on an audit of 384, against 1000 from dividing the target by the
+rate. With the rate known exactly, 1390 would still be required, since the draw of the batch is
+not something measurement can settle.
+An audit must be exchangeable with the batch a team commits, and that condition differs from the
+one conformal coverage requires. From the audit's point of view the calibration set is training
+data. The two fail separately and asymmetrically. A rule fitted on the wrong population,
+prevalence or label is a poorer rule whose audit stays sound, whereas an audit drawn from
+chemistry the batch lacks voids the counts. The second condition fails four ways on public data.
+Where the model chose the batch, no audit could be reserved from the library at all in nine of
+twelve rounds, and no statistic a screen ordinarily reports orders the failures. Two designs
+held, a pilot of the population to be screened and a random slice of the committed round, the
+second exact whatever rule selected it.
 \end{abstract}
 \vspace{1em}
 ]
