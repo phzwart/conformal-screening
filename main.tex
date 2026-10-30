@@ -30,27 +30,23 @@
 \begin{abstract}
 A screening team makes two splits and trusts the wrong one. It separates training compounds by
 scaffold or building block, to check that a model has not memorised its training chemistry, and
-divides what remains at random to calibrate a rule. The first is the split a paper reports; the
-second looks like bookkeeping. The first guards the model while silently voiding everything
-quantitative about the next batch; the second is what keeps those quantities valid, but only for
-the population it sampled, which is seldom the population a round commits. The quantities are
-counts --- confident hits, false leads, missed actives, compounds assayed --- and a labelled
-audit set, used neither for training nor for calibration, prices a rule the calibration set has
-already fixed and bounds every count a planned batch will return, in finite samples. The audit
-therefore exempts the calibration set as split conformal exempts the training set, and coverage
-and predicted counts become separate guarantees failing independently: a rule calibrated on the
-wrong population, prevalence or label is a worse rule but a valid audit, while an audit drawn
-from chemistry the batch does not share voids the counts however the rule was calibrated. That
-second requirement fails four ways on real data. Withholding building blocks in a DNA-encoded
-library cost two thirds of the coverage while costing only 0.07 of area under the curve, a drop no project would act on; dividing a pooled electrolyte
-compilation by the paper each measurement came from cost a quarter; giving the audit the batch's
-proportion of novel chemistry but from different blocks bought nothing at all, the two arrangements differing by $0.000$ with a paired interval of $\pm0.070$;
-and against a batch the model chose, an audit reserved from the library could not be formed at
-all in nine of twelve rounds. No statistic a screen reports orders these failures. Two
-arrangements hold: a pilot of the population to be screened, and --- exactly, whatever rule
-selected the batch --- a random slice of the committed round. Every coverage result here that holds divides one
-labelled pool at random, so it verifies the construction; the two divisions that test it against
-a separately assembled batch are among the four that break it.
+divides what remains at random to calibrate a rule. The first guards the model while silently
+voiding everything quantitative about the next batch; the second keeps those quantities valid,
+but only for the population it sampled, which is seldom the population a round commits. Those
+quantities are counts --- confident hits, false leads, missed actives, compounds assayed --- and a
+labelled audit set, used neither for training nor for calibration, prices a rule the calibration
+set has already fixed and bounds every count a planned batch will return, in finite samples.
+From the audit's point of view the calibration set is training data: coverage needs calibration
+exchangeable with the test population, the counts need the audit exchangeable with the committed
+batch, and the asymmetry runs one way. A rule calibrated on the wrong population, prevalence or
+label is a worse rule but still a valid audit; an audit drawn from chemistry the batch does not
+share voids the counts however the rule was calibrated. That second requirement fails four ways
+on real data. Withholding building blocks in a DNA-encoded library cost two thirds of the
+coverage while costing 0.07 of area under the curve, a drop no project would act on, and against
+a batch the model chose an audit reserved from the library could not be formed at all in nine of
+twelve rounds. No statistic a screen reports orders these failures. Two arrangements hold: a
+pilot of the population to be screened, and --- exactly, whatever rule selected the batch --- a
+random slice of the committed round.
 \end{abstract}
 \vspace{1em}
 ]
@@ -59,11 +55,12 @@ a separately assembled batch are among the four that break it.
 \section{Introduction}
 \label{sec:intro}
 
-A screening team makes two splits, and believes the wrong one is the careful one. It separates
-training compounds from the rest by scaffold or building block, to check that a model has not
-simply memorised its training chemistry; that is the split a paper reports, and a ranking that
-survives it is read as a licence to deploy. It then divides what remains at random to calibrate
-a rule. The first split looks rigorous and the second looks like bookkeeping.
+Two divisions of the data stand between a trained model and a screening round, and the one a
+paper reports is not the one that licenses its forecasts. A team separates training compounds
+from the rest by scaffold or building block, to check that a model has not simply memorised its
+training chemistry; a ranking that survives that division is read as a licence to deploy. It
+then divides what remains at random to calibrate a rule. The first split looks rigorous and the
+second looks like bookkeeping.
 
 Both readings are wrong, and in opposite directions. The structural split does guard the model,
 and it silently voids everything quantitative about the next batch: in a DNA-encoded library,
@@ -94,26 +91,24 @@ already in hand rather than one not yet assembled. What is missing is a count th
 \emph{predictive}: a statement about a batch not yet made. That is what a labelled audit set
 supplies, and why the rest of this paper is about how the audit is drawn.
 
-The screens we consider decide which candidates go forward to a toxicity assay, a solubility
-or conductivity measurement, or synthesis. Because characterization runs in parallel, the
-capacity of a round is fixed before it starts. Unlike turn-by-turn optimization, a batch campaign often aims at covering a chemical or physical design space, mapping it or narrowing in on a set of optima (Section~\ref{sec:discussion}). The decision, whether made by a team or by a planner, is the same, and so is the gap we address. In a binary screen each compound receives one of four prediction sets: $\{\text{out-class}\}$, $\{\text{in-class}\}$, both labels, or neither. A team acts on these sets. It advances or discards compounds that receive a single label and sends the others for an assay.
+The screens we consider decide which candidates go forward to a toxicity assay, a solubility or
+conductivity measurement, or synthesis. Because characterization runs in parallel, a round's
+capacity is fixed before it starts, and unlike turn-by-turn optimization a batch campaign often
+aims at covering a design space rather than at a single optimum
+(Section~\ref{sec:discussion}). In a binary screen each compound receives one of four prediction
+sets --- one label, the other, both, or neither --- and a team advances or discards the
+single-label compounds and sends the rest for an assay. What it needs to know before committing
+is how many of each there will be.
 
-To choose among these actions, a team needs to know what they will do: how many compounds will receive a single label, how many of those calls will be right, and how many compounds will be sent for testing. These consequences, counted in compounds, are the terms in which screening decisions are made and budgets and capacities are planned. Coverage, the native coordinate of conformal prediction, is a statement about the prediction sets; it informs a decision once it is linked to these consequences. That link has to be measured. A set containing both labels is always correct but sends the compound to an assay, so two classifiers calibrated to the same coverage can sort a batch very differently.
-
-Predictive uncertainty is ordinarily reported one prediction at a time, and reviews of
-uncertainty quantification for drug design and property prediction follow that
-convention.\citep{Mervin2021UQ} Here the unit of prediction is the round rather than the
-compound, which changes what the uncertainty is made of. Two terms contribute to it: how well
-the audit pins down the rates, and how much the realized count varies around those rates in a
-batch of the size committed. The second does not shrink however large the audit grows, and at
-the batch sizes a plate imposes it is the larger of the two --- which is why a guarantee stated
-as a rate does not answer the question, and why the construction below is stated in counts.
-
-\paragraph{What we do and why.} We give coverage a specific role. The coverage level is a setting the team chooses, separately for the in-class and out-class compounds, and changing it changes which compounds are advanced, discarded or assayed. We therefore treat the coverage request as the control: sweeping it moves the classifier through the space of possible decisions. A labelled \emph{audit set}, a random sample of the library to be screened that was used neither for training nor for calibration, shows the consequences of each setting. From it we predict every screening outcome of a future batch, stated as counts of compounds, with prediction intervals that are valid in finite samples under exchangeability of the audit with the batch. That is a different requirement from the one coverage assumes, and Section~\ref{sec:methods:intervals} separates them: either can hold without the other.
-
-These intervals are the deliverable, and obtaining them is what the method is for. Before a batch is screened, the audit states how many confident hits, false leads, missed in-class compounds and measurements the batch will contain, each as a count, equivalently a rate per 1000, with an interval that holds with a specified probability. The intervals are realistic in both directions: they hold at the stated level, where the usual shortcuts are too narrow, and they are no wider than the size of the audit requires. A team can therefore plan on them: book the assays, budget the measurements and expect the hits.
-
-Coverage is thus the coordinate for navigating decisions, and the audited consequences are what a team chooses by. Choosing uses an objective, such as the expected cost or yield of the screen. It usually also uses guarantees: a plan the team can rely on, in which, with a stated probability, no batch needs more assays than the laboratory or the robot can run and every batch delivers enough hits to proceed. Such guarantees are bounds on counts that hold with a stated probability. The coverage requests reduce the navigation of these many consequences to two coordinates, in which a team can explore scenarios, each a set of such guarantees, and see which settings satisfy them.
+\paragraph{What we do.} We treat the coverage level as a control rather than a result. It is
+chosen separately for the in-class and out-class compounds, and sweeping it moves the classifier
+through the space of possible rounds. A labelled \emph{audit set} --- a sample of the library to
+be screened, used neither for training nor for calibration --- then prices each setting: how many
+confident hits, false leads, missed in-class compounds and assays a batch of the committed size
+will contain, each as a count with a finite-sample interval valid under exchangeability of the
+audit with the batch. Those intervals are the deliverable, and a team can book assays and budget
+measurements against them. Their requirement is not the one coverage assumes, and
+Section~\ref{sec:methods:intervals} separates the two.
 
 Section~2 sets out the outcome table, the threshold correction, the navigation by coverage and the audit intervals that are the method's output; Section~3 validates the intervals in simulation and on real data and applies them to solubility, toxicity and electrolyte screens; Section~4 gives a workflow and the limitations.
 
@@ -151,29 +146,56 @@ Conformal prediction is established in cheminformatics, for toxicity, bioactivit
 precisely, because they answer a different question rather than a weaker version of the same
 one. Conformal risk control bounds an expectation, $\mathbb{E}[L_{n+1}(\hat\lambda)]\le\alpha$,
 marginally over the calibration set and the test point together, for a single future point, under a loss required
-to be monotone in a scalar parameter.\citep{Angelopoulos2024CRC} The loss itself is general ---
-it may be any bounded function, including an indicator that a plate has overrun its capacity,
-so the family is not confined to per-candidate error rates --- but what is controlled is its
-expectation or its level, not the integer the plate returns.
-Risk-controlling prediction sets make that statement high-probability and conditional on the
-calibration set, $\Pr(R(\hat\lambda)\le\alpha)\ge1-\delta$;\citep{bates2021distribution}
-learn-then-test extends it to several parameters and several risk
-constraints.\citep{Angelopoulos2021LTT} Song \textit{et al.}\ come closest to the construction here, bounding the
-false discovery proportion of a conformal selection with a bound that holds simultaneously over
-all thresholds, so that a threshold may be chosen after the data are seen;\citep{Song2026FDP}
-their envelope is a sharper instrument than the Bonferroni correction we use for the same
-purpose, and the quantity it bounds is a proportion among the selections of the batch in hand
-rather than a count in a batch not yet measured. Bounding a realized count in a finite selected set is older than any of
-this and is not ours: the post hoc, true-discovery literature has given simultaneous
-high-probability bounds on the number of true discoveries in an arbitrary selected set since
-2011.\citep{Goeman2011Exploratory,Katsevich2020FDP,Blanchard2020PostHoc} What distinguishes the
-construction here is not that it counts but that it is \emph{predictive}: those bounds describe
-the set in hand, from $p$-values computed on it, whereas the intervals below describe a batch
-not yet made or measured, from a sample of the library it will be drawn from. They are also
-two-sided, so a capacity and a yield constraint can be imposed at once; they cover every cell
-of the outcome table, including the missed in-class compounds, which a bound computed without
-labels cannot reach because a miss is defined by a label it never sees; and they invert for the
-batch size. The price is labels: an audit is measured, and the post hoc bounds are not.
+to be monotone in a scalar parameter.\citep{Angelopoulos2024CRC} The decisive restriction is not what the loss
+measures but what it is defined on: $L_{n+1}$ is a loss at a single future point, and a
+constraint such as ``this plate of $m$ did not overrun its capacity'' is a functional of the
+whole batch, which is not of that form. Risk-controlling prediction sets make the statement
+high-probability and conditional on the calibration set,
+$\Pr(R(\hat\lambda)\le\alpha)\ge1-\delta$,\citep{bates2021distribution} and learn-then-test
+reaches batch-level functionals, controlling any risk that admits a concentration bound over
+several parameters and constraints at once.\citep{Angelopoulos2021LTT} What that route needs is
+a sample of the thing it controls: to bound the risk of a round empirically, one needs rounds.
+A campaign has one, and it is the round being priced. The construction below takes its
+probability from inside that single round, by conditioning on the audit-and-batch total, which
+is how it can speak about a batch of $m$ before the batch exists. Two lines of work do bound counts in a batch
+not yet measured, and both are nearer to this paper than the rate-control family. Gazin
+\textit{et al.}\ show that the $m$ conformal $p$-values of an \emph{unlabelled} test batch
+follow a P\'olya urn law, and give a concentration inequality for their empirical distribution
+function;\citep{Gazin2024Transductive} scaled by $m$, that bounds how many of the batch fall
+below a threshold, with no measurement on the batch at all. The exchangeability combinatorics
+are the same ones the construction below runs twice, and we claim no priority over them. Song
+\textit{et al.}\ bound the false discovery proportion of a conformal selection simultaneously
+over all thresholds, so that a threshold may be chosen after the data are
+seen;\citep{Song2026FDP} since the selected set is observed once the batch has been scored,
+that envelope multiplied by its size is likewise a high-probability bound on an integer in an
+unmeasured batch, and a sharper instrument than the Bonferroni correction we use for the same
+purpose.
+
+What a labelled audit buys is therefore not that it counts, nor that it is predictive, but
+which quantity it counts and under which condition. Those bounds are one-sided, bounding false
+discoveries without placing a floor under yield. They are statements about the selected set, so
+they are silent on every cell an \emph{unselected} in-class compound defines --- a missed hit is
+not in the selection. They do not invert for the batch size. And, most consequentially here,
+what they require is exchangeability between calibration and test, which is precisely the
+condition a structural split breaks; the intervals below require exchangeability between audit
+and batch, a different condition that holds and fails in different circumstances
+(Table~\ref{tab:decoupling}). The price of the second is measurement.
+
+Bounding a realized count in a finite selected set is older than any of this and is not ours.
+Confidence envelopes for the false discovery proportion go back to Genovese and
+Wasserman,\citep{GenoveseWasserman2004} and the post hoc, true-discovery literature gives
+simultaneous high-probability bounds on the number of true discoveries in an arbitrary selected
+set, with closed-testing shortcuts that make them
+computable.\citep{Goeman2011Exploratory,Goeman2019Simultaneous,Katsevich2020FDP,Blanchard2020PostHoc}
+These are two-sided in the operational sense: an envelope on the false discovery proportion
+gives a capacity ceiling and a lower confidence bound on true discoveries gives a yield floor.
+They are also not label-free --- each needs a $p$-value for every unit of the set it bounds, that
+is one measurement per unit, which is a higher price than an audit's and not a lower one, since
+the audit measures a sample and then speaks about units it never measured. The direction they
+cannot reach is the one a planner needs. Closed testing bounds a non-null proportion from
+below, so taking the discarded set as the selection gives a lower confidence bound on the hits
+thrown away but not an upper one, and it is the upper limit on misses that tells a team whether
+a setting is safe to commit.
 
 A campaign is constrained in counts, not rates, and the two differ by more than a rounding. A
 guarantee that the long-run failure rate is at most 0.1 does not say that a plate of 96 will
@@ -188,14 +210,24 @@ binomial tail to yield a count bound, and the composition is valid. It pays twic
 rate and once for the tail, where conditioning on the audit-and-batch total pays once, and the
 price is measurable. Giving the rate bound the most generous instrument available --- an exact
 Clopper--Pearson limit rather than the concentration bounds risk-controlling sets actually use
---- and matching both sides at a one-sided level of 0.05, the composed bound is 11 to 60\%
-wider than the exact inversion over the configurations this paper reports, and the gap is
-largest where it matters most: pricing one plate of 96 from an audit of 384 at a 2\% rate, the
-exact bound allows 5 confident hits and the composition 8, so the headroom a planner must
-reserve doubles. The construction here bounds the realized integer count in
+--- and splitting the level evenly between its two stages, which is what makes the composition
+valid at a one-sided 0.05 overall, the composed limit sits 11 to 60\% above the exact inversion
+over the configurations this paper reports. Measured as a planner would, in the headroom that
+has to be reserved above the expected count, the gap is larger: pricing one plate of 96 from an
+audit of 384 at a 2\% rate, the exact bound allows 5 confident hits and the composition 8, so
+the headroom doubles, from three compounds above the expected two to six
+(ESI Section~\ref{esi-sec:compose}). The composition also assumes more. Its second stage treats the batch count as binomial given the
+rate, which holds when the batch is an independent sample from a fixed distribution but not for
+a finite exchangeable sequence, which need not be a mixture of independent
+ones;\citep{DiaconisFreedman1980} the hypergeometric argument needs no such representation
+(ESI Section~\ref{esi-sec:target}). The construction here bounds the realized integer count in
 a batch of stated size, two-sided so that capacity and yield can both be constrained, for every
 cell of the outcome table rather than one monotone summary, without any monotonicity
-requirement, and invertible for the batch size itself. Conformal selection\citep{JinCandes2023} selects candidates with false-discovery control, and set-valued classifiers with bounded class-wise error\citep{Sadinle2019} minimize ambiguity. Decision-theoretic work links prediction sets to actions. Conformal decision theory calibrates a decision parameter to a target risk,\citep{Lekeufack2024CDT} and Kiyani \textit{et al.}\ showed that prediction sets are a sufficient statistic for risk-averse decision makers with a known utility, for whom acting on the worst case within the set is optimal.\citep{Kiyani2025RAC} The question for which costs a classifier, or an abstaining classifier, is optimal goes back to the reject option\citep{Chow1970} and to ROC analysis.\citep{ProvostFawcett2001,Pietraszek2005} Our aim is complementary. We assume no utility, report \emph{all} screening outcomes of each coverage setting with valid intervals and bounds, and let a team choose afterwards under its own objective and constraints.
+requirement, and invertible for the batch size itself. Prediction-powered inference gives distribution-free intervals for an aggregate functional
+from a small gold-standard sample together with a model's predictions on the
+rest,\citep{Angelopoulos2023PPI} which is the audit set's role for the rate term; what it does
+not supply is the second term, the variation of a realized count about that rate in a batch of
+the committed size. Conformal selection\citep{JinCandes2023} selects candidates with false-discovery control, and set-valued classifiers with bounded class-wise error\citep{Sadinle2019} minimize ambiguity. Decision-theoretic work links prediction sets to actions. Conformal decision theory calibrates a decision parameter to a target risk,\citep{Lekeufack2024CDT} and Kiyani \textit{et al.}\ showed that prediction sets are a sufficient statistic for risk-averse decision makers with a known utility, for whom acting on the worst case within the set is optimal.\citep{Kiyani2025RAC} The question for which costs a classifier, or an abstaining classifier, is optimal goes back to the reject option\citep{Chow1970} and to ROC analysis.\citep{ProvostFawcett2001,Pietraszek2005} Our aim is complementary. We assume no utility, report \emph{all} screening outcomes of each coverage setting with valid intervals and bounds, and let a team choose afterwards under its own objective and constraints.
 
 %% ------------------------------------------------------------------
 \section{Methods}
@@ -306,7 +338,7 @@ either without the other (Table~\ref{tab:decoupling}). Coverage needs the calibr
 exchangeable with the batch; the predicted counts need the audit set to be, whatever the
 calibration was built from. The same reading explains why a calibration set cannot freely audit
 itself: for the second step it is training data, and a rule may not be priced on the data that
-set it (Section~\ref{sec:results:calonly}).
+set it (ESI Section~\ref{esi-sec:calonly}).
 
 \paragraph{What the intervals cover.} The intervals cover the realized count in the future batch,
 and no fixed underlying rate is assumed; they are conservative because counts are discrete. Each
@@ -777,7 +809,12 @@ what remained of the pool fell to 0.0013. Across the twelve rounds of the two ca
 library audit could not even be formed in nine, because a sample of the leftover pool
 contained no in-class candidate at all, and in the three rounds where it could be formed it
 covered 2, 2 and 4 of the six consequence lines. A quantity that cannot be estimated is a
-safer failure than one estimated wrongly, but neither is a guarantee.
+safer failure than one estimated wrongly, but neither is a guarantee. The usual repair for a
+covariate shift is to reweight the calibration sample by the likelihood ratio between the two
+populations,\citep{Tibshirani2019Weighted} which requires that ratio to exist and to be known
+or estimable. A planner that commits the top $m$ of a ranking does not shift the population
+smoothly; it concentrates it on a set chosen by the same score the rule thresholds, and the
+weights such a selection would need are unbounded on it.
 
 Both repairs work, and the first is exact. A random slice of the committed batch covered all
 six lines in every one of the nine rounds in which it could be formed, which is what the
@@ -845,9 +882,7 @@ selection count, a cheaper assay, a single-concentration readout --- and claims 
 the endpoint it cares about. One case is free: no part of the rule reads the score's value, only
 its order, so any strictly increasing relabelling of the truth at matched prevalence leaves every
 cell of the outcome table unchanged, which we verified cell for cell on three scales (ESI
-Section~\ref{esi-sec:surrogate}). Real proxies are not increasing functions of anything.
-
-Real proxies are not increasing functions of anything. What governs the shortfall is local, and follows from the construction: the threshold sits at a fixed quantile of the score distribution conditioned on the \emph{proxy's} label, whereas the coverage achieved is the score distribution conditioned on the \emph{true} label evaluated at that same threshold. The coverage achieved therefore decomposes into three terms,
+Section~\ref{esi-sec:surrogate}). Real proxies are not increasing functions of anything. What governs the shortfall is local, and follows from the construction: the threshold sits at a fixed quantile of the score distribution conditioned on the \emph{proxy's} label, whereas the coverage achieved is the score distribution conditioned on the \emph{true} label evaluated at that same threshold. The coverage achieved therefore decomposes into three terms,
 \begin{equation}
 \text{achieved} \;=\; (1-\alpha) \;+\; \bigl(\ell - (1-\alpha)\bigr) \;+\; \Delta,
 \label{eq:gap}
@@ -938,7 +973,7 @@ here that does not pay it.
 \section{Discussion}
 \label{sec:discussion}
 
-The audit turns a conformal classifier into a forecast: before a batch is screened, it predicts how many hits, false leads, misses and measurements the batch will contain, with intervals that hold at a stated probability. The two class-wise coverage requests move a conformal classifier through the decisions available to a screening team, and for every setting the consequences are counts in one outcome table: compounds advanced, discarded and deferred, and how many of those calls are wrong. Linked to these counts by the audit, coverage becomes a coordinate a team can steer by. An objective, usually with guarantees on what a campaign will consume and deliver that hold with a stated probability, decides where to steer. The coverage plane is where such scenarios are explored, and an audit set from the library to be screened supplies the consequences, with finite-sample valid intervals that remain valid after the team has chosen a setting by looking at them. On Tox21, AqSolDB and CALiSol-23 the intervals held at their nominal level, also when the calibration came from other scaffolds or other salts, the audit having come from the screened compounds. Each of those checks divides one labelled pool at random, however, so they verify the construction rather than establishing that it survives a separately assembled batch, and the two divisions that do test that --- by provenance and by building block --- break it.
+The audit turns a conformal classifier into a forecast: before a batch is screened, it predicts how many hits, false leads, misses and measurements the batch will contain, with intervals that hold at a stated probability. The two class-wise coverage requests move a conformal classifier through the decisions available to a screening team, and for every setting the consequences are counts in one outcome table: compounds advanced, discarded and deferred, and how many of those calls are wrong. Linked to these counts by the audit, coverage becomes a coordinate a team can steer by. An objective, usually with guarantees on what a campaign will consume and deliver that hold with a stated probability, decides where to steer. The coverage plane is where such scenarios are explored, and an audit set from the library to be screened supplies the consequences, with finite-sample valid intervals that remain valid after the team has chosen a setting by looking at them. On Tox21, AqSolDB and CALiSol-23 the intervals held at their nominal level, also when the calibration came from other scaffolds or other salts, the audit having come from the screened compounds. Those checks verify the construction rather than establishing that it survives a separately assembled batch, which is taken up below.
 
 \paragraph{Using the method in a screen.} The results suggest the following workflow.
 
@@ -1020,7 +1055,7 @@ commit several hundred wells at once has the most use for one. A committed batch
 allocation under fixed capacity, divided between the candidates a setting advances and the random
 sample that prices the round after it.
 
-paragraph{Limitations.} The serious objection is one sentence: every positive coverage
+\paragraph{Limitations.} The serious objection is one sentence: every positive coverage
 result in this paper divides one labelled pool at random, which verifies the construction and
 cannot fail, and the two divisions that test it against a genuinely separate batch --- by
 provenance and by building block --- break it. The repairs reported above are the answer to
@@ -1043,7 +1078,9 @@ arrangement rather than certify one.
 Simultaneity and scope. Each interval covers one outcome of one setting, and statements about
 many need the Bonferroni correction: with 144 requests and four bounded outcomes the joint
 guarantee cost about 110 measurements per 1000 at an audit of 384, which larger audits lower and
-an envelope valid simultaneously over thresholds would lower further.\citep{Song2026FDP} The
+an envelope valid simultaneously over thresholds would lower
+further;\citep{Song2026FDP} Simes aggregation over a batch dominates Bonferroni
+uniformly\citep{Gazin2025Batch} and would be the first substitution to try. The
 sweep reaches every two-threshold rule only with class probabilities, and the cost-optimal rule
 is a two-threshold rule only where the probability of being in-class increases with the score,
 which fails on nine of twelve Tox21 endpoints. We treat binary endpoints only, and one model and
@@ -1054,7 +1091,29 @@ Tox21 missingness among them, are set out in ESI Section~\ref{esi-sec:molecular}
 
 \section{Conclusions}
 
-The coverage level of a conformal classifier is a coordinate for navigating screening decisions, and the audited consequences, counted in compounds and bounded with a stated probability, are what a team chooses by under its own objective and guarantees. Each setting sorts a future batch into one table of prediction set by true label, and every screening quantity is a sum of its cells. A labelled audit set from the library to be screened predicts all of these counts for the next batch, with intervals that hold with a specified probability in finite samples, under exchangeability of the audit with the batch alone and after a setting is chosen. The same request led to very different consequences across twelve Tox21 endpoints, and one model offered more than a hundred distinct trade-offs for a solubility screen and for an electrolyte screen. When the calibration did not match the screened population, as for a new lithium salt, the audit still bounded the consequences correctly --- though that check, like every positive coverage result here, divides one labelled pool at random, and the two divisions that test the intervals against a genuinely separate batch, by provenance and by building block, break them. In automated campaigns, which run in parallel batches, the same construction applies to each batch, and the bounds become capacity constraints a planner can check, provided the slice it reserves comes from the committed round and not from the library: a plate chosen from the top of a ranking was 38 times richer than the pool it came from, and an audit of that pool held nothing in-class to measure. One round also depletes what remains, so the slice is re-drawn each round rather than amortized across the campaign. Inverted, the same intervals size a round: the batch an audited count implies for a target number of hits is larger than dividing the target by the rate suggests, by a factor that grows as the rate falls, and the audit that pins the rate down is the measurement with the largest effect on what the round costs. What the audit must contain is decided by the batch it prices, since an audit that reproduces a batch's composition without sampling its chemistry prices nothing; buying a pilot of the screened population does repair it, and does so under divisions that are not random and could have failed. With an audit built this way, a team sees those consequences before the campaign starts.
+A screening team's structural split guards its model and voids its forecasts; the random
+division it treats as bookkeeping is what licenses them, and only for the population that
+division sampled. From the audit's point of view the calibration set is training data, so the
+two guarantees come apart: coverage survives a rule calibrated on the wrong population,
+prevalence or label, and the counts do not survive an audit drawn from chemistry the batch does
+not share. A labelled audit set from the library to be screened predicts every cell of the
+outcome table for the next batch, with intervals that hold in finite samples under
+exchangeability of the audit with the batch alone, and after a setting has been chosen by
+looking at them. The same request led to very different consequences across twelve Tox21
+endpoints, and one model offered more than a hundred distinct trade-offs for a solubility
+screen.
+
+What the audit must contain is decided by the batch it prices. An audit that reproduces a
+batch's composition without sampling its chemistry prices nothing, and buying a pilot of the
+screened population repairs it under divisions that were not random and could have failed. In
+automated campaigns the construction applies to each batch and the bounds become capacity
+constraints a planner can check --- provided the slice it reserves comes from the committed
+round and not from the library, since a plate chosen from the top of a ranking was 38 times
+richer than the pool it came from, and an audit of that pool held nothing in-class to measure.
+One round depletes what remains, so the slice is re-drawn each round rather than amortized
+across the campaign. Inverted, the same intervals size a round, and the audit that pins the
+rate down is the measurement with the largest effect on what the round costs. What a team
+cannot get from a split it did not make is a forecast of the batch it is about to commit.
 
 \section*{Author contributions}
 P.H.Z.\ conceived the study, developed the methodology, performed the analysis and wrote the manuscript.
