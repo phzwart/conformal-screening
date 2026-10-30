@@ -28,7 +28,27 @@
 \twocolumn[
 \maketitle
 \begin{abstract}
-Conformal prediction returns prediction sets whose coverage is guaranteed, but in a screening campaign that guarantee is a request rather than a finding: the level is chosen and the threshold is built to deliver it, so every setting is equally guaranteed and coverage ranks none of them. It cannot say which setting to screen under, how many compounds will be assayed, or how large a round must be. We keep the two class-wise requests as coordinates instead and state what each one does as counts of the outcomes a campaign is planned on: confident hits, false leads, missed in-class compounds, compounds assayed. Expectations of those counts cannot be planned on or constrained with a stated probability, so we bound them in finite samples from a labelled audit set drawn from the library to be screened, and invert the bound to read off the round size an audited count implies. The audit is a second step of the same form, exempting the calibration set as the first exempts the training set, so its counts survive a calibration that does not match the screen; what it requires instead is the chemistry the batch will contain. In a DNA-encoded library screened for soluble epoxide hydrolase, an audit matching only the batch's proportion of new chemistry covered $0.63\pm0.10$ of the consequence lines, no better than the $0.63\pm0.13$ of ignoring the shift altogether and no nearer the request; the two differ by $0.000\pm0.070$ on a paired comparison. An audit drawn from the batch's own building blocks covered $0.97\pm0.04$, but that arrangement splits one pool at random and so serves as a positive control rather than as evidence that a pilot repairs a broken campaign. Withholding blocks, the split used to guard against memorisation, cost 0.07 in ranking and two thirds of the coverage, so the ranking a screen reports does not announce the loss. Whether the match holds is testable beforehand from structures alone: the two preparations that fail read 0.66 against a permutation null centred on 0.50, and the one that holds reads 0.50. Dividing a pooled electrolyte compilation by the paper each measurement came from, rather than at random, drops coverage from $0.97\pm0.04$ to $0.70\pm0.12$, so provenance is part of what must be exchangeable. A batch the model chose is the hardest case and the one a self-driving laboratory commits: an audit reserved from the library could not even be formed in nine of twelve rounds, because nothing in-class was left to sample, while a random slice of the committed batch covered every line in all nine rounds where it could be. One round of 1500 candidates from a pool of 70\,000 also took the in-class rate of the remainder from 0.0071 to 0.0013, so an audit prices the round it was drawn from and not the one after. Buying a pilot of the screened source repairs the provenance case: audited off-source, coverage is $0.55\pm0.07$; audited from a pilot of that source divided by concentration, by solvent system, or as the paper reported it --- divisions that are not random and so can fail --- it is $0.86$ to $0.92$. Quoted spreads are two standard errors over repeats, the repeat being the unit.
+A screening team makes two splits and trusts the wrong one. It separates training compounds by
+scaffold or building block, to check that a model has not memorised its training chemistry, and
+divides what remains at random to calibrate a rule. The first is the split a paper reports; the
+second looks like bookkeeping. The first guards the model while silently voiding everything
+quantitative about the next batch; the second is what keeps those quantities valid, but only for
+the population it sampled, which is seldom the population a round commits. The quantities are
+counts --- confident hits, false leads, missed actives, compounds assayed --- and a labelled
+audit set, used neither for training nor for calibration, prices a rule the calibration set has
+already fixed and bounds every count a planned batch will return, in finite samples. The audit
+therefore exempts the calibration set as split conformal exempts the training set, and coverage
+and predicted counts become separate guarantees failing independently: a rule calibrated on the
+wrong population, prevalence or label is a worse rule but a valid audit, while an audit drawn
+from chemistry the batch does not share voids the counts however the rule was calibrated. That
+second requirement fails four ways on real data. Withholding building blocks in a DNA-encoded
+library cost two thirds of the coverage at 0.07 in ranking; dividing a pooled electrolyte
+compilation by the paper each measurement came from cost a quarter; giving the audit the batch's
+proportion of novel chemistry but from different blocks bought nothing, $0.000\pm0.070$ paired;
+and against a batch the model chose, an audit reserved from the library could not be formed at
+all in nine of twelve rounds. No statistic a screen reports orders these failures. Two
+arrangements hold: a pilot of the population to be screened, and --- exactly, whatever rule
+selected the batch --- a random slice of the committed round.
 \end{abstract}
 \vspace{1em}
 ]
@@ -364,6 +384,13 @@ carries a guarantee, and it cost 52.5 rather than 43.5 errors per 1000 compounds
 
 \subsection{Sizing a round}
 \label{sec:results:sizing}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{figures/fig9_sizing.pdf}
+\caption{Sizing a round. Left: candidates the audited count implies for 20 hits at a confidence of 0.95, against the in-class rate of the audited level set, for four audit sizes; the dashed line divides the target by the rate, as an expectation does. Right: the share of an interval's variance contributed by the audit rather than by the batch, with the dotted lines marking where the audit matches the batch in size.}
+\label{fig:sizing}
+\end{figure}
 
 The same intervals run backwards answer the question a campaign asks first: given a target
 number of hits, how many candidates must the batch hold? The smallest batch whose lower bound
@@ -816,7 +843,7 @@ compare a strictly increasing relabelling at matched prevalence, which is the co
 two proxies that relabel the same fraction of each class --- one choosing those compounds
 uniformly at random, the other choosing the ones the score ranks most extremely against their
 class. Their error rates, their ranking of the truth and the prevalence they imply are all equal;
-they differ only in where their mistakes sit.
+they differ only in where their mistakes sit (Table~\ref{tab:surrogate}).
 
 They behave nothing alike. At a fifth of each class relabelled, the random proxy left class-conditional coverage at 0.933 and 0.938 against a request of 0.90, falling short in 18 of 240 class-repeats, while the score-structured proxy gave 0.721 and 0.721 and fell short in 240 of 240, at every isoform and both cut-offs. Equation~\ref{eq:gap} accounts for this, and measuring both of its sides in the same run agrees to within 0.004 on average and 0.011 at worst across all 36 conditions: that is a consistency check on the accounting rather than a prediction, and its value is that it locates the quantity, not that it is accurate. The audit-set intervals, meanwhile, covered 95.2\% of consequence lines over every condition, against their nominal 95\%, and are within Monte Carlo error across the table. They ask only that the audit and the batch be exchangeable, not that the rule be well calibrated, so they price whatever rule they are handed; a campaign that calibrates on a proxy keeps its predicted counts and loses its coverage guarantee, and only the audit tells it so.
 
