@@ -395,6 +395,33 @@ SR-p53 & 1541 & 9.36 & 9.68 & 4.1 & 100 & 10.24 & 9.56 \\
 \input{tables/tab_chow}
 
 %% ------------------------------------------------------------------
+\section{Dividing an audit from a batch by provenance}
+\label{sec:source}
+
+The electrolyte compilation records a DOI for every measurement, which makes a division by
+source possible. Formulations were reduced to one row each as elsewhere, the room-temperature
+window and the $8\,\mathrm{mS\,cm^{-1}}$ cut were applied unchanged, and 40\% of the
+formulations were drawn at random as a calibration set. The model was fitted on that
+calibration set alone, with the same representation as the rest of this work and slightly
+lighter hyperparameters (400 trees, depth 5, learning rate 0.08) because the set is small,
+and was frozen before any division of the remainder. Ten repeats were run under seeds
+$777+r$, with the tie-breaking jitter under $31337+r$.
+
+The remainder was then divided three ways, the same model and calibration set serving all
+three. \emph{Halved} splits it at random into an audit half and a stand-in batch, which is
+the check used throughout the main text. \emph{By source} partitions the papers at random
+into two groups and lets each formulation follow its own paper, so that no paper contributes
+to both sides. \emph{One source out} takes a single paper's formulations as the batch and all
+others as the audit, repeated over the twelve papers contributing at least 40 formulations,
+giving fifty runs over the ten repeats.
+
+Coverage of the six consequence lines, with the repeat as the unit, was $0.97\pm0.04$ halved,
+$0.57\pm0.14$ by source and $0.65\pm0.05$ one source out. Median audit-to-batch ratios of the
+in-class rate were 1.00, 0.98 and 0.90, so the loss is not attributable to prevalence. Area
+under the curve on the batch ranged from 0.82 to 0.98 across the source divisions, so the
+model's ranking does not announce the failure here either.
+
+%% ------------------------------------------------------------------
 \section{The DNA-encoded library screen}
 \label{sec:del}
 
