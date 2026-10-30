@@ -1,0 +1,1392 @@
+{
+ "alpha": 0.1,
+ "gamma": 0.05,
+ "reps": 20,
+ "flip": 0.1,
+ "positions": [
+  0.05,
+  0.1,
+  0.2,
+  0.35,
+  0.5,
+  0.65,
+  0.8,
+  0.9,
+  0.95
+ ],
+ "isoforms": {
+  "CAII": {
+   "isoform": "CAII",
+   "n_del": 122500,
+   "n_chembl": 3844,
+   "n_chembl_inconsistent_excluded": 121,
+   "spearman_score_vs_pki": 0.22113074978852154
+  },
+  "CAIX": {
+   "isoform": "CAIX",
+   "n_del": 107616,
+   "n_chembl": 3103,
+   "n_chembl_inconsistent_excluded": 0,
+   "spearman_score_vs_pki": 0.23560998372671857
+  },
+  "CAXII": {
+   "isoform": "CAXII",
+   "n_del": 122500,
+   "n_chembl": 2160,
+   "n_chembl_inconsistent_excluded": 16,
+   "spearman_score_vs_pki": 0.2660541952357891
+  }
+ },
+ "rows": [
+  {
+   "isoform": "CAII",
+   "cutoff": 7,
+   "position": 0.05,
+   "reps": 20,
+   "disagreement": 0.09989594172736731,
+   "cov_out": 0.9216798886912596,
+   "cov_in": 0.8840030096680549,
+   "viol_out": [
+    0,
+    20
+   ],
+   "viol_in": [
+    17,
+    20
+   ],
+   "cdf_gap_out": -0.005719968094352495,
+   "cdf_gap_in": -0.0371053779443827,
+   "tau_out_quantile": 0.9205882352941176,
+   "tau_in_quantile": 0.11521830394626362,
+   "audit_lines_covered": [
+    114,
+    120
+   ]
+  },
+  {
+   "isoform": "CAII",
+   "cutoff": 7,
+   "position": 0.1,
+   "reps": 20,
+   "disagreement": 0.09989594172736731,
+   "cov_out": 0.9184460579088347,
+   "cov_in": 0.9692336718685446,
+   "viol_out": [
+    2,
+    20
+   ],
+   "viol_in": [
+    0,
+    20
+   ],
+   "cdf_gap_out": -0.008666855130898859,
+   "cdf_gap_in": 0.04838333389818704,
+   "tau_out_quantile": 0.9218194254445965,
+   "tau_in_quantile": 0.031696053736356,
+   "audit_lines_covered": [
+    111,
+    120
+   ]
+  },
+  {
+   "isoform": "CAII",
+   "cutoff": 7,
+   "position": 0.2,
+   "reps": 20,
+   "disagreement": 0.09989594172736731,
+   "cov_out": 0.9189851845458221,
+   "cov_in": 0.950078623812801,
+   "viol_out": [
+    2,
+    20
+   ],
+   "viol_in": [
+    0,
+    20
+   ],
+   "cdf_gap_out": -0.008049695949028334,
+   "cdf_gap_in": 0.029113854069773775,
+   "tau_out_quantile": 0.9177838577291381,
+   "tau_in_quantile": 0.048089840470193115,
+   "audit_lines_covered": [
+    113,
+    120
+   ]
+  },
+  {
+   "isoform": "CAII",
+   "cutoff": 7,
+   "position": 0.35,
+   "reps": 20,
+   "disagreement": 0.09989594172736731,
+   "cov_out": 0.9167060620577832,
+   "cov_in": 0.9253233410018502,
+   "viol_out": [
+    3,
+    20
+   ],
+   "viol_in": [
+    0,
+    20
+   ],
+   "cdf_gap_out": -0.010546668594669656,
+   "cdf_gap_in": 0.003974853474838303,
+   "tau_out_quantile": 0.9189466484268127,
+   "tau_in_quantile": 0.07458018471872377,
+   "audit_lines_covered": [
+    117,
+    120
+   ]
+  },
+  {
+   "isoform": "CAII",
+   "cutoff": 7,
+   "position": 0.5,
+   "reps": 20,
+   "disagreement": 0.09989594172736731,
+   "cov_out": 0.9189805802855903,
+   "cov_in": 0.9223425359065868,
+   "viol_out": [
+    3,
+    20
+   ],
+   "viol_in": [
+    1,
+    20
+   ],
+   "cdf_gap_out": -0.0082064755610483,
+   "cdf_gap_in": 0.0010630271264109037,
+   "tau_out_quantile": 0.9205198358413131,
+   "tau_in_quantile": 0.0778127623845508,
+   "audit_lines_covered": [
+    114,
+    120
+   ]
+  },
+  {
+   "isoform": "CAII",
+   "cutoff": 7,
+   "position": 0.65,
+   "reps": 20,
+   "disagreement": 0.09989594172736731,
+   "cov_out": 0.9187386341649848,
+   "cov_in": 0.9136702125711278,
+   "viol_out": [
+    4,
+    20
+   ],
+   "viol_in": [
+    4,
+    20
+   ],
+   "cdf_gap_out": -0.00840699110248932,
+   "cdf_gap_in": -0.007541018556589052,
+   "tau_out_quantile": 0.9211012311901505,
+   "tau_in_quantile": 0.08257766582703611,
+   "audit_lines_covered": [
+    115,
+    120
+   ]
+  },
+  {
+   "isoform": "CAII",
+   "cutoff": 7,
+   "position": 0.8,
+   "reps": 20,
+   "disagreement": 0.09989594172736731,
+   "cov_out": 0.920058157150034,
+   "cov_in": 0.9194083641610767,
+   "viol_out": [
+    1,
+    20
+   ],
+   "viol_in": [
+    1,
+    20
+   ],
+   "cdf_gap_out": -0.007134372484784296,
+   "cdf_gap_in": -0.0017014141136073469,
+   "tau_out_quantile": 0.9229822161422708,
+   "tau_in_quantile": 0.07879932829554996,
+   "audit_lines_covered": [
+    111,
+    120
+   ]
+  },
+  {
+   "isoform": "CAII",
+   "cutoff": 7,
+   "position": 0.9,
+   "reps": 20,
+   "disagreement": 0.09989594172736731,
+   "cov_out": 0.9543068567808992,
+   "cov_in": 0.9259345085276788,
+   "viol_out": [
+    0,
+    20
+   ],
+   "viol_in": [
+    0,
+    20
+   ],
+   "cdf_gap_out": 0.02709352632287839,
+   "cdf_gap_in": 0.004711225163755534,
+   "tau_out_quantile": 0.9553351573187415,
+   "tau_in_quantile": 0.0758816120906801,
+   "audit_lines_covered": [
+    117,
+    120
+   ]
+  },
+  {
+   "isoform": "CAII",
+   "cutoff": 7,
+   "position": 0.95,
+   "reps": 20,
+   "disagreement": 0.09989594172736731,
+   "cov_out": 0.9706877380963139,
+   "cov_in": 0.9262434987886874,
+   "viol_out": [
+    0,
+    20
+   ],
+   "viol_in": [
+    1,
+    20
+   ],
+   "cdf_gap_out": 0.043519229896195825,
+   "cdf_gap_in": 0.0048291554882863245,
+   "tau_out_quantile": 0.9690834473324212,
+   "tau_in_quantile": 0.07479009235936188,
+   "audit_lines_covered": [
+    116,
+    120
+   ]
+  },
+  {
+   "isoform": "CAII",
+   "cutoff": 8,
+   "position": 0.05,
+   "reps": 20,
+   "disagreement": 0.09989594172736731,
+   "cov_out": 0.9233677826156924,
+   "cov_in": 0.9932777748610977,
+   "viol_out": [
+    0,
+    20
+   ],
+   "viol_in": [
+    0,
+    20
+   ],
+   "cdf_gap_out": 0.0028346350023735144,
+   "cdf_gap_in": 0.06522634225327979,
+   "tau_out_quantile": 0.9239433962264151,
+   "tau_in_quantile": 0.007370184254606366,
+   "audit_lines_covered": [
+    115,
+    120
+   ]
+  },
+  {
+   "isoform": "CAII",
+   "cutoff": 8,
+   "position": 0.1,
+   "reps": 20,
+   "disagreement": 0.09989594172736731,
+   "cov_out": 0.9194926599932604,
+   "cov_in": 0.9800914154650012,
+   "viol_out": [
+    2,
+    20
+   ],
+   "viol_in": [
+    0,
+    20
+   ],
+   "cdf_gap_out": -0.0010392343752938348,
+   "cdf_gap_in": 0.050967579022838605,
+   "tau_out_quantile": 0.923301886792453,
+   "tau_in_quantile": 0.020016750418760467,
+   "audit_lines_covered": [
+    116,
+    120
+   ]
+  },
+  {
+   "isoform": "CAII",
+   "cutoff": 8,
+   "position": 0.2,
+   "reps": 20,
+   "disagreement": 0.09989594172736731,
+   "cov_out": 0.9275432604527685,
+   "cov_in": 0.9533056260707624,
+   "viol_out": [
+    0,
+    20
+   ],
+   "viol_in": [
+    0,
+    20
+   ],
+   "cdf_gap_out": 0.006775910294289106,
+   "cdf_gap_in": 0.02506452877317436,
+   "tau_out_quantile": 0.9251698113207547,
+   "tau_in_quantile": 0.045477386934673354,
+   "audit_lines_covered": [
+    117,
+    120
+   ]
+  },
+  {
+   "isoform": "CAII",
+   "cutoff": 8,
+   "position": 0.35,
+   "reps": 20,
+   "disagreement": 0.09989594172736731,
+   "cov_out": 0.9305973117889816,
+   "cov_in": 0.9267055588503295,
+   "viol_out": [
+    0,
+    20
+   ],
+   "viol_in": [
+    0,
+    20
+   ],
+   "cdf_gap_out": 0.010011093860588367,
+   "cdf_gap_in": -0.002333153340400246,
+   "tau_out_quantile": 0.9261886792452831,
+   "tau_in_quantile": 0.07713567839195981,
+   "audit_lines_covered": [
+    117,
+    120
+   ]
+  },
+  {
+   "isoform": "CAII",
+   "cutoff": 8,
+   "position": 0.5,
+   "reps": 20,
+   "disagreement": 0.09989594172736731,
+   "cov_out": 0.9298126136938635,
+   "cov_in": 0.9187712294515645,
+   "viol_out": [
+    0,
+    20
+   ],
+   "viol_in": [
+    2,
+    20
+   ],
+   "cdf_gap_out": 0.009024532158332137,
+   "cdf_gap_in": -0.010088830793345428,
+   "tau_out_quantile": 0.9271320754716982,
+   "tau_in_quantile": 0.07918760469011725,
+   "audit_lines_covered": [
+    113,
+    120
+   ]
+  },
+  {
+   "isoform": "CAII",
+   "cutoff": 8,
+   "position": 0.65,
+   "reps": 20,
+   "disagreement": 0.09989594172736731,
+   "cov_out": 0.924913560182801,
+   "cov_in": 0.913923250552922,
+   "viol_out": [
+    1,
+    20
+   ],
+   "viol_in": [
+    5,
+    20
+   ],
+   "cdf_gap_out": 0.00450076906095479,
+   "cdf_gap_in": -0.015241829752470865,
+   "tau_out_quantile": 0.9259622641509434,
+   "tau_in_quantile": 0.08672529313232831,
+   "audit_lines_covered": [
+    118,
+    120
+   ]
+  },
+  {
+   "isoform": "CAII",
+   "cutoff": 8,
+   "position": 0.8,
+   "reps": 20,
+   "disagreement": 0.09989594172736731,
+   "cov_out": 0.9228944243052537,
+   "cov_in": 0.9203757065591015,
+   "viol_out": [
+    0,
+    20
+   ],
+   "viol_in": [
+    4,
+    20
+   ],
+   "cdf_gap_out": 0.002426526400700635,
+   "cdf_gap_in": -0.008701755157256547,
+   "tau_out_quantile": 0.9245471698113207,
+   "tau_in_quantile": 0.08098827470686767,
+   "audit_lines_covered": [
+    117,
+    120
+   ]
+  },
+  {
+   "isoform": "CAII",
+   "cutoff": 8,
+   "position": 0.9,
+   "reps": 20,
+   "disagreement": 0.09989594172736731,
+   "cov_out": 0.9114223809541931,
+   "cov_in": 0.9131422505906395,
+   "viol_out": [
+    4,
+    20
+   ],
+   "viol_in": [
+    5,
+    20
+   ],
+   "cdf_gap_out": -0.009056220691736134,
+   "cdf_gap_in": -0.016137267252722038,
+   "tau_out_quantile": 0.9120377358490567,
+   "tau_in_quantile": 0.08542713567839197,
+   "audit_lines_covered": [
+    119,
+    120
+   ]
+  },
+  {
+   "isoform": "CAII",
+   "cutoff": 8,
+   "position": 0.95,
+   "reps": 20,
+   "disagreement": 0.09989594172736731,
+   "cov_out": 0.867812350389935,
+   "cov_in": 0.9185046402812915,
+   "viol_out": [
+    20,
+    20
+   ],
+   "viol_in": [
+    6,
+    20
+   ],
+   "cdf_gap_out": -0.052648730811925726,
+   "cdf_gap_in": -0.010809537195673846,
+   "tau_out_quantile": 0.8687735849056603,
+   "tau_in_quantile": 0.08366834170854272,
+   "audit_lines_covered": [
+    114,
+    120
+   ]
+  },
+  {
+   "isoform": "CAIX",
+   "cutoff": 7,
+   "position": 0.05,
+   "reps": 20,
+   "disagreement": 0.0999033193683532,
+   "cov_out": 0.9208296784757273,
+   "cov_in": 0.891563480715783,
+   "viol_out": [
+    2,
+    20
+   ],
+   "viol_in": [
+    16,
+    20
+   ],
+   "cdf_gap_out": -0.007131180976645069,
+   "cdf_gap_in": -0.03176274837727853,
+   "tau_out_quantile": 0.9236486486486486,
+   "tau_in_quantile": 0.10373983739837397,
+   "audit_lines_covered": [
+    116,
+    120
+   ]
+  },
+  {
+   "isoform": "CAIX",
+   "cutoff": 7,
+   "position": 0.1,
+   "reps": 20,
+   "disagreement": 0.0999033193683532,
+   "cov_out": 0.9199783207456708,
+   "cov_in": 0.9368053796520772,
+   "viol_out": [
+    2,
+    20
+   ],
+   "viol_in": [
+    1,
+    20
+   ],
+   "cdf_gap_out": -0.0077411667458184286,
+   "cdf_gap_in": 0.013996669134320938,
+   "tau_out_quantile": 0.9222575516693163,
+   "tau_in_quantile": 0.05981029810298102,
+   "audit_lines_covered": [
+    115,
+    120
+   ]
+  },
+  {
+   "isoform": "CAIX",
+   "cutoff": 7,
+   "position": 0.2,
+   "reps": 20,
+   "disagreement": 0.0999033193683532,
+   "cov_out": 0.9184120127048037,
+   "cov_in": 0.9228149447929969,
+   "viol_out": [
+    3,
+    20
+   ],
+   "viol_in": [
+    2,
+    20
+   ],
+   "cdf_gap_out": -0.009497541187941255,
+   "cdf_gap_in": -0.0006703837710109129,
+   "tau_out_quantile": 0.9199920508744037,
+   "tau_in_quantile": 0.07495934959349593,
+   "audit_lines_covered": [
+    116,
+    120
+   ]
+  },
+  {
+   "isoform": "CAIX",
+   "cutoff": 7,
+   "position": 0.35,
+   "reps": 20,
+   "disagreement": 0.0999033193683532,
+   "cov_out": 0.9148877513808852,
+   "cov_in": 0.9196431955913493,
+   "viol_out": [
+    4,
+    20
+   ],
+   "viol_in": [
+    3,
+    20
+   ],
+   "cdf_gap_out": -0.012790363502646096,
+   "cdf_gap_in": -0.003665997278725336,
+   "tau_out_quantile": 0.9195945945945947,
+   "tau_in_quantile": 0.07829268292682925,
+   "audit_lines_covered": [
+    116,
+    120
+   ]
+  },
+  {
+   "isoform": "CAIX",
+   "cutoff": 7,
+   "position": 0.5,
+   "reps": 20,
+   "disagreement": 0.0999033193683532,
+   "cov_out": 0.9133330990757903,
+   "cov_in": 0.920840250434877,
+   "viol_out": [
+    6,
+    20
+   ],
+   "viol_in": [
+    0,
+    20
+   ],
+   "cdf_gap_out": -0.01437829369944616,
+   "cdf_gap_in": -0.0018771095644611103,
+   "tau_out_quantile": 0.9182034976152623,
+   "tau_in_quantile": 0.08059620596205963,
+   "audit_lines_covered": [
+    115,
+    120
+   ]
+  },
+  {
+   "isoform": "CAIX",
+   "cutoff": 7,
+   "position": 0.65,
+   "reps": 20,
+   "disagreement": 0.0999033193683532,
+   "cov_out": 0.9261449005139172,
+   "cov_in": 0.9229847738112742,
+   "viol_out": [
+    2,
+    20
+   ],
+   "viol_in": [
+    1,
+    20
+   ],
+   "cdf_gap_out": -0.0015673952623556364,
+   "cdf_gap_in": 7.65946092773695e-05,
+   "tau_out_quantile": 0.9249205087440382,
+   "tau_in_quantile": 0.07493224932249323,
+   "audit_lines_covered": [
+    114,
+    120
+   ]
+  },
+  {
+   "isoform": "CAIX",
+   "cutoff": 7,
+   "position": 0.8,
+   "reps": 20,
+   "disagreement": 0.0999033193683532,
+   "cov_out": 0.914569588121888,
+   "cov_in": 0.9185333781438627,
+   "viol_out": [
+    5,
+    20
+   ],
+   "viol_in": [
+    1,
+    20
+   ],
+   "cdf_gap_out": -0.013134523164738615,
+   "cdf_gap_in": -0.0045557499966283445,
+   "tau_out_quantile": 0.9187201907790143,
+   "tau_in_quantile": 0.07915989159891598,
+   "audit_lines_covered": [
+    117,
+    120
+   ]
+  },
+  {
+   "isoform": "CAIX",
+   "cutoff": 7,
+   "position": 0.9,
+   "reps": 20,
+   "disagreement": 0.0999033193683532,
+   "cov_out": 0.9485329093774958,
+   "cov_in": 0.929554374262237,
+   "viol_out": [
+    0,
+    20
+   ],
+   "viol_in": [
+    0,
+    20
+   ],
+   "cdf_gap_out": 0.021040518238863604,
+   "cdf_gap_in": 0.0068990586916561954,
+   "tau_out_quantile": 0.9458267090620034,
+   "tau_in_quantile": 0.07048780487804877,
+   "audit_lines_covered": [
+    115,
+    120
+   ]
+  },
+  {
+   "isoform": "CAIX",
+   "cutoff": 7,
+   "position": 0.95,
+   "reps": 20,
+   "disagreement": 0.0999033193683532,
+   "cov_out": 0.9558640411267001,
+   "cov_in": 0.9241834333023554,
+   "viol_out": [
+    0,
+    20
+   ],
+   "viol_in": [
+    1,
+    20
+   ],
+   "cdf_gap_out": 0.02810150567641275,
+   "cdf_gap_in": 0.0011308973621445562,
+   "tau_out_quantile": 0.9571939586645467,
+   "tau_in_quantile": 0.07509485094850948,
+   "audit_lines_covered": [
+    114,
+    120
+   ]
+  },
+  {
+   "isoform": "CAIX",
+   "cutoff": 8,
+   "position": 0.05,
+   "reps": 20,
+   "disagreement": 0.10022558814050916,
+   "cov_out": 0.9276714269478734,
+   "cov_in": 0.9880966798703467,
+   "viol_out": [
+    0,
+    20
+   ],
+   "viol_in": [
+    0,
+    20
+   ],
+   "cdf_gap_out": 0.006692166386470061,
+   "cdf_gap_in": 0.054389154187765666,
+   "tau_out_quantile": 0.9279429735234215,
+   "tau_in_quantile": 0.014351851851851852,
+   "audit_lines_covered": [
+    120,
+    120
+   ]
+  },
+  {
+   "isoform": "CAIX",
+   "cutoff": 8,
+   "position": 0.1,
+   "reps": 20,
+   "disagreement": 0.10022558814050916,
+   "cov_out": 0.9214818484280279,
+   "cov_in": 0.9712660766801402,
+   "viol_out": [
+    2,
+    20
+   ],
+   "viol_in": [
+    0,
+    20
+   ],
+   "cdf_gap_out": 0.00027322088791374434,
+   "cdf_gap_in": 0.037251217042178195,
+   "tau_out_quantile": 0.925152749490835,
+   "tau_in_quantile": 0.02800925925925926,
+   "audit_lines_covered": [
+    115,
+    120
+   ]
+  },
+  {
+   "isoform": "CAIX",
+   "cutoff": 8,
+   "position": 0.2,
+   "reps": 20,
+   "disagreement": 0.10022558814050916,
+   "cov_out": 0.9227047225245679,
+   "cov_in": 0.9297606900036047,
+   "viol_out": [
+    0,
+    20
+   ],
+   "viol_in": [
+    0,
+    20
+   ],
+   "cdf_gap_out": 0.0016177105710264872,
+   "cdf_gap_in": -0.003744540690527054,
+   "tau_out_quantile": 0.925947046843177,
+   "tau_in_quantile": 0.0679783950617284,
+   "audit_lines_covered": [
+    118,
+    120
+   ]
+  },
+  {
+   "isoform": "CAIX",
+   "cutoff": 8,
+   "position": 0.35,
+   "reps": 20,
+   "disagreement": 0.10022558814050916,
+   "cov_out": 0.9294034604531509,
+   "cov_in": 0.9088982662428794,
+   "viol_out": [
+    0,
+    20
+   ],
+   "viol_in": [
+    8,
+    20
+   ],
+   "cdf_gap_out": 0.0080608843899807,
+   "cdf_gap_in": -0.025082018196134565,
+   "tau_out_quantile": 0.9276985743380856,
+   "tau_in_quantile": 0.09058641975308643,
+   "audit_lines_covered": [
+    118,
+    120
+   ]
+  },
+  {
+   "isoform": "CAIX",
+   "cutoff": 8,
+   "position": 0.5,
+   "reps": 20,
+   "disagreement": 0.10022558814050916,
+   "cov_out": 0.9259864909144397,
+   "cov_in": 0.9120829922485466,
+   "viol_out": [
+    1,
+    20
+   ],
+   "viol_in": [
+    8,
+    20
+   ],
+   "cdf_gap_out": 0.005186545961312966,
+   "cdf_gap_in": -0.02311443154876297,
+   "tau_out_quantile": 0.9257026476578412,
+   "tau_in_quantile": 0.0837962962962963,
+   "audit_lines_covered": [
+    119,
+    120
+   ]
+  },
+  {
+   "isoform": "CAIX",
+   "cutoff": 8,
+   "position": 0.65,
+   "reps": 20,
+   "disagreement": 0.10022558814050916,
+   "cov_out": 0.9198693730626859,
+   "cov_in": 0.9235271979616744,
+   "viol_out": [
+    2,
+    20
+   ],
+   "viol_in": [
+    3,
+    20
+   ],
+   "cdf_gap_out": -0.0013505391866941608,
+   "cdf_gap_in": -0.010546206971146605,
+   "tau_out_quantile": 0.9234419551934826,
+   "tau_in_quantile": 0.07924382716049383,
+   "audit_lines_covered": [
+    113,
+    120
+   ]
+  },
+  {
+   "isoform": "CAIX",
+   "cutoff": 8,
+   "position": 0.8,
+   "reps": 20,
+   "disagreement": 0.10022558814050916,
+   "cov_out": 0.9216790148927704,
+   "cov_in": 0.9170494045958781,
+   "viol_out": [
+    1,
+    20
+   ],
+   "viol_in": [
+    3,
+    20
+   ],
+   "cdf_gap_out": 0.0006178036685878574,
+   "cdf_gap_in": -0.01597083737527789,
+   "tau_out_quantile": 0.925091649694501,
+   "tau_in_quantile": 0.08549382716049382,
+   "audit_lines_covered": [
+    117,
+    120
+   ]
+  },
+  {
+   "isoform": "CAIX",
+   "cutoff": 8,
+   "position": 0.9,
+   "reps": 20,
+   "disagreement": 0.10022558814050916,
+   "cov_out": 0.8902081426120132,
+   "cov_in": 0.9184935965098908,
+   "viol_out": [
+    11,
+    20
+   ],
+   "viol_in": [
+    6,
+    20
+   ],
+   "cdf_gap_out": -0.030698512568947095,
+   "cdf_gap_in": -0.016126581003697994,
+   "tau_out_quantile": 0.8889002036659877,
+   "tau_in_quantile": 0.0837962962962963,
+   "audit_lines_covered": [
+    118,
+    120
+   ]
+  },
+  {
+   "isoform": "CAIX",
+   "cutoff": 8,
+   "position": 0.95,
+   "reps": 20,
+   "disagreement": 0.10022558814050916,
+   "cov_out": 0.8578956580044614,
+   "cov_in": 0.9235925353204486,
+   "viol_out": [
+    19,
+    20
+   ],
+   "viol_in": [
+    3,
+    20
+   ],
+   "cdf_gap_out": -0.06328609045630691,
+   "cdf_gap_in": -0.01014856337789643,
+   "tau_out_quantile": 0.8539918533604889,
+   "tau_in_quantile": 0.07592592592592592,
+   "audit_lines_covered": [
+    116,
+    120
+   ]
+  },
+  {
+   "isoform": "CAXII",
+   "cutoff": 7,
+   "position": 0.05,
+   "reps": 20,
+   "disagreement": 0.10000000000000002,
+   "cov_out": 0.9227777741417429,
+   "cov_in": 0.8681026037164778,
+   "viol_out": [
+    3,
+    20
+   ],
+   "viol_in": [
+    18,
+    20
+   ],
+   "cdf_gap_out": -0.014748907741942336,
+   "cdf_gap_in": -0.05659985390389479,
+   "tau_out_quantile": 0.9258037225042302,
+   "tau_in_quantile": 0.13400254939451878,
+   "audit_lines_covered": [
+    117,
+    120
+   ]
+  },
+  {
+   "isoform": "CAXII",
+   "cutoff": 7,
+   "position": 0.1,
+   "reps": 20,
+   "disagreement": 0.10000000000000002,
+   "cov_out": 0.9140994320635769,
+   "cov_in": 0.9116332329738848,
+   "viol_out": [
+    9,
+    20
+   ],
+   "viol_in": [
+    6,
+    20
+   ],
+   "cdf_gap_out": -0.023600643646251935,
+   "cdf_gap_in": -0.012540731435022845,
+   "tau_out_quantile": 0.9197123519458545,
+   "tau_in_quantile": 0.08785850860420649,
+   "audit_lines_covered": [
+    115,
+    120
+   ]
+  },
+  {
+   "isoform": "CAXII",
+   "cutoff": 7,
+   "position": 0.2,
+   "reps": 20,
+   "disagreement": 0.10000000000000002,
+   "cov_out": 0.9189384083337293,
+   "cov_in": 0.92897869781299,
+   "viol_out": [
+    7,
+    20
+   ],
+   "viol_in": [
+    1,
+    20
+   ],
+   "cdf_gap_out": -0.017535896665152272,
+   "cdf_gap_in": 0.0046384548661457525,
+   "tau_out_quantile": 0.9201353637901862,
+   "tau_in_quantile": 0.07103250478011472,
+   "audit_lines_covered": [
+    117,
+    120
+   ]
+  },
+  {
+   "isoform": "CAXII",
+   "cutoff": 7,
+   "position": 0.35,
+   "reps": 20,
+   "disagreement": 0.10000000000000002,
+   "cov_out": 0.9177757866383228,
+   "cov_in": 0.9244507161854998,
+   "viol_out": [
+    5,
+    20
+   ],
+   "viol_in": [
+    0,
+    20
+   ],
+   "cdf_gap_out": -0.01954554607011615,
+   "cdf_gap_in": 0.000725299878209118,
+   "tau_out_quantile": 0.9230964467005076,
+   "tau_in_quantile": 0.07425111536010198,
+   "audit_lines_covered": [
+    112,
+    120
+   ]
+  },
+  {
+   "isoform": "CAXII",
+   "cutoff": 7,
+   "position": 0.5,
+   "reps": 20,
+   "disagreement": 0.10000000000000002,
+   "cov_out": 0.9193664463094867,
+   "cov_in": 0.920868167303478,
+   "viol_out": [
+    6,
+    20
+   ],
+   "viol_in": [
+    2,
+    20
+   ],
+   "cdf_gap_out": -0.017780307710853795,
+   "cdf_gap_in": -0.003550209922778025,
+   "tau_out_quantile": 0.9176818950930627,
+   "tau_in_quantile": 0.07584448693435308,
+   "audit_lines_covered": [
+    113,
+    120
+   ]
+  },
+  {
+   "isoform": "CAXII",
+   "cutoff": 7,
+   "position": 0.65,
+   "reps": 20,
+   "disagreement": 0.10000000000000002,
+   "cov_out": 0.9134818110013239,
+   "cov_in": 0.9278273095968155,
+   "viol_out": [
+    6,
+    20
+   ],
+   "viol_in": [
+    2,
+    20
+   ],
+   "cdf_gap_out": -0.02352994639524732,
+   "cdf_gap_in": 0.003637769464876828,
+   "tau_out_quantile": 0.9205583756345179,
+   "tau_in_quantile": 0.07380497131931166,
+   "audit_lines_covered": [
+    112,
+    120
+   ]
+  },
+  {
+   "isoform": "CAXII",
+   "cutoff": 7,
+   "position": 0.8,
+   "reps": 20,
+   "disagreement": 0.10000000000000002,
+   "cov_out": 0.9520285663098218,
+   "cov_in": 0.9244325629607951,
+   "viol_out": [
+    0,
+    20
+   ],
+   "viol_in": [
+    3,
+    20
+   ],
+   "cdf_gap_out": 0.015233315389165752,
+   "cdf_gap_in": 0.0002640205395294637,
+   "tau_out_quantile": 0.9565143824027071,
+   "tau_in_quantile": 0.07533460803059275,
+   "audit_lines_covered": [
+    119,
+    120
+   ]
+  },
+  {
+   "isoform": "CAXII",
+   "cutoff": 7,
+   "position": 0.9,
+   "reps": 20,
+   "disagreement": 0.10000000000000002,
+   "cov_out": 0.9802054850370251,
+   "cov_in": 0.9315848431388757,
+   "viol_out": [
+    0,
+    20
+   ],
+   "viol_in": [
+    1,
+    20
+   ],
+   "cdf_gap_out": 0.04291892627433834,
+   "cdf_gap_in": 0.007367143614522903,
+   "tau_out_quantile": 0.980203045685279,
+   "tau_in_quantile": 0.07045889101338434,
+   "audit_lines_covered": [
+    114,
+    120
+   ]
+  },
+  {
+   "isoform": "CAXII",
+   "cutoff": 7,
+   "position": 0.95,
+   "reps": 20,
+   "disagreement": 0.10000000000000002,
+   "cov_out": 0.9959811298972789,
+   "cov_in": 0.9205866805155136,
+   "viol_out": [
+    0,
+    20
+   ],
+   "viol_in": [
+    3,
+    20
+   ],
+   "cdf_gap_out": 0.058758574592010684,
+   "cdf_gap_in": -0.003746418422570874,
+   "tau_out_quantile": 0.9950930626057529,
+   "tau_in_quantile": 0.07794773741236455,
+   "audit_lines_covered": [
+    117,
+    120
+   ]
+  },
+  {
+   "isoform": "CAXII",
+   "cutoff": 8,
+   "position": 0.05,
+   "reps": 20,
+   "disagreement": 0.10000000000000002,
+   "cov_out": 0.9215697131794223,
+   "cov_in": 0.9295504939760324,
+   "viol_out": [
+    3,
+    20
+   ],
+   "viol_in": [
+    3,
+    20
+   ],
+   "cdf_gap_out": -0.005428251656258004,
+   "cdf_gap_in": -0.001967911359649349,
+   "tau_out_quantile": 0.9259287338893103,
+   "tau_in_quantile": 0.06967895362663497,
+   "audit_lines_covered": [
+    115,
+    120
+   ]
+  },
+  {
+   "isoform": "CAXII",
+   "cutoff": 8,
+   "position": 0.1,
+   "reps": 20,
+   "disagreement": 0.10000000000000002,
+   "cov_out": 0.9252688424551125,
+   "cov_in": 0.9069034938491422,
+   "viol_out": [
+    0,
+    20
+   ],
+   "viol_in": [
+    6,
+    20
+   ],
+   "cdf_gap_out": -0.0015501449675316137,
+   "cdf_gap_in": -0.02393770366691486,
+   "tau_out_quantile": 0.9266110689916603,
+   "tau_in_quantile": 0.0920332936979786,
+   "audit_lines_covered": [
+    118,
+    120
+   ]
+  },
+  {
+   "isoform": "CAXII",
+   "cutoff": 8,
+   "position": 0.2,
+   "reps": 20,
+   "disagreement": 0.10000000000000002,
+   "cov_out": 0.9316865326630822,
+   "cov_in": 0.9243057395832913,
+   "viol_out": [
+    1,
+    20
+   ],
+   "viol_in": [
+    3,
+    20
+   ],
+   "cdf_gap_out": 0.004870223771819493,
+   "cdf_gap_in": -0.005585636389960786,
+   "tau_out_quantile": 0.9321076573161488,
+   "tau_in_quantile": 0.0750297265160523,
+   "audit_lines_covered": [
+    112,
+    120
+   ]
+  },
+  {
+   "isoform": "CAXII",
+   "cutoff": 8,
+   "position": 0.35,
+   "reps": 20,
+   "disagreement": 0.10000000000000002,
+   "cov_out": 0.928283165826764,
+   "cov_in": 0.9204800767184874,
+   "viol_out": [
+    1,
+    20
+   ],
+   "viol_in": [
+    2,
+    20
+   ],
+   "cdf_gap_out": 0.001494505385075695,
+   "cdf_gap_in": -0.010959559156694531,
+   "tau_out_quantile": 0.9247156937073541,
+   "tau_in_quantile": 0.07645659928656362,
+   "audit_lines_covered": [
+    116,
+    120
+   ]
+  },
+  {
+   "isoform": "CAXII",
+   "cutoff": 8,
+   "position": 0.5,
+   "reps": 20,
+   "disagreement": 0.10000000000000002,
+   "cov_out": 0.9209138206545745,
+   "cov_in": 0.924651300050443,
+   "viol_out": [
+    3,
+    20
+   ],
+   "viol_in": [
+    3,
+    20
+   ],
+   "cdf_gap_out": -0.005961134046529953,
+   "cdf_gap_in": -0.00652855705377563,
+   "tau_out_quantile": 0.9236542835481425,
+   "tau_in_quantile": 0.0751486325802616,
+   "audit_lines_covered": [
+    118,
+    120
+   ]
+  },
+  {
+   "isoform": "CAXII",
+   "cutoff": 8,
+   "position": 0.65,
+   "reps": 20,
+   "disagreement": 0.10000000000000002,
+   "cov_out": 0.9287094843514913,
+   "cov_in": 0.929463758494068,
+   "viol_out": [
+    2,
+    20
+   ],
+   "viol_in": [
+    3,
+    20
+   ],
+   "cdf_gap_out": 0.002106721921915322,
+   "cdf_gap_in": -0.0013261847265077398,
+   "tau_out_quantile": 0.9289613343442001,
+   "tau_in_quantile": 0.07187871581450653,
+   "audit_lines_covered": [
+    119,
+    120
+   ]
+  },
+  {
+   "isoform": "CAXII",
+   "cutoff": 8,
+   "position": 0.8,
+   "reps": 20,
+   "disagreement": 0.10000000000000002,
+   "cov_out": 0.9318868982283753,
+   "cov_in": 0.9205948477551594,
+   "viol_out": [
+    2,
+    20
+   ],
+   "viol_in": [
+    4,
+    20
+   ],
+   "cdf_gap_out": 0.004877044499804234,
+   "cdf_gap_in": -0.010307886058419974,
+   "tau_out_quantile": 0.9318043972706593,
+   "tau_in_quantile": 0.07693222354340071,
+   "audit_lines_covered": [
+    117,
+    120
+   ]
+  },
+  {
+   "isoform": "CAXII",
+   "cutoff": 8,
+   "position": 0.9,
+   "reps": 20,
+   "disagreement": 0.10000000000000002,
+   "cov_out": 0.9494486507255429,
+   "cov_in": 0.9276149979030451,
+   "viol_out": [
+    0,
+    20
+   ],
+   "viol_in": [
+    3,
+    20
+   ],
+   "cdf_gap_out": 0.022750957211831662,
+   "cdf_gap_in": -0.0033900389405598697,
+   "tau_out_quantile": 0.950227445034117,
+   "tau_in_quantile": 0.07413793103448277,
+   "audit_lines_covered": [
+    113,
+    120
+   ]
+  },
+  {
+   "isoform": "CAXII",
+   "cutoff": 8,
+   "position": 0.95,
+   "reps": 20,
+   "disagreement": 0.10000000000000002,
+   "cov_out": 0.896906247805713,
+   "cov_in": 0.929532415898542,
+   "viol_out": [
+    15,
+    20
+   ],
+   "viol_in": [
+    3,
+    20
+   ],
+   "cdf_gap_out": -0.029501180958461624,
+   "cdf_gap_in": -0.0013235290579498404,
+   "tau_out_quantile": 0.9023502653525399,
+   "tau_in_quantile": 0.07116527942925091,
+   "audit_lines_covered": [
+    117,
+    120
+   ]
+  }
+ ]
+}
