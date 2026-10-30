@@ -190,26 +190,7 @@ Outcome & random & scaffold \\
 \end{tabular}
 \end{table}
 
-\subsection{Thresholds for small calibration sets}
-\label{sec:results:thresholds}
-
-With the standard threshold, coverage over a batch of 100 compounds fell below the requested 90\% in 35--42\% of calibration draws for $n=50$ to 500 (Table~\ref{tab:correction}); the requested tolerance was $\delta=10\%$. The batch correction brought this to 4.7--9.9\%, matching theory to within Monte Carlo error. The batch-free correction is identical for $n\le100$ but too permissive for larger $n$: shortfalls occurred in 11.8\% of draws at $n=150$ and in 21.2\% at $n=500$ (ESI Table~\ref{esi-tab:grid}). The batch form should therefore be used whenever batch performance matters. The one-sided DKW correction was valid but far more conservative.
-
-\paragraph{The coverage guarantee holds on real data.} With the batch correction, per-class audit coverage fell below 90\% in 55 of 600 random Tox21 splits (Section~\ref{sec:results:tox21}) for out-class compounds and 45 for in-class compounds, against 56.2 and 42.3 expected from the exact law for the thresholds used (ESI Table~\ref{esi-tab:tox21data}). The batch-free correction fell short in 17\% (out-class compounds) and 13\% (in-class compounds) of splits, and the one-sided DKW correction in 0.2\% and 1.0\%.
-
-\begin{table}[t]
-\centering
-\caption{Fraction of calibration draws for which coverage over a batch of $m=100$ compounds fell below 90\% (requested: at most 10\%); absolute Cauchy scores, $10^6$ draws. Theory: exact Beta--Binomial value. Full grid in ESI Table~\ref{esi-tab:grid}.}
-\label{tab:correction}
-\small
-\begin{tabular}{@{}rlrr@{}}
-\toprule
-$n$ & Threshold & Observed & Theory \\
-\midrule
-\inputrows{tables/tab_correction_rows.tex}
-\bottomrule
-\end{tabular}
-\end{table}
+\paragraph{Thresholds for small calibration sets.}\label{sec:results:thresholds} With the standard threshold, coverage over a batch of 100 compounds fell below the requested 90\% in 35--42\% of calibration draws for $n=50$ to 500, against a requested tolerance of $\delta=10\%$; the batch correction brought this to 4.7--9.9\%, matching theory to within Monte Carlo error (ESI Table~\ref{esi-tab:grid}). The batch-free correction is identical for $n\le100$ but too permissive beyond it, falling short in 11.8\% of draws at $n=150$ and 21.2\% at $n=500$, so the batch form should be used whenever batch performance matters; the one-sided DKW correction was valid but far more conservative. The same holds on real data: per-class audit coverage fell below 90\% in 55 of 600 random Tox21 splits for out-class compounds and 45 for in-class compounds, against 56.2 and 42.3 expected from the exact law for the thresholds used (ESI Table~\ref{esi-tab:tox21data}), where the batch-free correction fell short in 17\% and 13\% of splits and the DKW correction in 0.2\% and 1.0\%.
 
 \subsection{The coverage setting decides the cost}
 \label{sec:results:cost}
@@ -463,17 +444,7 @@ The audit describes a future batch drawn from the same library as the audit itse
 \label{fig:scaffold}
 \end{figure}
 
-\subsection{Using the calibration set as its own audit}
-\label{sec:results:calonly}
-
-With class probabilities, intervals from the calibration set alone covered the future count of every cell in 97.7--100\% of simulation replicates, counting only future compounds of the cell's class, for 300 and 1000 calibration compounds; for a mixed batch, all cells were covered together in 99.5\% (Fig.~\ref{fig:calonly}). They covered 98.7\% of realized audit counts on Tox21 random splits, all 8136 checked counts on AqSolDB, and 99.7\% on CALiSol-23 random splits. The price is width. With a fixed budget of 1000 labelled compounds, used entirely for calibration or split equally between calibration and an audit set, calibration-only intervals were 21--28\% wider for false leads and missed in-class compounds, 31--39\% wider for confident hits and correct rejections, and about twice as wide for deferrals (ESI Table~\ref{esi-tab:calonly}). On Tox21, against an audit set as large as the calibration set, they were 1.4--1.8 times as wide for single-label outcomes and 1.9--2.5 times for deferrals. Calibrating on other scaffolds reduced their coverage to 74\%, and calibrating on other salts to 33\%. Nor is the larger calibration set much compensation on the other side of the ledger: doubling it from 250 to 500 compounds moves the quantile the thresholds use only from 0.944 to 0.940 for a batch of 96, so the rule a team deploys is practically the same either way. The calibration set can therefore stand in for the audit set when labels are scarce, but at a fixed budget a separate audit set from the screened library gives sharper consequences in every cell, and it is the only one of the two that can be drawn from the chemistry the batch will contain.
-
-\begin{figure*}[t]
-\centering
-\includegraphics[width=0.88\textwidth]{figures/fig4_calibration_only.pdf}
-\caption{Intervals from the calibration set alone. Left: coverage of 95\% intervals for each cell's count among the future compounds of that class (3000 replicates; dashed line 95\%). Right: mean interval width for a mixed batch of 1000 compounds, when a budget of 1000 labelled compounds is used entirely for calibration or split equally between calibration and an audit set.}
-\label{fig:calonly}
-\end{figure*}
+\paragraph{Using the calibration set as its own audit.}\label{sec:results:calonly} When labels are too scarce for a separate audit, the calibration set can partly serve as its own, and intervals built that way covered the future count of every cell in 97.7--100\% of simulation replicates, 98.7\% of realized counts on Tox21 random splits and 99.7\% on the electrolyte screen (ESI Section~\ref{esi-sec:calonly}). They are not a substitute, for two reasons the paper has already given. At a fixed budget of 1000 labelled compounds they are wider in every cell than splitting that budget between calibration and an audit --- 21--28\% for false leads and missed in-class compounds, 31--39\% for confident hits and correct rejections and about twice as wide for deferrals (ESI Table~\ref{esi-tab:calonly}) --- while the larger calibration set buys almost nothing in return, moving the quantile the thresholds use only from 0.944 to 0.940 for a batch of 96. And being the calibration set, they inherit whatever mismatch it carries: calibrating on other scaffolds cut their coverage to 74\% and on other salts to 33\%. The audit set is the only one of the two that can be drawn from the chemistry the batch will contain.
 
 %% ------------------------------------------------------------------
 \section{Discussion}

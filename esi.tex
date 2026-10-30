@@ -260,11 +260,11 @@ Each condition is linear in $(\lambda,\rho)$, so the admissible region is a poly
 \section{Simulation protocols and additional results}
 \label{sec:sim}
 
-\paragraph{Threshold correction (main text Table~\ref{main-tab:correction}, Table~\ref{tab:grid}).} Calibration scores were drawn from the absolute value of a Cauchy distribution, and the future batch ($m=100$) from the same distribution, for $10^6$ independent calibration draws per $n$; all threshold rules were evaluated on the same draws.
+\paragraph{Threshold correction (Table~\ref{tab:grid}).} Calibration scores were drawn from the absolute value of a Cauchy distribution, and the future batch ($m=100$) from the same distribution, for $10^6$ independent calibration draws per $n$; all threshold rules were evaluated on the same draws.
 
 \paragraph{Prediction intervals (main text Fig.~\ref{main-fig:validation}).} Each replicate drew a data distribution $Q$: prevalence $\pi\sim\mathrm{U}(0.05,0.5)$; predicted probability of being in-class $\mathrm{Beta}(a_1,b_1)$ for in-class compounds with $a_1\sim\mathrm U(2,10)$, $b_1\sim\mathrm U(2,4)$; and $\mathrm{Beta}(a_0,b_0)$ for out-class compounds with $a_0\sim\mathrm U(1.5,3)$, $b_0\sim\mathrm U(5,9)$. It then drew 1000 calibration compounds, $n$ test compounds and $m=1000$ future compounds independently from $Q$. Over replicates the data are exchangeable but not independent. Thresholds used the batch-free correction with $\alpha=\delta=0.10$ for each class. Replicates with fewer than 30 calibration compounds in a class were skipped (none occurred). The long-run cell probabilities given $Q$ and the thresholds were computed exactly from the Beta distribution functions. Besides the audit interval, three common alternatives were evaluated: the Bayesian posterior predictive with a uniform prior, Beta--Binomial$(m;K+1,n-K+1)$; the plug-in interval, Binomial$(m,K/n)$ quantiles; and $m$ times the Clopper--Pearson interval for the rate, rounded outward. Results are in Table~\ref{tab:validation}. Because the data are independent given $Q$, this design does not separate validity under exchangeability from validity under independence. The future count varies for two reasons: the audited rate is uncertain, which adds a variance of about $m^2p(1-p)/n$, and the batch itself is a sample, which adds about $mp(1-p)$. The plug-in interval keeps only the second term and is too narrow by a factor of about $\sqrt{1+m/n}$; $m$ times the Clopper--Pearson interval keeps only the first and is too narrow by about $\sqrt{1+n/m}$. Each fails where the term it omits dominates: the plug-in for small audits, the scaled Clopper--Pearson interval for audits as large as the batch, and for any audit when the batch is small. The audit interval accounts for both terms. Its limits use the same Beta parameters as the Clopper--Pearson limits but take Beta--Binomial rather than Beta quantiles, and as $m\to\infty$, $K_m/m$ recovers the Clopper--Pearson interval for the rate.
 
-\paragraph{Calibration-only intervals (main text Fig.~\ref{main-fig:calonly}, Table~\ref{tab:calonly}).} Data distributions as above; row-simultaneous intervals as described in Section~\ref{sec:calonly}; $n\in\{300,1000\}$ calibration compounds; batch-free correction with $\alpha=\delta=0.10$; future batch $m=1000$; 3000 replicates, of which those with fewer than 20 calibration compounds in a class were skipped (103 at $n=300$, none at $n=1000$). Class-conditional coverage was evaluated given the realized $m_y$, and mixed-batch coverage with the union over $m_1$. The comparison spends the same budget of $n$ labelled compounds half on calibration and half on a test set, and computes test-set intervals for the mixed batch.
+\paragraph{Calibration-only intervals (Fig.~\ref{fig:calonlyfig}, Table~\ref{tab:calonly}).} Data distributions as above; row-simultaneous intervals as described in Section~\ref{sec:calonly}; $n\in\{300,1000\}$ calibration compounds; batch-free correction with $\alpha=\delta=0.10$; future batch $m=1000$; 3000 replicates, of which those with fewer than 20 calibration compounds in a class were skipped (103 at $n=300$, none at $n=1000$). Class-conditional coverage was evaluated given the realized $m_y$, and mixed-batch coverage with the union over $m_1$. The comparison spends the same budget of $n$ labelled compounds half on calibration and half on a test set, and computes test-set intervals for the mixed batch.
 
 \paragraph{Cost (main text Table~\ref{main-tab:cost}, Table~\ref{tab:cost}).} Exact population computation, with out-class scores $u\sim\mathrm{Beta}(2,7)$ and in-class scores $u\sim\mathrm{Beta}(a,b)$. The three settings are prevalence 0.15 with $(9,3)$ (well separated), prevalence 0.15 with $(4,3)$ (overlapping), and prevalence 0.5 with $(4,3)$ (balanced, overlapping). Thresholds $(l,h)$ were searched on a grid of 801 points. Chow: minimum over all $l\le h$. Constrained: minimum subject to class-wise coverage $\ge0.90$. Default: both coverages exactly 0.90.
 
@@ -385,6 +385,13 @@ SR-p53 & 1541 & 9.36 & 9.68 & 4.1 & 100 & 10.24 & 9.56 \\
 
 \input{tables/tab_tox21}
 
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{figures/fig4_calibration_only.pdf}
+\caption{Intervals from the calibration set alone. Left: coverage of 95\% intervals for each cell's count among the future compounds of that class (3000 replicates; dashed line 95\%). Right: mean interval width for a mixed batch of 1000 compounds, when a budget of 1000 labelled compounds is used entirely for calibration or split equally between calibration and an audit set.}
+\label{fig:calonlyfig}
+\end{figure}
+
 \input{tables/tab_chow}
 
 %% ------------------------------------------------------------------
@@ -438,9 +445,9 @@ All analyses in this paper were run with the scripts below, which implement the 
 \item \texttt{beyond\_chance.py}: interval width against the trivial interval, and the Fisher test of enrichment of the advanced set (main text Sections~\ref{main-sec:results:solubility} and \ref{main-sec:results:calisol});
 \item \texttt{plate\_bounds.py}: audited consequences of the new-salt designs, intervals for one 96-well plate, and the joint measurement bound at other audit sizes (main text Sections~\ref{main-sec:results:solubility} and \ref{main-sec:results:calisol});
 \item \texttt{intervals.py}: prediction limits used by all scripts (conventions of Section~\ref{sec:intervals});
-\item \texttt{threshold\_sim.py}: threshold correction (main text Table~\ref{main-tab:correction}, Table~\ref{tab:grid});
+\item \texttt{threshold\_sim.py}: threshold correction (Table~\ref{tab:grid});
 \item \texttt{validate\_intervals.py}, \texttt{finite\_library.py}, \texttt{cover2.py}: interval validation (main text Fig.~\ref{main-fig:validation}, Tables~\ref{tab:validation}, \ref{tab:library} and \ref{tab:twostage});
-\item \texttt{calib\_only\_rowsim.py}: calibration-only intervals (Table~\ref{tab:calonly}, main text Fig.~\ref{main-fig:calonly});
+\item \texttt{calib\_only\_rowsim.py}: calibration-only intervals (Table~\ref{tab:calonly}, Fig.~\ref{fig:calonlyfig});
 \item \texttt{decision\_sims.py}: cost and scaffold simulations (Table~\ref{tab:cost}, main text Table~\ref{main-tab:cost}, Fig.~\ref{main-fig:scaffold}); \texttt{selection\_sim.py}: selection among rules (its fixed-order variant is not reported, for the reason given in Section~\ref{sec:costs}); \texttt{ties\_sim.py}: tied scores (Table~\ref{tab:ties});
 \item \texttt{belka\_fetch.py}, \texttt{belka\_screen.py}: the seeded million-molecule sample of the DNA-encoded library and the block-holdout screen (main text Section~\ref{main-sec:results:del}, Section~\ref{sec:del});
 \item \texttt{next\_round.py}: the declared round and its three preparations, naive, mirror and pilot (main text Section~\ref{main-sec:results:del});
