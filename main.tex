@@ -82,13 +82,9 @@ and the threshold is constructed to meet, so every setting is equally guaranteed
 ranks none of them. Methods that control a risk come closer, although what they bound is the
 expectation of a loss, or the probability of exceeding it, for one future
 candidate.\citep{bates2021distribution,Angelopoulos2024CRC,Angelopoulos2021LTT} Work on post hoc
-inference does bound whole numbers, though for a set that has already been measured. What a
-campaign lacks is a figure it can plan against before the batch exists.
+inference does bound whole numbers, though for a set that has already been measured. What a campaign lacks is a count for a batch that does not yet exist.
 
-A second labelled sample supplies one. Suppose part of the library to be screened is set aside and used for neither training nor calibration. Each candidate in it can then be sorted by the label it carries and the prediction set it receives. The composition of a future batch of given size follows as a collection of finite-sample prediction intervals. We call such a sample
-an \emph{audit set}. It prices a rule the calibration set has already fixed, reporting the
-confident actives, the false leads, the actives missed and the compounds left for assay, each as
-a count with an interval that holds at a stated probability. Because coverage is chosen and not
+The calibration set cannot give that count, for a reason familiar from model fitting itself. Its labels went into placing the thresholds, so the outcomes it shows are the ones they were built to produce. A model's accuracy on the compounds it was fitted to has the same difficulty. Measuring what a round will return therefore takes compounds held back from building the rule. Suppose part of the library to be screened is set aside and used for neither training nor calibration. Each candidate in it can then be sorted by the label it carries and the prediction set it receives. The composition of a future batch of given size follows as a collection of finite-sample prediction intervals. We call such a sample an \emph{audit set}. It prices a rule the calibration set has already fixed, reporting the confident actives, the false leads, the actives missed and the compounds left for assay, each as a count with an interval that holds at a stated probability. Because coverage is chosen and not
 measured, it also serves as a control. Sweeping it, separately for each class, moves the
 classifier across the rounds available to a team, and the audit states what each one would
 deliver.
