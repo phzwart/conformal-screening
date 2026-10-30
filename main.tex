@@ -67,8 +67,7 @@ A team therefore commits a fixed number of candidates without knowing what they 
 it would like to know is how many of the chosen compounds will prove active, how many of the
 discarded ones were worth keeping, and how many will need a further assay before they can be
 called either way. Budgets and schedules are built from these figures, and they are whole numbers. A plate holds 96 or 384 wells, a run has a reagent budget, and a project must confirm enough actives to justify going on. A rate is a weaker
-object here. An error rate that is slightly optimistic will go unnoticed, whereas a plate
-exceeding its capacity halts the experiment.
+object here. An error rate that is slightly optimistic will go unnoticed, whereas a round that calls for more assays than the budget covers cannot be run as planned.
 
 Uncertainty in a machine-learning prediction is conventionally reported one compound at a time,
 and reviews of the practice in drug design and property prediction follow that
@@ -78,7 +77,7 @@ the candidates being scored. The method is now standard in machine learning and 
 up in chemistry and materials
 science.\citep{Norinder2014,CortesCiriano2019,Laghuvarapu2023CoDrug}
 
-Coverage does not say how many wells the next plate will consume. It is a level the user chooses
+Coverage does not say how many assays the next round will require. It is a level the user chooses
 and the threshold is constructed to meet, so every setting is equally guaranteed and coverage
 ranks none of them. Methods that control a risk come closer, although what they bound is the
 expectation of a loss, or the probability of exceeding it, for one future
@@ -148,8 +147,7 @@ Conformal prediction is established in cheminformatics, for toxicity, bioactivit
 precisely, because they answer a different question altogether. Conformal risk control bounds an expectation, $\mathbb{E}[L_{n+1}(\hat\lambda)]\le\alpha$,
 marginally over the calibration set and the test point together, for a single future point, under a loss required
 to be monotone in a scalar parameter.\citep{Angelopoulos2024CRC} The decisive restriction concerns what the loss is defined on, and not what it measures: $L_{n+1}$ is a loss at a single future point, and a
-constraint such as ``this plate of $m$ did not overrun its capacity'' is a functional of the
-whole batch, which is not of that form. Risk-controlling prediction sets make the statement
+constraint such as ``the compounds this batch of $m$ sends for assay did not exceed the capacity booked for them'' is a functional of the whole batch, which is not of that form. Risk-controlling prediction sets make the statement
 high-probability and conditional on the calibration set,
 $\Pr(R(\hat\lambda)\le\alpha)\ge1-\delta$,\citep{bates2021distribution} and learn-then-test
 reaches batch-level functionals, controlling any risk that admits a concentration bound over
@@ -981,8 +979,7 @@ Two consequences follow for practice. The question should be settled before the 
 \paragraph{Campaigns run batch by batch.} Automated and self-driving laboratories synthesize and
 characterize in parallel, so their campaigns are sequences of batches with fixed capacity, and
 the construction applies to each batch as it stands. Three features of that setting make counts
-the right object. The constraints are physical and integer, at 96 or 384 wells, a reagent budget and a minimum yield to justify the next round, and a scheduler cannot act on a rate; it needs the
-probability that this plate exceeds capacity. The batches are small and frequent, which is the
+the right object. The constraints are physical and integer, at 96 or 384 wells, a reagent budget and a minimum yield to justify the next round, and a scheduler cannot act on a rate; it needs the probability that this round asks for more assays than have been booked. The batches are small and frequent, which is the
 regime in which the draw of the batch dominates the uncertainty, so the gap between a rate and a
 count is widest here. And the audit is affordable, because reserving a slice of a committed plate spends candidate slots instead of a round.
 
