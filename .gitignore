@@ -14,5 +14,7 @@ __pycache__/
 *.pyc
 catboost_info/
 .ipynb_checkpoints/
+# cached frozen scores: regenerated from the data and a fixed seed
+mol/.score_*.npz
 # BELKA subsample: carried on the belka-data branch, not on main
 data/belka/
