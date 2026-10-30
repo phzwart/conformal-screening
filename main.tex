@@ -20,7 +20,7 @@
 \setlength{\parskip}{0pt}
 \raggedbottom
 
-\title{\Large\bfseries Conformal campaigns: planning a round\\ on counts, not rates}
+\title{\Large\bfseries Audit the chemistry you will screen:\\ count-level guarantees for a screening round}
 \author{Petrus H. Zwart\thanks{Center for Advanced Mathematics in Energy Research Applications, Berkeley Synchrotron Infrared Structural Biology Program, and Molecular Biophysics and Integrated Bioimaging Division, Lawrence Berkeley National Laboratory, 1 Cyclotron Road, Berkeley, CA 94720, USA. E-mail: PHZwart@lbl.gov. Electronic supplementary information (ESI) available: derivations, algorithms, simulation protocols and additional tables.}}
 \date{}
 
@@ -37,28 +37,40 @@ Conformal prediction returns prediction sets whose coverage is guaranteed, but i
 \section{Introduction}
 \label{sec:intro}
 
-A screening campaign commits a round at a time. A model scores a candidate library, a rule
-decides what goes into the next plate or run, and the round returns measurements that pay for
-the round after it. Increasingly the deciding is done by an automated or self-driving
-laboratory,\citep{Abolhasani2023SDL,Tom2024SDL} in which a model and a planner, rather than a
-person, choose what is made and measured. What such a platform is constrained by is integer
-and particular: the wells on a plate, the reagent budget of a run, the number of confirmed
-hits this round must return to justify the next. Those are statements about counts in one
-batch, not about rates in a population, and a campaign cannot be planned without them.
+A screening team makes two splits, and believes the wrong one is the careful one. It separates
+training compounds from the rest by scaffold or building block, to check that a model has not
+simply memorised its training chemistry; that is the split a paper reports, and a ranking that
+survives it is read as a licence to deploy. It then divides what remains at random to calibrate
+a rule. The first split looks rigorous and the second looks like bookkeeping.
 
-Distribution-free uncertainty quantification does not currently supply them. Conformal
-prediction wraps any trained model, needs only a labelled calibration set, and returns for
-each new input a prediction set containing the true label with probability at least $1-\alpha$
-whenever calibration and future data are exchangeable, with no assumption about the model or
-the distribution.\citep{vovk2005algorithmic,AngelopoulosBates2023Gentle} That generality has
-made it standard in machine learning and increasingly common in chemistry and materials
-science.\citep{Norinder2014,CortesCiriano2019,Laghuvarapu2023CoDrug} But the guarantee is
-coverage, and coverage is a level the team chooses and the threshold is built to deliver, so
-every setting is equally guaranteed and coverage ranks none of them. Risk-controlling methods
-move closer by bounding a chosen loss, but what they bound is a rate for one future
-candidate\citep{bates2021distribution,Angelopoulos2024CRC,Angelopoulos2021LTT}
-(Section~\ref{sec:intro:related}). Neither says how many wells this plate will consume or how
-many hits it will return.
+Both readings are wrong, and in opposite directions. The structural split does guard the model,
+and it silently voids everything quantitative about the next batch: in a DNA-encoded library,
+withholding building blocks cost two thirds of the coverage of the predicted counts while
+costing 0.07 in ranking, a drop no project would act on. The random division, meanwhile, is what
+keeps those counts valid --- but only for the population it sampled, and that is seldom the
+population a round commits. When a planner fills a plate from the top of a ranking, an audit
+reserved from the library does not price it; in nine of twelve rounds of the campaign below such
+an audit could not even be formed, because nothing in-class remained in the leftover pool to
+measure. The split a team trusts protects the wrong thing, and the split it treats as
+housekeeping protects the right thing for the wrong population.
+
+This paper is about that second split: what a labelled sample licenses a team to claim about a
+round, and what each way of drawing it wrong costs.
+
+The claims in question are counts, and they have to be. A round is constrained in integers ---
+the wells on a plate, the reagent budget of a run, the confirmed hits needed to justify the next
+round --- and those constraints cannot be expressed as rates. A rate slightly off is invisible; a
+plate that overruns its capacity is not. Conformal prediction, which wraps any trained model and
+returns prediction sets with guaranteed coverage under
+exchangeability,\citep{vovk2005algorithmic,AngelopoulosBates2023Gentle} does not supply them:
+coverage is a level the team chooses and the threshold is built to deliver, so every setting is
+equally guaranteed and coverage ranks none of them. Risk-controlling methods bound a chosen loss,
+but what they control is its expectation or its
+level\citep{bates2021distribution,Angelopoulos2024CRC,Angelopoulos2021LTT} rather than the
+integer a plate returns, and the post hoc literature that does bound counts describes a set
+already in hand (Section~\ref{sec:intro:related}). What is missing is a count that is
+\emph{predictive}: a statement about a batch not yet made. That is what a labelled audit set
+supplies, and why the rest of this paper is about how the audit is drawn.
 
 The screens we consider decide which candidates go forward to a toxicity assay, a solubility
 or conductivity measurement, or synthesis. Because characterization runs in parallel, the
@@ -85,11 +97,11 @@ Section~2 sets out the outcome table, the threshold correction, the navigation b
 
 \paragraph{Contributions.} The statistical tools are classical. What is new is the separation they make visible, and how they are combined to answer the questions a screening team asks.
 \begin{enumerate}
-\item \emph{A campaign is constrained in counts, and the guarantees in reach are not predictive.} The coverage level is chosen and the threshold is constructed to deliver it, so every setting in the grid is equally guaranteed and the guarantee ranks none of them. Risk-controlling methods bound a loss rather than deliver a request, but the object they bound is a rate for a single future candidate under a loss monotone in a scalar parameter, and a plate is constrained in integers: how many wells it consumes, how many hits it returns. At the batch sizes a platform commits, most of the uncertainty in those integers comes from the draw of the batch, which a bound on a rate does not describe. What the requests do supply is a coordinate system. Every screening quantity is a sum of cells of a $2\times4$ table of prediction set by true label (Table~\ref{tab:outcomes}), and with class probabilities the class-wise requests reach the two-threshold decision rules on the model score, up to the spacing of the calibration scores and the resolution of the grid, so a sweep traces the decisions available to the team in two coordinates. Each setting induces a decision geometry of the same form as the cost-optimal reject rule where the probability of being in-class increases with the score, and the audited consequences show which costs it serves. That condition is not universal, and Section~\ref{sec:results:tox21} reports the nine of twelve Tox21 endpoints where it fails and what that costs the reading.
+\item \emph{A labelled audit set prices a round, in counts, before it is run.} The coverage level is chosen and the threshold is constructed to deliver it, so every setting in the grid is equally guaranteed and the guarantee ranks none of them. Risk-controlling methods bound a loss rather than deliver a request, but the object they bound is a rate for a single future candidate under a loss monotone in a scalar parameter, and a plate is constrained in integers: how many wells it consumes, how many hits it returns. At the batch sizes a platform commits, most of the uncertainty in those integers comes from the draw of the batch, which a bound on a rate does not describe. What the requests do supply is a coordinate system. Every screening quantity is a sum of cells of a $2\times4$ table of prediction set by true label (Table~\ref{tab:outcomes}), and with class probabilities the class-wise requests reach the two-threshold decision rules on the model score, up to the spacing of the calibration scores and the resolution of the grid, so a sweep traces the decisions available to the team in two coordinates. Each setting induces a decision geometry of the same form as the cost-optimal reject rule where the probability of being in-class increases with the score, and the audited consequences show which costs it serves. That condition is not universal, and Section~\ref{sec:results:tox21} reports the nine of twelve Tox21 endpoints where it fails and what that costs the reading.
 \item \emph{Two guarantees, two requirements, and the asymmetry runs one way.} From the audit's point of view the calibration set is training data, so the audit prices a rule that training and calibration have already fixed, and coverage and predicted counts become separate guarantees with separate requirements that fail independently (Table~\ref{tab:decoupling}). The direction matters more than the separation: a rule calibrated on the wrong population, at the wrong prevalence or against a cheaper label is a worse rule but a valid audit, while an audit drawn from chemistry the batch does not share voids the counts however well the rule was calibrated. We demonstrate both directions on real data. Neither direction is visible in the metrics a screen reports: not in the ranking, which is prevalence-blind at these rates, and not in the enrichment of the confident calls, which does not order the designs by how badly they fail. Withholding building blocks cost 0.07 in ranking and two thirds of the coverage.
 \item \emph{Predicted consequences with specified certainty.} For each setting, finite-sample valid prediction intervals and one-sided bounds for the future counts of confident hits, missed in-class compounds, false leads and deferred compounds follow from the audit set.\citep{Thatcher1964,Meeker2017Intervals} Expectations of these counts cannot be planned on and cannot be constrained with a stated probability, which is what a bound supplies. The distinction is operational rather than technical: a plate has a fixed number of wells and a round must return enough hits to justify the next, so what a planner needs bounded is the count in the batch in front of it and not the rate of the population behind it. At plate scale most of the uncertainty in that count comes from the draw of the batch, which a guarantee on a rate does not describe. With a Bonferroni correction over the sweep the bounds remain valid for whichever setting is chosen, so a setting can be chosen under chance constraints on assay capacity, budget or yield. We verify them in simulation and on three real datasets: toxicity (Tox21), aqueous solubility (AqSolDB) and electrolyte conductivity (CALiSol-23).
 \item \emph{Sizing a round.} Inverting the same intervals answers the question asked before a campaign starts: how many candidates a batch needs for a target number of hits. The interval is valid for each batch size fixed in advance and the inversion makes the size a function of the audited count, so the figures are the size that count implies rather than a size carrying its own guarantee; Section~\ref{sec:results:sizing} states this precisely. This builds on established estimates of campaign hit counts from calibrated probabilities\citep{Buendia2019Hit} and extends them from an expectation to a bound. The distinction matters most where screens operate, since at low in-class rates the number of candidates required exceeds the expectation-based figure several-fold. The size of the audit enters that requirement directly, so audit measurements and synthesis trade against one another, and the trade speaks to the cost objection that led the expectation-based approach to forgo exchangeability in the first place. The two measurements enter the width differently: the audit fixes how well the rate is known, the batch fixes how much the realized count varies around it at a known rate, and the second does not shrink however large the audit grows. They are comparable when audit and batch are of similar size, so much larger audits buy little.
-\item \emph{Matching the audit to the screen, and checking the match.} Building the audit from the chemistry the round contains is therefore the design problem the guarantees reduce to. Where a round reaches into chemistry the audit does not hold, reproducing the batch's composition does not help. A pilot of the screened population does repair it, and we test that against divisions that are not random: a pilot divided by concentration band, by solvent system or as a paper reported its own measurements recovers coverage from $0.55$ to between $0.86$ and $0.92$, against a ceiling of $0.99$ for a random division of the same population. For a batch the planner chose, the same rule applies and is exact: a random slice of the committed batch is exchangeable with its remainder however the batch was selected, and covers where an audit reserved from the library cannot be formed at all. How large such a pilot must be for the count intervals to hold we do not establish: the attainability rule we give sizes a pilot used as a \emph{calibration} set, and a pilot of new chemistry is drawn by whole blocks or series, so its in-class count is overdispersed relative to that rule. The requirement binds the calibration, audit and batch sets only, so a project may still separate its training compounds by scaffold or building block, and should. Whether the match has been achieved can be tested before the batch is made, from structures and without measurements, because two samples from one distribution cannot be separated better than chance by a classifier held out of its own training data. The test is the classifier two-sample test,\citep{LopezPaz2017Revisiting} read against a null obtained by permuting the two sets; in cheminformatics the question it answers is the applicability-domain question,\citep{Sheridan2004Similarity} answered by separability rather than by similarity. When scores are class probabilities, the calibration set can stand in for the audit set, at a quantified cost in width.
+\item \emph{Audit the chemistry the round will contain --- and check, before committing it, that you have.} Building the audit from the chemistry the round contains is therefore the design problem the guarantees reduce to. Where a round reaches into chemistry the audit does not hold, reproducing the batch's composition does not help. A pilot of the screened population does repair it, and we test that against divisions that are not random: a pilot divided by concentration band, by solvent system or as a paper reported its own measurements recovers coverage from $0.55$ to between $0.86$ and $0.92$, against a ceiling of $0.99$ for a random division of the same population. For a batch the planner chose, the same rule applies and is exact: a random slice of the committed batch is exchangeable with its remainder however the batch was selected, and covers where an audit reserved from the library cannot be formed at all. How large such a pilot must be for the count intervals to hold we do not establish: the attainability rule we give sizes a pilot used as a \emph{calibration} set, and a pilot of new chemistry is drawn by whole blocks or series, so its in-class count is overdispersed relative to that rule. The requirement binds the calibration, audit and batch sets only, so a project may still separate its training compounds by scaffold or building block, and should. Whether the match has been achieved can be tested before the batch is made, from structures and without measurements, because two samples from one distribution cannot be separated better than chance by a classifier held out of its own training data. The test is the classifier two-sample test,\citep{LopezPaz2017Revisiting} read against a null obtained by permuting the two sets; in cheminformatics the question it answers is the applicability-domain question,\citep{Sheridan2004Similarity} answered by separability rather than by similarity. When scores are class probabilities, the calibration set can stand in for the audit set, at a quantified cost in width.
 \end{enumerate}
 
 \paragraph{Related work.}
