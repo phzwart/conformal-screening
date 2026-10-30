@@ -109,7 +109,7 @@
    ],
    "testset_interval": [
     246,
-    367
+    356
    ],
    "testset_interval_bonferroni": [
     206,
@@ -125,7 +125,7 @@
    ],
    "testset_interval": [
     17,
-    75
+    64
    ],
    "testset_interval_bonferroni": [
     7,
@@ -215,7 +215,7 @@
    ],
    "testset_interval": [
     0,
-    22
+    11
    ],
    "testset_interval_bonferroni": [
     0,
@@ -231,7 +231,7 @@
    ],
    "testset_interval": [
     0,
-    22
+    11
    ],
    "testset_interval_bonferroni": [
     0,

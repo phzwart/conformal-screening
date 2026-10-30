@@ -87,7 +87,7 @@ def describe(rule):
     for q, ks in keys.items():
         out[q] = {"estimate_cal": round(M * sum(rule["est"][k] for k in ks)), "test_per1000": round(M * sum(rule["test"][k] for k in ks) / nt),
                   "calonly_interval": [int(x) for x in agg({k: ci.get(k, (0, 0)) for k in ks}, ks)],
-                  "testset_interval": [int(x) for x in agg(ti, ks)],
+                  "testset_interval": [int(v) for v in thatcher(sum(rule["test"][k] for k in ks), nt, M, G)],
                   "testset_interval_bonferroni": [int(x) for x in thatcher(sum(rule["test"][k] for k in ks), nt, M, G / (len(ALPHAS) ** 2))]}
     return out
 front = [rules[i] for i in P]
