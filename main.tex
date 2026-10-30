@@ -451,57 +451,44 @@ Section~\ref{esi-sec:intervals} states both conditions and the anytime-valid alt
 \subsection{What a measurement budget costs: a solubility screen}
 \label{sec:results:solubility}
 
-After standardization and de-duplication, 9254 AqSolDB compounds remained, 2467 of them with $\log P>3.5$. In each of ten splits, the lipophilic calibration and audit sets held about 370 compounds each, 22\% of them soluble ($\log S\ge-4$). Audit AUROC was 0.91--0.93 overall and 0.82--0.88 within the lipophilic subset.
+\paragraph{The decision space.} Sweeping $(\alpha_0,\alpha_1)$ over 12 values each, with
+$\delta=0.10$, gave 132--144 distinct settings per split, and their audited consequences range,
+for one model and one endpoint, from 10 missed soluble compounds per 1000 with a third of the
+batch sent to measurement to almost no measurements at the price of about 50 missed
+(Fig.~\ref{fig:solubility}, left). Of those, 74--120 per split were Pareto-optimal for missed
+compounds, false leads and measurements. A front that large invites the question whether it is a
+decision surface or a restatement of the grid, and the answer depends on the objective:
+minimising missed compounds selected the same request in eight of ten splits, while minimising
+deferrals wandered over eight. The front is stable where the objective is steep and loose where
+it is flat, so a team should read a setting's audited counts rather than its coordinates
+(Table~\ref{tab:solubility}). Because a setting chosen by looking at the audit carries the
+Bonferroni intervals rather than the pointwise ones, setting A's missed compounds are bounded at
+$[0,49]$ and not $[2,29]$.
 
-\paragraph{What the labels can carry.} The solubility label cuts a continuous property
-measured across sources, so it is noisiest where it matters, at the cut: about 8\% of the
-screened compounds near it would be labelled the other way by another laboratory, which is the
-size of the requests being swept. Re-running the whole analysis on the same scores with only the
-labels changed shows what that supports and what it does not. The resolution of the sweep
-survives, and so does the enrichment, at a fold between 1.51 and 3.61 and significant after
-correction in every one of a hundred perturbed evaluations --- so an enrichment of about twice
-the base rate is safe and the two digits of 2.4 are not. The scenario does not survive: the
-number of certifiable settings falls from a median 26 to 18 under random flips and to 2 and 0
-under the two adversarial variants, and the cheapest certifiable budget rises by a factor of 2.2
-to 2.8. About a quarter of the Pareto front is an artefact of the labels. One detail runs against
-the mechanism of Section~\ref{sec:results:surrogate} and is reported there: flipping the
-compounds the score ranks most extremely \emph{flatters} the screen, because noise correlated
-with the score makes the labels agree with the model, so a proxy that agrees with the model
-conceals its own failure rather than revealing it (ESI Section~\ref{esi-sec:noise}).
-
-\paragraph{The price of a budget.} Cutting the measurement budget from 450 to 250 per 1000 lipophilic compounds cost 73 additional false leads, with all requirements guaranteed jointly at 95\%, and the cheapest budget any setting can be guaranteed to meet is 173 measurements per 1000, at which exactly one setting remains certifiable and its guaranteed false leads rise to 335. At this audit size the guarantee itself cost about 110 measurements per 1000: the chosen setting expects 286 and is bounded at 395. Those figures are one split, and the spread across the ten is wide enough to matter: the number of certifiable settings runs from 11 to 65 and the cheapest certifiable budget from 29 to 309 per 1000, with a median of 134. The setting chosen here is itself certifiable in only four of the ten splits, so it is this split's choice and not a recommendation. The rest of this section shows how these numbers follow from the map.
-
-\paragraph{The decision space.} Sweeping $(\alpha_0,\alpha_1)$ over 12 values each, with $\delta=0.10$, gave 132--144 distinct settings per split. Fig.~\ref{fig:solubility} (left) shows their audited consequences for one split: one model, one endpoint, and outcomes ranging from 10 missed soluble compounds per 1000 with a third of the batch sent to measurement, to almost no measurements at the price of about 50 missed soluble compounds. Of the settings, 74--120 per split were Pareto-optimal for missed soluble compounds, false  leads and measurements (ESI Table~\ref{esi-tab:aqsolsplits}). A front that large invites the  question whether it is a decision surface or a restatement of the grid, and the answer  depends on the objective: minimising missed compounds selected the same request in eight of  the ten splits and one two grid steps away in the other two, while minimising deferrals wandered over  eight distinct requests, all within one corner of the grid. The front is therefore stable  where the objective is steep and loose where it is flat, and a team should read the chosen  setting's audited counts rather than its coordinates. So the front is the menu, and the team's constraints make the choice. Table~\ref{tab:solubility} gives the audited consequences of the two extremes, with intervals for a batch of 1000. Setting A misses 10 soluble compounds per 1000 and sends 335 to measurement; setting B sends none to measurement and misses 52. Because A and B were picked by looking at the audit, the intervals that hold for them are the Bonferroni ones of Table~\ref{tab:solubility}, $[0,49]$ and $[15,114]$ missed, rather than the pointwise $[2,29]$ and $[29,84]$ that the same table reports for a setting fixed in advance. Over the ten splits the corresponding audited values were 0--20 missed and 203--522 deferred for setting A, and 26--61 missed and 0--42 deferred for setting B.
-
-\paragraph{Scenarios.} Two scenarios illustrate the choice
+\paragraph{The price of a budget.} Two scenarios make the trade concrete
 (Fig.~\ref{fig:solubility}, centre and right). In both, a batch of 1000 lipophilic compounds must
-yield at least 60 confirmed soluble compounds and miss at most 90, and the objective is the
-fewest expected false leads; the first allows at most 450 compounds to be sent to measurement,
-the second at most 250. The limits were set after inspecting the map, which the joint bounds
-allow: every constraint is checked against a one-sided audit bound with the Bonferroni correction
-over the 144 requests and four bounded outcomes, so all of them hold together with probability at
-least 95\%. Under the first budget 26 of the 144 requests were feasible, and the chosen setting
-expects 115 false leads, 286 measurements and 23 missed soluble compounds per 1000, bounded
-jointly at 395 measurements, 75 misses and at least 66 confirmed. Tightening the budget to 250
-left 9 feasible requests and a setting expecting 188 false leads, so the tighter budget costs 73
-additional false leads per 1000. The price of a budget can be read off directly over a range: 221
-false leads at 200 measurements per 1000, 188 at 250--300, 133 at 350, and beyond 375 the budget
-no longer binds. Four settings remain certifiable at 200 and one at 173, below which nothing
-meets all requirements with the labels in hand.
+yield at least 60 confirmed soluble compounds and miss at most 90, the objective is the fewest
+expected false leads, and the limits were set after inspecting the map --- which the joint bounds
+allow, every constraint being checked at a level divided over the 144 requests and four bounded
+outcomes so that all hold together at 95\%. Allowing 450 compounds to be measured, 26 requests
+were feasible and the chosen setting expects 115 false leads and 286 measurements per 1000,
+bounded jointly at 395 measurements and at least 66 confirmed. Tightening the budget to 250 left
+9 feasible requests and a setting expecting 188: the tighter budget costs 73 additional false
+leads per 1000. The gap between 286 expected and 395 bounded measurements is the price of the
+guarantee at this audit size, and labelling buys it down --- half the audit would bound it at 432,
+four times the audit at 358.
 
-Those figures are one split, and the spread across the ten is wide: the number of certifiable
-settings runs from 11 to 65 and the cheapest certifiable budget from 29 to 309 per 1000, with a
-median of 134. The setting chosen here is itself certifiable in only four of the ten splits, so it
-is this split's choice and not a recommendation. Two further prices are worth naming. The joint
-correction costs reach as well as width --- the share of the grid satisfying the scenario's limits
-falls from 0.2--0.6 read pointwise to 0.0--0.1 read together --- and the gap between expected and
-bounded counts, 286 against 395 measurements, is the price of the guarantee at this audit size,
-which labelling buys down: half the audit would give a bound of 432, twice the audit 372 and four
-times 358. The compounds advanced without a measurement were 54\% soluble against a prevalence of
-22\%, an enrichment of 2.4 times on 51 of 95 compounds and significant after correction over the
-sweep, so the model earned the measurements it saved. No cost ratio is needed for any of this; the
-ratios for which each setting is expected-cost optimal are mapped in ESI
-Fig.~\ref{esi-fig:costmap}.
+Those are one split, and the spread across ten is wide enough to matter: the number of
+certifiable settings runs from 11 to 65 and the cheapest certifiable budget from 29 to 309 per
+1000, with a median of 134. The setting chosen here is certifiable in only four of the ten
+splits, so it is this split's choice and not a recommendation. The joint correction also costs
+reach as well as width, the share of the grid meeting the limits falling from 0.2--0.6 read
+pointwise to 0.0--0.1 read together, so a scenario that looks comfortably feasible on point
+estimates can have almost no certified settings. What the screen does earn is the measurements it
+saves: the compounds advanced without measurement were 54\% soluble against a prevalence of
+22\%, an enrichment of 2.4 times on 51 of 95 compounds, significant after correction over the
+sweep. Further detail, including the Pareto membership across splits and the cost-ratio map, is in
+ESI Section~\ref{esi-sec:costs}.
 
 \begin{table*}[t]
 \centering
@@ -815,7 +802,7 @@ withhold pos.\ 1 & 0.997 & 0.00 & 1.00 & 1.00 & 35\% \\
 \end{tabular}
 \end{table}
 
-\subsection{Calibrating against a cheaper label}
+\subsection{When the label is not the one the claim concerns}
 \label{sec:results:surrogate}
 
 The audit sections asked which compounds a round must measure. The same assumption can fail
@@ -869,6 +856,27 @@ by score  & 0.20 & 0.800 & 0.721 & 0.721 & 95\% \\
 \bottomrule
 \end{tabular}
 \end{table}
+
+
+\paragraph{The same axis, on a real label.} The solubility screen above supplies the measured
+counterpart. Its label cuts a continuous property recorded across sources, so it is noisiest
+where it matters, at the cut: about 8\% of the screened compounds near it would be labelled the
+other way by another laboratory, which is the size of the requests being swept. Re-running that
+whole analysis on the same scores with only the labels changed shows what survives. The
+resolution of the sweep does, and so does the enrichment, at a fold between 1.51 and 3.61 and
+significant after correction in every one of a hundred perturbed evaluations --- so an enrichment
+of about twice the base rate is safe and the two digits of 2.4 are not. The scenario does not:
+certifiable settings fall from a median 26 to 18 under random flips and to 2 and 0 under the two
+adversarial variants, the cheapest certifiable budget rises by a factor of 2.2 to 2.8, and about
+a quarter of the Pareto front is an artefact of the labels.
+
+One direction of that perturbation runs against the mechanism just described, and is the sharper
+form of it. Flipping the compounds the score ranks \emph{most} extremely --- the structured case
+--- \emph{flatters} the screen: more settings become certifiable, the enrichment rises and the
+budget floor falls, because noise correlated with the score makes the recorded labels agree with
+the model. The damaging direction is its mirror image. So score-structured label noise is not
+ruinous in itself; its sign decides, and a proxy that agrees with the model conceals its own
+failure rather than revealing it (ESI Section~\ref{esi-sec:noise}).
 
 \subsection{What the audit must sample}
 \label{sec:results:dependence}
