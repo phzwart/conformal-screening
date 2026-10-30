@@ -28,25 +28,28 @@
 \twocolumn[
 \maketitle
 \begin{abstract}
-Two divisions of a dataset license different claims about a screening round, and neither
-licenses the other's. A scaffold or building-block split bounds how a model's ranking transfers
-to chemistry it was not trained on; it says nothing about how many hits the next plate will
-return. A random split of what remains bounds those counts, and binds them to the population it
-sampled, which need not be the population a round commits. Those
-quantities are counts --- confident hits, false leads, missed actives, compounds assayed --- and a
-labelled audit set, used neither for training nor for calibration, prices a rule the calibration
-set has already fixed and bounds every count a planned batch will return, in finite samples.
-From the audit's point of view the calibration set is training data: coverage needs calibration
-exchangeable with the test population, the counts need the audit exchangeable with the committed
-batch, and the asymmetry runs one way. A rule calibrated on the wrong population, prevalence or
-label is a worse rule but still a valid audit; an audit drawn from chemistry the batch does not
-share voids the counts however the rule was calibrated. That second requirement fails four ways
-on real data. Withholding building blocks in a DNA-encoded library cost two thirds of the
-coverage of the predicted counts while the ranking lost about a seventh of its margin above
-chance, and against a batch the model chose an audit reserved from the library could not be
-formed at all in nine of twelve rounds. No statistic a screen reports orders these failures. Two arrangements hold: a
-pilot of the population to be screened, and --- exactly, whatever rule selected the batch --- a
-random slice of the committed round.
+Conformal prediction supplies prediction sets whose coverage is guaranteed under
+exchangeability, and it is increasingly applied to screening problems in chemistry and
+materials science. A screening round, however, is planned in counts rather than in rates,
+since the quantities a laboratory commits are the wells on a plate, the reagent budget of a
+run, and the number of confirmed hits required before a further round can be justified.
+Predicting these counts for a batch that has not yet been assembled requires a labelled audit
+set, drawn from the library that the round will be selected from and used for neither training
+nor calibration. The exchangeability condition that such an audit requires is not the condition
+on which coverage depends. From the point of view of the audit the calibration set is training
+data, so that coverage and the predicted counts become separate guarantees, and the asymmetry
+between them is one-sided. Although a rule calibrated on the wrong population, at the wrong
+prevalence, or against a cheaper label is a poorer rule, an audit of that rule remains valid,
+whereas an audit drawn from chemistry that the batch does not contain invalidates the predicted
+counts however carefully the rule was calibrated. We examine four arrangements in which this
+second condition fails on public data. Withholding building blocks in a DNA-encoded library
+reduced the coverage of the predicted counts by two thirds, while the ranking fell from 0.960 to
+0.892 in area under the curve, which is approximately a seventh of its margin above chance, and
+for a batch selected by the model itself an audit reserved from the library could not be
+constructed in nine of twelve rounds. None of the statistics that a screen ordinarily reports
+orders these failures. Two arrangements were found to hold, a pilot sample of the population to
+be screened, and a random slice of the committed round, which is exact whatever rule selected
+the batch.
 \end{abstract}
 \vspace{1em}
 ]
@@ -55,24 +58,29 @@ random slice of the committed round.
 \section{Introduction}
 \label{sec:intro}
 
-Two divisions of the data stand between a trained model and a screening round, and the one a
-paper reports is not the one that licenses its forecasts. A scaffold or building-block split
-asks whether a model has simply memorised its training chemistry, and a ranking that survives it
-is evidence that the ranking transfers. A random division of what remains calibrates a rule, and
-bounds the rates that rule will realize. Neither warrants what the other does, and the gap
-between them is not a matter of degree.
+Anticipating how a model will behave on data it has not seen is central to the machine learning
+now applied to chemical and materials screening, and two divisions of a dataset are commonly
+made in the course of such an application. Training compounds are first separated from the
+remainder by scaffold or by building block, which tests whether a model has memorised the
+chemistry on which it was trained, and a ranking that survives this test is taken as evidence
+that the ranking transfers. What remains is then divided at random in order to calibrate a
+prediction rule, which bounds the rates that the rule will realize. Although both divisions are
+routine, the claims they license are different, and neither licenses the claim that the other
+does.
 
-Both warrants are routinely overdrawn, and in opposite directions. The structural split does
-bound ranking transfer, and it voids everything quantitative about the next batch: in a
-DNA-encoded library, withholding building blocks cost two thirds of the coverage of the
-predicted counts, while the ranking fell from 0.960 to 0.892 by area under the curve --- about a
-seventh of its margin above chance. The random division, meanwhile, is what
-keeps those counts valid --- but only for the population it sampled, and that is seldom the
-population a round commits. When a planner fills a plate from the top of a ranking, an audit
-reserved from the library does not price it; in nine of twelve rounds of the campaign below such
-an audit could not even be formed, because nothing in-class remained in the leftover pool to
-measure. One split bounds a quantity no round is planned on; the other bounds the right
-quantities for the wrong population.
+These two warrants are easily conflated, and the consequences of conflating them run in opposite
+directions. Although the structural split does bound the transfer of a ranking to new chemistry,
+it invalidates every quantitative statement about the next batch. In a DNA-encoded library,
+withholding building blocks reduced the coverage of the predicted counts by two thirds, while
+the ranking fell from 0.960 to 0.892 in area under the curve, which is approximately a seventh
+of its margin above chance. The random division preserves the validity of those counts, although
+only for the population from which it was sampled, which is seldom the population that a round
+commits. When a planner fills a plate from the top of a ranking, an audit reserved from the
+library does not price that plate, and in nine of twelve rounds of the campaign described below
+such an audit could not be constructed at all, since no in-class candidate remained in the
+leftover pool to be measured. The first division therefore bounds a quantity on which no round
+is planned, while the second bounds the appropriate quantities for an inappropriate
+population.
 
 This paper is about that second split: what a labelled sample licenses a team to claim about a
 round, and what each way of drawing it wrong costs.
