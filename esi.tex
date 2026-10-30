@@ -428,6 +428,45 @@ ranged from 0.81 to 1.00 across the source divisions, so the model's ranking doe
 announce the failure either.
 
 %% ------------------------------------------------------------------
+\section{A batch the model chose}
+\label{sec:adaptive}
+
+The library sample and the representation are those of Section~\ref{sec:del}. The 200\,000
+analysed molecules are divided once under seed 777 into 80\,000 for training, 30\,000 for
+calibration, 20\,000 reserved from the planner and a screening pool of 70\,000. The model is
+fitted on the training molecules with the standard hyperparameters and frozen; it is never
+refitted, so nothing in the campaign moves except which candidates have been committed. Its
+area under the curve on the pool is 0.966. Thresholds are set once on the calibration set at
+$\alpha=\delta=0.10$ with the batch correction, and audit intervals use $\gamma=0.05$.
+
+In each round the planner commits the $m$ highest-scored candidates remaining in the pool. A
+quarter of the committed batch is drawn at random as a slice, under seed $5000+r$, and the
+remaining three quarters are the batch to be priced. The same batch is priced three ways, so
+that only the audit differs: by a random sample of the pool still uncommitted, of the same
+size as the slice; by the slice itself; and by applying the same top-$m$ rule to the reserved
+pool, whose selected candidates are then removed from it. The committed candidates leave the
+pool and the next round begins. Tie-breaking is under seed $31337+r$. Two campaigns were run,
+at $m=8000$ for four rounds and $m=1500$ for eight, giving twelve rounds in all. An
+arrangement is reported only where both its audit and the batch hold at least one in-class
+candidate.
+
+The library audit could be formed in three of the twelve rounds and covered 2, 2 and 4 of the
+six consequence lines. The batch slice could be formed in nine and covered all six in every
+one. The reserved selection could be formed in ten and covered all six in eight of them, four
+of six in the other two. The rounds in which the batch was rich enough for the comparison to
+carry weight are the first round of each campaign and the second of the smaller one, at batch
+in-class rates of 0.269, 0.055 and 0.020; there the library audit was unavailable or covered
+2 of 6, the slice covered 6 of 6 throughout, and the reserved selection 6, 4 and 6.
+
+Depletion is recorded per round. At $m=1500$ the pool fell from 0.0071 to 0.0013 after one
+round, then to 0.0008, 0.0007 and 0.0005, and stayed at 0.0005 while no arrangement could be
+formed from the fifth round on. At $m=8000$ one round took it to 0.0005 directly. The rounds
+after the first are therefore priced on an exhausted library, where a batch holds a handful of
+in-class candidates and most consequence lines are bounded near zero; their coverage is
+reported for completeness and carries little weight, which is why the three rich rounds are
+named separately above.
+
+%% ------------------------------------------------------------------
 \section{A pilot of the screened source, divided non-randomly}
 \label{sec:pilotnr}
 
@@ -566,6 +605,7 @@ All analyses reported in this paper were run with the scripts below, which imple
 \item \texttt{exch\_check.py}: the label-free pre-flight check and the block shares (main text Table~\ref{main-tab:preflight}); \texttt{preflight\_arms.py}: the same check on the three preparations of the declared round, with its permutation null;
 \item \texttt{cadel\_fetch.py}, \texttt{surrogate\_structure.py}, \texttt{where\_mistakes.py}, \texttt{monotone\_check.py}: the carbonic anhydrase proxy-label experiments and the monotone-rescaling check (main text Table~\ref{main-tab:surrogate}, Section~\ref{sec:surrogate});
 \item \texttt{sizing.py}: guaranteed-yield sizing and the audit-size inversion (main text Fig.~\ref{main-fig:sizing}, Section~\ref{sec:intervals});
+\item \texttt{adaptive\_campaign.py}: the campaign in which the planner commits the top of the ranking (main text Section~\ref{main-sec:results:adaptive}, Section~\ref{sec:adaptive});
 \item \texttt{pilot\_nonrandom.py}: the pilot of the screened source under non-random divisions (main text Section~\ref{main-sec:results:source}, Section~\ref{sec:pilotnr});
 \item \texttt{aqsol\_noise.py}: the label-noise sensitivity of the solubility screen (main text Section~\ref{main-sec:results:solubility}, Section~\ref{sec:noise});
 \item \texttt{source\_split2.py}: the division of the electrolyte formulations by provenance (main text Section~\ref{main-sec:results:source}, Section~\ref{sec:source}). An earlier \texttt{source\_split.py} fitted the model on its own calibration set and is superseded; its figures are not the ones reported;
