@@ -36,7 +36,12 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import intervals
 
 OUT = sys.argv[1]
-G = 0.05
+# The sizing statement is one-sided: the batch delivers at least the target with probability
+# at least 1 - CONF.  Only the lower limit is used, and the two-sided routine places g/2 in
+# each tail, so it is called at 2 * (1 - CONF) to put 1 - CONF in the lower tail alone.
+# Calling it at 1 - CONF instead would silently size the round for a 97.5% bound.
+CONF = 0.95
+G = 2 * (1 - CONF)
 TARGETS = (20, 50)
 RATES = (0.02, 0.05, 0.10, 0.25, 0.50)
 AUDITS = (49, 100, 384, 1000)
@@ -59,7 +64,7 @@ def size_for(target, k, n, g):
 
 
 def main():
-    res = {"confidence": 1 - G, "targets": list(TARGETS), "rates": list(RATES),
+    res = {"confidence": CONF, "targets": list(TARGETS), "rates": list(RATES),
            "audits": list(AUDITS), "looks": list(LOOKS), "required": {}, "looks_cost": {},
            "variance_share": {}}
 
@@ -71,7 +76,7 @@ def main():
                 o[f"n{n}"] = size_for(target, int(round(rate * n)), n, G)
             rows.append(o)
         res["required"][str(target)] = rows
-        print(f"--- target {target} hits, {100*(1-G):.0f}% confidence")
+        print(f"--- target {target} hits, {100*CONF:.0f}% confidence, one-sided")
         print(f"{'rate':>6} {'expectation':>12} " + " ".join(f"{'n=' + str(n):>9}" for n in AUDITS))
         for o in rows:
             cells = " ".join(f"{(o[f'n{n}'] if o[f'n{n}'] else '>400k'):>9}" for n in AUDITS)
