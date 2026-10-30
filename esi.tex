@@ -146,6 +146,9 @@ so $K$ is Binomial and the Clopper--Pearson interval covers $p_g(Q)$ with probab
 
 
 %% ------------------------------------------------------------------
+
+\paragraph{Re-estimating between rounds.} A campaign that screens a first batch, revises the rate and sizes the next has looked at the data more than once, which a fixed-sample interval does not cover; dividing the confidence level across a declared number of looks restores a simultaneous statement over those looks. Three looks rather than one raise the required batch from 309 to 350 candidates at a rate of 10\%, and from 2056 to 2605 at 2\%, so declaring three looks in advance costs between a seventh and a quarter of a batch, 27\% at the lower rate. The conditions are that the number of looks is fixed before the campaign starts, and that the correction is over the looks only. Stopping when the hits so far look sufficient is not covered: the continuation is then data-dependent, and an interval reported at the stopping look is conditioned on having reached it. A campaign that wants to stop when it likes needs an anytime-valid construction --- an alpha-spending boundary or a confidence sequence --- rather than a division of the level,\citep{LanDeMets1983,Howard2021Confseq,Ramdas2023Game} which we do not develop here. Nor does any of this repair the selection in the inversion itself, discussed above; it addresses only the multiplicity of looking more than once. Which data the revised rate comes from also matters, and if it comes from a batch the model selected, the revision inherits that selection.
+
 \section{Prediction intervals from the calibration set alone}
 \label{sec:calonly}
 
@@ -213,6 +216,26 @@ When $\tau_0+\tau_1>1$, compounds with $u<1-\tau_1$ receive $\{0\}$, those with 
 \section{Cost ratios for which acting on single labels is cheapest}
 \label{sec:costs}
 
+\begin{table}[t]
+\centering
+\caption{Expected cost relative to the best two-threshold rule (\%), for three score distributions. $\lambda$: cost of a miss relative to a false lead; $\rho$: cost of an assay relative to a false lead. Constrained: best setting with population coverage $\ge90\%$ for both classes. Default: population coverage exactly 90\% for both classes. Exact population values, without the finite-sample correction. Full grid in ESI Table~\ref{esi-tab:cost}.}
+\label{tab:cost}
+\small
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+ & \multicolumn{2}{c}{$\rho=0.3$} & \multicolumn{2}{c}{$\rho=0.8$} \\
+Scores, $\lambda$ & constr. & default & constr. & default \\
+\midrule
+well separated, 5   & 0 & 12  & 0  & 58 \\
+well separated, 20  & 0 & 3   & 0  & 9 \\
+overlapping, 5      & 0 & 31  & 6  & 5 \\
+overlapping, 20     & 0 & 100 & 0  & 16 \\
+balanced, 5         & 0 & 91  & 12 & 35 \\
+balanced, 20        & 0 & 453 & 9  & 203 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 Consider actions: label 0, label 1, or defer, with costs $c_{\text{miss}}$ for assigning 0 to a compound of class 1, $c_{\text{lead}}$ for assigning 1 to a compound of class 0, $c_{\text{defer}}$ for deferring, and zero for correct labels. For a prediction set $c$ with positive probability let
 \begin{equation}
 \eta_c=\Pr\big(Y=1\mid C(X)=c\big)=\frac{p_{1,c}}{p_{0,c}+p_{1,c}}.
@@ -260,7 +283,14 @@ Each condition is linear in $(\lambda,\rho)$, so the admissible region is a poly
 \section{Simulation protocols and additional results}
 \label{sec:sim}
 
-\paragraph{Threshold correction (Table~\ref{tab:grid}).} Calibration scores were drawn from the absolute value of a Cauchy distribution, and the future batch ($m=100$) from the same distribution, for $10^6$ independent calibration draws per $n$; all threshold rules were evaluated on the same draws.
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/fig3_interval_validation.pdf}
+\caption{Coverage of 95\% prediction intervals for the count of each outcome in a future batch of 1000 compounds, from an audit set of $n=100$, 300 or 1000 compounds (panels); $10^4$ replicates, each drawing its own data distribution. Audit interval: the Beta--Binomial limits of Section~\ref{sec:methods:intervals}. Bayesian: posterior predictive with a uniform prior. $m\times$Clopper--Pearson: the interval for the rate scaled to the batch, which ignores the sampling variation of the batch. The plug-in Binomial interval, which ignores the uncertainty of the audited rate, covered only 44--93\% and is omitted (ESI Table~\ref{esi-tab:validation}). Dashed line: nominal 95\%. Monte Carlo standard error is about 0.2\%.}
+\label{fig:validation}
+\end{figure*}
+
+\paragraph{Threshold correction (Table~\ref{tab:grid}). Coverage against audit size for every outcome is shown in Fig.~\ref{fig:validation}.} Calibration scores were drawn from the absolute value of a Cauchy distribution, and the future batch ($m=100$) from the same distribution, for $10^6$ independent calibration draws per $n$; all threshold rules were evaluated on the same draws.
 
 \paragraph{Prediction intervals (main text Fig.~\ref{main-fig:validation}).} Each replicate drew a data distribution $Q$: prevalence $\pi\sim\mathrm{U}(0.05,0.5)$; predicted probability of being in-class $\mathrm{Beta}(a_1,b_1)$ for in-class compounds with $a_1\sim\mathrm U(2,10)$, $b_1\sim\mathrm U(2,4)$; and $\mathrm{Beta}(a_0,b_0)$ for out-class compounds with $a_0\sim\mathrm U(1.5,3)$, $b_0\sim\mathrm U(5,9)$. It then drew 1000 calibration compounds, $n$ test compounds and $m=1000$ future compounds independently from $Q$. Over replicates the data are exchangeable but not independent. Thresholds used the batch-free correction with $\alpha=\delta=0.10$ for each class. Replicates with fewer than 30 calibration compounds in a class were skipped (none occurred). The long-run cell probabilities given $Q$ and the thresholds were computed exactly from the Beta distribution functions. Besides the audit interval, three common alternatives were evaluated: the Bayesian posterior predictive with a uniform prior, Beta--Binomial$(m;K+1,n-K+1)$; the plug-in interval, Binomial$(m,K/n)$ quantiles; and $m$ times the Clopper--Pearson interval for the rate, rounded outward. Results are in Table~\ref{tab:validation}. Because the data are independent given $Q$, this design does not separate validity under exchangeability from validity under independence. The future count varies for two reasons: the audited rate is uncertain, which adds a variance of about $m^2p(1-p)/n$, and the batch itself is a sample, which adds about $mp(1-p)$. The plug-in interval keeps only the second term and is too narrow by a factor of about $\sqrt{1+m/n}$; $m$ times the Clopper--Pearson interval keeps only the first and is too narrow by about $\sqrt{1+n/m}$. Each fails where the term it omits dominates: the plug-in for small audits, the scaled Clopper--Pearson interval for audits as large as the batch, and for any audit when the batch is small. The audit interval accounts for both terms. Its limits use the same Beta parameters as the Clopper--Pearson limits but take Beta--Binomial rather than Beta quantiles, and as $m\to\infty$, $K_m/m$ recovers the Clopper--Pearson interval for the rate.
 

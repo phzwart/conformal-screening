@@ -95,14 +95,33 @@ Coverage is thus the coordinate for navigating decisions, and the audited conseq
 
 Section~2 sets out the outcome table, the threshold correction, the navigation by coverage and the audit intervals that are the method's output; Section~3 validates the intervals in simulation and on real data and applies them to solubility, toxicity and electrolyte screens; Section~4 gives a workflow and the limitations.
 
-\paragraph{Contributions.} The statistical tools are classical. What is new is the separation they make visible, and how they are combined to answer the questions a screening team asks.
-\begin{enumerate}
-\item \emph{A labelled audit set prices a round, in counts, before it is run.} The coverage level is chosen and the threshold is constructed to deliver it, so every setting in the grid is equally guaranteed and the guarantee ranks none of them. Risk-controlling methods bound a loss rather than deliver a request, but the object they bound is a rate for a single future candidate under a loss monotone in a scalar parameter, and a plate is constrained in integers: how many wells it consumes, how many hits it returns. At the batch sizes a platform commits, most of the uncertainty in those integers comes from the draw of the batch, which a bound on a rate does not describe. What the requests do supply is a coordinate system. Every screening quantity is a sum of cells of a $2\times4$ table of prediction set by true label (Table~\ref{tab:outcomes}), and with class probabilities the class-wise requests reach the two-threshold decision rules on the model score, up to the spacing of the calibration scores and the resolution of the grid, so a sweep traces the decisions available to the team in two coordinates. Each setting induces a decision geometry of the same form as the cost-optimal reject rule where the probability of being in-class increases with the score, and the audited consequences show which costs it serves. That condition is not universal, and Section~\ref{sec:results:tox21} reports the nine of twelve Tox21 endpoints where it fails and what that costs the reading.
-\item \emph{Two guarantees, two requirements, and the asymmetry runs one way.} From the audit's point of view the calibration set is training data, so the audit prices a rule that training and calibration have already fixed, and coverage and predicted counts become separate guarantees with separate requirements that fail independently (Table~\ref{tab:decoupling}). The direction matters more than the separation: a rule calibrated on the wrong population, at the wrong prevalence or against a cheaper label is a worse rule but a valid audit, while an audit drawn from chemistry the batch does not share voids the counts however well the rule was calibrated. We demonstrate both directions on real data. Neither direction is visible in the metrics a screen reports: not in the ranking, which is prevalence-blind at these rates, and not in the enrichment of the confident calls, which does not order the designs by how badly they fail. Withholding building blocks cost 0.07 in ranking and two thirds of the coverage.
-\item \emph{Predicted consequences with specified certainty.} For each setting, finite-sample valid prediction intervals and one-sided bounds for the future counts of confident hits, missed in-class compounds, false leads and deferred compounds follow from the audit set.\citep{Thatcher1964,Meeker2017Intervals} Expectations of these counts cannot be planned on and cannot be constrained with a stated probability, which is what a bound supplies. The distinction is operational rather than technical: a plate has a fixed number of wells and a round must return enough hits to justify the next, so what a planner needs bounded is the count in the batch in front of it and not the rate of the population behind it. At plate scale most of the uncertainty in that count comes from the draw of the batch, which a guarantee on a rate does not describe. With a Bonferroni correction over the sweep the bounds remain valid for whichever setting is chosen, so a setting can be chosen under chance constraints on assay capacity, budget or yield. We verify them in simulation and on three real datasets: toxicity (Tox21), aqueous solubility (AqSolDB) and electrolyte conductivity (CALiSol-23).
-\item \emph{Sizing a round.} Inverting the same intervals answers the question asked before a campaign starts: how many candidates a batch needs for a target number of hits. The interval is valid for each batch size fixed in advance and the inversion makes the size a function of the audited count, so the figures are the size that count implies rather than a size carrying its own guarantee; Section~\ref{sec:results:sizing} states this precisely. This builds on established estimates of campaign hit counts from calibrated probabilities\citep{Buendia2019Hit} and extends them from an expectation to a bound. The distinction matters most where screens operate, since at low in-class rates the number of candidates required exceeds the expectation-based figure several-fold. The size of the audit enters that requirement directly, so audit measurements and synthesis trade against one another, and the trade speaks to the cost objection that led the expectation-based approach to forgo exchangeability in the first place. The two measurements enter the width differently: the audit fixes how well the rate is known, the batch fixes how much the realized count varies around it at a known rate, and the second does not shrink however large the audit grows. They are comparable when audit and batch are of similar size, so much larger audits buy little.
-\item \emph{Audit the chemistry the round will contain --- and check, before committing it, that you have.} Building the audit from the chemistry the round contains is therefore the design problem the guarantees reduce to. Where a round reaches into chemistry the audit does not hold, reproducing the batch's composition does not help. A pilot of the screened population does repair it, and we test that against divisions that are not random: a pilot divided by concentration band, by solvent system or as a paper reported its own measurements recovers coverage from $0.55$ to between $0.86$ and $0.92$, against a ceiling of $0.99$ for a random division of the same population. For a batch the planner chose, the same rule applies and is exact: a random slice of the committed batch is exchangeable with its remainder however the batch was selected, and covers where an audit reserved from the library cannot be formed at all. How large such a pilot must be for the count intervals to hold we do not establish: the attainability rule we give sizes a pilot used as a \emph{calibration} set, and a pilot of new chemistry is drawn by whole blocks or series, so its in-class count is overdispersed relative to that rule. The requirement binds the calibration, audit and batch sets only, so a project may still separate its training compounds by scaffold or building block, and should. Whether the match has been achieved can be tested before the batch is made, from structures and without measurements, because two samples from one distribution cannot be separated better than chance by a classifier held out of its own training data. The test is the classifier two-sample test,\citep{LopezPaz2017Revisiting} read against a null obtained by permuting the two sets; in cheminformatics the question it answers is the applicability-domain question,\citep{Sheridan2004Similarity} answered by separability rather than by similarity. When scores are class probabilities, the calibration set can stand in for the audit set, at a quantified cost in width.
-\end{enumerate}
+\paragraph{Contributions.} The statistical tools are classical; what is new is the separation
+they make visible and what violating it costs.
+
+\begin{itemize}\itemsep2pt
+\item \emph{A labelled audit set prices a round, in counts, before it is run.} Sweeping the two
+class-wise coverage requests traces the decisions available to a team, and at each setting an
+audit gives finite-sample intervals for every cell of the outcome table --- confident hits,
+false leads, missed in-class compounds, compounds assayed --- valid after the setting is chosen
+and invertible for the size of the round.\citep{Thatcher1964,Meeker2017Intervals}
+\item \emph{Two guarantees, two requirements, and the asymmetry runs one way.} From the audit's
+point of view the calibration set is training data, so coverage and predicted counts fail
+independently (Table~\ref{tab:decoupling}); a rule calibrated on the wrong population,
+prevalence or label is a worse rule but a valid audit, while an audit drawn from chemistry the
+batch does not share voids the counts however the rule was calibrated.
+\item \emph{What violating it costs, measured four ways on real data.} Withheld building blocks,
+division by provenance, an audit matching a batch's composition but not its chemistry, and a
+batch the model chose: the counts break in all four, and no statistic a screen reports orders
+the failures.
+\item \emph{What satisfying it takes.} A pilot of the screened population repairs it under
+divisions that are not random, and a random slice of a committed batch repairs it exactly,
+whatever rule selected the batch. One round of selection then depletes the library, so the
+slice is re-drawn each round rather than amortized.
+\item \emph{A check that costs no measurements.} Whether the audit matches the batch is testable
+beforehand from structures alone, as a classifier two-sample test against a permutation
+null\citep{LopezPaz2017Revisiting} --- one-sided, so it refuses an arrangement rather than
+certifying one, and blind by construction to a shift the representation cannot see.
+\end{itemize}
 
 \paragraph{Related work.}
 \label{sec:intro:related}
@@ -283,16 +302,26 @@ Each step therefore carries its own guarantee and its own requirement, and a cam
 \subsection{Predicted counts hold at the stated certainty}
 \label{sec:results:intervals}
 
-The audit predicts the count of each outcome in a future batch, with an interval meant to hold with probability 95\%. The checks in this section impose exchangeability by construction, through random splitting, and so establish that the construction is correct rather than that it survives a real change of population; the sections that put that to the test come later. In simulation, the realized count in a batch of 1000 compounds fell inside its interval in 95.7--98.9\% of replicates, for every outcome and every audit-set size (Fig.~\ref{fig:validation}). The intervals were also tight: for wrong single-label calls (false leads plus missed in-class compounds) they spanned about $\pm51$ per 1000 with 100 audit compounds and $\pm20$ with 1000 (ESI Table~\ref{esi-tab:validation}). The same held when fixed libraries were split at random, a design that is exchangeable but not independent. Averaged over libraries, coverage was 96.1--98.9\%, and no library fell below 94.7\% (Monte Carlo standard error 0.7\% per library; ESI Table~\ref{esi-tab:library}). The usual plug-in interval, Binomial quantiles at the audited rate, treats that rate as if it were known; it covered only 44--75\% of batches with 100 audit compounds and 84.5--93\% with 1000, and fell to 23\% for the worst library (ESI Tables~\ref{esi-tab:validation} and \ref{esi-tab:library}). The opposite shortcut, $m$ times the Clopper--Pearson interval for the rate, ignores the sampling variation of the future batch: it held with 100 audit compounds (96.3--98.6\%) but fell to 94.0--97.6\% with 300 and 86.6--94.3\% with 1000. Each shortcut omits one of the two sources of variation, the uncertainty of the audited rate and the variation of the batch, and fails where the omitted one dominates (ESI Section~\ref{esi-sec:sim}); the audit interval accounts for both. Scaled Clopper--Pearson intervals are therefore adequate only when the audit set is much smaller than the batch, and not for small batches such as a single plate. Bayesian posterior predictive intervals with a uniform prior were 1.3--5.9\% narrower and close to nominal in these designs, but carry no guarantee; in a two-level design they fell to 94.8\% (ESI Table~\ref{esi-tab:twostage}). That is a trade rather than a refutation: a fifth of a point of coverage against a few percent of width, against an exact interval that is itself conservative by one to four points in the same tables. The audit interval held at its nominal level throughout. Width is what distinguishes these intervals from the trivial $[0,m]$: for a batch of 1000 the 95\% intervals of the four constrained outcomes at the chosen setting of each scenario screen below spanned 16--109 counts, 9 to 63 times narrower than that baseline, and 36--204 after the joint correction over the sweep, 5 to 28 times narrower.
+The construction is classical --- tolerance limits for the number of defectives in a future
+lot, applied to each cell of the outcome table --- so the first question is only whether it is
+implemented correctly. It is. Under random splitting, which imposes exchangeability by
+construction and therefore tests the implementation rather than the assumption, realized counts
+in a batch of 1000 fell inside their intervals in 95.7--98.9\% of replicates for every outcome
+and every audit size, and the same held for fixed libraries split at random, a design that is
+exchangeable but not independent (ESI Section~\ref{esi-sec:sim}). Two shortcuts a team might
+reach for instead each omit one of the two sources of variation and fail where the omitted one
+dominates: binomial quantiles at the audited rate, which treat that rate as known, covered as
+little as 44\% of batches; $m$ times a Clopper--Pearson interval for the rate, which ignores
+the draw of the batch, fell to 86.6--94.3\% once the audit reached 1000 and is therefore
+unsuitable for a single plate. Bayesian posterior predictive intervals were 1.3--5.9\% narrower
+and close to nominal here but carry no guarantee, falling to 94.8\% in a two-level design. The
+intervals are also far from trivial: at the chosen setting of each scenario screen below they
+spanned 16--109 counts for a batch of 1000, 9 to 63 times narrower than $[0,m]$, and 36--204
+after the joint correction over the sweep.
 
 On real data the audit intervals behaved the same way (Table~\ref{tab:audit}). Splitting each Tox21 audit set into an audit half and a stand-in future batch, the intervals covered 95.6--99.0\% of the realized counts, for every outcome. Per endpoint, coverage was 95.8--97.1\% under random splits. Those are pointwise figures, one outcome at a time, and the object a team is handed is the whole table: all eight lines of one setting --- the six cells and the two aggregates --- held together in 82.7\% of random splits and 81.9\% of scaffold splits. Eight pointwise 95\% intervals do not make a 95\% table, and a team that needs the table jointly must divide the level by the number of lines it reads. It was 95.0--97.5\% under scaffold splits, in which the model had been calibrated on other scaffolds: the audit described the consequences correctly because it came from the compounds being screened. On AqSolDB, over all 132--144 settings of the sweep and all outcomes, the pointwise intervals covered 96.1\% of 216,960 realized counts. With the Bonferroni correction over the 144 requests, every interval of every setting covered its count together in 98.5\% of 200 audit--future splits.
 
-\begin{figure*}[t]
-\centering
-\includegraphics[width=\textwidth]{figures/fig3_interval_validation.pdf}
-\caption{Coverage of 95\% prediction intervals for the count of each outcome in a future batch of 1000 compounds, from an audit set of $n=100$, 300 or 1000 compounds (panels); $10^4$ replicates, each drawing its own data distribution. Audit interval: the Beta--Binomial limits of Section~\ref{sec:methods:intervals}. Bayesian: posterior predictive with a uniform prior. $m\times$Clopper--Pearson: the interval for the rate scaled to the batch, which ignores the sampling variation of the batch. The plug-in Binomial interval, which ignores the uncertainty of the audited rate, covered only 44--93\% and is omitted (ESI Table~\ref{esi-tab:validation}). Dashed line: nominal 95\%. Monte Carlo standard error is about 0.2\%.}
-\label{fig:validation}
-\end{figure*}
+
 
 \begin{table}[t]
 \centering
@@ -313,55 +342,67 @@ Outcome & random & scaffold \\
 \subsection{What accepting the default setting costs}
 \label{sec:results:cost}
 
-Table~\ref{tab:cost} compares, on the population, the expected cost of three choices: the best two-threshold rule without constraint, the best swept setting with coverage of at least 90\% for both classes, and the default setting with coverage of exactly 90\% for both classes. Thresholds are set at the exact quantiles, without a finite-sample correction, so the table isolates the effect of the coverage setting itself. The constrained optimum cost exactly as much as the unconstrained one in 46 of 60 settings and within half a percent in a 47th, and at most 47\% more; where it cost more, the unconstrained optimum misclassified more than 10\% of one class. The default setting, chosen without the costs in view, cost more. With a miss ten times as costly as a false lead, it cost up to 3.1 times the optimum for $\rho\ge0.3$. When an assay was nearly free ($\rho=0.1$), it cost up to 7.3 times the optimum at $\lambda=10$, 13.6 times at $\lambda=20$ and 32 times at $\lambda=50$. The sweep of coverage settings thus contained the optimal rule in most cases, and navigating it with the costs in view finds that rule. That is a statement about the sweep, not a claim to beat a rule built for a known cost: where the costs \emph{are} known and the probabilities can be recalibrated, a cost-optimal reject rule is the thing to use.\citep{Chow1970} On the solubility screen the swept setting is indistinguishable from such a rule built on isotonically recalibrated probabilities, costing between $0.009$ less and $0.013$ more per compound across four cost regimes against standard errors of $0.004$ to $0.038$, and it is dearer by $0.011$ to $0.171$ than one built on Platt scaling (ESI Table~\ref{esi-tab:chow}). In the most lopsided regime, a miss fifty times a false lead and an assay half of one, both are beaten by deferring every compound: 0.665 per compound for the swept setting and 0.674 for the isotonic rule against 0.500 for deferring everything, which is a property of that cost structure rather than of either rule but is worth stating plainly. The case for the sweep is therefore that it needs no cost ratio and returns audited counts for whatever is chosen, not that it is cheaper when a ratio is in hand.
+A sweep is only worth tracing if the setting a team would otherwise accept is a poor one. On
+the population it is: the default request of 90\% for both classes, chosen without the costs in
+view, cost up to 3.1 times the cost-optimal two-threshold rule when a miss was ten times a
+false lead, and up to 32 times when an assay was nearly free (ESI
+Table~\ref{esi-tab:cost}).\citep{Chow1970} The swept settings contained that optimum in 46 of
+60 cost regimes. None of this claims to beat a rule built for a known cost ratio --- where the
+ratio is known and the probabilities can be recalibrated, such a rule is the thing to use, and
+on the solubility screen the swept setting is indistinguishable from one built on isotonically
+recalibrated probabilities (ESI Section~\ref{esi-sec:costs}). The case for the sweep is that it
+needs no ratio and returns audited counts for whatever is chosen.
 
-Choosing the setting from audited outcomes needs the correction for selection. Among 100 swept settings, we chose the one with the fewest audited errors whose upper limit on deferrals fitted an assay capacity of 15\% of the batch (ESI Section~\ref{esi-sec:sim}). With the Bonferroni correction over the settings, realized deferrals exceeded capacity in 0.03\% of replicates; without it, in 0.47\%. Both are below the nominal 5\%, because neighbouring settings have strongly correlated counts, but only the corrected choice carries a guarantee. The correction cost 52.5 rather than 43.5 errors per 1000 compounds.
-
-\begin{table}[t]
-\centering
-\caption{Expected cost relative to the best two-threshold rule (\%), for three score distributions. $\lambda$: cost of a miss relative to a false lead; $\rho$: cost of an assay relative to a false lead. Constrained: best setting with population coverage $\ge90\%$ for both classes. Default: population coverage exactly 90\% for both classes. Exact population values, without the finite-sample correction. Full grid in ESI Table~\ref{esi-tab:cost}.}
-\label{tab:cost}
-\small
-\begin{tabular}{@{}lrrrr@{}}
-\toprule
- & \multicolumn{2}{c}{$\rho=0.3$} & \multicolumn{2}{c}{$\rho=0.8$} \\
-Scores, $\lambda$ & constr. & default & constr. & default \\
-\midrule
-well separated, 5   & 0 & 12  & 0  & 58 \\
-well separated, 20  & 0 & 3   & 0  & 9 \\
-overlapping, 5      & 0 & 31  & 6  & 5 \\
-overlapping, 20     & 0 & 100 & 0  & 16 \\
-balanced, 5         & 0 & 91  & 12 & 35 \\
-balanced, 20        & 0 & 453 & 9  & 203 \\
-\bottomrule
-\end{tabular}
-\end{table}
+Choosing the setting from audited outcomes needs the correction for selection. Among 100 swept
+settings we took the one with the fewest audited errors whose upper limit on deferrals fitted a
+capacity of 15\% of the batch. With the Bonferroni correction, realized deferrals exceeded
+capacity in 0.03\% of replicates; without it, in 0.47\%. Both are below the nominal 5\%,
+because neighbouring settings have strongly correlated counts, but only the corrected choice
+carries a guarantee, and it cost 52.5 rather than 43.5 errors per 1000 compounds.
 
 \subsection{Sizing a round}
 \label{sec:results:sizing}
 
-A campaign asks the audit's question in reverse. A project needs a certain number of hits to continue, and what it must decide is how many candidates to put in the batch. The smallest batch whose lower bound on confident hits reaches the target answers that, and it follows from the same intervals by a search over the batch size. The interval is valid for each batch size fixed in advance, and the search makes the size a function of the audit count, so the probability statement does not transfer unchanged; because the lower bound increases with the batch size the selected size is the one at which the bound first reaches the target, which makes the reading natural but is not a proof, and we have not established a statement uniform in the batch size. The figures below should be read as the batch size the audited count implies, not as a size carrying its own guarantee.
+The same intervals run backwards answer the question a campaign asks first: given a target
+number of hits, how many candidates must the batch hold? The smallest batch whose lower bound
+on confident hits reaches the target answers it. The interval is valid for each batch size
+fixed in advance and the search makes the size a function of the audited count, so what follows
+should be read as the size that count implies rather than as a size carrying its own guarantee;
+ESI Section~\ref{esi-sec:intervals} gives the convention, which is one-sided, and the
+qualifications.
 
-The answer differs from the one an expectation gives, and the difference is largest where screens operate (Fig.~\ref{fig:sizing}, left). Dividing the target by the observed in-class rate, which is what a sum of calibrated probabilities amounts to,\citep{Buendia2019Hit} asks for 1000 candidates to obtain 20 hits at a rate of 2\%. The batch whose audited count implies 20 hits at a confidence of 0.95 holds 2056 candidates when the rate was measured on an audit of 384, and 1687 on an audit of 1000. At a rate of 50\% the expectation asks for 40 and both audits give 52. The gap closes as the rate rises, because what the bound carries is the uncertainty in the rate itself, and that matters least when the rate is high and the audit has seen many in-class compounds.
+The answer differs from the one an expectation gives, and most where screens operate
+(Fig.~\ref{fig:sizing}). Dividing the target by the observed rate, which is what a sum of
+calibrated probabilities amounts to,\citep{Buendia2019Hit} asks for 1000 candidates to obtain
+20 hits at a rate of 2\%. The audited count implies 2056 on an audit of 384 and 1687 on an
+audit of 1000; at a rate of 50\% the expectation asks for 40 and both audits give 52. Three
+quantities are stacked in that gap and separating them is what makes it planable. Were the rate
+known exactly, 1390 candidates would still be needed, because which candidates fall in this
+particular batch is not something measurement can settle. Knowing the rate from an audit of 384
+raises it to 2056, and from an audit of 49 to 19\,091. The first is the risk the campaign
+carries; only the second and third are for sale. A team planning on the expectation omits all
+three.
 
-The size of the audit enters the requirement directly, which prices audit measurements against synthesis. At a rate of 2\%, an audit of 49 compounds leaves the required batch at 19\,091 candidates and an audit of 384 at 2056, so 335 further audit measurements remove about 17\,000 syntheses from the requirement; at a rate of 10\% the same 335 measurements remove 201. Those are the requirements at the in-class count each audit is expected to see, and at these rates that count is small enough that the requirement is better read as a distribution. An audit of 49 at a rate of 2\% sees one in-class compound with probability 0.37, giving 19\,091, and none with probability 0.37, in which case no batch size reaches the target at all; two gives 2783. At an audit of 384 the count has a mode of 7 or 8 and the requirement runs from about 22\,000 at two in-class compounds to 900 at fifteen, with a median of 2056, which is the figure quoted at the expected count, and a mean of about 3500 that the long upper tail carries. The comparison between audit sizes is therefore a comparison of distributions: enlarging the audit from 49 to 384 removes the chance of an unanswerable round and roughly halves the typical requirement, which is the claim the figure supports, rather than a fixed saving of 17\,000 syntheses. On this accounting the audit is not an overhead on the campaign but the measurement with the largest effect on what the campaign costs, and its effect is largest exactly where a screen's hit rate is low.
+At these rates the requirement is better read as a distribution than as a number: an audit of
+49 at a rate of 2\% sees no in-class compound with probability 0.37, in which case no batch size
+reaches the target at all. Enlarging the audit from 49 to 384 removes that possibility and
+roughly halves the typical requirement. On this accounting the audit is not an overhead on the
+campaign but the measurement with the largest effect on what the campaign costs, and its effect
+is largest exactly where a screen's hit rate is low.
 
-Three quantities are stacked in that figure, and separating them is what makes it planable. Were the rate known exactly, the batch implied for 20 hits at a confidence of 0.95 would still hold 1390 candidates rather than 1000, because which candidates fall in this particular batch is not something any amount of measurement can settle. Knowing the rate only from an audit of 384 raises the requirement to 2056, and knowing it from an audit of 49 raises it to 19\,091. The first gap is the risk the campaign carries, the second and third are what ignorance of the rate costs on top of it, and only the latter two are for sale. A team that plans on the expectation omits all three.
-
-How much of that is worth buying can be settled before any compound is measured, because the width of an interval has a closed form in the audit and batch sizes (ESI Section~\ref{esi-sec:intervals}). Accepting a width $r$ times the narrowest any audit could achieve requires $n=m/(r^2-1)$ audit candidates, a ratio that does not depend on the rate or on the batch size: an audit the size of the batch lands a factor $\sqrt2$ above that floor, one of $2.3m$ within 20\% of it and one of $4.8m$ within 10\%. The floor itself does depend on the rate, and at the rates a primary screen works at it is wide --- for a batch of 1000 at a rate of 2\% it is $\pm9$ on an expected 20 --- so a team should read the floor first and enlarge the batch, not the audit, when the floor is what binds. Correlated series change these two statements differently. The floor is a width, so where candidates fall in correlated series it is inflated by the square root of the design effect; enlarging a batch with analogues of series it already contains adds little to its effective size.\citep{Cochran1977,Kish1965} The ratio rule $n=m/(r^2-1)$ needs no inflation at all, because the design effect multiplies both variance terms and cancels from $r$. A rule that sizes a \emph{sample} rather than a width, such as the attainability rule of Section~\ref{sec:results:dependence}, inflates by the design effect itself.
-
-The exchange has a limit (Fig.~\ref{fig:sizing}, right). An interval's width carries one term in the audit size and one in the batch size (Section~\ref{sec:methods:intervals}): the first is the uncertainty in the rate, which the audit reduces, and the second is which candidates happen to fall in this particular batch, which it cannot. The two contribute equally when audit and batch are of the same size, and beyond that the batch term dominates, so an audit much larger than the batch buys little. For a batch of 50, an audit of 400 already leaves 89\% of the interval's variance attributable to the batch.
-
-The limits used here are one-sided: the sizing search inverts a lower limit placing the whole of $\gamma=0.05$ in the lower tail, not the two-sided limits of ESI Section~\ref{esi-sec:intervals}, which place $\gamma/2$ in each. The factor between the two conventions depends on the audit: it is about 1.1 at an audit of 1000 and 1.2 at 384, and reaches two only at the smallest audit considered here, where 19\,091 becomes 38\,693. The convention is therefore part of every figure quoted.
-
-Re-estimating between rounds costs little, with two conditions. A campaign that screens a first batch, revises the rate and sizes the next has looked at the data more than once, which a fixed-sample interval does not cover; dividing the confidence level across a declared number of looks restores a simultaneous statement over those looks. Three looks rather than one raise the required batch from 309 to 350 candidates at a rate of 10\%, and from 2056 to 2605 at 2\%, so declaring three looks in advance costs between a seventh and a quarter of a batch, 27\% at the lower rate. The conditions are that the number of looks is fixed before the campaign starts, and that the correction is over the looks only. Stopping when the hits so far look sufficient is not covered: the continuation is then data-dependent, and an interval reported at the stopping look is conditioned on having reached it. A campaign that wants to stop when it likes needs an anytime-valid construction --- an alpha-spending boundary or a confidence sequence --- rather than a division of the level,\citep{LanDeMets1983,Howard2021Confseq,Ramdas2023Game} which we do not develop here. Nor does any of this repair the selection in the inversion itself, discussed above; it addresses only the multiplicity of looking more than once. Which data the revised rate comes from also matters, and if it comes from a batch the model selected, the revision inherits that selection.
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=\linewidth]{figures/fig9_sizing.pdf}
-\caption{Sizing a round. Left: candidates the audited count implies for 20 hits at a confidence of 0.95, against the in-class rate of the audited level set, for four audit sizes; the dashed line divides the target by the rate, as an expectation does. Right: the share of an interval's variance contributed by the audit rather than by the batch, with the dotted lines marking where the audit matches the batch in size.}
-\label{fig:sizing}
-\end{figure}
+How much is worth buying can be settled before any compound is measured. Accepting a width $r$
+times the narrowest any audit could achieve requires $n=m/(r^2-1)$ audit candidates, a ratio
+independent of the rate and of the batch size: an audit the size of the batch lands a factor
+$\sqrt2$ above that floor, one of $2.3m$ within 20\% of it. The floor itself depends on the
+rate and at primary-screen rates it is wide --- for a batch of 1000 at 2\% it is $\pm9$ on an
+expected 20 --- so a team should read the floor first and enlarge the batch, not the audit,
+when the floor is what binds. Correlated series change the two statements differently: the
+floor is a width and inflates by the square root of the design effect, while the ratio rule
+needs no inflation, since the design effect multiplies both variance terms and cancels from
+$r$.\citep{Cochran1977,Kish1965} Re-estimating the rate between rounds costs a seventh to a
+quarter of a batch if the number of looks is declared in advance, and is not covered at all if
+a campaign stops when the hits so far look sufficient; ESI
+Section~\ref{esi-sec:intervals} states both conditions and the anytime-valid alternative.
 
 \subsection{What a measurement budget costs: a solubility screen}
 \label{sec:results:solubility}
