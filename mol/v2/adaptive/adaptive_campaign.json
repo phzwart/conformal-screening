@@ -1,0 +1,4136 @@
+{
+ "runs": [
+  {
+   "arm": "library audit",
+   "round": 0,
+   "n": {
+    "cal": 30000,
+    "audit": 2000,
+    "batch": 6000
+   },
+   "prevalence": {
+    "cal": 0.0074333333333333335,
+    "audit": 0.0005,
+    "batch": 0.0555,
+    "pool_remaining": 0.007071428571428571
+   },
+   "auroc_batch": 0.932170921583309,
+   "prevalence_ratio": 0.009009009009009009,
+   "n_cal": [
+    29777,
+    223
+   ],
+   "n_audit": [
+    1999,
+    1
+   ],
+   "n_future": [
+    5667,
+    333
+   ],
+   "default": {
+    "k": [
+     27147,
+     221
+    ],
+    "planned_m": [
+     993,
+     7
+    ],
+    "cells": {
+     "0_s0": 266,
+     "0_s1": 0,
+     "0_both": 1733,
+     "0_empty": 0,
+     "1_s0": 0,
+     "1_s1": 0,
+     "1_both": 1,
+     "1_empty": 0
+    },
+    "cov": [
+     1.0,
+     1.0
+    ],
+    "viol": [
+     false,
+     false
+    ],
+    "p_viol": [
+     0.042459176393776284,
+     0.013392857142857246
+    ],
+    "feasible": [
+     true,
+     true
+    ]
+   },
+   "audit_intervals": {
+    "correct rejection": {
+     "audit_count": 266,
+     "future_count": 0,
+     "interval_future": [
+      697,
+      906
+     ],
+     "inside": false,
+     "per1000": [
+      108,
+      160
+     ],
+     "per_plate": [
+      7,
+      20
+     ]
+    },
+    "false lead": {
+     "audit_count": 0,
+     "future_count": 4675,
+     "interval_future": [
+      0,
+      12
+     ],
+     "inside": false,
+     "per1000": [
+      0,
+      3
+     ],
+     "per_plate": [
+      0,
+      1
+     ]
+    },
+    "deferred non-binder": {
+     "audit_count": 1733,
+     "future_count": 992,
+     "interval_future": [
+      5091,
+      5300
+     ],
+     "inside": false,
+     "per1000": [
+      840,
+      892
+     ],
+     "per_plate": [
+      76,
+      89
+     ]
+    },
+    "confident hit": {
+     "audit_count": 0,
+     "future_count": 331,
+     "interval_future": [
+      0,
+      12
+     ],
+     "inside": false,
+     "per1000": [
+      0,
+      3
+     ],
+     "per_plate": [
+      0,
+      1
+     ]
+    },
+    "missed binder": {
+     "audit_count": 0,
+     "future_count": 0,
+     "interval_future": [
+      0,
+      12
+     ],
+     "inside": true,
+     "per1000": [
+      0,
+      3
+     ],
+     "per_plate": [
+      0,
+      1
+     ]
+    },
+    "deferred binder": {
+     "audit_count": 1,
+     "future_count": 2,
+     "interval_future": [
+      0,
+      18
+     ],
+     "inside": true,
+     "per1000": [
+      0,
+      4
+     ],
+     "per_plate": [
+      0,
+      1
+     ]
+    },
+    "single label": {
+     "audit_count": 266,
+     "future_count": 5006,
+     "interval_future": [
+      697,
+      906
+     ],
+     "inside": false,
+     "per1000": [
+      108,
+      160
+     ],
+     "per_plate": [
+      7,
+      20
+     ]
+    },
+    "deferred": {
+     "audit_count": 1734,
+     "future_count": 994,
+     "interval_future": [
+      5094,
+      5303
+     ],
+     "inside": false,
+     "per1000": [
+      840,
+      892
+     ],
+     "per_plate": [
+      76,
+      89
+     ]
+    }
+   },
+   "audit_default": {
+    "correct rejection": 0.0,
+    "false lead": 0.0,
+    "deferred non-binder": 0.0,
+    "confident hit": 0.0,
+    "missed binder": 1.0,
+    "deferred binder": 1.0,
+    "single label": 0.0,
+    "deferred": 0.0
+   },
+   "distinct_rules": 36,
+   "audit_sweep": [
+    59,
+    288
+   ],
+   "bonf_all": 0.0,
+   "capacity": [
+    [
+     0.0045,
+     0.03766666666666667,
+     false
+    ]
+   ],
+   "sweep_points": [
+    [
+     0.0,
+     0.0,
+     867.0
+    ],
+    [
+     0.5,
+     0.0,
+     324.0
+    ],
+    [
+     0.5,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     867.0
+    ],
+    [
+     0.5,
+     0.0,
+     324.0
+    ],
+    [
+     0.5,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     867.0
+    ],
+    [
+     0.5,
+     0.0,
+     324.0
+    ],
+    [
+     0.5,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     867.0
+    ],
+    [
+     0.5,
+     0.0,
+     324.0
+    ],
+    [
+     0.5,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     4.5,
+     862.5
+    ],
+    [
+     0.5,
+     4.5,
+     319.5
+    ],
+    [
+     0.5,
+     0.0,
+     4.5
+    ],
+    [
+     0.0,
+     30.5,
+     836.5
+    ],
+    [
+     0.5,
+     30.5,
+     293.5
+    ],
+    [
+     0.5,
+     0.0,
+     30.5
+    ],
+    [
+     0.0,
+     58.0,
+     809.0
+    ],
+    [
+     0.5,
+     58.0,
+     266.0
+    ],
+    [
+     0.5,
+     0.0,
+     58.0
+    ],
+    [
+     0.0,
+     89.0,
+     778.0
+    ],
+    [
+     0.5,
+     89.0,
+     235.0
+    ],
+    [
+     0.5,
+     0.0,
+     89.0
+    ],
+    [
+     0.0,
+     109.0,
+     758.0
+    ],
+    [
+     0.5,
+     109.0,
+     215.0
+    ],
+    [
+     0.5,
+     0.0,
+     109.0
+    ],
+    [
+     0.0,
+     139.5,
+     727.5
+    ],
+    [
+     0.5,
+     139.5,
+     184.5
+    ],
+    [
+     0.5,
+     0.0,
+     139.5
+    ],
+    [
+     0.0,
+     168.5,
+     698.5
+    ],
+    [
+     0.5,
+     168.5,
+     155.5
+    ],
+    [
+     0.5,
+     0.0,
+     168.5
+    ],
+    [
+     0.0,
+     201.5,
+     665.5
+    ],
+    [
+     0.5,
+     201.5,
+     122.5
+    ],
+    [
+     0.5,
+     0.0,
+     201.5
+    ]
+   ],
+   "pareto": 16,
+   "lines_covered": [
+    2,
+    6
+   ]
+  },
+  {
+   "arm": "batch slice",
+   "round": 0,
+   "n": {
+    "cal": 30000,
+    "audit": 2000,
+    "batch": 6000
+   },
+   "prevalence": {
+    "cal": 0.0074333333333333335,
+    "audit": 0.0655,
+    "batch": 0.0555,
+    "pool_remaining": 0.007071428571428571
+   },
+   "auroc_batch": 0.932170921583309,
+   "prevalence_ratio": 1.1801801801801801,
+   "n_cal": [
+    29777,
+    223
+   ],
+   "n_audit": [
+    1869,
+    131
+   ],
+   "n_future": [
+    5667,
+    333
+   ],
+   "default": {
+    "k": [
+     27147,
+     221
+    ],
+    "planned_m": [
+     993,
+     7
+    ],
+    "cells": {
+     "0_s0": 0,
+     "0_s1": 1518,
+     "0_both": 351,
+     "0_empty": 0,
+     "1_s0": 0,
+     "1_s1": 130,
+     "1_both": 1,
+     "1_empty": 0
+    },
+    "cov": [
+     0.18780096308186195,
+     1.0
+    ],
+    "viol": [
+     true,
+     false
+    ],
+    "p_viol": [
+     0.04764565936997979,
+     3.153571023515206e-05
+    ],
+    "feasible": [
+     true,
+     true
+    ]
+   },
+   "audit_intervals": {
+    "correct rejection": {
+     "audit_count": 0,
+     "future_count": 0,
+     "interval_future": [
+      0,
+      12
+     ],
+     "inside": true,
+     "per1000": [
+      0,
+      3
+     ],
+     "per_plate": [
+      0,
+      1
+     ]
+    },
+    "false lead": {
+     "audit_count": 1518,
+     "future_count": 4675,
+     "interval_future": [
+      4420,
+      4683
+     ],
+     "inside": true,
+     "per1000": [
+      726,
+      791
+     ],
+     "per_plate": [
+      64,
+      81
+     ]
+    },
+    "deferred non-binder": {
+     "audit_count": 351,
+     "future_count": 992,
+     "interval_future": [
+      939,
+      1173
+     ],
+     "inside": true,
+     "per1000": [
+      147,
+      205
+     ],
+     "per_plate": [
+      10,
+      25
+     ]
+    },
+    "confident hit": {
+     "audit_count": 130,
+     "future_count": 331,
+     "interval_future": [
+      318,
+      471
+     ],
+     "inside": true,
+     "per1000": [
+      47,
+      85
+     ],
+     "per_plate": [
+      2,
+      12
+     ]
+    },
+    "missed binder": {
+     "audit_count": 0,
+     "future_count": 0,
+     "interval_future": [
+      0,
+      12
+     ],
+     "inside": true,
+     "per1000": [
+      0,
+      3
+     ],
+     "per_plate": [
+      0,
+      1
+     ]
+    },
+    "deferred binder": {
+     "audit_count": 1,
+     "future_count": 2,
+     "interval_future": [
+      0,
+      18
+     ],
+     "inside": true,
+     "per1000": [
+      0,
+      4
+     ],
+     "per_plate": [
+      0,
+      1
+     ]
+    },
+    "single label": {
+     "audit_count": 1648,
+     "future_count": 5006,
+     "interval_future": [
+      4824,
+      5058
+     ],
+     "inside": true,
+     "per1000": [
+      794,
+      852
+     ],
+     "per_plate": [
+      71,
+      86
+     ]
+    },
+    "deferred": {
+     "audit_count": 352,
+     "future_count": 994,
+     "interval_future": [
+      942,
+      1176
+     ],
+     "inside": true,
+     "per1000": [
+      148,
+      206
+     ],
+     "per_plate": [
+      10,
+      25
+     ]
+    }
+   },
+   "audit_default": {
+    "correct rejection": 1.0,
+    "false lead": 1.0,
+    "deferred non-binder": 1.0,
+    "confident hit": 1.0,
+    "missed binder": 1.0,
+    "deferred binder": 1.0,
+    "single label": 1.0,
+    "deferred": 1.0
+   },
+   "distinct_rules": 36,
+   "audit_sweep": [
+    286,
+    288
+   ],
+   "bonf_all": 1.0,
+   "capacity": [
+    [
+     0.1885,
+     0.15966666666666668,
+     false
+    ]
+   ],
+   "sweep_points": [
+    [
+     0.0,
+     154.0,
+     784.5
+    ],
+    [
+     0.0,
+     154.0,
+     784.5
+    ],
+    [
+     2.5,
+     154.0,
+     155.0
+    ],
+    [
+     0.0,
+     336.0,
+     601.0
+    ],
+    [
+     0.0,
+     336.0,
+     601.0
+    ],
+    [
+     2.5,
+     307.5,
+     28.5
+    ],
+    [
+     0.0,
+     537.5,
+     398.0
+    ],
+    [
+     0.0,
+     537.5,
+     398.0
+    ],
+    [
+     1.0,
+     307.5,
+     231.5
+    ],
+    [
+     0.0,
+     759.0,
+     176.0
+    ],
+    [
+     0.0,
+     759.0,
+     176.0
+    ],
+    [
+     0.5,
+     307.5,
+     453.5
+    ],
+    [
+     0.0,
+     934.5,
+     0.0
+    ],
+    [
+     0.0,
+     934.5,
+     0.0
+    ],
+    [
+     0.0,
+     307.5,
+     629.5
+    ],
+    [
+     0.0,
+     934.5,
+     0.0
+    ],
+    [
+     0.0,
+     934.5,
+     0.0
+    ],
+    [
+     0.0,
+     307.5,
+     629.5
+    ],
+    [
+     0.0,
+     934.5,
+     0.0
+    ],
+    [
+     0.0,
+     934.5,
+     0.0
+    ],
+    [
+     0.0,
+     307.5,
+     629.5
+    ],
+    [
+     0.0,
+     934.5,
+     0.0
+    ],
+    [
+     0.0,
+     934.5,
+     0.0
+    ],
+    [
+     0.0,
+     307.5,
+     629.5
+    ],
+    [
+     0.0,
+     934.5,
+     0.0
+    ],
+    [
+     0.0,
+     934.5,
+     0.0
+    ],
+    [
+     0.0,
+     307.5,
+     629.5
+    ],
+    [
+     0.0,
+     934.5,
+     0.0
+    ],
+    [
+     0.0,
+     934.5,
+     0.0
+    ],
+    [
+     0.0,
+     307.5,
+     629.5
+    ],
+    [
+     0.0,
+     934.5,
+     0.0
+    ],
+    [
+     0.0,
+     934.5,
+     0.0
+    ],
+    [
+     0.0,
+     307.5,
+     629.5
+    ],
+    [
+     0.0,
+     934.5,
+     0.0
+    ],
+    [
+     0.0,
+     934.5,
+     0.0
+    ],
+    [
+     0.0,
+     307.5,
+     629.5
+    ]
+   ],
+   "pareto": 36,
+   "lines_covered": [
+    6,
+    6
+   ]
+  },
+  {
+   "arm": "selected holdout",
+   "round": 0,
+   "n": {
+    "cal": 30000,
+    "audit": 2000,
+    "batch": 6000
+   },
+   "prevalence": {
+    "cal": 0.0074333333333333335,
+    "audit": 0.0635,
+    "batch": 0.0555,
+    "pool_remaining": 0.007071428571428571
+   },
+   "auroc_batch": 0.932170921583309,
+   "prevalence_ratio": 1.1441441441441442,
+   "n_cal": [
+    29777,
+    223
+   ],
+   "n_audit": [
+    1873,
+    127
+   ],
+   "n_future": [
+    5667,
+    333
+   ],
+   "default": {
+    "k": [
+     27147,
+     221
+    ],
+    "planned_m": [
+     993,
+     7
+    ],
+    "cells": {
+     "0_s0": 0,
+     "0_s1": 1764,
+     "0_both": 109,
+     "0_empty": 0,
+     "1_s0": 0,
+     "1_s1": 127,
+     "1_both": 0,
+     "1_empty": 0
+    },
+    "cov": [
+     0.05819540843566471,
+     1.0
+    ],
+    "viol": [
+     true,
+     false
+    ],
+    "p_viol": [
+     0.04313740347350295,
+     6.197363646226704e-05
+    ],
+    "feasible": [
+     true,
+     true
+    ]
+   },
+   "audit_intervals": {
+    "correct rejection": {
+     "audit_count": 0,
+     "future_count": 0,
+     "interval_future": [
+      0,
+      12
+     ],
+     "inside": true,
+     "per1000": [
+      0,
+      3
+     ],
+     "per_plate": [
+      0,
+      1
+     ]
+    },
+    "false lead": {
+     "audit_count": 1764,
+     "future_count": 4675,
+     "interval_future": [
+      5189,
+      5388
+     ],
+     "inside": false,
+     "per1000": [
+      856,
+      906
+     ],
+     "per_plate": [
+      78,
+      91
+     ]
+    },
+    "deferred non-binder": {
+     "audit_count": 109,
+     "future_count": 992,
+     "interval_future": [
+      261,
+      402
+     ],
+     "inside": false,
+     "per1000": [
+      38,
+      73
+     ],
+     "per_plate": [
+      1,
+      10
+     ]
+    },
+    "confident hit": {
+     "audit_count": 127,
+     "future_count": 331,
+     "interval_future": [
+      310,
+      461
+     ],
+     "inside": true,
+     "per1000": [
+      46,
+      83
+     ],
+     "per_plate": [
+      2,
+      11
+     ]
+    },
+    "missed binder": {
+     "audit_count": 0,
+     "future_count": 0,
+     "interval_future": [
+      0,
+      12
+     ],
+     "inside": true,
+     "per1000": [
+      0,
+      3
+     ],
+     "per_plate": [
+      0,
+      1
+     ]
+    },
+    "deferred binder": {
+     "audit_count": 0,
+     "future_count": 2,
+     "interval_future": [
+      0,
+      12
+     ],
+     "inside": true,
+     "per1000": [
+      0,
+      3
+     ],
+     "per_plate": [
+      0,
+      1
+     ]
+    },
+    "single label": {
+     "audit_count": 1891,
+     "future_count": 5006,
+     "interval_future": [
+      5598,
+      5739
+     ],
+     "inside": false,
+     "per1000": [
+      927,
+      962
+     ],
+     "per_plate": [
+      86,
+      95
+     ]
+    },
+    "deferred": {
+     "audit_count": 109,
+     "future_count": 994,
+     "interval_future": [
+      261,
+      402
+     ],
+     "inside": false,
+     "per1000": [
+      38,
+      73
+     ],
+     "per_plate": [
+      1,
+      10
+     ]
+    }
+   },
+   "audit_default": {
+    "correct rejection": 1.0,
+    "false lead": 0.0,
+    "deferred non-binder": 0.0,
+    "confident hit": 1.0,
+    "missed binder": 1.0,
+    "deferred binder": 1.0,
+    "single label": 0.0,
+    "deferred": 0.0
+   },
+   "distinct_rules": 36,
+   "audit_sweep": [
+    211,
+    288
+   ],
+   "bonf_all": 0.0,
+   "capacity": [
+    [
+     0.22766666666666666,
+     0.15966666666666668,
+     false
+    ]
+   ],
+   "sweep_points": [
+    [
+     0.0,
+     186.0,
+     756.5
+    ],
+    [
+     0.0,
+     186.0,
+     756.5
+    ],
+    [
+     3.5,
+     186.0,
+     191.5
+    ],
+    [
+     0.0,
+     417.5,
+     521.5
+    ],
+    [
+     0.0,
+     417.5,
+     521.5
+    ],
+    [
+     2.5,
+     375.0,
+     43.5
+    ],
+    [
+     0.0,
+     623.5,
+     313.5
+    ],
+    [
+     0.0,
+     623.5,
+     313.5
+    ],
+    [
+     0.5,
+     375.0,
+     251.5
+    ],
+    [
+     0.0,
+     882.0,
+     54.5
+    ],
+    [
+     0.0,
+     882.0,
+     54.5
+    ],
+    [
+     0.0,
+     375.0,
+     510.5
+    ],
+    [
+     0.0,
+     936.5,
+     0.0
+    ],
+    [
+     0.0,
+     936.5,
+     0.0
+    ],
+    [
+     0.0,
+     375.0,
+     565.0
+    ],
+    [
+     0.0,
+     936.5,
+     0.0
+    ],
+    [
+     0.0,
+     936.5,
+     0.0
+    ],
+    [
+     0.0,
+     375.0,
+     565.0
+    ],
+    [
+     0.0,
+     936.5,
+     0.0
+    ],
+    [
+     0.0,
+     936.5,
+     0.0
+    ],
+    [
+     0.0,
+     375.0,
+     565.0
+    ],
+    [
+     0.0,
+     936.5,
+     0.0
+    ],
+    [
+     0.0,
+     936.5,
+     0.0
+    ],
+    [
+     0.0,
+     375.0,
+     565.0
+    ],
+    [
+     0.0,
+     936.5,
+     0.0
+    ],
+    [
+     0.0,
+     936.5,
+     0.0
+    ],
+    [
+     0.0,
+     375.0,
+     565.0
+    ],
+    [
+     0.0,
+     936.5,
+     0.0
+    ],
+    [
+     0.0,
+     936.5,
+     0.0
+    ],
+    [
+     0.0,
+     375.0,
+     565.0
+    ],
+    [
+     0.0,
+     936.5,
+     0.0
+    ],
+    [
+     0.0,
+     936.5,
+     0.0
+    ],
+    [
+     0.0,
+     375.0,
+     565.0
+    ],
+    [
+     0.0,
+     936.5,
+     0.0
+    ],
+    [
+     0.0,
+     936.5,
+     0.0
+    ],
+    [
+     0.0,
+     375.0,
+     565.0
+    ]
+   ],
+   "pareto": 26,
+   "lines_covered": [
+    4,
+    6
+   ]
+  },
+  {
+   "arm": "batch slice",
+   "round": 1,
+   "n": {
+    "cal": 30000,
+    "audit": 2000,
+    "batch": 6000
+   },
+   "prevalence": {
+    "cal": 0.0074333333333333335,
+    "audit": 0.001,
+    "batch": 0.0011666666666666668,
+    "pool_remaining": 0.0005
+   },
+   "auroc_batch": 0.35970537055135754,
+   "prevalence_ratio": 0.8571428571428571,
+   "n_cal": [
+    29777,
+    223
+   ],
+   "n_audit": [
+    1998,
+    2
+   ],
+   "n_future": [
+    5993,
+    7
+   ],
+   "default": {
+    "k": [
+     27147,
+     221
+    ],
+    "planned_m": [
+     993,
+     7
+    ],
+    "cells": {
+     "0_s0": 0,
+     "0_s1": 0,
+     "0_both": 1998,
+     "0_empty": 0,
+     "1_s0": 0,
+     "1_s1": 0,
+     "1_both": 2,
+     "1_empty": 0
+    },
+    "cov": [
+     1.0,
+     1.0
+    ],
+    "viol": [
+     false,
+     false
+    ],
+    "p_viol": [
+     0.04183663340297146,
+     0.026547619047611534
+    ],
+    "feasible": [
+     true,
+     true
+    ]
+   },
+   "audit_intervals": {
+    "correct rejection": {
+     "audit_count": 0,
+     "future_count": 0,
+     "interval_future": [
+      0,
+      12
+     ],
+     "inside": true,
+     "per1000": [
+      0,
+      3
+     ],
+     "per_plate": [
+      0,
+      1
+     ]
+    },
+    "false lead": {
+     "audit_count": 0,
+     "future_count": 0,
+     "interval_future": [
+      0,
+      12
+     ],
+     "inside": true,
+     "per1000": [
+      0,
+      3
+     ],
+     "per_plate": [
+      0,
+      1
+     ]
+    },
+    "deferred non-binder": {
+     "audit_count": 1998,
+     "future_count": 5993,
+     "interval_future": [
+      5976,
+      6000
+     ],
+     "inside": true,
+     "per1000": [
+      995,
+      1000
+     ],
+     "per_plate": [
+      95,
+      96
+     ]
+    },
+    "confident hit": {
+     "audit_count": 0,
+     "future_count": 0,
+     "interval_future": [
+      0,
+      12
+     ],
+     "inside": true,
+     "per1000": [
+      0,
+      3
+     ],
+     "per_plate": [
+      0,
+      1
+     ]
+    },
+    "missed binder": {
+     "audit_count": 0,
+     "future_count": 0,
+     "interval_future": [
+      0,
+      12
+     ],
+     "inside": true,
+     "per1000": [
+      0,
+      3
+     ],
+     "per_plate": [
+      0,
+      1
+     ]
+    },
+    "deferred binder": {
+     "audit_count": 2,
+     "future_count": 7,
+     "interval_future": [
+      0,
+      24
+     ],
+     "inside": true,
+     "per1000": [
+      0,
+      5
+     ],
+     "per_plate": [
+      0,
+      1
+     ]
+    },
+    "single label": {
+     "audit_count": 0,
+     "future_count": 0,
+     "interval_future": [
+      0,
+      12
+     ],
+     "inside": true,
+     "per1000": [
+      0,
+      3
+     ],
+     "per_plate": [
+      0,
+      1
+     ]
+    },
+    "deferred": {
+     "audit_count": 2000,
+     "future_count": 6000,
+     "interval_future": [
+      5988,
+      6000
+     ],
+     "inside": true,
+     "per1000": [
+      997,
+      1000
+     ],
+     "per_plate": [
+      95,
+      96
+     ]
+    }
+   },
+   "audit_default": {
+    "correct rejection": 1.0,
+    "false lead": 1.0,
+    "deferred non-binder": 1.0,
+    "confident hit": 1.0,
+    "missed binder": 1.0,
+    "deferred binder": 1.0,
+    "single label": 1.0,
+    "deferred": 1.0
+   },
+   "distinct_rules": 36,
+   "audit_sweep": [
+    288,
+    288
+   ],
+   "bonf_all": 1.0,
+   "capacity": [
+    [
+     0.05483333333333333,
+     0.034833333333333334,
+     false
+    ]
+   ],
+   "sweep_points": [
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     1.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     1.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     1.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     1.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     35.5,
+     964.0
+    ],
+    [
+     0.0,
+     35.5,
+     964.0
+    ],
+    [
+     0.5,
+     0.0,
+     36.0
+    ],
+    [
+     0.0,
+     242.0,
+     757.5
+    ],
+    [
+     0.0,
+     242.0,
+     757.5
+    ],
+    [
+     0.5,
+     0.0,
+     242.5
+    ],
+    [
+     0.0,
+     462.0,
+     537.5
+    ],
+    [
+     0.0,
+     462.0,
+     537.5
+    ],
+    [
+     0.5,
+     0.0,
+     462.5
+    ],
+    [
+     0.0,
+     660.5,
+     338.5
+    ],
+    [
+     0.0,
+     660.5,
+     338.5
+    ],
+    [
+     0.0,
+     0.0,
+     661.5
+    ],
+    [
+     0.0,
+     869.5,
+     129.5
+    ],
+    [
+     0.0,
+     869.5,
+     129.5
+    ],
+    [
+     0.0,
+     0.0,
+     870.5
+    ],
+    [
+     0.0,
+     999.0,
+     0.0
+    ],
+    [
+     0.0,
+     999.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.0,
+     999.0,
+     0.0
+    ],
+    [
+     0.0,
+     999.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.0,
+     999.0,
+     0.0
+    ],
+    [
+     0.0,
+     999.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ]
+   ],
+   "pareto": 18,
+   "lines_covered": [
+    6,
+    6
+   ]
+  },
+  {
+   "arm": "selected holdout",
+   "round": 1,
+   "n": {
+    "cal": 30000,
+    "audit": 2000,
+    "batch": 6000
+   },
+   "prevalence": {
+    "cal": 0.0074333333333333335,
+    "audit": 0.001,
+    "batch": 0.0011666666666666668,
+    "pool_remaining": 0.0005
+   },
+   "auroc_batch": 0.35970537055135754,
+   "prevalence_ratio": 0.8571428571428571,
+   "n_cal": [
+    29777,
+    223
+   ],
+   "n_audit": [
+    1998,
+    2
+   ],
+   "n_future": [
+    5993,
+    7
+   ],
+   "default": {
+    "k": [
+     27147,
+     221
+    ],
+    "planned_m": [
+     993,
+     7
+    ],
+    "cells": {
+     "0_s0": 0,
+     "0_s1": 0,
+     "0_both": 1998,
+     "0_empty": 0,
+     "1_s0": 0,
+     "1_s1": 0,
+     "1_both": 2,
+     "1_empty": 0
+    },
+    "cov": [
+     1.0,
+     1.0
+    ],
+    "viol": [
+     false,
+     false
+    ],
+    "p_viol": [
+     0.04183663340297146,
+     0.026547619047611534
+    ],
+    "feasible": [
+     true,
+     true
+    ]
+   },
+   "audit_intervals": {
+    "correct rejection": {
+     "audit_count": 0,
+     "future_count": 0,
+     "interval_future": [
+      0,
+      12
+     ],
+     "inside": true,
+     "per1000": [
+      0,
+      3
+     ],
+     "per_plate": [
+      0,
+      1
+     ]
+    },
+    "false lead": {
+     "audit_count": 0,
+     "future_count": 0,
+     "interval_future": [
+      0,
+      12
+     ],
+     "inside": true,
+     "per1000": [
+      0,
+      3
+     ],
+     "per_plate": [
+      0,
+      1
+     ]
+    },
+    "deferred non-binder": {
+     "audit_count": 1998,
+     "future_count": 5993,
+     "interval_future": [
+      5976,
+      6000
+     ],
+     "inside": true,
+     "per1000": [
+      995,
+      1000
+     ],
+     "per_plate": [
+      95,
+      96
+     ]
+    },
+    "confident hit": {
+     "audit_count": 0,
+     "future_count": 0,
+     "interval_future": [
+      0,
+      12
+     ],
+     "inside": true,
+     "per1000": [
+      0,
+      3
+     ],
+     "per_plate": [
+      0,
+      1
+     ]
+    },
+    "missed binder": {
+     "audit_count": 0,
+     "future_count": 0,
+     "interval_future": [
+      0,
+      12
+     ],
+     "inside": true,
+     "per1000": [
+      0,
+      3
+     ],
+     "per_plate": [
+      0,
+      1
+     ]
+    },
+    "deferred binder": {
+     "audit_count": 2,
+     "future_count": 7,
+     "interval_future": [
+      0,
+      24
+     ],
+     "inside": true,
+     "per1000": [
+      0,
+      5
+     ],
+     "per_plate": [
+      0,
+      1
+     ]
+    },
+    "single label": {
+     "audit_count": 0,
+     "future_count": 0,
+     "interval_future": [
+      0,
+      12
+     ],
+     "inside": true,
+     "per1000": [
+      0,
+      3
+     ],
+     "per_plate": [
+      0,
+      1
+     ]
+    },
+    "deferred": {
+     "audit_count": 2000,
+     "future_count": 6000,
+     "interval_future": [
+      5988,
+      6000
+     ],
+     "inside": true,
+     "per1000": [
+      997,
+      1000
+     ],
+     "per_plate": [
+      95,
+      96
+     ]
+    }
+   },
+   "audit_default": {
+    "correct rejection": 1.0,
+    "false lead": 1.0,
+    "deferred non-binder": 1.0,
+    "confident hit": 1.0,
+    "missed binder": 1.0,
+    "deferred binder": 1.0,
+    "single label": 1.0,
+    "deferred": 1.0
+   },
+   "distinct_rules": 36,
+   "audit_sweep": [
+    228,
+    288
+   ],
+   "bonf_all": 0.0,
+   "capacity": [
+    [
+     0.45116666666666666,
+     0.2415,
+     false
+    ]
+   ],
+   "sweep_points": [
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     1.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     1.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     1.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     1.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     174.5,
+     825.5
+    ],
+    [
+     0.0,
+     174.5,
+     825.5
+    ],
+    [
+     1.0,
+     0.0,
+     174.5
+    ],
+    [
+     0.0,
+     407.0,
+     592.5
+    ],
+    [
+     0.0,
+     407.0,
+     592.5
+    ],
+    [
+     0.5,
+     0.0,
+     407.5
+    ],
+    [
+     0.0,
+     622.5,
+     377.0
+    ],
+    [
+     0.0,
+     622.5,
+     377.0
+    ],
+    [
+     0.5,
+     0.0,
+     623.0
+    ],
+    [
+     0.0,
+     869.0,
+     130.0
+    ],
+    [
+     0.0,
+     869.0,
+     130.0
+    ],
+    [
+     0.0,
+     0.0,
+     870.0
+    ],
+    [
+     0.0,
+     999.0,
+     0.0
+    ],
+    [
+     0.0,
+     999.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.0,
+     999.0,
+     0.0
+    ],
+    [
+     0.0,
+     999.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.0,
+     999.0,
+     0.0
+    ],
+    [
+     0.0,
+     999.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.0,
+     999.0,
+     0.0
+    ],
+    [
+     0.0,
+     999.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ]
+   ],
+   "pareto": 22,
+   "lines_covered": [
+    6,
+    6
+   ]
+  },
+  {
+   "arm": "library audit",
+   "round": 2,
+   "n": {
+    "cal": 30000,
+    "audit": 2000,
+    "batch": 6000
+   },
+   "prevalence": {
+    "cal": 0.0074333333333333335,
+    "audit": 0.0005,
+    "batch": 0.0005,
+    "pool_remaining": 0.0004074074074074074
+   },
+   "auroc_batch": 0.5242621310655328,
+   "prevalence_ratio": 1.0,
+   "n_cal": [
+    29777,
+    223
+   ],
+   "n_audit": [
+    1999,
+    1
+   ],
+   "n_future": [
+    5997,
+    3
+   ],
+   "default": {
+    "k": [
+     27147,
+     221
+    ],
+    "planned_m": [
+     993,
+     7
+    ],
+    "cells": {
+     "0_s0": 368,
+     "0_s1": 0,
+     "0_both": 1631,
+     "0_empty": 0,
+     "1_s0": 0,
+     "1_s1": 0,
+     "1_both": 1,
+     "1_empty": 0
+    },
+    "cov": [
+     1.0,
+     1.0
+    ],
+    "viol": [
+     false,
+     false
+    ],
+    "p_viol": [
+     0.042459176393776284,
+     0.013392857142857246
+    ],
+    "feasible": [
+     true,
+     true
+    ]
+   },
+   "audit_intervals": {
+    "correct rejection": {
+     "audit_count": 368,
+     "future_count": 0,
+     "interval_future": [
+      988,
+      1226
+     ],
+     "inside": false,
+     "per1000": [
+      155,
+      214
+     ],
+     "per_plate": [
+      10,
+      26
+     ]
+    },
+    "false lead": {
+     "audit_count": 0,
+     "future_count": 0,
+     "interval_future": [
+      0,
+      12
+     ],
+     "inside": true,
+     "per1000": [
+      0,
+      3
+     ],
+     "per_plate": [
+      0,
+      1
+     ]
+    },
+    "deferred non-binder": {
+     "audit_count": 1631,
+     "future_count": 5997,
+     "interval_future": [
+      4771,
+      5009
+     ],
+     "inside": false,
+     "per1000": [
+      785,
+      844
+     ],
+     "per_plate": [
+      70,
+      86
+     ]
+    },
+    "confident hit": {
+     "audit_count": 0,
+     "future_count": 0,
+     "interval_future": [
+      0,
+      12
+     ],
+     "inside": true,
+     "per1000": [
+      0,
+      3
+     ],
+     "per_plate": [
+      0,
+      1
+     ]
+    },
+    "missed binder": {
+     "audit_count": 0,
+     "future_count": 0,
+     "interval_future": [
+      0,
+      12
+     ],
+     "inside": true,
+     "per1000": [
+      0,
+      3
+     ],
+     "per_plate": [
+      0,
+      1
+     ]
+    },
+    "deferred binder": {
+     "audit_count": 1,
+     "future_count": 3,
+     "interval_future": [
+      0,
+      18
+     ],
+     "inside": true,
+     "per1000": [
+      0,
+      4
+     ],
+     "per_plate": [
+      0,
+      1
+     ]
+    },
+    "single label": {
+     "audit_count": 368,
+     "future_count": 0,
+     "interval_future": [
+      988,
+      1226
+     ],
+     "inside": false,
+     "per1000": [
+      155,
+      214
+     ],
+     "per_plate": [
+      10,
+      26
+     ]
+    },
+    "deferred": {
+     "audit_count": 1632,
+     "future_count": 6000,
+     "interval_future": [
+      4774,
+      5012
+     ],
+     "inside": false,
+     "per1000": [
+      786,
+      845
+     ],
+     "per_plate": [
+      70,
+      86
+     ]
+    }
+   },
+   "audit_default": {
+    "correct rejection": 0.0,
+    "false lead": 1.0,
+    "deferred non-binder": 0.0,
+    "confident hit": 1.0,
+    "missed binder": 1.0,
+    "deferred binder": 1.0,
+    "single label": 0.0,
+    "deferred": 0.0
+   },
+   "distinct_rules": 36,
+   "audit_sweep": [
+    174,
+    288
+   ],
+   "bonf_all": 0.0,
+   "capacity": [
+    [
+     0.0045,
+     0.0,
+     false
+    ]
+   ],
+   "sweep_points": [
+    [
+     0.0,
+     0.0,
+     816.0
+    ],
+    [
+     0.5,
+     0.0,
+     85.5
+    ],
+    [
+     0.5,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     816.0
+    ],
+    [
+     0.5,
+     0.0,
+     85.5
+    ],
+    [
+     0.5,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     816.0
+    ],
+    [
+     0.5,
+     0.0,
+     85.5
+    ],
+    [
+     0.5,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     816.0
+    ],
+    [
+     0.5,
+     0.0,
+     85.5
+    ],
+    [
+     0.5,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     816.0
+    ],
+    [
+     0.5,
+     0.0,
+     85.5
+    ],
+    [
+     0.5,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     816.0
+    ],
+    [
+     0.5,
+     0.0,
+     85.5
+    ],
+    [
+     0.5,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     816.0
+    ],
+    [
+     0.5,
+     0.0,
+     85.5
+    ],
+    [
+     0.5,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     816.0
+    ],
+    [
+     0.5,
+     0.0,
+     85.5
+    ],
+    [
+     0.5,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     816.0
+    ],
+    [
+     0.5,
+     0.0,
+     85.5
+    ],
+    [
+     0.5,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     816.0
+    ],
+    [
+     0.5,
+     0.0,
+     85.5
+    ],
+    [
+     0.5,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     816.0
+    ],
+    [
+     0.5,
+     0.0,
+     85.5
+    ],
+    [
+     0.5,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     816.0
+    ],
+    [
+     0.5,
+     0.0,
+     85.5
+    ],
+    [
+     0.5,
+     0.0,
+     0.0
+    ]
+   ],
+   "pareto": 24,
+   "lines_covered": [
+    4,
+    6
+   ]
+  },
+  {
+   "arm": "batch slice",
+   "round": 2,
+   "n": {
+    "cal": 30000,
+    "audit": 2000,
+    "batch": 6000
+   },
+   "prevalence": {
+    "cal": 0.0074333333333333335,
+    "audit": 0.0005,
+    "batch": 0.0005,
+    "pool_remaining": 0.0004074074074074074
+   },
+   "auroc_batch": 0.5242621310655328,
+   "prevalence_ratio": 1.0,
+   "n_cal": [
+    29777,
+    223
+   ],
+   "n_audit": [
+    1999,
+    1
+   ],
+   "n_future": [
+    5997,
+    3
+   ],
+   "default": {
+    "k": [
+     27147,
+     221
+    ],
+    "planned_m": [
+     993,
+     7
+    ],
+    "cells": {
+     "0_s0": 0,
+     "0_s1": 0,
+     "0_both": 1999,
+     "0_empty": 0,
+     "1_s0": 0,
+     "1_s1": 0,
+     "1_both": 1,
+     "1_empty": 0
+    },
+    "cov": [
+     1.0,
+     1.0
+    ],
+    "viol": [
+     false,
+     false
+    ],
+    "p_viol": [
+     0.042459176393776284,
+     0.013392857142857246
+    ],
+    "feasible": [
+     true,
+     true
+    ]
+   },
+   "audit_intervals": {
+    "correct rejection": {
+     "audit_count": 0,
+     "future_count": 0,
+     "interval_future": [
+      0,
+      12
+     ],
+     "inside": true,
+     "per1000": [
+      0,
+      3
+     ],
+     "per_plate": [
+      0,
+      1
+     ]
+    },
+    "false lead": {
+     "audit_count": 0,
+     "future_count": 0,
+     "interval_future": [
+      0,
+      12
+     ],
+     "inside": true,
+     "per1000": [
+      0,
+      3
+     ],
+     "per_plate": [
+      0,
+      1
+     ]
+    },
+    "deferred non-binder": {
+     "audit_count": 1999,
+     "future_count": 5997,
+     "interval_future": [
+      5982,
+      6000
+     ],
+     "inside": true,
+     "per1000": [
+      996,
+      1000
+     ],
+     "per_plate": [
+      95,
+      96
+     ]
+    },
+    "confident hit": {
+     "audit_count": 0,
+     "future_count": 0,
+     "interval_future": [
+      0,
+      12
+     ],
+     "inside": true,
+     "per1000": [
+      0,
+      3
+     ],
+     "per_plate": [
+      0,
+      1
+     ]
+    },
+    "missed binder": {
+     "audit_count": 0,
+     "future_count": 0,
+     "interval_future": [
+      0,
+      12
+     ],
+     "inside": true,
+     "per1000": [
+      0,
+      3
+     ],
+     "per_plate": [
+      0,
+      1
+     ]
+    },
+    "deferred binder": {
+     "audit_count": 1,
+     "future_count": 3,
+     "interval_future": [
+      0,
+      18
+     ],
+     "inside": true,
+     "per1000": [
+      0,
+      4
+     ],
+     "per_plate": [
+      0,
+      1
+     ]
+    },
+    "single label": {
+     "audit_count": 0,
+     "future_count": 0,
+     "interval_future": [
+      0,
+      12
+     ],
+     "inside": true,
+     "per1000": [
+      0,
+      3
+     ],
+     "per_plate": [
+      0,
+      1
+     ]
+    },
+    "deferred": {
+     "audit_count": 2000,
+     "future_count": 6000,
+     "interval_future": [
+      5988,
+      6000
+     ],
+     "inside": true,
+     "per1000": [
+      997,
+      1000
+     ],
+     "per_plate": [
+      95,
+      96
+     ]
+    }
+   },
+   "audit_default": {
+    "correct rejection": 1.0,
+    "false lead": 1.0,
+    "deferred non-binder": 1.0,
+    "confident hit": 1.0,
+    "missed binder": 1.0,
+    "deferred binder": 1.0,
+    "single label": 1.0,
+    "deferred": 1.0
+   },
+   "distinct_rules": 36,
+   "audit_sweep": [
+    288,
+    288
+   ],
+   "bonf_all": 1.0,
+   "capacity": [
+    [
+     0.0045,
+     0.0,
+     false
+    ]
+   ],
+   "sweep_points": [
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.5,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.5,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.5,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.5,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.5,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.5,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.5,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.5,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.5,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     95.5,
+     904.5
+    ],
+    [
+     0.0,
+     95.5,
+     904.5
+    ],
+    [
+     0.5,
+     0.0,
+     95.5
+    ],
+    [
+     0.0,
+     301.5,
+     698.5
+    ],
+    [
+     0.0,
+     301.5,
+     698.5
+    ],
+    [
+     0.5,
+     0.0,
+     301.5
+    ],
+    [
+     0.0,
+     523.5,
+     476.5
+    ],
+    [
+     0.0,
+     523.5,
+     476.5
+    ],
+    [
+     0.5,
+     0.0,
+     523.5
+    ]
+   ],
+   "pareto": 33,
+   "lines_covered": [
+    6,
+    6
+   ]
+  },
+  {
+   "arm": "selected holdout",
+   "round": 2,
+   "n": {
+    "cal": 30000,
+    "audit": 2000,
+    "batch": 6000
+   },
+   "prevalence": {
+    "cal": 0.0074333333333333335,
+    "audit": 0.0005,
+    "batch": 0.0005,
+    "pool_remaining": 0.0004074074074074074
+   },
+   "auroc_batch": 0.5242621310655328,
+   "prevalence_ratio": 1.0,
+   "n_cal": [
+    29777,
+    223
+   ],
+   "n_audit": [
+    1999,
+    1
+   ],
+   "n_future": [
+    5997,
+    3
+   ],
+   "default": {
+    "k": [
+     27147,
+     221
+    ],
+    "planned_m": [
+     993,
+     7
+    ],
+    "cells": {
+     "0_s0": 0,
+     "0_s1": 0,
+     "0_both": 1999,
+     "0_empty": 0,
+     "1_s0": 0,
+     "1_s1": 0,
+     "1_both": 1,
+     "1_empty": 0
+    },
+    "cov": [
+     1.0,
+     1.0
+    ],
+    "viol": [
+     false,
+     false
+    ],
+    "p_viol": [
+     0.042459176393776284,
+     0.013392857142857246
+    ],
+    "feasible": [
+     true,
+     true
+    ]
+   },
+   "audit_intervals": {
+    "correct rejection": {
+     "audit_count": 0,
+     "future_count": 0,
+     "interval_future": [
+      0,
+      12
+     ],
+     "inside": true,
+     "per1000": [
+      0,
+      3
+     ],
+     "per_plate": [
+      0,
+      1
+     ]
+    },
+    "false lead": {
+     "audit_count": 0,
+     "future_count": 0,
+     "interval_future": [
+      0,
+      12
+     ],
+     "inside": true,
+     "per1000": [
+      0,
+      3
+     ],
+     "per_plate": [
+      0,
+      1
+     ]
+    },
+    "deferred non-binder": {
+     "audit_count": 1999,
+     "future_count": 5997,
+     "interval_future": [
+      5982,
+      6000
+     ],
+     "inside": true,
+     "per1000": [
+      996,
+      1000
+     ],
+     "per_plate": [
+      95,
+      96
+     ]
+    },
+    "confident hit": {
+     "audit_count": 0,
+     "future_count": 0,
+     "interval_future": [
+      0,
+      12
+     ],
+     "inside": true,
+     "per1000": [
+      0,
+      3
+     ],
+     "per_plate": [
+      0,
+      1
+     ]
+    },
+    "missed binder": {
+     "audit_count": 0,
+     "future_count": 0,
+     "interval_future": [
+      0,
+      12
+     ],
+     "inside": true,
+     "per1000": [
+      0,
+      3
+     ],
+     "per_plate": [
+      0,
+      1
+     ]
+    },
+    "deferred binder": {
+     "audit_count": 1,
+     "future_count": 3,
+     "interval_future": [
+      0,
+      18
+     ],
+     "inside": true,
+     "per1000": [
+      0,
+      4
+     ],
+     "per_plate": [
+      0,
+      1
+     ]
+    },
+    "single label": {
+     "audit_count": 0,
+     "future_count": 0,
+     "interval_future": [
+      0,
+      12
+     ],
+     "inside": true,
+     "per1000": [
+      0,
+      3
+     ],
+     "per_plate": [
+      0,
+      1
+     ]
+    },
+    "deferred": {
+     "audit_count": 2000,
+     "future_count": 6000,
+     "interval_future": [
+      5988,
+      6000
+     ],
+     "inside": true,
+     "per1000": [
+      997,
+      1000
+     ],
+     "per_plate": [
+      95,
+      96
+     ]
+    }
+   },
+   "audit_default": {
+    "correct rejection": 1.0,
+    "false lead": 1.0,
+    "deferred non-binder": 1.0,
+    "confident hit": 1.0,
+    "missed binder": 1.0,
+    "deferred binder": 1.0,
+    "single label": 1.0,
+    "deferred": 1.0
+   },
+   "distinct_rules": 36,
+   "audit_sweep": [
+    240,
+    288
+   ],
+   "bonf_all": 0.0,
+   "capacity": [
+    [
+     0.409,
+     0.09733333333333333,
+     false
+    ]
+   ],
+   "sweep_points": [
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.5,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.5,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.5,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.5,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.5,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.5,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.5,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.5,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     122.0,
+     878.0
+    ],
+    [
+     0.0,
+     122.0,
+     878.0
+    ],
+    [
+     0.5,
+     0.0,
+     122.0
+    ],
+    [
+     0.0,
+     365.5,
+     634.0
+    ],
+    [
+     0.0,
+     365.5,
+     634.0
+    ],
+    [
+     0.0,
+     0.0,
+     366.0
+    ],
+    [
+     0.0,
+     617.0,
+     382.5
+    ],
+    [
+     0.0,
+     617.0,
+     382.5
+    ],
+    [
+     0.0,
+     0.0,
+     617.5
+    ],
+    [
+     0.0,
+     859.0,
+     140.5
+    ],
+    [
+     0.0,
+     859.0,
+     140.5
+    ],
+    [
+     0.0,
+     0.0,
+     859.5
+    ]
+   ],
+   "pareto": 11,
+   "lines_covered": [
+    6,
+    6
+   ]
+  },
+  {
+   "arm": "batch slice",
+   "round": 3,
+   "n": {
+    "cal": 30000,
+    "audit": 2000,
+    "batch": 6000
+   },
+   "prevalence": {
+    "cal": 0.0074333333333333335,
+    "audit": 0.001,
+    "batch": 0.0005,
+    "pool_remaining": 0.000391304347826087
+   },
+   "auroc_batch": 0.4132066033016508,
+   "prevalence_ratio": 2.0,
+   "n_cal": [
+    29777,
+    223
+   ],
+   "n_audit": [
+    1998,
+    2
+   ],
+   "n_future": [
+    5997,
+    3
+   ],
+   "default": {
+    "k": [
+     27147,
+     221
+    ],
+    "planned_m": [
+     993,
+     7
+    ],
+    "cells": {
+     "0_s0": 0,
+     "0_s1": 0,
+     "0_both": 1998,
+     "0_empty": 0,
+     "1_s0": 0,
+     "1_s1": 0,
+     "1_both": 2,
+     "1_empty": 0
+    },
+    "cov": [
+     1.0,
+     1.0
+    ],
+    "viol": [
+     false,
+     false
+    ],
+    "p_viol": [
+     0.04183663340297146,
+     0.026547619047611534
+    ],
+    "feasible": [
+     true,
+     true
+    ]
+   },
+   "audit_intervals": {
+    "correct rejection": {
+     "audit_count": 0,
+     "future_count": 0,
+     "interval_future": [
+      0,
+      12
+     ],
+     "inside": true,
+     "per1000": [
+      0,
+      3
+     ],
+     "per_plate": [
+      0,
+      1
+     ]
+    },
+    "false lead": {
+     "audit_count": 0,
+     "future_count": 0,
+     "interval_future": [
+      0,
+      12
+     ],
+     "inside": true,
+     "per1000": [
+      0,
+      3
+     ],
+     "per_plate": [
+      0,
+      1
+     ]
+    },
+    "deferred non-binder": {
+     "audit_count": 1998,
+     "future_count": 5997,
+     "interval_future": [
+      5976,
+      6000
+     ],
+     "inside": true,
+     "per1000": [
+      995,
+      1000
+     ],
+     "per_plate": [
+      95,
+      96
+     ]
+    },
+    "confident hit": {
+     "audit_count": 0,
+     "future_count": 0,
+     "interval_future": [
+      0,
+      12
+     ],
+     "inside": true,
+     "per1000": [
+      0,
+      3
+     ],
+     "per_plate": [
+      0,
+      1
+     ]
+    },
+    "missed binder": {
+     "audit_count": 0,
+     "future_count": 0,
+     "interval_future": [
+      0,
+      12
+     ],
+     "inside": true,
+     "per1000": [
+      0,
+      3
+     ],
+     "per_plate": [
+      0,
+      1
+     ]
+    },
+    "deferred binder": {
+     "audit_count": 2,
+     "future_count": 3,
+     "interval_future": [
+      0,
+      24
+     ],
+     "inside": true,
+     "per1000": [
+      0,
+      5
+     ],
+     "per_plate": [
+      0,
+      1
+     ]
+    },
+    "single label": {
+     "audit_count": 0,
+     "future_count": 0,
+     "interval_future": [
+      0,
+      12
+     ],
+     "inside": true,
+     "per1000": [
+      0,
+      3
+     ],
+     "per_plate": [
+      0,
+      1
+     ]
+    },
+    "deferred": {
+     "audit_count": 2000,
+     "future_count": 6000,
+     "interval_future": [
+      5988,
+      6000
+     ],
+     "inside": true,
+     "per1000": [
+      997,
+      1000
+     ],
+     "per_plate": [
+      95,
+      96
+     ]
+    }
+   },
+   "audit_default": {
+    "correct rejection": 1.0,
+    "false lead": 1.0,
+    "deferred non-binder": 1.0,
+    "confident hit": 1.0,
+    "missed binder": 1.0,
+    "deferred binder": 1.0,
+    "single label": 1.0,
+    "deferred": 1.0
+   },
+   "distinct_rules": 36,
+   "audit_sweep": [
+    288,
+    288
+   ],
+   "bonf_all": 1.0,
+   "capacity": [
+    [
+     0.0045,
+     0.0,
+     false
+    ]
+   ],
+   "sweep_points": [
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.5,
+     0.0,
+     484.5
+    ],
+    [
+     1.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.5,
+     0.0,
+     484.5
+    ],
+    [
+     1.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.5,
+     0.0,
+     484.5
+    ],
+    [
+     1.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.5,
+     0.0,
+     484.5
+    ],
+    [
+     1.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.5,
+     0.0,
+     484.5
+    ],
+    [
+     1.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.5,
+     0.0,
+     484.5
+    ],
+    [
+     1.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.5,
+     0.0,
+     484.5
+    ],
+    [
+     1.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.5,
+     0.0,
+     484.5
+    ],
+    [
+     1.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.5,
+     0.0,
+     484.5
+    ],
+    [
+     1.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.5,
+     0.0,
+     484.5
+    ],
+    [
+     1.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.5,
+     0.0,
+     484.5
+    ],
+    [
+     1.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.5,
+     0.0,
+     484.5
+    ],
+    [
+     1.0,
+     0.0,
+     0.0
+    ]
+   ],
+   "pareto": 36,
+   "lines_covered": [
+    6,
+    6
+   ]
+  },
+  {
+   "arm": "selected holdout",
+   "round": 3,
+   "n": {
+    "cal": 30000,
+    "audit": 2000,
+    "batch": 6000
+   },
+   "prevalence": {
+    "cal": 0.0074333333333333335,
+    "audit": 0.001,
+    "batch": 0.0005,
+    "pool_remaining": 0.000391304347826087
+   },
+   "auroc_batch": 0.4132066033016508,
+   "prevalence_ratio": 2.0,
+   "n_cal": [
+    29777,
+    223
+   ],
+   "n_audit": [
+    1998,
+    2
+   ],
+   "n_future": [
+    5997,
+    3
+   ],
+   "default": {
+    "k": [
+     27147,
+     221
+    ],
+    "planned_m": [
+     993,
+     7
+    ],
+    "cells": {
+     "0_s0": 0,
+     "0_s1": 0,
+     "0_both": 1998,
+     "0_empty": 0,
+     "1_s0": 0,
+     "1_s1": 0,
+     "1_both": 2,
+     "1_empty": 0
+    },
+    "cov": [
+     1.0,
+     1.0
+    ],
+    "viol": [
+     false,
+     false
+    ],
+    "p_viol": [
+     0.04183663340297146,
+     0.026547619047611534
+    ],
+    "feasible": [
+     true,
+     true
+    ]
+   },
+   "audit_intervals": {
+    "correct rejection": {
+     "audit_count": 0,
+     "future_count": 0,
+     "interval_future": [
+      0,
+      12
+     ],
+     "inside": true,
+     "per1000": [
+      0,
+      3
+     ],
+     "per_plate": [
+      0,
+      1
+     ]
+    },
+    "false lead": {
+     "audit_count": 0,
+     "future_count": 0,
+     "interval_future": [
+      0,
+      12
+     ],
+     "inside": true,
+     "per1000": [
+      0,
+      3
+     ],
+     "per_plate": [
+      0,
+      1
+     ]
+    },
+    "deferred non-binder": {
+     "audit_count": 1998,
+     "future_count": 5997,
+     "interval_future": [
+      5976,
+      6000
+     ],
+     "inside": true,
+     "per1000": [
+      995,
+      1000
+     ],
+     "per_plate": [
+      95,
+      96
+     ]
+    },
+    "confident hit": {
+     "audit_count": 0,
+     "future_count": 0,
+     "interval_future": [
+      0,
+      12
+     ],
+     "inside": true,
+     "per1000": [
+      0,
+      3
+     ],
+     "per_plate": [
+      0,
+      1
+     ]
+    },
+    "missed binder": {
+     "audit_count": 0,
+     "future_count": 0,
+     "interval_future": [
+      0,
+      12
+     ],
+     "inside": true,
+     "per1000": [
+      0,
+      3
+     ],
+     "per_plate": [
+      0,
+      1
+     ]
+    },
+    "deferred binder": {
+     "audit_count": 2,
+     "future_count": 3,
+     "interval_future": [
+      0,
+      24
+     ],
+     "inside": true,
+     "per1000": [
+      0,
+      5
+     ],
+     "per_plate": [
+      0,
+      1
+     ]
+    },
+    "single label": {
+     "audit_count": 0,
+     "future_count": 0,
+     "interval_future": [
+      0,
+      12
+     ],
+     "inside": true,
+     "per1000": [
+      0,
+      3
+     ],
+     "per_plate": [
+      0,
+      1
+     ]
+    },
+    "deferred": {
+     "audit_count": 2000,
+     "future_count": 6000,
+     "interval_future": [
+      5988,
+      6000
+     ],
+     "inside": true,
+     "per1000": [
+      997,
+      1000
+     ],
+     "per_plate": [
+      95,
+      96
+     ]
+    }
+   },
+   "audit_default": {
+    "correct rejection": 1.0,
+    "false lead": 1.0,
+    "deferred non-binder": 1.0,
+    "confident hit": 1.0,
+    "missed binder": 1.0,
+    "deferred binder": 1.0,
+    "single label": 1.0,
+    "deferred": 1.0
+   },
+   "distinct_rules": 36,
+   "audit_sweep": [
+    240,
+    288
+   ],
+   "bonf_all": 0.0,
+   "capacity": [
+    [
+     0.0045,
+     0.0,
+     false
+    ]
+   ],
+   "sweep_points": [
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.0,
+     0.0,
+     969.5
+    ],
+    [
+     1.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.0,
+     0.0,
+     969.5
+    ],
+    [
+     1.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.0,
+     0.0,
+     969.5
+    ],
+    [
+     1.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.0,
+     0.0,
+     969.5
+    ],
+    [
+     1.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.0,
+     0.0,
+     969.5
+    ],
+    [
+     1.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.0,
+     0.0,
+     969.5
+    ],
+    [
+     1.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.0,
+     0.0,
+     969.5
+    ],
+    [
+     1.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.0,
+     0.0,
+     969.5
+    ],
+    [
+     1.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.0,
+     0.0,
+     969.5
+    ],
+    [
+     1.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.0,
+     0.0,
+     969.5
+    ],
+    [
+     1.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.0,
+     0.0,
+     969.5
+    ],
+    [
+     1.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1000.0
+    ],
+    [
+     0.0,
+     0.0,
+     969.5
+    ],
+    [
+     1.0,
+     0.0,
+     0.0
+    ]
+   ],
+   "pareto": 24,
+   "lines_covered": [
+    6,
+    6
+   ]
+  }
+ ],
+ "m_per_round": 8000,
+ "audit_frac": 0.25
+}

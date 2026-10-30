@@ -31,6 +31,7 @@ import sys, os, json, time, numpy as np, pandas as pd
 
 PARQUET, OUT = sys.argv[1], sys.argv[2]
 ROUNDS = int(sys.argv[3])
+_M = int(sys.argv[4]) if len(sys.argv) > 4 else None
 os.makedirs(OUT, exist_ok=True)
 sys.argv = [sys.argv[0], os.path.dirname(PARQUET) or ".", OUT, "1"]
 
@@ -46,7 +47,7 @@ from rdkit.Chem import rdFingerprintGenerator
 RDLogger.DisableLog("rdApp.*")
 GEN = rdFingerprintGenerator.GetMorganGenerator(radius=2, fpSize=2048)
 NSUB = 200000
-M = 8000                 # candidates committed per round
+M = _M or 8000           # candidates committed per round
 AUDIT_FRAC = 0.25        # share of the committed batch reserved as the audit
 CATS = ("confident hit", "false lead", "missed binder", "deferred binder",
         "correct rejection", "deferred non-binder")
