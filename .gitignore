@@ -18,3 +18,5 @@ catboost_info/
 mol/.score_*.npz
 # BELKA subsample: carried on the belka-data branch, not on main
 data/belka/
+# correspondence: cover notes circulated for comment, not part of the work
+FRAMING_NOTE.md
