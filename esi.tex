@@ -106,7 +106,7 @@ $n$ & Threshold & $u$ & level & Observed & Theory (batch) & Theory (batch-free) 
 \section{Prediction intervals for future-batch counts from an audit set}
 \label{sec:intervals}
 
-\paragraph{Construction.} Fix the calibration set, hence the thresholds and the prediction-set map. For a fixed indicator $g$, let $I_1,\dots,I_n$ be its values on the test compounds and $I_{n+1},\dots,I_{n+m}$ on the future batch. The audit and future compounds are exchangeable with one another given the calibration set, which is what this construction needs and all that it needs: the calibration set enters only through the thresholds it fixed, so it is required to be independent of the audit and the batch but not to be exchangeable with them. Given the calibration set the $n+m$ indicators are therefore exchangeable. Let $K=\sum_{i\le n}I_i$, $K_m=\sum_{i>n}I_i$ and $T=K+K_m$. Conditional on $T=t$, every placement of the $t$ ones among the $n+m$ positions is equally likely, so
+\paragraph{Construction.} Fix the calibration set, hence the thresholds and the prediction-set map. For a fixed indicator $g$, let $I_1,\dots,I_n$ be its values on the test compounds and $I_{n+1},\dots,I_{n+m}$ on the future batch. The audit and future compounds are exchangeable with one another given the calibration set, which is what this construction needs and all that it needs: the calibration set enters only through the thresholds it fixed, so the requirement is conditional on it and it need not be exchangeable with the audit or the batch. Nor need it be independent of them: a random division of a fixed library makes the three parts dependent through the library's finite size, and the construction is valid there, as the fixed-library simulation below confirms. Given the calibration set the $n+m$ indicators are therefore exchangeable. Let $K=\sum_{i\le n}I_i$, $K_m=\sum_{i>n}I_i$ and $T=K+K_m$. Conditional on $T=t$, every placement of the $t$ ones among the $n+m$ positions is equally likely, so
 \begin{equation}
 K\mid T=t\ \sim\ \mathrm{Hypergeometric}(n+m,\,t,\,n),
 \end{equation}
@@ -134,7 +134,7 @@ The rate and the batch size cancel, so where a design sits above its floor is fi
 
 \paragraph{Why the exact limits are used.} The decomposition above is the ordinary large-sample one. Treating the candidates as independent draws at rate $p$ and the audited frequency as $\hat p=K_n/n$, the prediction error of $m\hat p$ has variance $mp(1-p)+m^2p(1-p)/n$, which is $m^2p(1-p)(1/n+1/m)$: the first term is the batch and the second the estimate. Equation~\ref{eq:auditsize} is exact in that limit rather than an approximation to it, since the ratio of half-widths is $\sqrt{1+m/n}$ by construction. None of this is new, and the exact construction we use is its finite-population counterpart --- predicting the defectives in the remainder of a lot from a sample of it\citep{Thatcher1964,Wilks1941,DodgeRomig1944} --- so the two are descriptions of one quantity.
 
-They do not agree where screens operate, which is why the exact limits are used throughout. The sizing figures quoted in this paragraph and in the main text invert a \emph{one-sided} lower limit, placing the whole of $\gamma=0.05$ in the lower tail rather than $\gamma/2$ in each tail as the two-sided limits above do; the one-sided form is the right object for a question about a shortfall only, and following the two-sided convention instead would roughly double every batch size reported. Sizing a round for 20 hits, the large-sample rule and the exact limits agree to within 3\% whenever the audit has seen about twenty in-class compounds or more: at $p=0.5$ for every audit size, at $p=0.10$ from $n=384$ (38 seen) and at $p=0.02$ from $n=1000$ (20 seen). Below that the large-sample rule is conservative and then wrong. At $p=0.02$ with $n=384$, 8 in-class compounds seen, it asks for 2690 candidates against the exact 2056, and at $p=0.10$ with $n=49$, 5 seen, 736 against 510. At $p=0.02$ with $n=49$, one in-class compound seen, it returns no finite batch at all: the lower bound it places on the rate is not positive, so no batch size makes the bound reach the target. The rule needs $n>z^2(1-p)/p$ audit candidates before it will admit any finite answer, about 133 at a rate of 2\%, whereas the exact limits return 19\,091. A team following the approximation at a primary screen's hit rate would therefore over-size its rounds, and on a small audit would abandon a plan that is in fact feasible.
+They do not agree where screens operate, which is why the exact limits are used throughout. The sizing figures quoted in this paragraph and in the main text invert a \emph{one-sided} lower limit, placing the whole of $\gamma=0.05$ in the lower tail rather than $\gamma/2$ in each tail as the two-sided limits above do; the one-sided form is the right object for a question about a shortfall only. The two conventions differ by a factor that grows as the audit shrinks --- about 1.1 at an audit of 1000, 1.2 at 384, and 2.0 at 49 --- so the convention must be read with the figure. Because $\gamma$ denotes a one-sided level in the sizing figures and a two-sided one elsewhere, we write $\gamma_1$ for the former where both appear. Sizing a round for 20 hits, the large-sample rule and the exact limits agree to within 3\% whenever the audit has seen about twenty in-class compounds or more: at $p=0.5$ for every audit size, at $p=0.10$ from $n=384$ (38 seen) and at $p=0.02$ from $n=1000$ (20 seen). Below that the large-sample rule is conservative and then wrong. At $p=0.02$ with $n=384$, 8 in-class compounds seen, it asks for 2690 candidates against the exact 2056, and at $p=0.10$ with $n=49$, 5 seen, 736 against 510. At $p=0.02$ with $n=49$, one in-class compound seen, it returns no finite batch at all: the lower bound it places on the rate is not positive, so no batch size makes the bound reach the target. The rule needs $n>z^2(1-p)/p$ audit candidates before it will admit any finite answer, about 133 at a rate of 2\%, whereas the exact limits return 19\,091. A team following the approximation at a primary screen's hit rate would therefore over-size its rounds, and on a small audit would abandon a plan that is in fact feasible.
 
 \paragraph{Target of the interval.} The interval covers the realized future count $K_m$; no fixed rate is assumed. If the compound source is regarded as infinitely exchangeable, de Finetti's theorem\citep{Aldous1985} gives a random distribution $Q$ such that, conditional on $Q$, compounds are independent draws from $Q$. Conditional on $Q$ and the calibration set the test indicators are then independent Bernoulli variables with success probability
 \begin{equation}
@@ -401,19 +401,15 @@ SR-p53 & 1541 & 9.36 & 9.68 & 4.1 & 100 & 10.24 & 9.56 \\
 The electrolyte compilation records a DOI for every measurement, which makes a division by
 source possible. Formulations were reduced to one row each as elsewhere, the room-temperature
 window and the $8\,\mathrm{mS\,cm^{-1}}$ cut were applied unchanged, and 40\% of the
-formulations were drawn at random as a calibration set. The model was fitted on that
-calibration set alone, with the same representation as the rest of this work and slightly
-lighter hyperparameters (400 trees, depth 5, learning rate 0.08) because the set is small,
+formulations were assigned to training, 20\% to calibration and the remaining 40\% to the
+divisions below. The model was fitted on every temperature row of the training formulations,
+with the standard representation and hyperparameters of this work (500 trees, depth 6,
+learning rate 0.1), is therefore disjoint from the calibration set that sets its thresholds,
 and was frozen before any division of the remainder. Ten repeats were run under seeds
-$777+r$, with the tie-breaking jitter under $31337+r$.
-
-The model was fitted on every temperature row of the training formulations, with the
-standard representation and hyperparameters of this work (500 trees, depth 6, learning rate
-0.1) and disjoint from the calibration set that sets its thresholds, and was frozen before
-any division of the remainder. An earlier version of this experiment fitted the model on its
-own calibration set, which voids the coverage guarantee for the design and makes it
-incomparable with the rest of the work; the figures below are from the corrected run, in
-which the losses are real but smaller.
+$777+r$, with the tie-breaking jitter under $31337+r$. An earlier version of this experiment
+fitted the model on its own calibration set, which voids the coverage guarantee for the
+design and makes it incomparable with the rest of the work; every figure reported here is
+from the corrected run, in which the losses are real but smaller.
 
 The remainder was then divided three ways, the same model and calibration set serving all
 three. \emph{Halved} splits it at random into an audit half and a stand-in batch, which is
@@ -421,10 +417,10 @@ the check used throughout the main text. \emph{By source} partitions the papers 
 into two groups and lets each formulation follow its own paper, so that no paper contributes
 to both sides. \emph{One source out} takes a single paper's formulations as the batch and all
 others as the audit, repeated over the five papers contributing at least 40 formulations to
-the remainder, giving 41 runs over the ten repeats.
+the remainder, giving 41 runs over the ten repeats; because the inference is about papers, coverage is summarized with the paper as the unit, over the five per-paper means.
 
 Coverage of the six consequence lines, with the repeat as the unit, was $0.97\pm0.04$ halved,
-$0.70\pm0.12$ by source and $0.76\pm0.05$ one source out. Median audit-to-batch ratios of the
+$0.70\pm0.12$ by source, and $0.77\pm0.11$ one source out with the paper as the unit over five per-paper means running from 0.58 to 0.90. Median audit-to-batch ratios of the
 in-class rate were 1.02, 0.67 and 1.88, with per-repeat ratios spanning 0.32 to 2.24 and 0.36
 to 8.14 in the two source divisions, so the division moves prevalence as well as the mapping
 from score to outcome and the two cannot be separated here. Area under the curve on the batch
@@ -449,7 +445,7 @@ announce the failure either.
 
 \paragraph{The pre-flight check.} The label-free test of Section~\ref{main-sec:results:preflight} trains the same model class on fingerprints alone to separate one set of molecules from another, with the molecules of each set capped at 12\,000 and drawn at random, half for fitting and half for the reported area under the curve. Alongside it we report, for each of the three positions, the share of batch molecules whose block at that position also occurs in the comparison set. Three repeats were run per design.
 
-The null is obtained by permutation. The audit and batch indices are pooled, split at random into two halves of the same sizes, and the same fit-and-score procedure is applied, twenty times per repeat at a cap of 3000 molecules per side; the statistic under that null is what a division with nothing to find returns at this sample size. Run on the three preparations of the declared round, over three repeats each, the audit-against-batch area under the curve was 0.657 (0.656--0.659) for the naive preparation, 0.660 (0.655--0.667) for the mirror and 0.500 (0.496--0.505) for the pilot, while the calibration-against-batch comparison gave 0.646, 0.744 and 0.496. The permutation null averaged 0.500 over the 120 replicates and spanned 0.470 to 0.524. The two preparations whose intervals fail are therefore separated from the null by a wide margin and the one that holds is not, at a block share of 0.70 in the failing arms rather than the 0.00 of the block holdouts, so this is the design on which the test is informative rather than determined by construction.
+The null is obtained by permutation. The audit and batch indices are pooled, split at random into two halves of the same sizes, and the same fit-and-score procedure is applied, twenty times per repeat at the same cap as the statistic itself; the statistic under that null is what a division with nothing to find returns at this sample size. Run on the three preparations of the declared round, over three repeats each, the audit-against-batch area under the curve was 0.657 (0.656--0.659) for the naive preparation, 0.660 (0.655--0.667) for the mirror and 0.500 (0.496--0.505) for the pilot, while the calibration-against-batch comparison gave 0.646, 0.744 and 0.496. The permutation null averaged 0.500 over the 120 replicates and spanned 0.470 to 0.524. The two preparations whose intervals fail are therefore separated from the null by a wide margin and the one that holds is not, at a block share of 0.70 in the failing arms rather than the 0.00 of the block holdouts, so this is the design on which the test is informative rather than determined by construction.
 
 %% ------------------------------------------------------------------
 \section{Calibrating against a proxy label}
