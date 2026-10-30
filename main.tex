@@ -28,28 +28,24 @@
 \twocolumn[
 \maketitle
 \begin{abstract}
-Conformal prediction supplies prediction sets whose coverage is guaranteed under
-exchangeability, and it is increasingly applied to screening problems in chemistry and
-materials science. A screening round, however, is planned in counts rather than in rates,
-since the quantities a laboratory commits are the wells on a plate, the reagent budget of a
-run, and the number of confirmed hits required before a further round can be justified.
-Predicting these counts for a batch that has not yet been assembled requires a labelled audit
-set, drawn from the library that the round will be selected from and used for neither training
-nor calibration. The exchangeability condition that such an audit requires is not the condition
-on which coverage depends. From the point of view of the audit the calibration set is training
-data, so that coverage and the predicted counts become separate guarantees, and the asymmetry
-between them is one-sided. Although a rule calibrated on the wrong population, at the wrong
-prevalence, or against a cheaper label is a poorer rule, an audit of that rule remains valid,
-whereas an audit drawn from chemistry that the batch does not contain invalidates the predicted
-counts however carefully the rule was calibrated. We examine four arrangements in which this
-second condition fails on public data. Withholding building blocks in a DNA-encoded library
-reduced the coverage of the predicted counts by two thirds, while the ranking fell from 0.960 to
-0.892 in area under the curve, which is approximately a seventh of its margin above chance, and
-for a batch selected by the model itself an audit reserved from the library could not be
-constructed in nine of twelve rounds. None of the statistics that a screen ordinarily reports
-orders these failures. Two arrangements were found to hold, a pilot sample of the population to
-be screened, and a random slice of the committed round, which is exact whatever rule selected
-the batch.
+Conformal prediction supplies prediction sets with guaranteed coverage, and is increasingly
+applied to screening in chemistry and materials science. A screening round, however, is planned
+in counts rather than rates. A laboratory commits wells on a plate, the reagent budget of a run,
+and the hits it must confirm to justify going on. Forecasting such counts for a batch not yet
+assembled takes a labelled audit set. That sample must come from the library the round will draw
+on, and serve neither training nor calibration. The exchangeability it needs differs
+from the one underpinning coverage. Seen from the audit, a calibration set is training data.
+Coverage and the predicted counts therefore become separate guarantees, and their asymmetry runs
+in a single direction. A classifier tuned on the wrong population, prevalence or label predicts
+less well, although auditing it stays sound. An audit sampling chemistry the batch lacks voids
+the forecast, however carefully that tuning was done. We examine four arrangements in which this
+second requirement fails on public data. Withholding building blocks in a DNA-encoded library
+cost two thirds of the coverage, while the ranking slipped from 0.960 to 0.892 in area under the
+curve, roughly a seventh of its margin above chance. Where the model itself chose the batch, no
+audit could be reserved from the library in nine of twelve rounds. None of the figures a screen
+ordinarily reports ranks these failures. Two designs held. One is a pilot of the population to be
+screened. The other is a random slice of the committed round, which remains exact whatever rule
+selected it.
 \end{abstract}
 \vspace{1em}
 ]
@@ -58,68 +54,66 @@ the batch.
 \section{Introduction}
 \label{sec:intro}
 
-Anticipating how a model will behave on data it has not seen is central to the machine learning
-now applied to chemical and materials screening, and two divisions of a dataset are commonly
-made in the course of such an application. Training compounds are first separated from the
-remainder by scaffold or by building block, which tests whether a model has memorised the
-chemistry on which it was trained, and a ranking that survives this test is taken as evidence
-that the ranking transfers. What remains is then divided at random in order to calibrate a
-prediction rule, which bounds the rates that the rule will realize. Although both divisions are
-routine, the claims they license are different, and neither licenses the claim that the other
-does.
+Anticipating how a model behaves on data it has not seen is central to the machine learning now
+applied to chemical and materials screening. Two divisions of a dataset are commonly made. The
+training compounds are first held apart by scaffold or by building block, which tests whether a
+model has memorised the chemistry it was shown, and a ranking surviving that test is read as
+evidence of transfer. What remains is then split at random to calibrate a decision rule, which
+fixes the error rates that rule will realize. Both steps are routine. The warrants they confer,
+however, are different, and neither extends to the other's.
 
-These two warrants are easily conflated, and the consequences of conflating them run in opposite
-directions. Although the structural split does bound the transfer of a ranking to new chemistry,
-it invalidates every quantitative statement about the next batch. In a DNA-encoded library,
-withholding building blocks reduced the coverage of the predicted counts by two thirds, while
-the ranking fell from 0.960 to 0.892 in area under the curve, which is approximately a seventh
-of its margin above chance. The random division preserves the validity of those counts, although
-only for the population from which it was sampled, which is seldom the population that a round
-commits. When a planner fills a plate from the top of a ranking, an audit reserved from the
-library does not price that plate, and in nine of twelve rounds of the campaign described below
-such an audit could not be constructed at all, since no in-class candidate remained in the
-leftover pool to be measured. The first division therefore bounds a quantity on which no round
-is planned, while the second bounds the appropriate quantities for an inappropriate
-population.
+The two are easily confused, and the price of that runs in opposite directions. A structural
+holdout does establish that a ranking transfers to new chemistry. It also invalidates every
+quantitative statement about the next batch. Withholding building blocks in a
+DNA-encoded library cost two thirds of the coverage of the predicted counts, while the ranking
+slipped from 0.960 to 0.892 in area under the curve, roughly a seventh of its margin above
+chance. A random division keeps those counts sound, although only for whatever it sampled, which
+is seldom what a round commits. Where a planner fills a plate from the head of a scored
+list, an audit held back from the library will not price it. In nine of twelve rounds of the
+campaign described below no such audit could be built, since no in-class candidate was left in
+the remaining pool to measure. One step therefore secures a quantity no round is planned on. The
+other bounds the right quantities for the wrong population, and this paper is about what a
+labelled sample does and does not license a team to claim.
 
-This paper is about that second split: what a labelled sample licenses a team to claim about a
-round, and what each way of drawing it wrong costs.
-
-The claims in question are counts, and they have to be. A round is constrained in integers ---
-the wells on a plate, the reagent budget of a run, the confirmed hits needed to justify the next
-round --- and those constraints cannot be expressed as rates. A rate slightly off is invisible; a
-plate that overruns its capacity is not. Conformal prediction, which wraps any trained model and
-returns prediction sets with guaranteed coverage under
-exchangeability,\citep{vovk2005algorithmic,AngelopoulosBates2023Gentle} does not supply them:
-coverage is a level the team chooses and the threshold is built to deliver, so every setting is
-equally guaranteed and coverage ranks none of them. Risk-controlling methods bound a chosen loss,
-but what they control is its expectation or its
-level\citep{bates2021distribution,Angelopoulos2024CRC,Angelopoulos2021LTT} rather than the
-integer a plate returns, and the post hoc literature that does bound counts describes a set
-already in hand rather than one not yet assembled. What is missing is a count that is
-\emph{predictive}: a statement about a batch not yet made. That is what a labelled audit set
-supplies, and why the rest of this paper is about how the audit is drawn.
+Such claims must be stated in counts. A round is constrained in integers, by the wells on a
+plate, the reagent budget of a run, and the confirmed hits needed before a further round can be
+justified. Those constraints do not translate into rates. An error rate that is slightly
+optimistic will go unnoticed, whereas a plate exceeding its capacity halts the experiment.
+Conformal prediction wraps any trained model and returns prediction sets whose coverage is
+guaranteed under
+exchangeability.\citep{vovk2005algorithmic,AngelopoulosBates2023Gentle} It does not,
+however, yield counts. Coverage is a level the user selects and the threshold is built to meet,
+so every setting is equally guaranteed and coverage ranks none of them. Risk-controlling methods
+bound a chosen loss, although what they control is its expectation, or the probability of
+exceeding it,\citep{bates2021distribution,Angelopoulos2024CRC,Angelopoulos2021LTT} rather than the
+integer a run returns. The post hoc literature does bound counts, though for a set already in
+hand rather than one still to be assembled. What a campaign lacks is a \emph{predictive} count,
+meaning a statement about a batch not yet made. A labelled audit set supplies one, and how that
+sample is drawn is the subject of this paper.
 
 The screens we consider decide which candidates go forward to a toxicity assay, a solubility or
 conductivity measurement, or synthesis. Because characterization runs in parallel, a round's
-capacity is fixed before it starts, and unlike turn-by-turn optimization a batch campaign often
-aims at covering a design space rather than at a single optimum
+capacity is fixed before it begins. Unlike turn-by-turn optimization, a batch campaign often
+aims at covering a design space rather than locating a single optimum
 (Section~\ref{sec:discussion}). In a binary screen each compound receives one of four prediction
-sets --- one label, the other, both, or neither --- and a team advances or discards the
-single-label compounds and sends the rest for an assay. What it needs to know before committing
-is how many of each there will be.
+sets, holding one label, the other, both, or neither. A team advances or discards the compounds
+given a single label and sends the rest for assay. Before committing it needs to know how many
+will fall into each case.
 
 \paragraph{What we do.} We treat the coverage level as a control rather than a result. It is
 chosen separately for the in-class and out-class compounds, and sweeping it moves the classifier
-through the space of possible rounds. A labelled \emph{audit set} --- a sample of the library to
-be screened, used neither for training nor for calibration --- then prices each setting: how many
-confident hits, false leads, missed in-class compounds and assays a batch of the committed size
-will contain, each as a count with a finite-sample interval valid under exchangeability of the
-audit with the batch. Those intervals are the deliverable, and a team can book assays and budget
-measurements against them. Their requirement is not the one coverage assumes, and
-Section~\ref{sec:methods:intervals} separates the two.
+through the space of available rounds. A labelled \emph{audit set}, sampled from the library to
+be screened and used for neither training nor calibration, then prices each setting. It gives
+the confident hits, false leads, missed in-class compounds and assays that a batch of the
+committed size will contain, each as a count with a finite-sample interval valid under
+exchangeability of the audit with the batch. These intervals are the deliverable, against which
+assays can be booked and measurements budgeted. The condition they require differs from the one
+coverage assumes, and Section~\ref{sec:methods:intervals} separates the two.
 
-Section~2 sets out the outcome table, the threshold correction, the navigation by coverage and the audit intervals that are the method's output; Section~3 validates the intervals in simulation and on real data and applies them to solubility, toxicity and electrolyte screens; Section~4 gives a workflow and the limitations.
+In the remainder of this paper we set out the outcome table, the threshold correction and the
+audit intervals that the method returns, together with the role coverage plays in navigating
+them. We then validate those intervals in simulation and on measured data, and apply them to
+solubility, toxicity and electrolyte screens. A workflow and the limitations close the paper.
 
 \paragraph{Contributions.} The statistical tools are classical; what is new is the separation
 they make visible and what violating it costs.
@@ -127,8 +121,7 @@ they make visible and what violating it costs.
 \begin{itemize}\itemsep2pt
 \item \emph{A labelled audit set prices a round, in counts, before it is run.} Sweeping the two
 class-wise coverage requests traces the decisions available to a team, and at each setting an
-audit gives finite-sample intervals for every cell of the outcome table --- confident hits,
-false leads, missed in-class compounds, compounds assayed --- valid after the setting is chosen
+audit gives finite-sample intervals for every cell of the outcome table, covering confident hits, false leads, missed in-class compounds and compounds assayed, valid after the setting is chosen
 and invertible for the size of the round.\citep{Thatcher1964,Meeker2017Intervals}
 \item \emph{Two guarantees, two requirements, and the asymmetry runs one way.} From the audit's
 point of view the calibration set is training data, so coverage and predicted counts fail
@@ -145,8 +138,7 @@ whatever rule selected the batch. One round of selection then depletes the libra
 slice is re-drawn each round rather than amortized.
 \item \emph{A check that costs no measurements.} Whether the audit matches the batch is testable
 beforehand from structures alone, as a classifier two-sample test against a permutation
-null\citep{LopezPaz2017Revisiting} --- one-sided, so it refuses an arrangement rather than
-certifying one, and blind by construction to a shift the representation cannot see.
+null.\citep{LopezPaz2017Revisiting} The test is one-sided, so it refuses an arrangement rather than certifying one, and is blind by construction to a shift the representation cannot see.
 \end{itemize}
 
 \paragraph{Related work.}
@@ -183,8 +175,7 @@ purpose.
 What a labelled audit buys is therefore not that it counts, nor that it is predictive, but
 which quantity it counts and under which condition. Those bounds are one-sided, bounding false
 discoveries without placing a floor under yield. They are statements about the selected set, so
-they are silent on every cell an \emph{unselected} in-class compound defines --- a missed hit is
-not in the selection. They do not invert for the batch size. And, most consequentially here,
+they are silent on every cell an \emph{unselected} in-class compound defines, since a missed hit does not appear in the selection. They do not invert for the batch size. And, most consequentially here,
 what they require is exchangeability between calibration and test, which is precisely the
 condition a structural split breaks; the intervals below require exchangeability between audit
 and batch, a different condition that holds and fails in different circumstances
@@ -198,7 +189,7 @@ set, with closed-testing shortcuts that make them
 computable.\citep{Goeman2011Exploratory,Goeman2019Simultaneous,Katsevich2020FDP,Blanchard2020PostHoc}
 These are two-sided in the operational sense: an envelope on the false discovery proportion
 gives a capacity ceiling and a lower confidence bound on true discoveries gives a yield floor.
-They are also not label-free --- each needs a $p$-value for every unit of the set it bounds, that
+Neither is label-free. Each needs a $p$-value for every unit of the set it bounds, that
 is one measurement per unit, which is a higher price than an audit's and not a lower one, since
 the audit measures a sample and then speaks about units it never measured. The direction they
 cannot reach is the one a planner needs. Closed testing bounds a non-null proportion from
@@ -217,9 +208,7 @@ larger part of that variability undescribed, and leaves most of it undescribed e
 autonomous platforms operate, in small batches run often. A rate bound can of course be composed with a
 binomial tail to yield a count bound, and the composition is valid. It pays twice, once for the
 rate and once for the tail, where conditioning on the audit-and-batch total pays once, and the
-price is measurable. Giving the rate bound the most generous instrument available --- an exact
-Clopper--Pearson limit rather than the concentration bounds risk-controlling sets actually use
---- and splitting the level evenly between its two stages, which is what makes the composition
+price is measurable. Giving the rate bound the most generous instrument available, an exact Clopper--Pearson limit rather than the concentration bounds risk-controlling sets actually use, and splitting the level evenly between its two stages, which is what makes the composition
 valid at a one-sided 0.05 overall, the composed limit sits 11 to 60\% above the exact inversion
 over the configurations this paper reports. Measured as a planner would, in the headroom that
 has to be reserved above the expected count, the gap is larger: pricing one plate of 96 from an
@@ -338,7 +327,7 @@ because it enters only through the frozen score. The audit repeats the move one 
 it evaluates, score and thresholds together, is fixed by the training \emph{and} calibration sets
 and then frozen, so the audit asks only that audit and future candidates be exchangeable and
 exempts both of the sets that built the rule. From the audit's point of view the calibration set
-is training data. It is the same argument twice, though not the same formula --- a rank is uniform
+is training data. It is the same argument twice, though not the same formula. A rank is uniform
 and a split of a count is hypergeometric for the one reason that under exchangeability every
 ordering, and so every subset of a given size, is equally likely.
 
@@ -389,8 +378,7 @@ provenance and the batch the planner chose.
 \subsection{Predicted counts hold at the stated certainty}
 \label{sec:results:intervals}
 
-The construction is classical --- tolerance limits for the number of defectives in a future
-lot, applied to each cell of the outcome table --- so the first question is only whether it is
+The construction is classical, being tolerance limits for the number of defectives in a future lot applied to each cell of the outcome table, so the first question is only whether it is
 implemented correctly. It is. Under random splitting, which imposes exchangeability by
 construction and therefore tests the implementation rather than the assumption, realized counts
 in a batch of 1000 fell inside their intervals in 95.7--98.9\% of replicates for every outcome
@@ -406,7 +394,7 @@ intervals are also far from trivial: at the chosen setting of each scenario scre
 spanned 16--109 counts for a batch of 1000, 9 to 63 times narrower than $[0,m]$, and 36--204
 after the joint correction over the sweep.
 
-On real data the audit intervals behaved the same way (Table~\ref{tab:audit}). Splitting each Tox21 audit set into an audit half and a stand-in future batch, the intervals covered 95.6--99.0\% of the realized counts, for every outcome. Per endpoint, coverage was 95.8--97.1\% under random splits. Those are pointwise figures, one outcome at a time, and the object a team is handed is the whole table: all eight lines of one setting --- the six cells and the two aggregates --- held together in 82.7\% of random splits and 81.9\% of scaffold splits. Eight pointwise 95\% intervals do not make a 95\% table, and a team that needs the table jointly must divide the level by the number of lines it reads. It was 95.0--97.5\% under scaffold splits, in which the model had been calibrated on other scaffolds: the audit described the consequences correctly because it came from the compounds being screened. On AqSolDB, over all 132--144 settings of the sweep and all outcomes, the pointwise intervals covered 96.1\% of 216,960 realized counts. With the Bonferroni correction over the 144 requests, every interval of every setting covered its count together in 98.5\% of 200 audit--future splits.
+On real data the audit intervals behaved the same way (Table~\ref{tab:audit}). Splitting each Tox21 audit set into an audit half and a stand-in future batch, the intervals covered 95.6--99.0\% of the realized counts, for every outcome. Per endpoint, coverage was 95.8--97.1\% under random splits. Those are pointwise figures, one outcome at a time, and the object a team is handed is the whole table: all eight lines of one setting, the six cells together with the two aggregates, held together in 82.7\% of random splits and 81.9\% of scaffold splits. Eight pointwise 95\% intervals do not make a 95\% table, and a team that needs the table jointly must divide the level by the number of lines it reads. It was 95.0--97.5\% under scaffold splits, in which the model had been calibrated on other scaffolds: the audit described the consequences correctly because it came from the compounds being screened. On AqSolDB, over all 132--144 settings of the sweep and all outcomes, the pointwise intervals covered 96.1\% of 216,960 realized counts. With the Bonferroni correction over the 144 requests, every interval of every setting covered its count together in 98.5\% of 200 audit--future splits.
 
 
 
@@ -434,8 +422,7 @@ the population it is: the default request of 90\% for both classes, chosen witho
 view, cost up to 3.1 times the cost-optimal two-threshold rule when a miss was ten times a
 false lead, and up to 32 times when an assay was nearly free (ESI
 Table~\ref{esi-tab:cost}).\citep{Chow1970} The swept settings contained that optimum in 46 of
-60 cost regimes. None of this claims to beat a rule built for a known cost ratio --- where the
-ratio is known and the probabilities can be recalibrated, such a rule is the thing to use, and
+60 cost regimes. None of this claims to beat a rule built for a known cost ratio. Where the ratio is known and the probabilities can be recalibrated, such a rule is the thing to use, and
 on the solubility screen the swept setting is indistinguishable from one built on isotonically
 recalibrated probabilities (ESI Section~\ref{esi-sec:costs}). The case for the sweep is that it
 needs no ratio and returns audited counts for whatever is chosen.
@@ -488,8 +475,7 @@ How much is worth buying can be settled before any compound is measured. Accepti
 times the narrowest any audit could achieve requires $n=m/(r^2-1)$ audit candidates, a ratio
 independent of the rate and of the batch size: an audit the size of the batch lands a factor
 $\sqrt2$ above that floor, one of $2.3m$ within 20\% of it. The floor itself depends on the
-rate and at primary-screen rates it is wide --- for a batch of 1000 at 2\% it is $\pm9$ on an
-expected 20 --- so a team should read the floor first and enlarge the batch, not the audit,
+rate and at primary-screen rates it is wide. For a batch of 1000 at 2\% it is $\pm9$ on an expected 20, so a team should read the floor first and enlarge the batch, not the audit,
 when the floor is what binds. Correlated series change the two statements differently: the
 floor is a width and inflates by the square root of the design effect, while the ratio rule
 needs no inflation, since the design effect multiplies both variance terms and cancels from
@@ -504,8 +490,7 @@ about 840. What this touches is worth separating, because it touches less than i
 does not touch the intervals: the construction conditions on the total count in the audit and
 batch together, which absorbs the between-cluster variance, so under random assignment both
 coverage and width are invariant to the correlation. Nor does it touch the ratio rule. Where it
-bites is any statement that treats a count of candidates as a count of independent observations
---- the reach of a pilot, how many clusters a sweep has really explored, and the confidence due
+bites is any statement that treats a count of candidates as a count of independent observations. Affected are the reach of a pilot, how many clusters a sweep has really explored, and the confidence due
 to a coverage figure estimated from correlated splits.
 
 Re-estimating the rate between rounds costs a seventh to a
@@ -533,15 +518,13 @@ $[0,49]$ and not $[2,29]$.
 \paragraph{The price of a budget.} Two scenarios make the trade concrete
 (Fig.~\ref{fig:solubility}, centre and right). In both, a batch of 1000 lipophilic compounds must
 yield at least 60 confirmed soluble compounds and miss at most 90, the objective is the fewest
-expected false leads, and the limits were set after inspecting the map --- which the joint bounds
-allow, every constraint being checked at a level divided over the 144 requests and four bounded
+expected false leads, and the limits were set after inspecting the map, which the joint bounds allow, every constraint being checked at a level divided over the 144 requests and four bounded
 outcomes so that all hold together at 95\%. Allowing 450 compounds to be measured, 26 requests
 were feasible and the chosen setting expects 115 false leads and 286 measurements per 1000,
 bounded jointly at 395 measurements and at least 66 confirmed. Tightening the budget to 250 left
 9 feasible requests and a setting expecting 188: the tighter budget costs 73 additional false
 leads per 1000. The gap between 286 expected and 395 bounded measurements is the price of the
-guarantee at this audit size, and labelling buys it down --- half the audit would bound it at 432,
-four times the audit at 358.
+guarantee at this audit size, and labelling buys it down. Half the audit would bound it at 432 and four times the audit at 358.
 
 Those are one split, and the spread across ten is wide enough to matter: the number of
 certifiable settings runs from 11 to 65 and the cheapest certifiable budget from 29 to 309 per
@@ -584,8 +567,7 @@ After standardization and de-duplication, 7592 Tox21 compounds remained, with 56
 endpoints also bound the decision-geometry reading of Section~\ref{sec:methods:choice}, which
 needs the probability of being in-class to increase with the score. It does not here: the
 in-class fraction decreases over at least one adjacent pair of score bins in nine of the twelve
-endpoints, nominally so for two at $z=2.4$ and $2.6$ --- an uncorrected comparison that does not
-survive correction across the 108 bin pairs examined --- and for three endpoints the fraction is
+endpoints, nominally so for two at $z=2.4$ and $2.6$, an uncorrected comparison that does not survive correction across the 108 bin pairs examined, and for three endpoints the fraction is
 nearly flat over the lower nine bins with the signal confined to the highest (ESI
 Table~\ref{esi-tab:tox21mono}). The containment argument and the cost-optimal reading therefore
 do not apply to those endpoints, though the intervals themselves need no such condition. Before tie-breaking, a median of 3.3--4.3\% of scores were tied, mostly from identical fingerprints.
@@ -689,8 +671,7 @@ What the designs do not do is separate the causes. The median ratio of audit to 
 in-class rate is 1.02 halved, 0.67 by source and 1.88 one source out, and the per-repeat
 ratios span 0.3 to 2.2 and 0.4 to 8.1 in the two source divisions. So dividing by provenance
 moves the in-class rate as well as the mapping from score to outcome, and the coverage loss
-is attributable to the two together. That is itself the practical point --- a paper is a
-population in both senses --- but it means this experiment shows that provenance is enough to
+is attributable to the two together. That is itself the practical point, since a paper is a population in both senses, although it means this experiment shows that provenance is enough to
 void the intervals, not that the mapping alone is.
 
 \paragraph{A pilot of the right population, divided for real.} The remedy this suggests is
@@ -725,8 +706,7 @@ can report.
 
 Two things follow. The first is a limit on this work's own evidence: the coverages quoted
 for solubility, toxicity and electrolytes under random splitting are verification, and the
-only divisions in this paper that test the intervals against a genuinely distinct batch ---
-these, and the library's block holdouts --- break them. The second is a limit on pooled
+only divisions in this paper that test the intervals against a genuinely distinct batch, these together with the library's block holdouts, break them. The second is a limit on pooled
 compilations, which is where much of the data for materials screening comes from. An audit
 drawn from the library to be screened is not sufficient if the batch will be measured by
 someone else, on another instrument, with another calibration: provenance is part of what
@@ -747,8 +727,7 @@ terms.
 and batch at random keeps all four exchangeable, and the intervals covered 53 of 54 consequence
 lines over nine repeats. Withholding instead every molecule carrying a given block at one
 position, so that the batch is built on chemistry absent from the calibration and audit sets,
-breaks them. Taking the repeat as the unit --- the six lines of one repeat are cells of a single
-table on a single batch, not independent checks --- coverage was $0.48\pm0.19$, $0.37\pm0.14$ and
+breaks them. Taking the repeat as the unit, since the six lines of one repeat are cells of a single table on a single batch and not independent checks, coverage was $0.48\pm0.19$, $0.37\pm0.14$ and
 $0.35\pm0.12$ for the third, second and first positions, against $0.98\pm0.04$ for random
 assignment. Over the same runs the model's ranking fell only from 0.960 to 0.892 by area under
 the curve. This is the split a project adopts to guard against memorisation, and passing it
@@ -757,8 +736,7 @@ licenses nothing quantitative about the next batch.
 Nothing a campaign can compute beforehand orders these failures. Area under the curve is
 governed by the ordering of the negatives at a sub-percent rate and is invariant to prevalence by
 construction, so it cannot announce a prevalence change. The enrichment of the confident calls,
-which a screening group reports as a matter of course, is the audit's own in-class rate
-re-expressed --- it divides the precision of those calls by exactly that rate --- and within the
+which a screening group reports as a matter of course, is the audit's own in-class rate re-expressed, dividing the precision of those calls by exactly that rate, and within the
 first-position repeats it does not order them by coverage: its largest value belongs to a repeat
 covering three of six lines, while the repeat covering none sits mid-range. The audit's rate
 against the library's is a cheap partial warning rather than a test: pooled over the thirty
@@ -786,8 +764,7 @@ the consequence lines and the batch's proportion of new chemistry from other blo
 $0.63\pm0.10$; because those two arms share a batch and nearly nested audits their difference can
 be taken per repeat, and it is $0.000\pm0.070$, which is the strongest form of the claim. Neither
 comes near the request. Sampling the batch's own blocks covered $0.97\pm0.04$ and was the only
-arrangement to cover all six lines in a majority of repeats, eight of ten against one and none
---- but that arm splits a fixed pool at the molecule level, which makes its calibration, audit
+arrangement to cover all six lines in a majority of repeats, eight of ten against one and none. That arm, however, splits a fixed pool at the molecule level, which makes its calibration, audit
 and batch exchangeable by construction, so its 0.97 is a positive control rather than evidence
 that a pilot repairs a campaign. Its narrower interval is likewise a property of its audit being
 43\% larger and not of the arrangement (ESI Section~\ref{esi-sec:del}).
@@ -833,7 +810,7 @@ to a reserved pool also worked, covering all six lines in eight of ten rounds an
 in the other two; it is an approximation rather than an identity, since the reserved pool and
 the screening pool are two draws rather than one, and it costs a pool of high-scoring
 candidates the planner may not commit. The three rounds in which the batch was rich enough for
-the comparison to carry weight --- batch rates of 0.269, 0.055 and 0.020 --- show the pattern
+the comparison to carry weight, at batch rates of 0.269, 0.055 and 0.020, show the pattern
 most clearly: library audit unavailable, 2 of 6 and 2 of 6; batch slice 6, 6 and 6; reserved
 selection 6, 4 and 6.
 
@@ -857,7 +834,7 @@ The preceding result is a design instruction, and a team following it would like
 
 Run across the four split designs, the test separated every arrangement that later failed and did not separate the one that held (Table~\ref{tab:preflight}); what it can refute is bounded by the representation, as the end of this section and the Limitations set out. It sits at 0.498 for random assignment, which covered 98\% of consequence lines, and at 0.985, 0.989 and 0.997 for the three block holdouts, which covered 48, 37 and 35\%; comparing the calibration set with the batch instead gives 0.501, 0.987, 0.990 and 0.999, so on these designs either pair would have raised the alarm. Beside it we report the share of batch molecules whose block at each position also occurs in the comparison set, which is the quantity the design controls directly. That share is one everywhere under random assignment and falls to zero at exactly the withheld position in each holdout, so the two statistics together give a verdict and name the axis responsible.
 
-Those four designs are the easy case, and the table should be read as a check that the test fires rather than as a measure of its sensitivity: a withheld block catalogue is a substructure a fingerprint represents directly, so a classifier must find it, and the block-share column gives the same verdict by inspection. The question that matters is whether the test sees the three preparations of the declared round, which differ not in how much novel chemistry the batch carries --- all three hold 70\% of their batch's first-position blocks, or all of them for the pilot --- but in where the audit draws its own. Over two repeats the audit-against-batch area under the curve was 0.658 for the naive preparation and 0.663 for the mirror, against 0.502 for the pilot; over the ten repeats of the coverage experiment the first two cover 38 of 60 consequence lines each and the pilot 58 of 60. The permutation null, obtained by shuffling the audit and batch labels and refitting at the same cap as the statistic itself, averaged 0.500 over 120 replicates and spanned 0.491 to 0.511, so the two preparations that fail are separated from the null by a wide margin and the one that holds lies inside it. The test therefore distinguishes arrangements that a fingerprint comparison of composition cannot, which is what the workflow step requires of it.
+Those four designs are the easy case, and the table should be read as a check that the test fires rather than as a measure of its sensitivity: a withheld block catalogue is a substructure a fingerprint represents directly, so a classifier must find it, and the block-share column gives the same verdict by inspection. The question that matters is whether the test sees the three preparations of the declared round, which differ not in how much novel chemistry the batch carries, all three holding 70\% of their batch's first-position blocks, or all of them for the pilot, but in where the audit draws its own. Over two repeats the audit-against-batch area under the curve was 0.658 for the naive preparation and 0.663 for the mirror, against 0.502 for the pilot; over the ten repeats of the coverage experiment the first two cover 38 of 60 consequence lines each and the pilot 58 of 60. The permutation null, obtained by shuffling the audit and batch labels and refitting at the same cap as the statistic itself, averaged 0.500 over 120 replicates and spanned 0.491 to 0.511, so the two preparations that fail are separated from the null by a wide margin and the one that holds lies inside it. The test therefore distinguishes arrangements that a fingerprint comparison of composition cannot, which is what the workflow step requires of it.
 
 The test is one-sided and should be read that way. Separation is strong evidence against exchangeability, because two samples from one distribution cannot be told apart. Failure to separate is weak evidence for it, since a classifier may simply lack the features to see a difference that matters; the fingerprints used here cannot distinguish stereoisomers, for instance, whose in-class rates in this library differ severalfold. A screen that passes is therefore not certified, but a screen that fails is refuted, which is enough to be worth running: it costs no measurements, uses structures already known, and can be run before the plate is committed. The clearest case it cannot see is the provenance division of Section~\ref{sec:results:source}: which paper a measurement came from is not a property of the formulation, so no test on structures can detect a division that costs roughly a quarter of the coverage. At the first position of this library, 60 of the 294 blocks form 30 pairs that are stereoisomers, indistinguishable under the achiral fingerprint used here and differing severalfold in in-class rate; that is a fifth of the catalogue carrying most of the binders, invisible to the test by construction.
 
@@ -886,8 +863,7 @@ withhold pos.\ 1 & 0.997 & 0.00 & 1.00 & 1.00 & 35\% \\
 
 The audit sections asked which compounds a round must measure. The same assumption can fail
 along the other axis: the compounds may be interchangeable while the label recorded on one set is
-not the label recorded on another. A campaign calibrates against what it can afford --- a
-selection count, a cheaper assay, a single-concentration readout --- and claims something about
+not the label recorded on another. A campaign calibrates against what it can afford, such as a selection count, a cheaper assay or a single-concentration readout, and claims something about
 the endpoint it cares about. One case is free: no part of the rule reads the score's value, only
 its order, so any strictly increasing relabelling of the truth at matched prevalence leaves every
 cell of the outcome table unchanged, which we verified cell for cell on three scales (ESI
@@ -904,8 +880,7 @@ targets.\citep{He2026CADEL,Zdrazil2024ChEMBL} No molecule in that release carrie
 proxy is constructed from the affinities; what follows is therefore a demonstration of the
 mechanism rather than a measurement of any assay's fitness. Varying only the calibration label, we
 compare a strictly increasing relabelling at matched prevalence, which is the control, against
-two proxies that relabel the same fraction of each class --- one choosing those compounds
-uniformly at random, the other choosing the ones the score ranks most extremely against their
+two proxies that relabel the same fraction of each class, one choosing those compounds uniformly at random and the other choosing the ones the score ranks most extremely against their
 class. Their error rates, their ranking of the truth and the prevalence they imply are all equal;
 they differ only in where their mistakes sit (Table~\ref{tab:surrogate}).
 
@@ -941,15 +916,14 @@ where it matters, at the cut: about 8\% of the screened compounds near it would 
 other way by another laboratory, which is the size of the requests being swept. Re-running that
 whole analysis on the same scores with only the labels changed shows what survives. The
 resolution of the sweep does, and so does the enrichment, at a fold between 1.51 and 3.61 and
-significant after correction in every one of a hundred perturbed evaluations --- so an enrichment
+significant after correction in every one of a hundred perturbed evaluations, so an enrichment
 of about twice the base rate is safe and the two digits of 2.4 are not. The scenario does not:
 certifiable settings fall from a median 26 to 18 under random flips and to 2 and 0 under the two
 adversarial variants, the cheapest certifiable budget rises by a factor of 2.2 to 2.8, and about
 a quarter of the Pareto front is an artefact of the labels.
 
 One direction of that perturbation runs against the mechanism just described, and is the sharper
-form of it. Flipping the compounds the score ranks \emph{most} extremely --- the structured case
---- \emph{flatters} the screen: more settings become certifiable, the enrichment rises and the
+form of it. Flipping the compounds the score ranks \emph{most} extremely, which is the structured case, \emph{flatters} the screen: more settings become certifiable, the enrichment rises and the
 budget floor falls, because noise correlated with the score makes the recorded labels agree with
 the model. The damaging direction is its mirror image. So score-structured label noise is not
 ruinous in itself; its sign decides, and a proxy that agrees with the model conceals its own
@@ -960,9 +934,8 @@ failure rather than revealing it (ESI Section~\ref{esi-sec:noise}).
 
 Two further checks show the same requirement from the calibration side, and one of them fixes
 the attainability floor the workflow depends on. On Tox21 scaffold splits, calibrating on other
-scaffolds broke the coverage guarantee --- per-class coverage fell short in 28\% of splits for
-out-class compounds and 18\% for in-class, two to three times the exact-law expectation --- while
-an audit from the screened scaffolds still reported the consequences correctly
+scaffolds broke the coverage guarantee, since per-class coverage fell short in 28\% of splits for
+out-class compounds and 18\% for in-class, two to three times the exact-law expectation, while an audit from the screened scaffolds still reported the consequences correctly
 (Table~\ref{tab:audit}), and calibrating instead on a random pilot of the screened scaffolds
 restored coverage to the exact law. Calibrating on all compounds and then screening only the
 lipophilic ones did the same thing in miniature: coverage of the soluble class averaged 72\%
@@ -1006,8 +979,7 @@ the committed batch itself and re-draw it each round
 \item Before committing, check that calibration, audit and batch cannot be told apart from
 structures alone. It costs no measurements, and it refuses an arrangement rather than certifying
 one (Section~\ref{sec:results:preflight}).
-\item Sweep the requests and audit each setting, then state a scenario --- an objective and the
-limits that must hold with probability $1-\varepsilon$ --- and read the feasible settings off the
+\item Sweep the requests and audit each setting, then state a scenario, being an objective together with the limits that must hold with probability $1-\varepsilon$, and read the feasible settings off the
 map, with the bounds computed so that all of them hold together.
 \item Screen, and compare the realized counts with the predicted intervals as a standing check on
 exchangeability.
@@ -1022,29 +994,22 @@ Two consequences follow for practice. The question should be settled before the 
 \paragraph{Campaigns run batch by batch.} Automated and self-driving laboratories synthesize and
 characterize in parallel, so their campaigns are sequences of batches with fixed capacity, and
 the construction applies to each batch as it stands. Three features of that setting make counts
-the right object. The constraints are physical and integer --- 96 or 384 wells, a reagent budget,
-a minimum yield to justify the next round --- and a scheduler cannot act on a rate; it needs the
+the right object. The constraints are physical and integer, at 96 or 384 wells, a reagent budget and a minimum yield to justify the next round, and a scheduler cannot act on a rate; it needs the
 probability that this plate exceeds capacity. The batches are small and frequent, which is the
 regime in which the draw of the batch dominates the uncertainty, so the gap between a rate and a
 count is widest here. And the audit is affordable, because reserving a slice of a committed plate
 spends candidate slots rather than a round.
 
-The batch is a selection from a scored library under fixed capacity, however that selection is
-made --- by rank, by a diversity-penalised acquisition, by space-filling or by a multi-objective
-front.\citep{Gonzalez2016LP,HernandezLobato2017TS,Shields2021EDBO,Joseph2016SFD,Kusne2020CAMEO,Eriksson2019TuRBO,Daulton2020qEHVI}
+The batch is a selection from a scored library under fixed capacity, however that selection is made, whether by rank, by a diversity-penalised acquisition, by space-filling or by a multi-objective front.\citep{Gonzalez2016LP,HernandezLobato2017TS,Shields2021EDBO,Joseph2016SFD,Kusne2020CAMEO,Eriksson2019TuRBO,Daulton2020qEHVI}
 The outcome table accounts for which prediction set a candidate receives, not for how its batch
 was assembled, and $m$ is the plate or run size. But a planner that fills a plate from the top of
-a ranking does not draw a random sample of the library, so an audit reserved from the library does
-not price that plate --- which Section~\ref{sec:results:adaptive} measures rather than assumes,
-and which fails for a reason visible without any model: the plate is several times richer than the
+a ranking does not draw a random sample of the library, so an audit reserved from the library does not price that plate. Section~\ref{sec:results:adaptive} measures this rather than assuming it, and it fails for a reason visible without any model: the plate is several times richer than the
 collection it came from. The repair is to sample the plate and not the library, and it is exact,
 because a random slice of a committed batch is exchangeable with its remainder however the batch
 was chosen, so the acquisition function drops out of the argument and needs no correction. The
 rule a scheduler follows is therefore short and independent of how it chooses: reserve a random
 slice of each committed round, price the remainder with it, and draw a fresh slice next round.
-The third clause is not optional --- one round at a sub-percent hit rate removes most of what was
-there to find, so an audit prices the round it came from and not its successor --- and the falling
-rate of the remaining pool is itself the campaign's statement about how much is left. When the
+The third clause is not optional. One round at a sub-percent hit rate removes most of what was there to find, so an audit prices the round it came from and not its successor, and the falling rate of the remaining pool is itself the campaign's statement about how much is left. When the
 model is retrained the thresholds change, so calibration, audit and map are redone for the new
 deployment; the guarantee holds per batch at $1-\varepsilon$, and a statement over all $K$ batches
 needs $\varepsilon/K$ each. Because the bounds are counts they can be checked automatically, and
@@ -1066,8 +1031,7 @@ sample that prices the round after it.
 
 \paragraph{Limitations.} The serious objection is one sentence: every positive coverage
 result in this paper divides one labelled pool at random, which verifies the construction and
-cannot fail, and the two divisions that test it against a genuinely separate batch --- by
-provenance and by building block --- break it. The repairs reported above are the answer to
+cannot fail, and the two divisions that test it against a genuinely separate batch, by provenance and by building block, break it. The repairs reported above are the answer to
 that, and one of them, the slice of a committed batch, is exact rather than empirical; but a
 reader should weigh the negative evidence as the stronger half.
 
@@ -1080,8 +1044,7 @@ complementary. A structural check does not substitute for a pilot: we found no r
 how well an interval covered and how similar the held-out blocks were to those the audit held,
 and blocks indistinguishable by fingerprint gave the lowest coverage of all, being stereoisomers
 whose in-class rates differ severalfold. The same limit bounds the pre-flight test, which
-inherits whatever the representation cannot see --- the provenance division of
-Section~\ref{sec:results:source} is exactly such a shift --- so its verdicts refuse an
+inherits whatever the representation cannot see, the provenance division of Section~\ref{sec:results:source} being exactly such a shift, so its verdicts refuse an
 arrangement rather than certify one.
 
 Simultaneity and scope. Each interval covers one outcome of one setting, and statements about
@@ -1092,8 +1055,7 @@ further;\citep{Song2026FDP} Simes aggregation over a batch dominates Bonferroni
 uniformly\citep{Gazin2025Batch} and would be the first substitution to try. The
 sweep reaches every two-threshold rule only with class probabilities, and the cost-optimal rule
 is a two-threshold rule only where the probability of being in-class increases with the score,
-which fails on nine of twelve Tox21 endpoints. We treat binary endpoints only, and one model and
-representation throughout --- so the pre-flight instruction is validated on a representation this
+which fails on nine of twelve Tox21 endpoints. We treat binary endpoints only, and one model and representation throughout, so the pre-flight instruction is validated on a representation this
 section shows to be blind to a fifth of the first-position block catalogue, and whether that
 instruction is advice or an artefact is not settled here. Each dataset's own label problems, the
 Tox21 missingness among them, are set out in ESI Section~\ref{esi-sec:molecular}.
@@ -1116,7 +1078,7 @@ What the audit must contain is decided by the batch it prices. An audit that rep
 batch's composition without sampling its chemistry prices nothing, and buying a pilot of the
 screened population repairs it under divisions that were not random and could have failed. In
 automated campaigns the construction applies to each batch and the bounds become capacity
-constraints a planner can check --- provided the slice it reserves comes from the committed
+constraints a planner can check, provided the slice it reserves comes from the committed
 round and not from the library, since a plate chosen from the top of a ranking was 38 times
 richer than the pool it came from, and an audit of that pool held nothing in-class to measure.
 One round depletes what remains, so the slice is re-drawn each round rather than amortized
