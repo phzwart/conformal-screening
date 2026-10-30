@@ -54,8 +54,14 @@ def domain_auc(X, ia, ib, rng, cap=CAP):
     return float(roc_auc_score(lab[half:], clf.predict_proba(X[idx[half:]])[:, 1]))
 
 
-def perm_null(X, ia, ib, rng, nperm=NPERM, cap=3000):
-    """the same statistic with the audit/batch labels shuffled, which is the null it needs"""
+def perm_null(X, ia, ib, rng, nperm=NPERM, cap=CAP):
+    """the same statistic with the audit/batch labels shuffled, which is the null it needs.
+
+    The cap must match the one the observed statistic uses.  An earlier version drew the null
+    at 3000 molecules per side against an observed statistic at 12000, which inflates the
+    null's spread relative to the statistic's own sampling distribution, and inflates it in
+    the direction that makes a reading near one half easier to obtain.
+    """
     pool = np.concatenate([ia, ib])
     out = []
     for j in range(nperm):
