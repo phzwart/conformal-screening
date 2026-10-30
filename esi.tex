@@ -428,6 +428,48 @@ ranged from 0.81 to 1.00 across the source divisions, so the model's ranking doe
 announce the failure either.
 
 %% ------------------------------------------------------------------
+\section{Label-noise sensitivity of the solubility screen}
+\label{sec:noise}
+
+The solubility label is an indicator that the measured $\log S$ is at least $-4$, and AqSolDB
+pools sources whose measurements of the same compound typically differ by 0.5 to 0.7 log
+units. Taking 0.6 as the scale, the expected flip rate at the cut is 8 to 9\% among the
+lipophilic compounds screened, 15\% of which lie within half a log unit of it. The sweep is
+read at a resolution of the same order, so the analysis of
+Section~\ref{main-sec:results:solubility} was repeated with the model, its hyperparameters,
+its scores and the tie-breaking jitter held exactly as published, changing only the labels.
+
+Seven labellings were compared over all ten splits, 110 evaluations in all. \emph{Base} is
+the published labelling, which reproduces the published split-0 figures exactly (144
+distinguished settings, 104 on the Pareto front, 26 certifiable, enrichment $2.40\times$ at
+$p=1.8\times10^{-15}$) and so validates the harness. \emph{Cut} moves the threshold to
+$-3.5$ and to $-4.5$. \emph{Random} flips 8\% of the compounds within half a log unit of the
+cut, uniformly, under five seeds. \emph{Disagreement} flips the same number in decreasing
+order of the recorded inter-source standard deviation, which is non-zero for 21.4\% of
+compounds and gives a median flipped disagreement of 0.82 log units; this arm is asymmetric
+by construction, 54 of 61 flips running from insoluble to soluble, and raises the screened
+prevalence from 0.232 to 0.294. \emph{Structured} flips those the score ranks most extremely
+against their class, and \emph{adverse} its mirror image, those it ranks least extremely.
+
+The distinguished-setting count stays between 132 and 144 in every arm but the upward cut
+shift, where its median falls to 120. The enrichment of the confident calls, with the setting
+held at the published request, lies between 1.51 and 3.61 and clears the Bonferroni level
+$0.05/144$ in all 100 evaluations where it is defined. The Pareto front holds its size, a
+median 102 to 114 settings, while retaining a median 74 to 85\% of the base front's members
+and 44\% in the worst split. The scenario degrades furthest: the median number of certifiable
+settings falls from 26 to 18 (random), 2 (adverse) and 0 (disagreement, with six of ten
+splits admitting none), and the cheapest certifiable budget rises from a median 134 per 1000
+to 294, 380 and 378 respectively.
+
+The structured arm is the one worth dwelling on, because it runs opposite to the mechanism of
+Section~\ref{sec:surrogate}: flipping the compounds the score ranks most extremely raises the
+certifiable count to 66 and the fold to 3.18 and lowers the budget to 36. Noise correlated
+with the score makes the recorded labels agree with the model, which flatters every statistic
+the screen reports. The damaging direction is the adverse one. Score-structured label noise
+is therefore not ruinous in itself; its sign decides, and a proxy that agrees with the model
+conceals rather than reveals.
+
+%% ------------------------------------------------------------------
 \section{The DNA-encoded library screen}
 \label{sec:del}
 
@@ -491,6 +533,7 @@ All analyses reported in this paper were run with the scripts below, which imple
 \item \texttt{exch\_check.py}: the label-free pre-flight check and the block shares (main text Table~\ref{main-tab:preflight}); \texttt{preflight\_arms.py}: the same check on the three preparations of the declared round, with its permutation null;
 \item \texttt{cadel\_fetch.py}, \texttt{surrogate\_structure.py}, \texttt{where\_mistakes.py}, \texttt{monotone\_check.py}: the carbonic anhydrase proxy-label experiments and the monotone-rescaling check (main text Table~\ref{main-tab:surrogate}, Section~\ref{sec:surrogate});
 \item \texttt{sizing.py}: guaranteed-yield sizing and the audit-size inversion (main text Fig.~\ref{main-fig:sizing}, Section~\ref{sec:intervals});
+\item \texttt{aqsol\_noise.py}: the label-noise sensitivity of the solubility screen (main text Section~\ref{main-sec:results:solubility}, Section~\ref{sec:noise});
 \item \texttt{source\_split2.py}: the division of the electrolyte formulations by provenance (main text Section~\ref{main-sec:results:source}, Section~\ref{sec:source}). An earlier \texttt{source\_split.py} fitted the model on its own calibration set and is superseded; its figures are not the ones reported;
 \item \texttt{within\_between.py}, \texttt{stereo\_blocks.py}, \texttt{support\_check.py}: the intracluster correlations and design effects, the stereoisomeric block pairs, and the similarity-cluster counts of the Limitations;
 \item \texttt{thatcher.py}: numerical check of the hypergeometric--Beta--Binomial identity;

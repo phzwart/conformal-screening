@@ -45,6 +45,10 @@ from functools import lru_cache
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 TH = lru_cache(maxsize=None)(intervals.thatcher)
+# memoize the exact (unchanged) batch rank law: the same (n, alpha, delta, m) recurs across the
+# 144 grid points and across perturbations, and it dominates the run time otherwise
+k_batch = lru_cache(maxsize=None)(k_batch)
+SM.k_batch = k_batch
 ALPHAS = SM.ALPHAS                      # 0.025 .. 0.300, 12 values
 J = len(ALPHAS) ** 2                    # 144 requests
 M, DELTA, EPS = 1000, 0.10, 0.05
@@ -213,6 +217,9 @@ def scenario(uc, yc, ut, yt):
                        "deferred_bound": round(best["deferred"]["bound"], 1)}
         out["min_certified_budget"] = float(np.min(G["deferred"]["bound"][ok]))
     out["grid_min_deferred_bound"] = float(G["deferred"]["bound"].min())
+    # does the setting the manuscript actually chose still satisfy the limits?
+    bi = int(np.argmin(np.abs(ALPHAS - BASE_SETTING[0]))); bj = int(np.argmin(np.abs(ALPHAS - BASE_SETTING[1])))
+    out["base_setting_feasible"] = bool(ok[bi, bj])
     out["info"] = info
     return out, G
 
@@ -317,10 +324,12 @@ def main():
                   "pareto_settings": stat([x["pareto_settings"] for x in g]),
                   "scenario_feasible": stat(feas),
                   "scenario_infeasible_splits": int(sum(v == 0 for v in feas)),
+                  "base_setting_feasible": int(sum(x["scenario"]["base_setting_feasible"] for x in g)),
                   "min_certified_budget": stat(bud),
                   "front_overlap_frac": stat([x["front_overlap"]["retained_frac"] for x in g]),
                   "enrichment_own_fold": stat(pick(e_own, "fold")),
                   "enrichment_own_p_max": (max(pick(e_own, "fisher_p")) if pick(e_own, "fisher_p") else None),
+                  "enrichment_own_available": len(e_own),
                   "enrichment_own_significant": int(sum(x["significant"] for x in e_own)),
                   "enrichment_base_fold": stat(pick(e_base, "fold")),
                   "enrichment_base_p_max": (max(pick(e_base, "fisher_p")) if pick(e_base, "fisher_p") else None),
@@ -333,35 +342,55 @@ def main():
            "base_setting": list(BASE_SETTING), "families": FAMS,
            "perturbations": perts, "per_split": rows, "aggregate": agg}
     json.dump(res, open(f"{outdir}/aqsol_noise.json", "w"), indent=1)
+    report(res)
+    print(f"\nwritten: {outdir}/aqsol_noise.json")
 
-    # ------------- compact summary table
-    W = ["perturbation", "flips", "distinguished", "pareto settings", "feasible/144", "min budget",
-         "front overlap", "fold (own)", "max p", "sig"]
-    fmt = "{:<19s}{:>7s}{:>17s}{:>19s}{:>16s}{:>18s}{:>20s}{:>20s}{:>10s}{:>8s}"
-    print("\nAqSolDB lipophilic screen, label-noise sensitivity (10 splits, model and scores fixed)")
-    print("values are median [min, max] over the evaluations of each family\n")
-    print(fmt.format(*W)); print("-" * 154)
+
+def report(res):
+    """compact summary table, median [min, max] over the evaluations of each family"""
+    agg = res["aggregate"]; FAMS = res["families"]
+    W = ["perturbation", "flips", "distinguished", "pareto settings", "feasible/144", "infeas",
+         "pub ok", "min budget", "front overlap", "fold (own)", "max p", "sig"]
+    fmt = "{:<19s}{:>7s}{:>16s}{:>18s}{:>15s}{:>8s}{:>8s}{:>17s}{:>19s}{:>19s}{:>10s}{:>8s}"
+    print("\nAqSolDB lipophilic screen, label-noise sensitivity (10 splits; model and scores fixed)")
+    print("median [min, max] over evaluations.  feasible/144 = settings meeting the published "
+          "limits (deferred <= 450,\nconfirmed in-class >= 60, missed in-class <= 90 per 1000); "
+          "infeas = splits with no feasible setting at all;\nmin budget = smallest certifiable "
+          "measurement budget per 1000; front overlap = fraction of the base Pareto\nfront "
+          "retained; fold/p = enrichment of the advanced compounds at each run's own chosen "
+          "setting;\npub ok = evaluations in which the published setting itself is still "
+          "feasible.\n")
+    print(fmt.format(*W)); print("-" * 166)
+
     def rng_s(s, d=0):
         if s is None: return "-"
-        f = (lambda v: f"{v:.0f}") if d == 0 else (lambda v: f"{v:.2f}")
-        return f"{f(s['median'])} [{f(s['min'])},{f(s['max'])}]"
+        g = (lambda v: f"{v:.0f}") if d == 0 else (lambda v: f"{v:.2f}")
+        return f"{g(s['median'])} [{g(s['min'])},{g(s['max'])}]"
+
     for f in FAMS:
         if f not in agg: continue
         a = agg[f]
         print(fmt.format(f, f"{a['flipped']['median']:.0f}", rng_s(a["distinguished"]),
                          rng_s(a["pareto_settings"]), rng_s(a["scenario_feasible"]),
+                         str(a["scenario_infeasible_splits"]),
+                         f"{a.get('base_setting_feasible', 0)}/{a['n_evaluations']}",
                          rng_s(a["min_certified_budget"]), rng_s(a["front_overlap_frac"], 2),
                          rng_s(a["enrichment_own_fold"], 2),
                          (f"{a['enrichment_own_p_max']:.1e}" if a["enrichment_own_p_max"] is not None else "-"),
-                         f"{a['enrichment_own_significant']}/{a['n_evaluations']}"))
-    print("\nenrichment held at the published setting alpha = (0.15, 0.125):")
+                         f"{a['enrichment_own_significant']}/{a.get('enrichment_own_available', a['n_evaluations'])}"))
+    print(f"\nenrichment with the setting held at the published choice "
+          f"alpha = ({res['base_setting'][0]}, {res['base_setting'][1]}):")
     for f in FAMS:
         if f not in agg: continue
         a = agg[f]
         print(f"  {f:<19s} fold {rng_s(a['enrichment_base_fold'], 2):<20s} max p "
-              f"{a['enrichment_base_p_max']:.1e}  significant {a['enrichment_base_significant']}/{a['n_evaluations']}")
-    print(f"\nwritten: {outdir}/aqsol_noise.json")
+              f"{a['enrichment_base_p_max']:.1e}  significant "
+              f"{a['enrichment_base_significant']}/{a['n_evaluations']}")
 
 
 if __name__ == "__main__":
-    main()
+    if "--report" in sys.argv:                     # re-print the table from a finished run
+        od = [a for a in sys.argv[1:] if a != "--report"]
+        report(json.load(open(f"{od[0] if od else f'{HERE}/v2'}/aqsol_noise.json")))
+    else:
+        main()
