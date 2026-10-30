@@ -1,0 +1,265 @@
+{
+ "identical": true,
+ "scales": [
+  "probability of in-class",
+  "logit",
+  "pseudo-pKi"
+ ],
+ "n": {
+  "cal": 38815,
+  "audit": 29111,
+  "batch": 29112
+ },
+ "k": [
+  35017,
+  409
+ ],
+ "results": {
+  "probability of in-class": {
+   "cut_out_class": 0.0028364214957419718,
+   "cut_in_class": 0.00041256215286311626,
+   "is_order_statistic": [
+    true,
+    true
+   ],
+   "table": {
+    "correct rejection": [
+     7445,
+     7457,
+     [
+      7239,
+      7653
+     ],
+     true
+    ],
+    "false lead": [
+     2469,
+     2526,
+     [
+      2338,
+      2603
+     ],
+     true
+    ],
+    "deferred non-binder": [
+     18875,
+     18776,
+     [
+      18649,
+      19101
+     ],
+     true
+    ],
+    "confident hit": [
+     105,
+     107,
+     [
+      78,
+      136
+     ],
+     true
+    ],
+    "missed binder": [
+     12,
+     11,
+     [
+      4,
+      24
+     ],
+     true
+    ],
+    "deferred binder": [
+     205,
+     235,
+     [
+      167,
+      247
+     ],
+     true
+    ],
+    "single label": [
+     10031,
+     10101,
+     [
+      9807,
+      10257
+     ],
+     true
+    ],
+    "deferred": [
+     19080,
+     19011,
+     [
+      18855,
+      19305
+     ],
+     true
+    ]
+   }
+  },
+  "logit": {
+   "cut_out_class": -5.862371606271314,
+   "cut_in_class": -7.7927110426520585,
+   "is_order_statistic": [
+    true,
+    true
+   ],
+   "table": {
+    "correct rejection": [
+     7445,
+     7457,
+     [
+      7239,
+      7653
+     ],
+     true
+    ],
+    "false lead": [
+     2469,
+     2526,
+     [
+      2338,
+      2603
+     ],
+     true
+    ],
+    "deferred non-binder": [
+     18875,
+     18776,
+     [
+      18649,
+      19101
+     ],
+     true
+    ],
+    "confident hit": [
+     105,
+     107,
+     [
+      78,
+      136
+     ],
+     true
+    ],
+    "missed binder": [
+     12,
+     11,
+     [
+      4,
+      24
+     ],
+     true
+    ],
+    "deferred binder": [
+     205,
+     235,
+     [
+      167,
+      247
+     ],
+     true
+    ],
+    "single label": [
+     10031,
+     10101,
+     [
+      9807,
+      10257
+     ],
+     true
+    ],
+    "deferred": [
+     19080,
+     19011,
+     [
+      18855,
+      19305
+     ],
+     true
+    ]
+   }
+  },
+  "pseudo-pKi": {
+   "cut_out_class": 3.105164312307296,
+   "cut_in_class": 2.9316704463579484,
+   "is_order_statistic": [
+    true,
+    true
+   ],
+   "table": {
+    "correct rejection": [
+     7445,
+     7457,
+     [
+      7239,
+      7653
+     ],
+     true
+    ],
+    "false lead": [
+     2469,
+     2526,
+     [
+      2338,
+      2603
+     ],
+     true
+    ],
+    "deferred non-binder": [
+     18875,
+     18776,
+     [
+      18649,
+      19101
+     ],
+     true
+    ],
+    "confident hit": [
+     105,
+     107,
+     [
+      78,
+      136
+     ],
+     true
+    ],
+    "missed binder": [
+     12,
+     11,
+     [
+      4,
+      24
+     ],
+     true
+    ],
+    "deferred binder": [
+     205,
+     235,
+     [
+      167,
+      247
+     ],
+     true
+    ],
+    "single label": [
+     10031,
+     10101,
+     [
+      9807,
+      10257
+     ],
+     true
+    ],
+    "deferred": [
+     19080,
+     19011,
+     [
+      18855,
+      19305
+     ],
+     true
+    ]
+   }
+  }
+ }
+}
