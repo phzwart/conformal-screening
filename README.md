@@ -1,6 +1,6 @@
-# Predicting the consequences of conformal screening decisions
+# Conformal campaigns: from coverage requests to audited consequences
 
-Manuscript, supplementary information and all code for *"Predicting the consequences of conformal screening decisions: finite-sample audit intervals for batch outcomes"* (P. H. Zwart, in preparation for *Digital Discovery*).
+Manuscript, supplementary information and all code for *"Conformal campaigns: from coverage requests to audited consequences"* (P. H. Zwart, in preparation for *Digital Discovery*).
 
 A conformal classifier's two class-wise coverage requests serve as coordinates for navigating screening decisions. A labelled audit set, a random sample of the library to be screened, predicts how many confident hits, false leads, missed in-class candidates and measurements the next batch will contain. The predictions come with finite-sample intervals that hold with a specified probability under exchangeability alone, even after a setting is chosen. Teams or automated planners can then choose a setting under chance constraints on assays, budget or yield.
 

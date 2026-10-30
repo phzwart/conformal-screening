@@ -1,6 +1,6 @@
 \begin{table*}[ht]
 \centering
-\caption{AqSolDB lipophilic screen: mean test-set cost per compound (units of a wasted follow-up) over 10 splits. All baselines were fitted on the full calibration set and applied to the test set. Chow: cost-optimal action per compound on probabilities recalibrated by Platt scaling (logistic regression on the logit of $u$) or isotonic regression. Two thresholds: the two thresholds on $u$ minimizing empirical calibration cost. Set rule: cheapest candidate on calibration estimates, among the swept rules and the trivial rules (defer all, label all out-class, label all soluble). Last two columns: paired difference, set rule minus Chow, mean (standard error over splits).}
+\caption{AqSolDB lipophilic screen: mean audit-set cost per compound (units of a wasted follow-up) over 10 splits. All baselines were fitted on the full calibration set and applied to the audit set. Chow: cost-optimal action per compound on probabilities recalibrated by Platt scaling (logistic regression on the logit of $u$) or isotonic regression. Two thresholds: the two thresholds on $u$ minimizing empirical calibration cost. Set rule: cheapest candidate on calibration estimates, among the swept rules and the trivial rules (defer all, label all out-class, label all soluble). Last two columns: paired difference, set rule minus Chow, mean (standard error over splits).}
 \label{tab:chow}
 \small
 \begin{tabular}{rrccccccc}
