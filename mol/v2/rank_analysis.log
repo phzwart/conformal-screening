@@ -1,0 +1,29 @@
+{
+ "library": "BELKA, soluble epoxide hydrolase",
+ "label": "binds_sEH",
+ "n_molecules": 200000,
+ "prevalence": 0.00721,
+ "n_blocks_position1": 294,
+ "train_block_frac": 0.5,
+ "statistic": "calibration rank, the share of calibration scores at or below"
+}
+resuming, 2 runs on disk
+  audit travels with the batch   rep1 AUROC 0.671 rank KS 0.0051 p 8.3e-01 covered 6/6 [192s]
+  audit stays with the model     rep1 AUROC 0.683 rank KS 0.0319 p 5.0e-11 covered 2/6 [212s]
+  audit travels with the batch   rep2 AUROC 0.55 rank KS 0.0076 p 3.6e-01 covered 6/6 [299s]
+  audit stays with the model     rep2 AUROC 0.54 rank KS 0.0140 p 1.7e-02 covered 2/6 [320s]
+  audit travels with the batch   rep3 AUROC 0.943 rank KS 0.0035 p 9.9e-01 covered 6/6 [405s]
+  audit stays with the model     rep3 AUROC 0.937 rank KS 0.0405 p 1.0e-17 covered 4/6 [430s]
+  audit travels with the batch   rep4 AUROC 0.633 rank KS 0.0049 p 8.5e-01 covered 6/6 [517s]
+  audit stays with the model     rep4 AUROC 0.656 rank KS 0.0153 p 8.0e-03 covered 1/6 [535s]
+  audit travels with the batch   rep5 AUROC 0.872 rank KS 0.0075 p 3.5e-01 covered 6/6 [621s]
+  audit stays with the model     rep5 AUROC 0.876 rank KS 0.0592 p 3.7e-36 covered 1/6 [645s]
+  audit travels with the batch   rep6 AUROC 0.971 rank KS 0.0072 p 4.2e-01 covered 6/6 [727s]
+  audit stays with the model     rep6 AUROC 0.961 rank KS 0.0633 p 6.6e-42 covered 3/6 [749s]
+  audit travels with the batch   rep7 AUROC 0.951 rank KS 0.0123 p 2.2e-02 covered 6/6 [829s]
+  audit stays with the model     rep7 AUROC 0.938 rank KS 0.0579 p 2.1e-35 covered 3/6 [852s]
+  audit travels with the batch   rep8 AUROC 0.903 rank KS 0.0084 p 2.3e-01 covered 4/6 [937s]
+  audit stays with the model     rep8 AUROC 0.895 rank KS 0.0146 p 1.3e-02 covered 3/6 [961s]
+  audit travels with the batch   rep9 AUROC 0.96 rank KS 0.0062 p 6.2e-01 covered 6/6 [1051s]
+  audit stays with the model     rep9 AUROC 0.955 rank KS 0.0493 p 4.5e-26 covered 4/6 [1076s]
+total 1076.2s
