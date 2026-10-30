@@ -17,7 +17,13 @@ then split back, so calibration and audit are perturbed consistently):
   structured_flip   the same per-class budget, drawn from the same band, but taking in each
                     class the compounds whose score ranks most extremely against that class
                     (lowest u among soluble, highest u among insoluble).  This is the
-                    mechanism the proxy-label section identifies as the damaging one.
+                    mechanism the proxy-label section identifies as the damaging one: the
+                    noise is correlated with the score, so it makes the labels agree with
+                    the model and the measured performance is biased upwards.
+  structured_adverse the mirror image, reported so that the direction of the structured bias
+                    is visible: the same budget taken from the compounds whose score most
+                    strongly supports their own label (highest u among soluble, lowest u
+                    among insoluble), which biases the measured performance downwards.
   sd_flip           the same budget, taken from the screened compounds with a recorded
                     non-zero inter-source SD, largest SD first.
 
@@ -143,8 +149,10 @@ def perturb(u, logs, y0, sd, kind, rng=None):
             pool = np.where(band & (y0 == c))[0]
             if kind == "random_flip":
                 take = rng.choice(pool, size=nc[c], replace=False)
-            else:                                  # structured: most extreme score against the class
+            elif kind == "structured_flip":        # most extreme score AGAINST the class
                 take = pool[np.argsort(u[pool] if c == 1 else -u[pool], kind="stable")][:nc[c]]
+            else:                                  # structured_adverse: score most supports the class
+                take = pool[np.argsort(-u[pool] if c == 1 else u[pool], kind="stable")][:nc[c]]
             pick[take] = True
         info["per_class_budget"] = {str(c): nc[c] for c in (0, 1)}
     y = y0.copy(); y[pick] = 1 - y[pick]
@@ -274,7 +282,8 @@ def main():
         perts.append(bi)
         print(f"  rep {r} {'base':<20s} flipped   0  distinguished {base['distinguished']}  "
               f"pareto {base['pareto']}  feasible {base['scenario']['feasible']}", flush=True)
-        jobs = [("cut_-3.5", None), ("cut_-4.5", None), ("structured_flip", None), ("sd_flip", None)]
+        jobs = [("cut_-3.5", None), ("cut_-4.5", None), ("structured_flip", None),
+                ("structured_adverse", None), ("sd_flip", None)]
         jobs += [("random_flip", 9000 + 100 * r + s) for s in range(SEEDS)]
         for kind, seed in jobs:
             rng = np.random.default_rng(seed) if seed is not None else None
@@ -289,7 +298,8 @@ def main():
 
     # ------------- aggregate over splits (random seeds pooled into one family)
     fam = lambda lab: "random_flip" if lab.startswith("random_flip") else lab
-    FAMS = ["base", "cut_-3.5", "cut_-4.5", "random_flip", "structured_flip", "sd_flip"]
+    FAMS = ["base", "cut_-3.5", "cut_-4.5", "random_flip", "structured_flip",
+            "structured_adverse", "sd_flip"]
     agg = {}
     stat = lambda v: ({"median": float(np.median(v)), "min": float(np.min(v)), "max": float(np.max(v)),
                        "mean": round(float(np.mean(v)), 3)} if len(v) else None)
@@ -325,11 +335,12 @@ def main():
     json.dump(res, open(f"{outdir}/aqsol_noise.json", "w"), indent=1)
 
     # ------------- compact summary table
-    W = ["perturbation", "flips", "distinguished", "pareto(settings)", "feasible/144", "min budget",
+    W = ["perturbation", "flips", "distinguished", "pareto settings", "feasible/144", "min budget",
          "front overlap", "fold (own)", "max p", "sig"]
-    fmt = "{:<16s}{:>7s}{:>15s}{:>18s}{:>14s}{:>12s}{:>15s}{:>12s}{:>11s}{:>6s}"
+    fmt = "{:<19s}{:>7s}{:>17s}{:>19s}{:>16s}{:>18s}{:>20s}{:>20s}{:>10s}{:>8s}"
     print("\nAqSolDB lipophilic screen, label-noise sensitivity (10 splits, model and scores fixed)")
-    print(fmt.format(*W)); print("-" * 126)
+    print("values are median [min, max] over the evaluations of each family\n")
+    print(fmt.format(*W)); print("-" * 154)
     def rng_s(s, d=0):
         if s is None: return "-"
         f = (lambda v: f"{v:.0f}") if d == 0 else (lambda v: f"{v:.2f}")
@@ -347,7 +358,7 @@ def main():
     for f in FAMS:
         if f not in agg: continue
         a = agg[f]
-        print(f"  {f:<16s} fold {rng_s(a['enrichment_base_fold'], 2):<16s} max p "
+        print(f"  {f:<19s} fold {rng_s(a['enrichment_base_fold'], 2):<20s} max p "
               f"{a['enrichment_base_p_max']:.1e}  significant {a['enrichment_base_significant']}/{a['n_evaluations']}")
     print(f"\nwritten: {outdir}/aqsol_noise.json")
 
