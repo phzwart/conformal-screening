@@ -89,7 +89,12 @@ def main():
                 cov.setdefault(o["arm"], [0, 0])
                 cov[o["arm"]][0] += c[0]; cov[o["arm"]][1] += c[1]
 
-    res = {"cap": CAP, "nperm": NPERM, "coverage_on_disk": cov, "rows": []}
+    out_path = os.path.join(OUT, "preflight_arms.json")
+    prior = []
+    if os.path.exists(out_path):
+        prior = json.load(open(out_path)).get("rows", [])
+    res = {"cap": CAP, "nperm": NPERM, "coverage_on_disk": cov, "rows": list(prior)}
+    have = {(o["arm"], o["rep"]) for o in prior}
     print(f"{'arm':8}{'rep':>4}{'audit|batch':>13}{'cal|batch':>11}"
           f"{'null mean':>11}{'null max':>10}{'bb1':>7}{'bb2':>7}{'bb3':>7}"
           f"{'prev aud':>10}{'prev bat':>10}", flush=True)
@@ -98,6 +103,8 @@ def main():
         d = nr.design(rng, bb1)
         A = nr.arms(rng, d)
         for arm in ARMS:
+            if (arm, r) in have:
+                continue
             s = A[arm]
             ai, fi, ci = s["audit"], s["batch"], s["cal"]
             g = np.random.default_rng(5000 + r)
@@ -121,7 +128,7 @@ def main():
                   f"{shares[0]:>7.2f}{shares[1]:>7.2f}{shares[2]:>7.2f}"
                   f"{row['prevalence_audit']:>10.4f}{row['prevalence_batch']:>10.4f}"
                   f"   [{time.time()-t0:.0f}s]", flush=True)
-            json.dump(res, open(os.path.join(OUT, "preflight_arms.json"), "w"), indent=1)
+            json.dump(res, open(out_path, "w"), indent=1)
     print(f"\ntotal {time.time()-t0:.1f}s")
 
 
