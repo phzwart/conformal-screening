@@ -54,59 +54,61 @@ selected it.
 \section{Introduction}
 \label{sec:intro}
 
-Anticipating how a model behaves on data it has not seen is central to the machine learning now
-applied to chemical and materials screening. Two divisions of a dataset are commonly made. The
-training compounds are first held apart by scaffold or by building block, which tests whether a
-model has memorised the chemistry it was shown, and a ranking surviving that test is read as
-evidence of transfer. What remains is then split at random to calibrate a decision rule, which
-fixes the error rates that rule will realize. Both steps are routine. The warrants they confer,
-however, are different, and neither extends to the other's.
+Screening campaigns in chemistry and materials science proceed in rounds. A model scores a
+library of candidates, a rule selects a subset for the laboratory, and the measurements that come
+back train the model for the round that follows. That selection is increasingly made by an
+automated or self-driving platform, in which a planner rather than a person decides what is
+prepared and measured.\citep{Abolhasani2023SDL,Tom2024SDL} The decisions we have in mind send
+candidates forward to a toxicity assay, to a solubility or conductivity measurement, or to
+synthesis. Because characterisation runs in parallel, the capacity of a round is fixed before it
+begins.
 
-The two are easily confused, and the price of that runs in opposite directions. A structural
-holdout does establish that a ranking transfers to new chemistry. It also invalidates every
-quantitative statement about the next batch. Withholding building blocks in a
-DNA-encoded library cost two thirds of the coverage of the predicted counts, while the ranking
-slipped from 0.960 to 0.892 in area under the curve, roughly a seventh of its margin above
-chance. A random division keeps those counts sound, although only for whatever it sampled, which
-is seldom what a round commits. Where a planner fills a plate from the head of a scored
-list, an audit held back from the library will not price it. In nine of twelve rounds of the
-campaign described below no such audit could be built, since no in-class candidate was left in
-the remaining pool to measure. One step therefore secures a quantity no round is planned on. The
-other bounds the right quantities for the wrong population, and this paper is about what a
-labelled sample does and does not license a team to claim.
+A team therefore commits a fixed number of candidates without knowing what they will yield. What
+it would like to know is how many of the chosen compounds will prove active, how many of the
+discarded ones were worth keeping, and how many will need a further assay before they can be
+called either way. Budgets and schedules are built from these figures, and they are whole numbers. A plate holds 96 or 384 wells, a run has a reagent budget, and a project must confirm enough actives to justify going on. A rate is a weaker
+object here. An error rate that is slightly optimistic will go unnoticed, whereas a plate
+exceeding its capacity halts the experiment.
 
-Such claims must be stated in counts. A round is constrained in integers, by the wells on a
-plate, the reagent budget of a run, and the confirmed hits needed before a further round can be
-justified. Those constraints do not translate into rates. An error rate that is slightly
-optimistic will go unnoticed, whereas a plate exceeding its capacity halts the experiment.
-Conformal prediction wraps any trained model and returns prediction sets whose coverage is
-guaranteed under
-exchangeability.\citep{vovk2005algorithmic,AngelopoulosBates2023Gentle} It does not,
-however, yield counts. Coverage is a level the user selects and the threshold is built to meet,
-so every setting is equally guaranteed and coverage ranks none of them. Risk-controlling methods
-bound a chosen loss, although what they control is its expectation, or the probability of
-exceeding it,\citep{bates2021distribution,Angelopoulos2024CRC,Angelopoulos2021LTT} rather than the
-integer a run returns. The post hoc literature does bound counts, though for a set already in hand; the batch in question has yet to be assembled. What a campaign lacks is a \emph{predictive} count,
-meaning a statement about a batch not yet made. A labelled audit set supplies one, and how that
-sample is drawn is the subject of this paper.
+Uncertainty in a machine-learning prediction is conventionally reported one compound at a time,
+and reviews of the practice in drug design and property prediction follow that
+convention.\citep{Mervin2021UQ} Conformal prediction is the distribution-free form of such a
+report. Given a trained model and a set of labelled compounds withheld from training, it returns for each new candidate a set of labels containing the true one with a probability the user specifies. Nothing is assumed about the model or about the distribution of the data.\citep{vovk2005algorithmic,AngelopoulosBates2023Gentle} Those held-back compounds are the calibration set, and the guarantee, called coverage, holds whenever they are exchangeable with
+the candidates being scored. The method is now standard in machine learning and has been taken
+up in chemistry and materials
+science.\citep{Norinder2014,CortesCiriano2019,Laghuvarapu2023CoDrug}
 
-The screens we consider decide which candidates go forward to a toxicity assay, a solubility or
-conductivity measurement, or synthesis. Because characterization runs in parallel, a round's
-capacity is fixed before it begins. Unlike turn-by-turn optimization, a batch campaign often aims at covering a design space
-(Section~\ref{sec:discussion}). In a binary screen each compound receives one of four prediction
-sets, holding one label, the other, both, or neither. A team advances or discards the compounds
-given a single label and sends the rest for assay. Before committing it needs to know how many
-will fall into each case.
+Coverage does not say how many wells the next plate will consume. It is a level the user chooses
+and the threshold is constructed to meet, so every setting is equally guaranteed and coverage
+ranks none of them. Methods that control a risk come closer, although what they bound is the
+expectation of a loss, or the probability of exceeding it, for one future
+candidate.\citep{bates2021distribution,Angelopoulos2024CRC,Angelopoulos2021LTT} Work on post hoc
+inference does bound whole numbers, though for a set that has already been measured. What a
+campaign lacks is a figure it can plan against before the batch exists.
 
-\paragraph{What we do.} We treat the coverage level as a control rather than a result. It is
-chosen separately for the in-class and out-class compounds, and sweeping it moves the classifier
-through the space of available rounds. A labelled \emph{audit set}, sampled from the library to
-be screened and used for neither training nor calibration, then prices each setting. It gives
-the confident hits, false leads, missed in-class compounds and assays that a batch of the
-committed size will contain, each as a count with a finite-sample interval valid under
-exchangeability of the audit with the batch. These intervals are the deliverable, against which
-assays can be booked and measurements budgeted. The condition they require differs from the one
-coverage assumes, and Section~\ref{sec:methods:intervals} separates the two.
+A second labelled sample supplies one. Suppose part of the library to be screened is set aside and used for neither training nor calibration. Each candidate in it can then be sorted by the label it carries and the prediction set it receives. The composition of a future batch of given size follows as a collection of finite-sample prediction intervals. We call such a sample
+an \emph{audit set}. It prices a rule the calibration set has already fixed, reporting the
+confident actives, the false leads, the actives missed and the compounds left for assay, each as
+a count with an interval that holds at a stated probability. Because coverage is chosen and not
+measured, it also serves as a control. Sweeping it, separately for each class, moves the
+classifier across the rounds available to a team, and the audit states what each one would
+deliver.
+
+The condition an audit requires is not the condition coverage requires, and that difference is
+the subject of this paper. Coverage needs the calibration set to be exchangeable with the
+compounds being scored. The counts need the audit set to be exchangeable with the batch that is
+actually committed. The two can fail separately, and they fail asymmetrically. A rule fitted on the wrong population, at the wrong prevalence, or against a cheaper label is a poorer rule, although an audit of it stays sound. An audit drawn from chemistry the committed batch does not contain voids the counts, however carefully that rule was calibrated.
+
+A screening project is least protected against the second condition, because the division it
+conventionally reports does not supply it. Holding compounds apart by scaffold or by building
+block tests whether a model has memorised the chemistry it was shown, and a ranking that survives
+is read as evidence of transfer; it carries no information about the counts. In a DNA-encoded
+library, withholding building blocks cost two thirds of the coverage of the predicted counts,
+while the ranking slipped only from 0.960 to 0.892 in area under the curve. A random division of
+the library fares no better once a planner chooses the batch. In nine of twelve rounds of the
+campaign reported below an audit reserved from the library could not be built at all, since no
+active candidate remained in the leftover pool to measure. We examine four such arrangements and
+find two that hold.
 
 In the remainder of this paper we set out the outcome table, the threshold correction and the
 audit intervals that the method returns, together with the role coverage plays in navigating
@@ -119,23 +121,25 @@ they make visible and what violating it costs.
 \begin{itemize}\itemsep2pt
 \item \emph{A labelled audit set prices a round, in counts, before it is run.} Sweeping the two
 class-wise coverage requests traces the decisions available to a team, and at each setting an
-audit gives finite-sample intervals for every cell of the outcome table, covering confident hits, false leads, missed in-class compounds and compounds assayed, valid after the setting is chosen
-and invertible for the size of the round.\citep{Thatcher1964,Meeker2017Intervals}
+audit gives finite-sample intervals for every cell of the outcome table, covering confident
+hits, false leads, missed in-class compounds and compounds assayed, valid after the setting is
+chosen and invertible for the size of the
+round.\citep{Thatcher1964,Meeker2017Intervals}
 \item \emph{Two guarantees, two requirements, and the asymmetry runs one way.} From the audit's
-point of view the calibration set is training data, so coverage and predicted counts fail
-independently (Table~\ref{tab:decoupling}); a rule calibrated on the wrong population,
-prevalence or label is a worse rule but a valid audit, while an audit drawn from chemistry the
-batch does not share voids the counts however the rule was calibrated.
-\item \emph{What violating it costs, measured four ways on real data.} Withheld building blocks,
-division by provenance, an audit matching a batch's composition but not its chemistry, and a
-batch the model chose: the counts break in all four, and no statistic a screen reports orders
-the failures.
-\item \emph{What satisfying it takes.} A pilot of the screened population repairs it under
-divisions that are not random, and a random slice of a committed batch repairs it exactly,
-whatever rule selected the batch. One round of selection then depletes the library, so the slice is re-drawn each round.
+point of view the calibration set is training data, which separates the two conditions and
+fixes the direction in which they fail (Table~\ref{tab:decoupling}).
+\item \emph{What violating the second costs, measured four ways on public data.} Withheld
+building blocks, division by provenance, an audit matching a batch's composition but not its
+chemistry, and a batch the model chose. The counts break in all four, and no statistic a screen
+reports orders the failures.
+\item \emph{What satisfying it takes.} A pilot of the screened population repairs the counts
+under divisions that are not random, and a random slice of a committed batch repairs them
+exactly, whatever rule made the selection. One round of selection depletes the library, so the
+slice is re-drawn each round.
 \item \emph{A check that costs no measurements.} Whether the audit matches the batch is testable
 beforehand from structures alone, as a classifier two-sample test against a permutation
-null.\citep{LopezPaz2017Revisiting} The test is one-sided, so it can refuse an arrangement but never certify one, and is blind by construction to a shift the representation cannot see.
+null.\citep{LopezPaz2017Revisiting} The test is one-sided, so it can refuse an arrangement but
+never certify one, and is blind by construction to a shift the representation cannot see.
 \end{itemize}
 
 \paragraph{Related work.}
@@ -228,7 +232,7 @@ the committed size. Conformal selection\citep{JinCandes2023} selects candidates 
 \subsection{Setting and assumptions}
 \label{sec:methods:setting}
 
-We call the class with the property the screen looks for \emph{in-class} (label 1) and the other \emph{out-class} (label 0): compounds active at an endpoint in Tox21, soluble compounds in AqSolDB, and electrolytes that reach the conductivity target in CALiSol-23. A trained binary classifier is held fixed. It gives each compound a predicted probability of being in-class, $u=\hat p(\text{in-class}\mid x)$. A labelled \emph{calibration set} sets the thresholds. A labelled \emph{audit set}, which in machine-learning terms is a held-out test set, is used only to measure what the thresholds do; we call it an audit set throughout, because its purpose here is to price a round. A \emph{future batch} of $m$ compounds will be screened. We assume throughout that the audit and future compounds are exchangeable with one another given the trained model and the calibration set, \textit{i.e.}\ that their joint distribution is unchanged when they are reordered. The requirement is conditional on the calibration set, which need not itself be exchangeable with either; a random division of a fixed library satisfies it even though the three parts are then dependent through the library's finite size. Where the coverage guarantee is also wanted, the calibration set must in addition be exchangeable with the batch; the two requirements are separated in Section~\ref{sec:methods:intervals} and they fail independently. What must be exchangeable is each candidate together with the label recorded for it, not the candidate alone, so the assumption can fail in two ways that look nothing alike: the compounds may be drawn from different populations, or the compounds may be interchangeable while the label recorded on one set is not the label recorded on another. The first is a question of which compounds a round contains and the second of what is measured on them, and both appear below. Exchangeability holds when all three sets are random samples of the library to be screened and carry the same label. The training set is deliberately absent from that list. The classifier is held fixed and enters only as a score, so how its training compounds were chosen bears on how good that score is and not on whether the intervals are valid. The two splits a campaign makes are therefore independent and answer different questions. Separating the training compounds from the rest by scaffold, series or building block guards against a model that has memorised its training chemistry, and lowers an optimistic estimate of how well it ranks compounds unlike the ones it was fitted on. Dividing what remains into calibration, audit and batch at random is what keeps the intervals valid. Both can be done at once, and should be: the arrangement that measures a model on unseen chemistry \emph{and} prices the batch correctly is a split at the training boundary followed by random assignment within the deployment population. The unit of sampling is the candidate to be screened: a compound, or for electrolytes a formulation, and not an individual measurement. It fails when the batch comes from other chemical series or scaffolds (Section~\ref{sec:results:dependence}), and again when the thresholds are set against a cheaper label than the one the campaign's claim concerns (Section~\ref{sec:results:surrogate}). It fails too when the batch is chosen using the model, as in active learning, unless that selection is part of the design. Section~\ref{sec:results:adaptive} tests that case and the two repairs available for it. The probabilities need not be calibrated in the usual sense; only their ordering matters.
+We call the class with the property the screen looks for \emph{in-class} (label 1) and the other \emph{out-class} (label 0): compounds active at an endpoint in Tox21, soluble compounds in AqSolDB, and electrolytes that reach the conductivity target in CALiSol-23. A trained binary classifier is held fixed. It gives each compound a predicted probability of being in-class, $u=\hat p(\text{in-class}\mid x)$. A labelled \emph{calibration set} sets the thresholds. A labelled \emph{audit set}, which in machine-learning terms is a held-out test set, is used only to measure what the thresholds do; we call it an audit set throughout, because its purpose here is to price a round. A \emph{future batch} of $m$ compounds will be screened. We assume throughout that the audit and future compounds are exchangeable with one another given the trained model and the calibration set, \textit{i.e.}\ that their joint distribution is unchanged when they are reordered. The requirement is conditional on the calibration set, which need not itself be exchangeable with either; a random division of a fixed library satisfies it even though the three parts are then dependent through the library's finite size. Where the coverage guarantee is also wanted, the calibration set must in addition be exchangeable with the batch; the two requirements are separated in Section~\ref{sec:methods:intervals}, where the direction in which they fail is also set out. What must be exchangeable is each candidate together with the label recorded for it, not the candidate alone, so the assumption can fail in two ways that look nothing alike: the compounds may be drawn from different populations, or the compounds may be interchangeable while the label recorded on one set is not the label recorded on another. The first is a question of which compounds a round contains and the second of what is measured on them, and both appear below. Exchangeability holds when all three sets are random samples of the library to be screened and carry the same label. The training set is deliberately absent from that list. The classifier is held fixed and enters only as a score, so how its training compounds were chosen bears on how good that score is and not on whether the intervals are valid. The two splits a campaign makes are therefore independent and answer different questions. Separating the training compounds from the rest by scaffold, series or building block guards against a model that has memorised its training chemistry, and lowers an optimistic estimate of how well it ranks compounds unlike the ones it was fitted on. Dividing what remains into calibration, audit and batch at random is what keeps the intervals valid. Both can be done at once, and should be: the arrangement that measures a model on unseen chemistry \emph{and} prices the batch correctly is a split at the training boundary followed by random assignment within the deployment population. The unit of sampling is the candidate to be screened: a compound, or for electrolytes a formulation, and not an individual measurement. It fails when the batch comes from other chemical series or scaffolds (Section~\ref{sec:results:dependence}), and again when the thresholds are set against a cheaper label than the one the campaign's claim concerns (Section~\ref{sec:results:surrogate}). It fails too when the batch is chosen using the model, as in active learning, unless that selection is part of the design. Section~\ref{sec:results:adaptive} tests that case and the two repairs available for it. The probabilities need not be calibrated in the usual sense; only their ordering matters.
 
 \subsection{Prediction sets and the outcome table}
 \label{sec:methods:table}
