@@ -28,11 +28,11 @@
 \twocolumn[
 \maketitle
 \begin{abstract}
-A screening team makes two splits and trusts the wrong one. It separates training compounds by
-scaffold or building block, to check that a model has not memorised its training chemistry, and
-divides what remains at random to calibrate a rule. The first guards the model while silently
-voiding everything quantitative about the next batch; the second keeps those quantities valid,
-but only for the population it sampled, which is seldom the population a round commits. Those
+Two divisions of a dataset license different claims about a screening round, and neither
+licenses the other's. A scaffold or building-block split bounds how a model's ranking transfers
+to chemistry it was not trained on; it says nothing about how many hits the next plate will
+return. A random split of what remains bounds those counts, and binds them to the population it
+sampled, which need not be the population a round commits. Those
 quantities are counts --- confident hits, false leads, missed actives, compounds assayed --- and a
 labelled audit set, used neither for training nor for calibration, prices a rule the calibration
 set has already fixed and bounds every count a planned batch will return, in finite samples.
@@ -42,9 +42,9 @@ batch, and the asymmetry runs one way. A rule calibrated on the wrong population
 label is a worse rule but still a valid audit; an audit drawn from chemistry the batch does not
 share voids the counts however the rule was calibrated. That second requirement fails four ways
 on real data. Withholding building blocks in a DNA-encoded library cost two thirds of the
-coverage while costing 0.07 of area under the curve, a drop no project would act on, and against
-a batch the model chose an audit reserved from the library could not be formed at all in nine of
-twelve rounds. No statistic a screen reports orders these failures. Two arrangements hold: a
+coverage of the predicted counts while the ranking lost about a seventh of its margin above
+chance, and against a batch the model chose an audit reserved from the library could not be
+formed at all in nine of twelve rounds. No statistic a screen reports orders these failures. Two arrangements hold: a
 pilot of the population to be screened, and --- exactly, whatever rule selected the batch --- a
 random slice of the committed round.
 \end{abstract}
@@ -56,22 +56,23 @@ random slice of the committed round.
 \label{sec:intro}
 
 Two divisions of the data stand between a trained model and a screening round, and the one a
-paper reports is not the one that licenses its forecasts. A team separates training compounds
-from the rest by scaffold or building block, to check that a model has not simply memorised its
-training chemistry; a ranking that survives that division is read as a licence to deploy. It
-then divides what remains at random to calibrate a rule. The first split looks rigorous and the
-second looks like bookkeeping.
+paper reports is not the one that licenses its forecasts. A scaffold or building-block split
+asks whether a model has simply memorised its training chemistry, and a ranking that survives it
+is evidence that the ranking transfers. A random division of what remains calibrates a rule, and
+bounds the rates that rule will realize. Neither warrants what the other does, and the gap
+between them is not a matter of degree.
 
-Both readings are wrong, and in opposite directions. The structural split does guard the model,
-and it silently voids everything quantitative about the next batch: in a DNA-encoded library,
-withholding building blocks cost two thirds of the coverage of the predicted counts while
-costing 0.07 in ranking, a drop no project would act on. The random division, meanwhile, is what
+Both warrants are routinely overdrawn, and in opposite directions. The structural split does
+bound ranking transfer, and it voids everything quantitative about the next batch: in a
+DNA-encoded library, withholding building blocks cost two thirds of the coverage of the
+predicted counts, while the ranking fell from 0.960 to 0.892 by area under the curve --- about a
+seventh of its margin above chance. The random division, meanwhile, is what
 keeps those counts valid --- but only for the population it sampled, and that is seldom the
 population a round commits. When a planner fills a plate from the top of a ranking, an audit
 reserved from the library does not price it; in nine of twelve rounds of the campaign below such
 an audit could not even be formed, because nothing in-class remained in the leftover pool to
-measure. The split a team trusts protects the wrong thing, and the split it treats as
-housekeeping protects the right thing for the wrong population.
+measure. One split bounds a quantity no round is planned on; the other bounds the right
+quantities for the wrong population.
 
 This paper is about that second split: what a labelled sample licenses a team to claim about a
 round, and what each way of drawing it wrong costs.
