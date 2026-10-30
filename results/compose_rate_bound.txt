@@ -1,0 +1,17 @@
+configuration                         n     m    k   exact  composed   ratio
+primary screen, plate               384    96    8       5         8    1.60
+primary screen, per 1000            384  1000    8      40        53    1.32
+solubility audit, per 1000          384  1000   89     276       305    1.11
+plate priced by a quarter slice      24    72    2      19        27    1.42
+electrolyte, one plate              364    96   30      14        18    1.29
+small audit, large batch             49  1000    1      95       128    1.35
+audit the size of the batch         400   400   80     100       114    1.14
+
+excess of the composed bound over the exact one, as a share of the point estimate:
+  primary screen, plate              point     2.0   exact +   3.0   composed +   6.0
+  primary screen, per 1000           point    20.8   exact +  19.2   composed +  32.2
+  solubility audit, per 1000         point   231.8   exact +  44.2   composed +  73.2
+  plate priced by a quarter slice    point     6.0   exact +  13.0   composed +  21.0
+  electrolyte, one plate             point     7.9   exact +   6.1   composed +  10.1
+  small audit, large batch           point    20.4   exact +  74.6   composed + 107.6
+  audit the size of the batch        point    80.0   exact +  20.0   composed +  34.0
