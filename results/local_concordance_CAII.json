@@ -1,0 +1,411 @@
+{
+ "info": {
+  "isoform": "CAII",
+  "n_del": 122500,
+  "n_chembl": 3844,
+  "n_chembl_inconsistent_excluded": 121,
+  "spearman_score_vs_pki": 0.22113074978852154
+ },
+ "alpha": 0.1,
+ "gamma": 0.05,
+ "band": 0.1,
+ "reps": 20,
+ "rows": [
+  {
+   "cutoff": 7,
+   "sigma": 0.0,
+   "reps": 20,
+   "identical_to_truth": 20,
+   "prevalence": 0.6196670135275755,
+   "auroc_score_global": 0.6415137872851677,
+   "spearman_surrogate_vs_pki": 1.0,
+   "auroc_surrogate_vs_truth": 1.0,
+   "cov_out": 0.926821014375086,
+   "cov_in": 0.9217497493154843,
+   "viol_out": [
+    1,
+    20
+   ],
+   "viol_in": [
+    1,
+    20
+   ],
+   "cdf_gap_out": -0.00157035576914617,
+   "cdf_gap_in": 0.0009746482466211626,
+   "band_mass": 0.7360301768990634,
+   "band_overlapping": [
+    20,
+    20
+   ],
+   "discordance_in_band": 0.0,
+   "discordance_outside_band": 0.0,
+   "audit_lines_covered": [
+    119,
+    120
+   ]
+  },
+  {
+   "cutoff": 7,
+   "sigma": 0.1,
+   "reps": 20,
+   "identical_to_truth": 0,
+   "prevalence": 0.6196670135275755,
+   "auroc_score_global": 0.6415137872851677,
+   "spearman_surrogate_vs_pki": 0.9952855417510342,
+   "auroc_surrogate_vs_truth": 0.9723771595217666,
+   "cov_out": 0.9253365363746207,
+   "cov_in": 0.9221102606781612,
+   "viol_out": [
+    2,
+    20
+   ],
+   "viol_in": [
+    0,
+    20
+   ],
+   "cdf_gap_out": -0.002642725933508444,
+   "cdf_gap_in": 0.0010827366746064715,
+   "band_mass": 0.7297996878251822,
+   "band_overlapping": [
+    20,
+    20
+   ],
+   "discordance_in_band": 0.028587811567383447,
+   "discordance_outside_band": 0.018926272320710202,
+   "audit_lines_covered": [
+    114,
+    120
+   ]
+  },
+  {
+   "cutoff": 7,
+   "sigma": 0.25,
+   "reps": 20,
+   "identical_to_truth": 0,
+   "prevalence": 0.6196670135275755,
+   "auroc_score_global": 0.6415137872851677,
+   "spearman_surrogate_vs_pki": 0.9742138712404855,
+   "auroc_surrogate_vs_truth": 0.9347648402691873,
+   "cov_out": 0.932870755676095,
+   "cov_in": 0.9104483836625974,
+   "viol_out": [
+    0,
+    20
+   ],
+   "viol_in": [
+    4,
+    20
+   ],
+   "cdf_gap_out": 0.004934005073656061,
+   "cdf_gap_in": -0.01065275571367148,
+   "band_mass": 0.7318808532778356,
+   "band_overlapping": [
+    20,
+    20
+   ],
+   "discordance_in_band": 0.06834790210439197,
+   "discordance_outside_band": 0.04274472768445108,
+   "audit_lines_covered": [
+    115,
+    120
+   ]
+  },
+  {
+   "cutoff": 7,
+   "sigma": 0.5,
+   "reps": 20,
+   "identical_to_truth": 0,
+   "prevalence": 0.6196670135275755,
+   "auroc_score_global": 0.6415137872851677,
+   "spearman_surrogate_vs_pki": 0.9109691589726978,
+   "auroc_surrogate_vs_truth": 0.8756282297348674,
+   "cov_out": 0.9314177020031353,
+   "cov_in": 0.9218341559533523,
+   "viol_out": [
+    1,
+    20
+   ],
+   "viol_in": [
+    0,
+    20
+   ],
+   "cdf_gap_out": 0.0036141420369201873,
+   "cdf_gap_in": 0.0009032162787429243,
+   "band_mass": 0.7401144640998961,
+   "band_overlapping": [
+    20,
+    20
+   ],
+   "discordance_in_band": 0.1274779269114743,
+   "discordance_outside_band": 0.08793613461834232,
+   "audit_lines_covered": [
+    110,
+    120
+   ]
+  },
+  {
+   "cutoff": 7,
+   "sigma": 1.0,
+   "reps": 20,
+   "identical_to_truth": 0,
+   "prevalence": 0.6196670135275755,
+   "auroc_score_global": 0.6415137872851677,
+   "spearman_surrogate_vs_pki": 0.7444322887642377,
+   "auroc_surrogate_vs_truth": 0.7798451335311232,
+   "cov_out": 0.9398629911530063,
+   "cov_in": 0.9312928561308054,
+   "viol_out": [
+    0,
+    20
+   ],
+   "viol_in": [
+    0,
+    20
+   ],
+   "cdf_gap_out": 0.01184422801373644,
+   "cdf_gap_in": 0.010346988433186311,
+   "band_mass": 0.767117585848075,
+   "band_overlapping": [
+    20,
+    20
+   ],
+   "discordance_in_band": 0.21725958698907202,
+   "discordance_outside_band": 0.175784927559484,
+   "audit_lines_covered": [
+    113,
+    120
+   ]
+  },
+  {
+   "cutoff": 7,
+   "sigma": 2.0,
+   "reps": 20,
+   "identical_to_truth": 0,
+   "prevalence": 0.6196670135275755,
+   "auroc_score_global": 0.6415137872851677,
+   "spearman_surrogate_vs_pki": 0.4866299301751805,
+   "auroc_surrogate_vs_truth": 0.6731895107055768,
+   "cov_out": 0.9378062921047979,
+   "cov_in": 0.9449641844066521,
+   "viol_out": [
+    0,
+    20
+   ],
+   "viol_in": [
+    0,
+    20
+   ],
+   "cdf_gap_out": 0.009582775963043416,
+   "cdf_gap_in": 0.02436062876825216,
+   "band_mass": 0.79630593132154,
+   "band_overlapping": [
+    20,
+    20
+   ],
+   "discordance_in_band": 0.31129761619357554,
+   "discordance_outside_band": 0.2959404791637864,
+   "audit_lines_covered": [
+    116,
+    120
+   ]
+  },
+  {
+   "cutoff": 8,
+   "sigma": 0.0,
+   "reps": 20,
+   "identical_to_truth": 20,
+   "prevalence": 0.3106139438085328,
+   "auroc_score_global": 0.5396773174046332,
+   "spearman_surrogate_vs_pki": 1.0,
+   "auroc_surrogate_vs_truth": 1.0,
+   "cov_out": 0.9173692942330636,
+   "cov_in": 0.9199606993768201,
+   "viol_out": [
+    3,
+    20
+   ],
+   "viol_in": [
+    3,
+    20
+   ],
+   "cdf_gap_out": -0.0028204192973627527,
+   "cdf_gap_in": -0.011060434165026795,
+   "band_mass": 0.7299817898022892,
+   "band_overlapping": [
+    20,
+    20
+   ],
+   "discordance_in_band": 0.0,
+   "discordance_outside_band": 0.0,
+   "audit_lines_covered": [
+    114,
+    120
+   ]
+  },
+  {
+   "cutoff": 8,
+   "sigma": 0.1,
+   "reps": 20,
+   "identical_to_truth": 0,
+   "prevalence": 0.3106139438085328,
+   "auroc_score_global": 0.5396773174046332,
+   "spearman_surrogate_vs_pki": 0.9952965930416926,
+   "auroc_surrogate_vs_truth": 0.9668641635852218,
+   "cov_out": 0.9199880748971113,
+   "cov_in": 0.9294591533306924,
+   "viol_out": [
+    1,
+    20
+   ],
+   "viol_in": [
+    2,
+    20
+   ],
+   "cdf_gap_out": -3.962697444338525e-05,
+   "cdf_gap_in": -0.0018077785141338899,
+   "band_mass": 0.7448881373569198,
+   "band_overlapping": [
+    20,
+    20
+   ],
+   "discordance_in_band": 0.030515784226568178,
+   "discordance_outside_band": 0.02223651105032609,
+   "audit_lines_covered": [
+    115,
+    120
+   ]
+  },
+  {
+   "cutoff": 8,
+   "sigma": 0.25,
+   "reps": 20,
+   "identical_to_truth": 0,
+   "prevalence": 0.3106139438085328,
+   "auroc_score_global": 0.5396773174046332,
+   "spearman_surrogate_vs_pki": 0.9741251856429457,
+   "auroc_surrogate_vs_truth": 0.9200001896273822,
+   "cov_out": 0.9182755765637495,
+   "cov_in": 0.9391129125628389,
+   "viol_out": [
+    2,
+    20
+   ],
+   "viol_in": [
+    1,
+    20
+   ],
+   "cdf_gap_out": -0.001901940713214162,
+   "cdf_gap_in": 0.007764905500460028,
+   "band_mass": 0.7540842872008325,
+   "band_overlapping": [
+    20,
+    20
+   ],
+   "discordance_in_band": 0.07402440471532161,
+   "discordance_outside_band": 0.05179780876233865,
+   "audit_lines_covered": [
+    116,
+    120
+   ]
+  },
+  {
+   "cutoff": 8,
+   "sigma": 0.5,
+   "reps": 20,
+   "identical_to_truth": 0,
+   "prevalence": 0.3106139438085328,
+   "auroc_score_global": 0.5396773174046332,
+   "spearman_surrogate_vs_pki": 0.9106210957669942,
+   "auroc_surrogate_vs_truth": 0.8542448405549761,
+   "cov_out": 0.919096969785004,
+   "cov_in": 0.9508554575070882,
+   "viol_out": [
+    1,
+    20
+   ],
+   "viol_in": [
+    0,
+    20
+   ],
+   "cdf_gap_out": -0.0009323598099372499,
+   "cdf_gap_in": 0.0195791887250246,
+   "band_mass": 0.7680280957336107,
+   "band_overlapping": [
+    20,
+    20
+   ],
+   "discordance_in_band": 0.13541125724224662,
+   "discordance_outside_band": 0.0905361445038254,
+   "audit_lines_covered": [
+    114,
+    120
+   ]
+  },
+  {
+   "cutoff": 8,
+   "sigma": 1.0,
+   "reps": 20,
+   "identical_to_truth": 0,
+   "prevalence": 0.3106139438085328,
+   "auroc_score_global": 0.5396773174046332,
+   "spearman_surrogate_vs_pki": 0.7439110018437238,
+   "auroc_surrogate_vs_truth": 0.7561736986820897,
+   "cov_out": 0.9152775798561106,
+   "cov_in": 0.9441998416913391,
+   "viol_out": [
+    2,
+    20
+   ],
+   "viol_in": [
+    0,
+    20
+   ],
+   "cdf_gap_out": -0.004869075690351193,
+   "cdf_gap_in": 0.013159159673647707,
+   "band_mass": 0.7647242455775233,
+   "band_overlapping": [
+    20,
+    20
+   ],
+   "discordance_in_band": 0.2275239886199373,
+   "discordance_outside_band": 0.14873944004557624,
+   "audit_lines_covered": [
+    114,
+    120
+   ]
+  },
+  {
+   "cutoff": 8,
+   "sigma": 2.0,
+   "reps": 20,
+   "identical_to_truth": 0,
+   "prevalence": 0.3106139438085328,
+   "auroc_score_global": 0.5396773174046332,
+   "spearman_surrogate_vs_pki": 0.4870670536049812,
+   "auroc_surrogate_vs_truth": 0.648535381309061,
+   "cov_out": 0.9241374310219725,
+   "cov_in": 0.9584942379849932,
+   "viol_out": [
+    1,
+    20
+   ],
+   "viol_in": [
+    0,
+    20
+   ],
+   "cdf_gap_out": 0.004006874742202493,
+   "cdf_gap_in": 0.028795669748432305,
+   "band_mass": 0.7984521331945891,
+   "band_overlapping": [
+    20,
+    20
+   ],
+   "discordance_in_band": 0.3179798455229237,
+   "discordance_outside_band": 0.2349356522618456,
+   "audit_lines_covered": [
+    115,
+    120
+   ]
+  }
+ ]
+}
