@@ -89,10 +89,8 @@ measured, it also serves as a control. Sweeping it, separately for each class, m
 classifier across the rounds available to a team, and the audit states what each one would
 deliver.
 
-The condition an audit requires is not the condition coverage requires, and that difference is
-the subject of this paper. Coverage needs the calibration set to be exchangeable with the
-compounds being scored. The counts need the audit set to be exchangeable with the batch that is
-actually committed. The two can fail separately, and they fail asymmetrically. A rule fitted on the wrong population, at the wrong prevalence, or against a cheaper label is a poorer rule, although an audit of it stays sound. An audit drawn from chemistry the committed batch does not contain voids the counts, however carefully that rule was calibrated.
+Coverage and these counts rest on different exchangeability conditions. Coverage needs the calibration set to be exchangeable with the compounds being scored. The counts need the audit set to be exchangeable with the batch that is
+actually committed. The two can fail separately, and they fail asymmetrically. A rule fitted on the wrong population, at the wrong prevalence, or against a cheaper label is a poorer rule, although an audit of it stays sound. An audit drawn from chemistry the committed batch does not contain voids the counts, however carefully that rule was calibrated. We report what each failure costs.
 
 A screening project is least protected against the second condition, because the division it
 conventionally reports does not supply it. Holding compounds apart by scaffold or by building
@@ -110,32 +108,34 @@ audit intervals that the method returns, together with the role coverage plays i
 them. We then validate those intervals in simulation and on measured data, and apply them to
 solubility, toxicity and electrolyte screens. A workflow and the limitations close the paper.
 
-\paragraph{Contributions.} The statistical tools are classical; what is new is the separation
-they make visible and what violating it costs.
+\paragraph{Contributions.} The statistical tools are classical. What is new is the separation
+between two guarantees that are ordinarily treated as one, and the measured cost of ignoring it.
 
-\begin{itemize}\itemsep2pt
-\item \emph{A labelled audit set prices a round, in counts, before it is run.} Sweeping the two
-class-wise coverage requests traces the decisions available to a team, and at each setting an
-audit gives finite-sample intervals for every cell of the outcome table, covering confident
-hits, false leads, missed in-class compounds and compounds assayed, valid after the setting is
-chosen and invertible for the size of the
+\begin{enumerate}\itemsep2pt
+\item \emph{Prediction intervals for the counts of a future batch.} For each setting of the two
+class-wise coverage requests, a labelled audit set gives finite-sample valid prediction intervals
+and one-sided bounds for every cell of the outcome table: confident hits, false leads, missed
+in-class compounds and compounds assayed. The intervals hold after a setting has been chosen by
+inspecting them, and they invert for the size of the
 round.\citep{Thatcher1964,Meeker2017Intervals}
-\item \emph{Two guarantees, two requirements, and the asymmetry runs one way.} From the audit's
-point of view the calibration set is training data, which separates the two conditions and
-fixes the direction in which they fail (Table~\ref{tab:decoupling}).
-\item \emph{What violating the second costs, measured four ways on public data.} Withheld
-building blocks, division by provenance, an audit matching a batch's composition but not its
-chemistry, and a batch the model chose. The counts break in all four, and no statistic a screen
-reports orders the failures.
-\item \emph{What satisfying it takes.} A pilot of the screened population repairs the counts
-under divisions that are not random, and a random slice of a committed batch repairs them
-exactly, whatever rule made the selection. One round of selection depletes the library, so the
-slice is re-drawn each round.
-\item \emph{A check that costs no measurements.} Whether the audit matches the batch is testable
-beforehand from structures alone, as a classifier two-sample test against a permutation
-null.\citep{LopezPaz2017Revisiting} The test is one-sided, so it can refuse an arrangement but
-never certify one, and is blind by construction to a shift the representation cannot see.
-\end{itemize}
+\item \emph{Two guarantees with different exchangeability conditions.} Coverage requires the
+calibration set to be exchangeable with the compounds being scored. The predicted counts require
+the audit set to be exchangeable with the batch that is committed. From the audit's point of
+view the calibration set is training data, which separates the two conditions and fixes the
+direction in which they fail (Table~\ref{tab:decoupling}).
+\item \emph{The cost of violating the audit condition, measured four ways.} The four
+arrangements are withheld building blocks, division by provenance, an audit matching a batch's
+composition but not its chemistry, and a batch selected by the model. The predicted counts fail
+in all four. No statistic a screen ordinarily reports orders the failures.
+\item \emph{Two arrangements under which the condition holds.} A pilot sample of the screened
+population restores the counts under divisions that are not random. A random slice of a
+committed batch restores them exactly, whatever rule made the selection. Selection depletes the
+library, so the slice is drawn again in each round.
+\item \emph{A structural test of the audit against the batch.} Whether the two can be told apart
+is testable from structures alone, before any compound is measured, as a classifier two-sample
+test against a permutation null.\citep{LopezPaz2017Revisiting} The test is one-sided. It is also
+blind by construction to a shift the representation cannot see.
+\end{enumerate}
 
 \paragraph{Related work.}
 \label{sec:intro:related}
