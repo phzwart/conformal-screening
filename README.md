@@ -36,4 +36,5 @@ Check each dataset's licence before redistributing this repository publicly.
 
 ## Licence
 
-To be decided before release.
+MIT, see `LICENSE`. The licence covers the code only; each dataset keeps its
+own terms, listed above. Check those before redistributing this repository.
