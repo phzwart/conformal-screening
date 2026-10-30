@@ -20,7 +20,7 @@
 \setlength{\parskip}{0pt}
 \raggedbottom
 
-\title{\Large\bfseries Audit the chemistry you will screen:\\ count-level guarantees for a screening round}
+\title{\Large\bfseries Predicting the size and yield of a screening round\\ from a labelled audit sample}
 \author{Petrus H. Zwart\thanks{Center for Advanced Mathematics in Energy Research Applications, Berkeley Synchrotron Infrared Structural Biology Program, and Molecular Biophysics and Integrated Bioimaging Division, Lawrence Berkeley National Laboratory, 1 Cyclotron Road, Berkeley, CA 94720, USA. E-mail: PHZwart@lbl.gov. Electronic supplementary information (ESI) available: derivations, algorithms, simulation protocols and additional tables.}}
 \date{}
 
@@ -28,24 +28,15 @@
 \twocolumn[
 \maketitle
 \begin{abstract}
-Conformal prediction supplies prediction sets with guaranteed coverage, and is increasingly
-applied to screening in chemistry and materials science. A screening round, however, is planned
-in counts rather than rates. A laboratory commits wells on a plate, the reagent budget of a run,
-and the hits it must confirm to justify going on. Forecasting such counts for a batch not yet
-assembled takes a labelled audit set. That sample must come from the library the round will draw
-on, and serve neither training nor calibration. The exchangeability it needs differs
-from the one underpinning coverage. Seen from the audit, a calibration set is training data.
-Coverage and the predicted counts therefore become separate guarantees, and their asymmetry runs
-in a single direction. A classifier tuned on the wrong population, prevalence or label predicts
-less well, although auditing it stays sound. An audit sampling chemistry the batch lacks voids
-the forecast, however carefully that tuning was done. We examine four arrangements in which this
-second requirement fails on public data. Withholding building blocks in a DNA-encoded library
-cost two thirds of the coverage, while the ranking slipped from 0.960 to 0.892 in area under the
-curve, roughly a seventh of its margin above chance. Where the model itself chose the batch, no
-audit could be reserved from the library in nine of twelve rounds. None of the figures a screen
-ordinarily reports ranks these failures. Two designs held. One is a pilot of the population to be
-screened. The other is a random slice of the committed round, which remains exact whatever rule
-selected it.
+A screening campaign that needs 20 confirmed hits at a hit rate of 2\% and divides the target by
+the rate will plan a round of 1000 candidates. About twice that is required. Run backwards from a labelled sample of the library, the same target needs 2056 candidates when the rate is estimated from 384 measured compounds. It needs 1390 even if that rate were known exactly, since the draw of the batch is not something measurement can settle. Separating those terms shows
+which part of a campaign's uncertainty is for sale. Enlarging that sample from 49 compounds to 384 roughly halves the requirement; at 49 it sees no hit at all with probability 0.37, and no batch size then reaches the target.
+Read forwards, the same sample predicts every outcome of a round as counts with finite-sample intervals: confident hits, false leads, missed actives and compounds assayed. We call it an audit set, and the condition it must satisfy differs from the one
+conformal coverage requires. From the audit's point of view the calibration set is training data.
+The two conditions fail separately, and they fail asymmetrically. A rule fitted on the wrong population, prevalence or label is a poorer rule whose audit stays sound, whereas an audit drawn from chemistry the committed batch lacks voids the counts however the rule was calibrated. The second condition fails four ways on public data. Withholding building blocks in a DNA-encoded library cost two thirds of the coverage while barely changing the ranking, and where the model chose the batch an audit reserved from the library could not be formed at all in nine of twelve rounds. No statistic a
+screen ordinarily reports orders these failures. Two arrangements hold, a pilot of the population
+to be screened and a random slice of the committed round, the second exact whatever rule made the
+selection.
 \end{abstract}
 \vspace{1em}
 ]
