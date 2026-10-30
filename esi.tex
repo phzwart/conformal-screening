@@ -428,6 +428,39 @@ ranged from 0.81 to 1.00 across the source divisions, so the model's ranking doe
 announce the failure either.
 
 %% ------------------------------------------------------------------
+\section{A pilot of the screened source, divided non-randomly}
+\label{sec:pilotnr}
+
+The divisions of Section~\ref{sec:source} establish that provenance costs coverage; this asks
+whether the remedy the paper recommends works, under a division that could fail. The
+formulations are reduced as elsewhere, the room-temperature window and the
+$8\,\mathrm{mS\,cm^{-1}}$ cut applied unchanged. For each source contributing at least 40
+room-temperature formulations, the other sources are divided 50/25/25 into training,
+calibration and an off-source audit; the model is fitted on every temperature row of the
+training formulations, with the standard hyperparameters, and frozen. The thresholds therefore
+come from formulations of other papers in every arm, which is the position a campaign is in,
+and only the origin of the audit changes. Three repeats were run per source under seeds
+$4242+r$, with the division drawn under $909+r$ and the tie-breaking jitter under $31337+r$.
+
+Five arrangements price the held-out source. \emph{Off source} audits it with the held-back
+quarter of the other sources. \emph{Random} divides the held-out source at random, which is
+exchangeable by construction and is reported as the ceiling. \emph{By concentration} lets the
+low-concentration half audit the high-concentration half. \emph{By system} partitions the
+source's salt--solvent systems so that none is shared. \emph{As reported} lets the first half
+of the source's formulations in file order audit the second, which is not random but is
+chemically arbitrary, and so separates a division that is merely not random from one that is
+shifted in chemistry. An arrangement is run only where each side holds at least 20
+formulations and at least one of each class, which admits eight sources for the off-source and
+random arms and six, three and five for the three genuine divisions.
+
+Coverage of the six consequence lines, with the source as the unit, was $0.55\pm0.07$ off
+source, $0.92\pm0.17$ by concentration, $0.87\pm0.21$ by system, $0.86\pm0.12$ as reported and
+$0.99\pm0.02$ at random. On the sources admitting both, the paired gain of a pilot over an
+off-source audit is $+0.37\pm0.21$, $+0.37\pm0.26$ and $+0.34\pm0.17$. Median audit-to-batch
+in-class rate ratios were 0.56 off source, 1.04 by concentration, 1.09 by system, 1.81 as
+reported and 0.95 at random.
+
+%% ------------------------------------------------------------------
 \section{Label-noise sensitivity of the solubility screen}
 \label{sec:noise}
 
@@ -533,6 +566,7 @@ All analyses reported in this paper were run with the scripts below, which imple
 \item \texttt{exch\_check.py}: the label-free pre-flight check and the block shares (main text Table~\ref{main-tab:preflight}); \texttt{preflight\_arms.py}: the same check on the three preparations of the declared round, with its permutation null;
 \item \texttt{cadel\_fetch.py}, \texttt{surrogate\_structure.py}, \texttt{where\_mistakes.py}, \texttt{monotone\_check.py}: the carbonic anhydrase proxy-label experiments and the monotone-rescaling check (main text Table~\ref{main-tab:surrogate}, Section~\ref{sec:surrogate});
 \item \texttt{sizing.py}: guaranteed-yield sizing and the audit-size inversion (main text Fig.~\ref{main-fig:sizing}, Section~\ref{sec:intervals});
+\item \texttt{pilot\_nonrandom.py}: the pilot of the screened source under non-random divisions (main text Section~\ref{main-sec:results:source}, Section~\ref{sec:pilotnr});
 \item \texttt{aqsol\_noise.py}: the label-noise sensitivity of the solubility screen (main text Section~\ref{main-sec:results:solubility}, Section~\ref{sec:noise});
 \item \texttt{source\_split2.py}: the division of the electrolyte formulations by provenance (main text Section~\ref{main-sec:results:source}, Section~\ref{sec:source}). An earlier \texttt{source\_split.py} fitted the model on its own calibration set and is superseded; its figures are not the ones reported;
 \item \texttt{within\_between.py}, \texttt{stereo\_blocks.py}, \texttt{support\_check.py}: the intracluster correlations and design effects, the stereoisomeric block pairs, and the similarity-cluster counts of the Limitations;
