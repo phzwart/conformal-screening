@@ -65,10 +65,17 @@ candidates forward to a toxicity assay, to a solubility or conductivity measurem
 synthesis. Because characterisation runs in parallel, the capacity of a round is fixed before it
 begins.
 
-Most work on such platforms addresses which candidates a round should contain. Bayesian optimisation and its batch forms choose them to locate an optimum in as few experiments as possible, by rank, by a penalised acquisition, by space filling or along a
-multi-objective
+Most work on such platforms addresses which candidates a round should contain. Bayesian
+optimisation and its batch forms choose them, whether to reach an optimum or to cover a design
+space, by rank, by a penalised acquisition, by space filling or along a multi-objective
 front.\citep{Gonzalez2016LP,HernandezLobato2017TS,Shields2021EDBO,Joseph2016SFD,Kusne2020CAMEO,Eriksson2019TuRBO,Daulton2020qEHVI}
-Where guarantees are given for such a search, they concern the rate at which it converges. A screening round has a different shape. It is committed as a block of fixed size, it adapts only between rounds and not within one, and it often aims at covering a chemical or physical design space rather than at reaching one best point (Section~\ref{sec:discussion}). What a team must settle before committing is therefore another quantity. How many candidates the round should hold, and what it will return once measured.
+The question taken up here comes after such a choice has been made. Given the compounds a round
+will hold, how many will receive a confident call, how many of those calls will be wrong, how
+many compounds will need an assay, and how large the round must be to return a target yield.
+These are statements about what a decision procedure delivers over a whole batch, and the
+intervals reported for them hold in finite samples under exchangeability, needing no model of
+the response. The two compose, since a planner selects and an audit prices whatever was
+selected (Section~\ref{sec:discussion}).
 
 A team therefore commits a fixed number of candidates without knowing what they will yield. What
 it would like to know is how many of the chosen compounds will prove active, how many of the
