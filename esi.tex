@@ -36,7 +36,16 @@
 \section{Notation and the outcome table}
 \label{sec:notation}
 
-The \emph{audit set} of the main text is a labelled random sample of the screened library used neither for training nor for calibration.
+The construction has three parts, and this section fixes notation for each. A trained
+classifier scores every compound. A \emph{calibration set} of labelled compounds fixes one
+score threshold per class, chosen so that the set of labels offered for a compound contains
+its true label at a stated rate. Because there are two classes and each is thresholded
+separately, a compound receives one of four possible sets: the in-class label alone, the
+out-class label alone, both, or neither. Crossing those four against the two true labels
+gives an outcome table of eight cells, and every quantity a screen reports is a sum of some
+of its cells. An \emph{audit set}, a labelled random sample of the screened library used for
+neither training nor calibration, supplies the counts in those cells, from which the counts
+in a future batch follow.
 
 Labels are $y\in\{0,1\}$: 1 for the in-class compounds, those with the property the screen looks for (toxic, soluble, or reaching the conductivity target), and 0 for the out-class compounds. The trained model gives predicted probabilities $\hat p(y\mid x)$ and nonconformity scores $s(x,y)=1-\hat p(y\mid x)$. For class $y$ let $S^{(y)}_{(1)}\le\dots\le S^{(y)}_{(n_y)}$ be the sorted scores of the $n_y$ calibration compounds of class $y$, and $\tau_y=S^{(y)}_{(k_y)}$. The prediction set is $C(x)=\{y: s(x,y)\le\tau_y\}$, one of $\{0\}$, $\{1\}$, $\{0,1\}$, $\varnothing$.
 
@@ -49,6 +58,76 @@ for the probability of a cell of the outcome table (main text Table~\ref{main-ta
 p_g=\sum_{y,c} g(y,c)\,p_{y,c},\qquad g(y,c)\in\{0,1\},
 \end{equation}
 for a fixed indicator $g$ that selects cells. Examples: missed in-class compounds, $g=\mathbf 1\{y=1,c=\{0\}\}$; false leads, $g=\mathbf 1\{y=0,c=\{1\}\}$; deferred, $g=\mathbf 1\{c\in\{\{0,1\},\varnothing\}\}$; coverage, $g=\mathbf 1\{y\in c\}$. Ratios of such sums, for example the fraction of in-class compounds among compounds labelled $\{1\}$, follow directly. The same identity holds for counts: if $K_{y,c}$ is the number of test compounds in cell $(y,c)$, the count of quantity $g$ is $K_g=\sum_{y,c}g(y,c)K_{y,c}$. Within each class the cells sum to the class total, $\sum_c p_{y,c}=\Pr(Y=y)$.
+
+%% ------------------------------------------------------------------
+\section{A worked example}
+\label{sec:worked}
+
+Every figure below is produced by the threshold and interval routines described in
+Section~\ref{sec:software}, so the example also serves as a check against an independent
+implementation.
+
+\paragraph{Thresholds.} Take a calibration set of $n_0=200$ out-class and $n_1=60$ in-class
+compounds, a coverage request of $\alpha_0=\alpha_1=0.10$ for each class, a tolerance
+$\delta=0.10$, and a batch of $m=1000$ compounds. At the calibration prevalence of $0.231$ a
+batch of that size is expected to hold $m_1=231$ in-class and $m_0=769$ out-class compounds.
+The standard threshold, which guarantees the requested coverage on average over calibration
+sets, takes the order statistics $k_0=181$ and $k_1=55$. Requiring instead that the
+realized coverage of a batch of $m_y$ compounds of class $y$ reach $1-\alpha_y$ with
+probability $1-\delta$ gives $k_0=187$ and $k_1=58$ (Section~\ref{sec:correction}). The
+in-class threshold therefore moves from the 55th to the 58th of 60 calibration scores, which
+is the cost of a guarantee that holds for the model actually deployed rather than on average.
+
+\paragraph{The audit set.} Suppose an audit of $n=400$ compounds, 92 of them in-class, gives
+the following counts under those thresholds.
+
+\begin{center}
+\small
+\begin{tabular}{@{}lr@{}}
+\toprule
+cell & count \\
+\midrule
+confident hits, in-class receiving $\{1\}$      &  61 \\
+missed actives, in-class receiving $\{0\}$      &   4 \\
+in-class deferred, $\{0,1\}$ or $\varnothing$   &  27 \\
+confident rejects, out-class receiving $\{0\}$  & 265 \\
+false leads, out-class receiving $\{1\}$        &  11 \\
+out-class deferred                              &  32 \\
+\midrule
+total                                           & 400 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{Counts for the next batch.} Each cell count is carried to a batch of $m=1000$ by
+the Beta--Binomial limits of Section~\ref{sec:intervals}. Taken one outcome at a time at
+$\gamma=0.05$, and then jointly over the four at $\gamma/4$ so that all hold together:
+
+\begin{center}
+\small
+\begin{tabular}{@{}lrrcc@{}}
+\toprule
+outcome & audit & point & 95\% & joint \\
+\midrule
+confident hits    & 61 & 152 & $[113,198]$ & $[103,211]$ \\
+false leads       & 11 &  28 & $[11,52]$   & $[8,60]$ \\
+missed actives    &  4 &  10 & $[1,28]$    & $[0,34]$ \\
+compounds assayed & 59 & 148 & $[108,193]$ & $[99,206]$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent The point column is $m$ times the audited rate. Two features of the table are
+general. The intervals are wide where the audit has seen few compounds, so the bound on
+missed actives rests on four observations and is correspondingly loose. And the joint column
+is the one to plan against whenever more than one outcome is read, or whenever the setting
+itself was chosen by looking at the audit (Section~\ref{sec:costs}).
+
+\paragraph{Sizing a round.} The same limits run backwards. The smallest batch whose lower
+bound on confident hits reaches 20, at a one-sided level of $0.05$, is $m=191$. Dividing the
+target by the audited rate of $61/400$ asks for 131. The excess is the batch-draw term of
+the main text, and it grows as the rate falls: at a rate of $2\%$ the same comparison gives
+2056 against 1000.
 
 %% ------------------------------------------------------------------
 \section{Coverage given the calibration set and the finite-sample correction}
