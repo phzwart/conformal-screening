@@ -638,10 +638,7 @@ Calibration and audit drawn from & AUROC & poor & good & default & sweep & Bonfe
 Every check of the audit intervals reported so far divides one labelled pool at random, which
 makes the two halves exchangeable by construction and establishes that the construction is
 right rather than that it survives a real separation. The electrolyte compilation lets the
-harder question be asked, because it records which paper each measurement came from. We
-therefore divided the formulations by source instead of at random, so that no paper
-contributes to both the audit and the batch, holding the model and the calibration set fixed
-across the divisions and halving nothing. The protocol is the one used elsewhere in this
+harder question be asked, because it records which paper each measurement came from. We therefore divided the formulations by source instead of at random, so that no paper contributes to both the audit and the batch, holding the model and the calibration set fixed across the divisions and halving nothing (ESI Section~\ref{esi-sec:source}). The protocol is the one used elsewhere in this
 paper: formulations are assigned to training, calibration and the remainder, the model is
 fitted on every temperature row of the training formulations and is therefore disjoint from
 the set that sets its thresholds, and the remainder is divided three ways.
@@ -671,8 +668,7 @@ is attributable to the two together. That is itself the practical point, since a
 the one the library screen also points to: when a round reaches into a population the audit
 does not hold, buy a pilot of that population. Every arrangement reported so far that recovers
 the nominal level divides one pool at random, which cannot fail, so none of them tests that
-advice. The compilation lets it be tested, because a single paper's formulations can be
-divided in ways that are not random. Holding the thresholds on the other sources throughout,
+advice. The compilation lets it be tested, because a single paper's formulations can be divided in ways that are not random (ESI Section~\ref{esi-sec:pilotnr}). Holding the thresholds on the other sources throughout,
 so that the rule is calibrated off-population exactly as a campaign would have it, we held out
 one source as the screened population and varied only where the audit came from: from the other sources, as is done by habit; or from the held-out source itself, divided by
 concentration band, by solvent system so that no system is shared, or simply as the paper
@@ -774,7 +770,7 @@ the selection moves. A pool of 70\,000 candidates was scored, the planner commit
 highest-ranked $m$ of those remaining in each round, and the same committed batch was priced
 three ways: with a random sample of the candidates still in the pool, which is the audit ordinarily reserved; with a random slice of the committed batch itself, measured and used to
 price the remainder; and with the same selection rule applied to a pool of 20\,000 reserved
-from the planner. Two round sizes were run, $m=8000$ and $m=1500$.
+from the planner. Two round sizes were run, $m=8000$ and $m=1500$ (ESI Section~\ref{esi-sec:adaptive}).
 
 The audit reserved from the library does not price a plate the model chose, and the reason is
 visible before any interval is computed. In the first round at $m=1500$ the committed batch
@@ -1063,7 +1059,7 @@ P.H.Z.\ conceived the study, developed the methodology, performed the analysis a
 There are no conflicts to declare.
 
 \section*{Data availability}
-Tox21 is available through MoleculeNet, AqSolDB through its dataset reference\citep{Sorkun2019AqSolDB} and CALiSol-23 from the DTU data repository (DOI 10.11583/DTU.c.6929599).\citep{deBlasio2024CALiSol} The carbonic anhydrase selection counts and affinities are from the CA-DEL release\citep{He2026CADEL} (Zenodo record 17656024, DOI 10.5281/zenodo.17656024, CC BY 4.0), whose affinity values derive from ChEMBL\citep{Zdrazil2024ChEMBL} and carry CC BY-SA 3.0. The DNA-encoded library is BELKA,\citep{Quigley2024BELKA} available from Leash Biosciences through the Polaris record \texttt{leash-bio/belka-v1} under CC BY-NC-SA 4.0; the million-molecule sample used here is reproduced by the seeded digest rule given in ESI Section~\ref{esi-sec:del}. The scripts that reproduce every table and figure are provided with the ESI, together with the processed data, split indices and stored model scores. They implement the finite-sample threshold corrections, randomized tie-breaking, outcome tables, prediction intervals for future batches from an audit set or from the calibration set alone, coverage-request sweeps with corrections for selection, and the cost-ratio analysis. They are released under the MIT licence at \url{https://github.com/phzwart/conformal-screening}. \todo{Tagged version and archived Zenodo DOI, on acceptance.}
+Tox21 is available through MoleculeNet, AqSolDB through its dataset reference\citep{Sorkun2019AqSolDB} and CALiSol-23 from the DTU data repository (DOI 10.11583/DTU.c.6929599).\citep{deBlasio2024CALiSol} The carbonic anhydrase selection counts and affinities are from the CA-DEL release\citep{He2026CADEL} (Zenodo record 17656024, DOI 10.5281/zenodo.17656024, CC BY 4.0), whose affinity values derive from ChEMBL\citep{Zdrazil2024ChEMBL} and carry CC BY-SA 3.0. The DNA-encoded library is BELKA,\citep{Quigley2024BELKA} available from Leash Biosciences through the Polaris record \texttt{leash-bio/belka-v1} under CC BY-NC-SA 4.0; the million-molecule sample used here is reproduced by the seeded digest rule given in ESI Section~\ref{esi-sec:del}. The scripts that reproduce every table and figure are provided with the ESI (Section~\ref{esi-sec:software}), together with the processed data, split indices and stored model scores. They implement the finite-sample threshold corrections, randomized tie-breaking, outcome tables, prediction intervals for future batches from an audit set or from the calibration set alone, coverage-request sweeps with corrections for selection, and the cost-ratio analysis. They are released under the MIT licence at \url{https://github.com/phzwart/conformal-screening}. \todo{Tagged version and archived Zenodo DOI, on acceptance.}
 
 \section*{Acknowledgements}
 This work was supported by the U.S. Department of Energy, Office of Science, under Contract No.\ DE-AC02-05CH11231 as part of the Laboratory Directed Research and Development (LDRD) program. Additional support came in part from the U.S. Department of Energy, Office of Science, Scientific Discovery through Advanced Computing (SciDAC) program FORUM-AI. Generative AI was used in preparing this manuscript: for drafting and editing prose, for writing and refactoring analysis code, and for assembling tables and figures from computed results. The author designed the study, chose the analyses, and has verified the reported numbers against the stored outputs of the scripts that produced them.
