@@ -65,6 +65,11 @@ candidates forward to a toxicity assay, to a solubility or conductivity measurem
 synthesis. Because characterisation runs in parallel, the capacity of a round is fixed before it
 begins.
 
+Most work on such platforms addresses which candidates a round should contain. Bayesian optimisation and its batch forms choose them to locate an optimum in as few experiments as possible, by rank, by a penalised acquisition, by space filling or along a
+multi-objective
+front.\citep{Gonzalez2016LP,HernandezLobato2017TS,Shields2021EDBO,Joseph2016SFD,Kusne2020CAMEO,Eriksson2019TuRBO,Daulton2020qEHVI}
+Where guarantees are given for such a search, they concern the rate at which it converges. A screening round has a different shape. It is committed as a block of fixed size, it adapts only between rounds and not within one, and it often aims at covering a chemical or physical design space rather than at reaching one best point (Section~\ref{sec:discussion}). What a team must settle before committing is therefore another quantity. How many candidates the round should hold, and what it will return once measured.
+
 A team therefore commits a fixed number of candidates without knowing what they will yield. What
 it would like to know is how many of the chosen compounds will prove active, how many of the
 discarded ones were worth keeping, and how many will need a further assay before they can be
